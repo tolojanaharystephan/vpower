@@ -1,0 +1,112 @@
+{
+  "brand": {
+    "name": "VPower777",
+    "tagline": "L'expérience jeu nouvelle génération"
+  },
+  "nav": {
+    "games": "Jeux",
+    "promotions": "Promotions",
+    "live": "Live",
+    "help": "Aide",
+    "login": "Connexion",
+    "register": "Inscription",
+    "walletSoon": "Portefeuille",
+    "comingSoon": "Bientôt disponible"
+  },
+  "hero": {
+    "eyebrow": "Jouez au-delà de l'ordinaire",
+    "headline": "La scène s'allume.\nÀ toi de jouer.",
+    "sub": "Des titres sélectionnés, une interface fluide, une expérience pensée pour le plaisir — sans superflu.",
+    "ctaPrimary": "Explorer les jeux",
+    "ctaSecondary": "Créer un compte"
+  },
+  "carousel": {
+    "eyebrow": "Sélection",
+    "title": "Jeux favoris",
+    "viewAll": "Tout le catalogue",
+    "play": "Jouer",
+    "browse": "Voir le catalogue",
+    "prev": "Jeu précédent",
+    "next": "Jeu suivant"
+  },
+  "rails": {
+    "featured": "À la une",
+    "new": "Nouveautés",
+    "popular": "Populaires",
+    "viewAll": "Tout voir"
+  },
+  "promos": {
+    "title": "Promotions",
+    "subtitle": "Offres du moment — sans pression, juste du style.",
+    "welcomeTitle": "Bonus de bienvenue",
+    "welcomeBody": "Activez votre compte et découvrez la sélection VPower777.",
+    "weeklyTitle": "Sélection de la semaine",
+    "weeklyBody": "Des nouveautés mises en avant chaque semaine."
+  },
+  "auth": {
+    "panelHeadline": "Entrez dans le prochain acte.",
+    "panelSub": "Un espace cinématographique pour les jeux que vous choisissez, où chaque détail invite à jouer.",
+    "loginTitle": "Connexion",
+    "registerTitle": "Créer un compte",
+    "email": "Email",
+    "password": "Mot de passe",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "submitLogin": "Se connecter",
+    "submitRegister": "S'inscrire",
+    "noAccount": "Pas encore de compte ?",
+    "hasAccount": "Déjà inscrit ?",
+    "errorGeneric": "Une erreur est survenue. Réessayez."
+  },
+  "footer": {
+    "blurb": "Plateforme de jeu nouvelle génération — titres sélectionnés, expérience fluide, ambiance cinéma.",
+    "colExplore": "Explorer",
+    "colSupport": "Support",
+    "colLegal": "Légal",
+    "games": "Jeux",
+    "promotions": "Promotions",
+    "help": "Centre d'aide",
+    "faq": "FAQ",
+    "responsible": "Jeu responsable",
+    "terms": "Conditions",
+    "privacy": "Confidentialité",
+    "rights": "Tous droits réservés.",
+    "socialSoon": "Bientôt",
+    "comingSoon": "Bientôt disponible"
+  },
+  "gamesPage": {
+    "title": "Catalogue",
+    "subtitle": "Parcourez la sélection. La synchro API arrive bientôt.",
+    "searchPlaceholder": "Rechercher un jeu…",
+    "filter": {
+      "all": "Tous les jeux",
+      "featured": "À la une",
+      "new": "Nouveautés",
+      "popular": "Populaires"
+    },
+    "emptyTitle": "Aucun jeu trouvé",
+    "emptyBody": "Essayez une autre recherche ou choisissez une autre collection."
+  },
+  "help": {
+    "title": "Centre d'aide",
+    "subtitle": "Trouvez les réponses essentielles, explorez le catalogue et suivez les offres depuis un espace clair et apaisé.",
+    "cardFaqTitle": "Questions fréquentes",
+    "cardFaqBody": "Création de compte, disponibilité et réponses essentielles au même endroit.",
+    "cardGamesTitle": "Explorer les jeux",
+    "cardGamesBody": "Parcourez la sélection actuelle et trouvez votre prochain jeu favori.",
+    "cardPromosTitle": "Offres et promotions",
+    "cardPromosBody": "Découvrez en un coup d'œil les offres de bienvenue et sélections de la semaine."
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Quelques réponses claires avant l'arrivée du centre de support complet.",
+    "q1": "Comment créer un compte ?",
+    "a1": "Utilisez Inscription, puis vérifiez votre email lorsque le mailer sera activé.",
+    "q2": "Les dépôts sont-ils disponibles ?",
+    "a2": "Non — portefeuille et paiements seront activés au LOT 2.",
+    "q3": "Puis-je parcourir les jeux sans compte ?",
+    "a3": "Oui. Le catalogue est accessible librement ; les fonctionnalités de compte arrivent après l'inscription.",
+    "q4": "Où trouver les promotions en cours ?",
+    "a4": "Consultez la page Promotions pour voir l'offre de bienvenue et les sélections de la semaine."
+  }
+}

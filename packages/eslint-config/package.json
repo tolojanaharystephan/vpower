@@ -1,0 +1,20 @@
+{
+  "name": "@vpower777/eslint-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./base": "./base.js",
+    "./next": "./next.js",
+    "./nestjs": "./nestjs.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "typescript-eslint": "^8.33.1"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0"
+  }
+}

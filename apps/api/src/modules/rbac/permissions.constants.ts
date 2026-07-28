@@ -1,0 +1,41 @@
+import type { Role } from '@vpower777/types';
+
+export const PERMISSIONS = {
+  USERS_READ: 'users:read',
+  USERS_WRITE: 'users:write',
+  GAMES_READ: 'games:read',
+  GAMES_WRITE: 'games:write',
+  CONTENT_READ: 'content:read',
+  CONTENT_WRITE: 'content:write',
+  SUPPORT_READ: 'support:read',
+  SUPPORT_WRITE: 'support:write',
+  ADMIN_ACCESS: 'admin:access',
+  AUDIT_READ: 'audit:read',
+} as const;
+
+export type PermissionCode = (typeof PERMISSIONS)[keyof typeof PERMISSIONS];
+
+export const ALL_PERMISSION_CODES = Object.values(PERMISSIONS);
+
+export const ROLE_PERMISSION_MAP: Record<Role, PermissionCode[]> = {
+  SUPER_ADMIN: [...ALL_PERMISSION_CODES],
+  ADMIN: [
+    PERMISSIONS.USERS_READ,
+    PERMISSIONS.USERS_WRITE,
+    PERMISSIONS.GAMES_READ,
+    PERMISSIONS.GAMES_WRITE,
+    PERMISSIONS.CONTENT_READ,
+    PERMISSIONS.CONTENT_WRITE,
+    PERMISSIONS.SUPPORT_READ,
+    PERMISSIONS.SUPPORT_WRITE,
+    PERMISSIONS.ADMIN_ACCESS,
+    PERMISSIONS.AUDIT_READ,
+  ],
+  SUPPORT_AGENT: [PERMISSIONS.SUPPORT_READ, PERMISSIONS.SUPPORT_WRITE, PERMISSIONS.USERS_READ],
+  CONTENT_MANAGER: [
+    PERMISSIONS.CONTENT_READ,
+    PERMISSIONS.CONTENT_WRITE,
+    PERMISSIONS.GAMES_READ,
+  ],
+  CUSTOMER: [],
+};

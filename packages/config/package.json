@@ -1,0 +1,29 @@
+{
+  "name": "@vpower777/config",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint . --max-warnings 0",
+    "dev": "tsc -p tsconfig.json --watch"
+  },
+  "dependencies": {
+    "@vpower777/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@vpower777/eslint-config": "workspace:*",
+    "@vpower777/typescript-config": "workspace:*",
+    "eslint": "^9.28.0",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: vpower777-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: vpower777
+      POSTGRES_PASSWORD: vpower777
+      POSTGRES_DB: vpower777
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./infra/docker/data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vpower777 -d vpower777"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: vpower777-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./infra/docker/data/redis:/data
+    command: ["redis-server", "--appendonly", "yes"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+networks:
+  default:
+    name: vpower777-network

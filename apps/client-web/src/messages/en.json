@@ -1,0 +1,112 @@
+{
+  "brand": {
+    "name": "VPower777",
+    "tagline": "Next-generation gaming experience"
+  },
+  "nav": {
+    "games": "Games",
+    "promotions": "Promotions",
+    "live": "Live",
+    "help": "Help",
+    "login": "Log in",
+    "register": "Sign up",
+    "walletSoon": "Wallet",
+    "comingSoon": "Coming soon"
+  },
+  "hero": {
+    "eyebrow": "Play beyond the ordinary",
+    "headline": "The stage lights up.\nYour move.",
+    "sub": "Curated titles, a fluid interface, an experience built for play — no clutter.",
+    "ctaPrimary": "Browse games",
+    "ctaSecondary": "Create account"
+  },
+  "carousel": {
+    "eyebrow": "Picks",
+    "title": "Favorite games",
+    "viewAll": "Full catalog",
+    "play": "Play",
+    "browse": "Browse catalog",
+    "prev": "Previous game",
+    "next": "Next game"
+  },
+  "rails": {
+    "featured": "Featured",
+    "new": "New",
+    "popular": "Popular",
+    "viewAll": "View all"
+  },
+  "promos": {
+    "title": "Promotions",
+    "subtitle": "Current offers — style first, no pressure.",
+    "welcomeTitle": "Welcome bonus",
+    "welcomeBody": "Activate your account and explore the VPower777 selection.",
+    "weeklyTitle": "This week's picks",
+    "weeklyBody": "Fresh titles highlighted every week."
+  },
+  "auth": {
+    "panelHeadline": "Enter the next act.",
+    "panelSub": "A cinematic space for the games you choose, with every detail built to stay in play.",
+    "loginTitle": "Log in",
+    "registerTitle": "Create account",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "submitLogin": "Log in",
+    "submitRegister": "Sign up",
+    "noAccount": "No account yet?",
+    "hasAccount": "Already registered?",
+    "errorGeneric": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "blurb": "Next-generation gaming platform — curated titles, fluid experience, cinema atmosphere.",
+    "colExplore": "Explore",
+    "colSupport": "Support",
+    "colLegal": "Legal",
+    "games": "Games",
+    "promotions": "Promotions",
+    "help": "Help center",
+    "faq": "FAQ",
+    "responsible": "Responsible play",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "rights": "All rights reserved.",
+    "socialSoon": "Coming soon",
+    "comingSoon": "Coming soon"
+  },
+  "gamesPage": {
+    "title": "Catalog",
+    "subtitle": "Browse the selection. API sync lands soon.",
+    "searchPlaceholder": "Search games…",
+    "filter": {
+      "all": "All games",
+      "featured": "Featured",
+      "new": "New",
+      "popular": "Popular"
+    },
+    "emptyTitle": "No games found",
+    "emptyBody": "Try another search or choose a different collection."
+  },
+  "help": {
+    "title": "Help center",
+    "subtitle": "Find quick answers, explore the catalog, and keep up with every offer from one calm, focused place.",
+    "cardFaqTitle": "Frequently asked questions",
+    "cardFaqBody": "Account setup, availability, and the essentials in one place.",
+    "cardGamesTitle": "Browse games",
+    "cardGamesBody": "Explore the current selection and find your next favorite title.",
+    "cardPromosTitle": "Offers & promotions",
+    "cardPromosBody": "See the latest welcome and weekly highlights at a glance."
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "A few clear answers before the full support center arrives.",
+    "q1": "How do I create an account?",
+    "a1": "Use Sign up, then verify your email once mailer is enabled.",
+    "q2": "Are deposits available?",
+    "a2": "Not yet — wallet and payments unlock in LOT 2.",
+    "q3": "Can I browse games without an account?",
+    "a3": "Yes. The catalog is open to browse; account features are available after signing up.",
+    "q4": "Where can I find current promotions?",
+    "a4": "Visit the Promotions page for the current welcome offer and weekly selections."
+  }
+}

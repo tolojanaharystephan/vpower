@@ -1,0 +1,34 @@
+{
+  "name": "vpower777",
+  "private": true,
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:api": "turbo run dev --filter=@vpower777/api",
+    "dev:client": "turbo run dev --filter=@vpower777/client-web",
+    "dev:admin": "turbo run dev --filter=@vpower777/admin-web",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
+    "infra:up": "node infra/scripts/infra-up.mjs",
+    "infra:up:docker": "docker compose up -d",
+    "infra:up:native": "powershell -NoProfile -ExecutionPolicy Bypass -File infra/scripts/infra-up-native.ps1",
+    "infra:down": "docker compose down",
+    "infra:ps": "docker compose ps",
+    "db:generate": "pnpm --filter @vpower777/api db:generate",
+    "db:migrate": "pnpm --filter @vpower777/api db:migrate",
+    "db:push": "pnpm --filter @vpower777/api db:push",
+    "db:studio": "pnpm --filter @vpower777/api db:studio"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="VPower777">
+  <defs>
+    <linearGradient id="gold" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0C84A"/>
+      <stop offset="0.5" stop-color="#D4A017"/>
+      <stop offset="1" stop-color="#8A6010"/>
+    </linearGradient>
+  </defs>
+  <!-- Casino chip base -->
+  <circle cx="32" cy="32" r="30" fill="#0B0B0F"/>
+  <circle cx="32" cy="32" r="28" fill="none" stroke="url(#gold)" stroke-width="2.5"/>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="url(#gold)" stroke-width="1" stroke-dasharray="3 4" opacity="0.55"/>
+  <!-- Jackpot 777 -->
+  <text
+    x="32"
+    y="40"
+    text-anchor="middle"
+    font-family="Arial Black, Helvetica Neue, sans-serif"
+    font-size="22"
+    font-weight="800"
+    letter-spacing="-1"
+    fill="url(#gold)"
+  >777</text>
+  <!-- Power spark -->
+  <path d="M46 12 L42 20 H46 L43 28 L52 16 H47 Z" fill="#F0C84A"/>
+</svg>
