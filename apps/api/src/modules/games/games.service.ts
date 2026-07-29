@@ -10,7 +10,7 @@ import {
   type GameProvider,
   type GameCategory,
 } from '../../database/schema';
-import type { CreateGameDto, UpdateGameDto, QueryGamesDto } from './dto';
+import type { CreateGameDto, UpdateGameDto, QueryGamesDto, QueryCatalogGamesDto } from './dto';
 
 export type GameWithRelations = Game & {
   provider: Pick<GameProvider, 'id' | 'name' | 'slug'>;
@@ -104,6 +104,19 @@ export class GamesService {
     ]);
 
     return { data, total: Number(countResult[0]?.total ?? 0) };
+  }
+
+  /** Public catalog: always force status=active. */
+  async findCatalogGames(query: QueryCatalogGamesDto) {
+    return this.findAllGames({ ...query, status: 'active' });
+  }
+
+  async findActiveCategories(): Promise<GameCategory[]> {
+    return this.db
+      .select()
+      .from(gameCategories)
+      .where(and(isNull(gameCategories.deletedAt), eq(gameCategories.isActive, true)))
+      .orderBy(asc(gameCategories.sortOrder));
   }
 
   async findGameById(id: string): Promise<GameWithRelations | undefined> {

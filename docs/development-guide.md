@@ -47,7 +47,7 @@ pnpm --filter @vpower777/client-web dev
 # http://localhost:3000/en
 ```
 
-Mock games are placeholders until Phase 6 catalog sync.
+Mock games removed — client catalog uses `GET /api/v1/catalog/games`.
 
 ## Phase 5 (done)
 
@@ -56,15 +56,21 @@ Admin Web — login staff, sidebar shell, dashboard overview.
 ```bash
 pnpm --filter @vpower777/api dev
 pnpm --filter @vpower777/admin-web dev
-# http://localhost:3001/login
+# http://localhost:3001/fr/login
 # Seed: admin@vpower777.local / ChangeMeAdmin123! (if SEED_ADMIN_* set)
 ```
 
 See `docs/admin.md`.
 
-## Phase 6 (in progress)
+## Phase 6 (done)
 
-Game catalog schema + Nest CRUD (`/api/v1/games`, categories, providers). Admin UI CRUD and client sync still pending.
+Game catalog:
+
+- Schema + Nest CRUD (`/api/v1/games`, categories, providers)
+- Seed bootstrap (providers, categories, 8 active games) when catalog empty
+- Public catalog `GET /api/v1/catalog/games` (+ categories) — active only
+- Admin UI CRUD on `/fr/games`
+- Client home + `/games` synced from public catalog (no mocks)
 
 ## Dual local strategy
 

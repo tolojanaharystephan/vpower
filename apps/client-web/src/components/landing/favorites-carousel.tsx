@@ -1,23 +1,20 @@
 'use client';
 
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from '@/i18n/navigation';
-import type { MockGame } from '@/lib/mock-games';
+import type { CatalogGame } from '@/lib/catalog';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
 const AUTOPLAY_MS = 5500;
 
-export function FavoritesCarousel({ games }: { games: MockGame[] }) {
+export function FavoritesCarousel({ games }: { games: CatalogGame[] }) {
   const t = useTranslations('carousel');
-  const locale = useLocale();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const count = games.length;
-  const blurbOf = (game: MockGame) =>
-    locale.startsWith('fr') ? game.blurb.fr : game.blurb.en;
 
   const go = useCallback(
     (next: number) => {
@@ -113,7 +110,7 @@ export function FavoritesCarousel({ games }: { games: MockGame[] }) {
                   {game.title}
                 </h3>
                 <p className="mt-3 max-w-md text-sm text-[var(--vp-muted)] sm:text-base">
-                  {blurbOf(game)}
+                  {game.blurb}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link href={`/games#${game.slug}`}>
@@ -138,7 +135,7 @@ export function FavoritesCarousel({ games }: { games: MockGame[] }) {
             <h3 className="mt-2 font-[family-name:var(--font-display)] text-3xl sm:text-4xl lg:text-5xl">
               {active.title}
             </h3>
-            <p className="mt-3 max-w-md text-sm sm:text-base">{blurbOf(active)}</p>
+            <p className="mt-3 max-w-md text-sm sm:text-base">{active.blurb}</p>
             <div className="mt-6 h-12" />
           </div>
 

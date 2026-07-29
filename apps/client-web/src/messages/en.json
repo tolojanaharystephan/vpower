@@ -85,7 +85,8 @@
       "popular": "Popular"
     },
     "emptyTitle": "No games found",
-    "emptyBody": "Try another search or choose a different collection."
+    "emptyBody": "Try another search or choose a different collection.",
+    "loadError": "Unable to load the catalog. Check the API."
   },
   "help": {
     "title": "Help center",

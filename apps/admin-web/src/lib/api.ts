@@ -154,3 +154,137 @@ export function readCachedSession(): {
 export function hasAdminAccess(permissions: string[]) {
   return permissions.includes(ADMIN_ACCESS_PERMISSION);
 }
+
+export type GameStatus = 'draft' | 'active' | 'inactive' | 'archived';
+
+export type AdminGame = {
+  id: string;
+  slug: string;
+  title: string;
+  description?: string | null;
+  thumbnailUrl?: string | null;
+  bannerUrl?: string | null;
+  accent?: string | null;
+  providerId: string;
+  categoryId: string;
+  status: GameStatus;
+  isFeatured: boolean;
+  isNew: boolean;
+  isPopular: boolean;
+  rtp?: number | null;
+  volatility?: string | null;
+  minBet?: number | null;
+  maxBet?: number | null;
+  tags?: string[] | null;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string | null;
+  provider: { id: string; name: string; slug: string };
+  category: { id: string; name: string; slug: string };
+};
+
+export type GameProvider = {
+  id: string;
+  name: string;
+  slug: string;
+  isActive: boolean;
+};
+
+export type GameCategory = {
+  id: string;
+  name: string;
+  slug: string;
+  isActive: boolean;
+  sortOrder: number;
+};
+
+export type GamePayload = {
+  slug: string;
+  title: string;
+  description?: string;
+  accent?: string;
+  providerId: string;
+  categoryId: string;
+  status?: GameStatus;
+  isFeatured?: boolean;
+  isNew?: boolean;
+  isPopular?: boolean;
+  sortOrder?: number;
+};
+
+function authHeaders(accessToken: string): HeadersInit {
+  return {
+    Authorization: `Bearer ${accessToken}`,
+    'Content-Type': 'application/json',
+  };
+}
+
+export async function listGames(
+  accessToken: string,
+  params?: { search?: string; status?: GameStatus; page?: number; limit?: number },
+): Promise<{ data: AdminGame[]; total: number }> {
+  const query = new URLSearchParams();
+  if (params?.search) query.set('search', params.search);
+  if (params?.status) query.set('status', params.status);
+  query.set('page', String(params?.page ?? 1));
+  query.set('limit', String(params?.limit ?? 50));
+  query.set('sortBy', 'sortOrder');
+  query.set('sortOrder', 'asc');
+
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/games?${query}`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{ data: AdminGame[]; total: number }>;
+}
+
+export async function createGame(accessToken: string, payload: GamePayload): Promise<AdminGame> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/games`, {
+    method: 'POST',
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<AdminGame>;
+}
+
+export async function updateGame(
+  accessToken: string,
+  id: string,
+  payload: Partial<GamePayload>,
+): Promise<AdminGame> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/games/${id}`, {
+    method: 'PUT',
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<AdminGame>;
+}
+
+export async function deleteGame(accessToken: string, id: string): Promise<void> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/games/${id}`, {
+    method: 'DELETE',
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+}
+
+export async function listProviders(accessToken: string): Promise<GameProvider[]> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/game-providers`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<GameProvider[]>;
+}
+
+export async function listCategories(accessToken: string): Promise<GameCategory[]> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/game-categories`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<GameCategory[]>;
+}

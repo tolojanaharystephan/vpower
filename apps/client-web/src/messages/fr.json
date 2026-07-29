@@ -85,7 +85,8 @@
       "popular": "Populaires"
     },
     "emptyTitle": "Aucun jeu trouvé",
-    "emptyBody": "Essayez une autre recherche ou choisissez une autre collection."
+    "emptyBody": "Essayez une autre recherche ou choisissez une autre collection.",
+    "loadError": "Impossible de charger le catalogue. Vérifiez l'API."
   },
   "help": {
     "title": "Centre d'aide",

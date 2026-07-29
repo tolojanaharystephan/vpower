@@ -1,16 +1,18 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { GameTile } from '@/components/games/game-tile';
-import type { MockGame } from '@/lib/mock-games';
+import type { CatalogGame } from '@/lib/catalog';
 
 export async function GameRail({
   titleKey,
   games,
 }: {
   titleKey: 'featured' | 'new' | 'popular';
-  games: MockGame[];
+  games: CatalogGame[];
 }) {
   const t = await getTranslations('rails');
+
+  if (!games.length) return null;
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

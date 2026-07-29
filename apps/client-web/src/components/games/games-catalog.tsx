@@ -2,28 +2,34 @@
 
 import { Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { GameTile } from '@/components/games/game-tile';
-import { MOCK_GAMES, type MockGame } from '@/lib/mock-games';
+import { fetchCatalogGames, type GameTag } from '@/lib/catalog';
 import { cn } from '@/lib/utils';
 
-type Filter = 'all' | MockGame['tag'];
+type Filter = 'all' | GameTag;
 
 export function GamesCatalog() {
   const t = useTranslations('gamesPage');
   const [filter, setFilter] = useState<Filter>('all');
   const [query, setQuery] = useState('');
 
+  const { data = [], isLoading, isError } = useQuery({
+    queryKey: ['catalog-games'],
+    queryFn: () => fetchCatalogGames({ limit: 100 }),
+  });
+
   const games = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return MOCK_GAMES.filter(
+    return data.filter(
       (game) =>
         (filter === 'all' || game.tag === filter) &&
         (!normalizedQuery ||
           `${game.title} ${game.provider}`.toLowerCase().includes(normalizedQuery)),
     );
-  }, [filter, query]);
+  }, [data, filter, query]);
 
   const filters: Filter[] = ['all', 'featured', 'new', 'popular'];
 
@@ -60,7 +66,17 @@ export function GamesCatalog() {
         </label>
       </div>
 
-      {games.length ? (
+      {isLoading ? (
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="aspect-[3/4] animate-pulse rounded-lg bg-white/[0.04]" />
+          ))}
+        </div>
+      ) : isError ? (
+        <div className="mt-8 grid min-h-64 place-items-center rounded-xl border border-dashed border-red-400/30 bg-[rgba(20,20,26,0.45)] p-8 text-center">
+          <p className="text-sm text-red-300">{t('loadError')}</p>
+        </div>
+      ) : games.length ? (
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {games.map((game) => (
             <GameTile key={game.id} game={game} />

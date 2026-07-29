@@ -1,8 +1,8 @@
 import { Link } from '@/i18n/navigation';
-import type { MockGame } from '@/lib/mock-games';
+import type { CatalogGame } from '@/lib/catalog';
 import { cn } from '@/lib/utils';
 
-export function GameTile({ game, className }: { game: MockGame; className?: string }) {
+export function GameTile({ game, className }: { game: CatalogGame; className?: string }) {
   return (
     <article
       className={cn(

@@ -111,7 +111,7 @@ vpower777/
 | `UsersModule` | `modules/users/users.module.ts` | CRUD utilisateurs |
 | `AuthModule` | `modules/auth/auth.module.ts` | JWT auth, login, register, refresh, etc. |
 | `AdminModule` | `modules/admin/admin.module.ts` | Admin overview + seed admin |
-| `GamesModule` | `modules/games/games.module.ts` | Games, categories, providers CRUD |
+| `GamesModule` | `modules/games/games.module.ts` | Games, categories, providers CRUD + public catalog + seed |
 | `HealthModule` | `modules/health/health.module.ts` | Health, liveness, readiness checks |
 | `MetaModule` | `modules/meta/meta.module.ts` | Root info, favicon |
 
@@ -138,6 +138,8 @@ vpower777/
 | POST | `/api/v1/games` | JWT + `games:write` | default | Creer un jeu |
 | PUT | `/api/v1/games/:id` | JWT + `games:write` | default | Modifier un jeu |
 | DELETE | `/api/v1/games/:id` | JWT + `games:write` | default | Supprimer un jeu (soft) |
+| GET | `/api/v1/catalog/games` | Public | — | Catalogue client (status=active) |
+| GET | `/api/v1/catalog/categories` | Public | — | Categories actives |
 | GET | `/api/v1/game-categories` | JWT | default | Liste categories |
 | GET | `/api/v1/game-categories/:id` | JWT | default | Detail categorie |
 | POST | `/api/v1/game-categories` | JWT + `games:write` | default | Creer une categorie |

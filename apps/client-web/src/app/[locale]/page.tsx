@@ -3,7 +3,7 @@ import { HeroSection } from '@/components/landing/hero-section';
 import { FavoritesCarousel } from '@/components/landing/favorites-carousel';
 import { GameRail } from '@/components/landing/game-rail';
 import { PromoStrip } from '@/components/landing/promo-strip';
-import { favoriteGames, gamesByTag } from '@/lib/mock-games';
+import { favoriteGames, fetchCatalogGames, gamesByTag } from '@/lib/catalog';
 
 export default async function HomePage({
   params,
@@ -13,14 +13,21 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  let games: Awaited<ReturnType<typeof fetchCatalogGames>> = [];
+  try {
+    games = await fetchCatalogGames({ limit: 50 });
+  } catch {
+    games = [];
+  }
+
   return (
     <>
       <HeroSection />
-      <FavoritesCarousel games={favoriteGames()} />
-      <GameRail titleKey="featured" games={gamesByTag('featured')} />
+      <FavoritesCarousel games={favoriteGames(games)} />
+      <GameRail titleKey="featured" games={gamesByTag(games, 'featured')} />
       <PromoStrip />
-      <GameRail titleKey="new" games={gamesByTag('new')} />
-      <GameRail titleKey="popular" games={gamesByTag('popular')} />
+      <GameRail titleKey="new" games={gamesByTag(games, 'new')} />
+      <GameRail titleKey="popular" games={gamesByTag(games, 'popular')} />
     </>
   );
 }
