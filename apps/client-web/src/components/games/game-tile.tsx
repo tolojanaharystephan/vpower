@@ -1,8 +1,47 @@
-import { Link } from '@/i18n/navigation';
+'use client';
+
+import { Heart } from 'lucide-react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type { CatalogGame } from '@/lib/catalog';
+import { addFavorite, removeFavorite, listFavorites } from '@/lib/api';
+import { useSession } from '@/components/auth/session-provider';
+import { useAuthUi } from '@/components/auth/auth-ui-context';
+import { usePlayGame } from '@/hooks/use-play-game';
 import { cn } from '@/lib/utils';
 
-export function GameTile({ game, className }: { game: CatalogGame; className?: string }) {
+export function GameTile({
+  game,
+  className,
+  showFavorite = true,
+}: {
+  game: CatalogGame;
+  className?: string;
+  showFavorite?: boolean;
+}) {
+  const play = usePlayGame();
+  const { openAuth } = useAuthUi();
+  const { accessToken, isAuthenticated } = useSession();
+  const queryClient = useQueryClient();
+
+  const favoritesQuery = useQuery({
+    queryKey: ['favorites'],
+    queryFn: () => listFavorites(accessToken!),
+    enabled: Boolean(isAuthenticated && accessToken && showFavorite),
+  });
+
+  const isFavorite = favoritesQuery.data?.some((f) => f.id === game.id) ?? false;
+
+  const toggleFavorite = useMutation({
+    mutationFn: async () => {
+      if (!accessToken) throw new Error('auth');
+      if (isFavorite) await removeFavorite(accessToken, game.id);
+      else await addFavorite(accessToken, game.id);
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['favorites'] });
+    },
+  });
+
   return (
     <article
       className={cn(
@@ -27,10 +66,30 @@ export function GameTile({ game, className }: { game: CatalogGame; className?: s
           {game.title}
         </h3>
       </div>
-      <Link
-        href={`/games#${game.slug}`}
-        className="absolute inset-0"
+
+      {showFavorite ? (
+        <button
+          type="button"
+          className="absolute right-2 top-2 z-10 grid h-8 w-8 place-items-center rounded-full bg-black/45 text-[var(--vp-muted)] transition hover:text-[var(--vp-accent)]"
+          aria-label="Favorite"
+          onClick={(e) => {
+            e.stopPropagation();
+            if (!isAuthenticated) {
+              openAuth('login');
+              return;
+            }
+            void toggleFavorite.mutateAsync();
+          }}
+        >
+          <Heart className={cn('h-4 w-4', isFavorite && 'fill-[var(--vp-accent)] text-[var(--vp-accent)]')} />
+        </button>
+      ) : null}
+
+      <button
+        type="button"
+        className="absolute inset-0 z-[1] cursor-pointer"
         aria-label={game.title}
+        onClick={() => void play(game.id, game.slug)}
       />
     </article>
   );

@@ -35,9 +35,10 @@ pnpm typecheck
 
 ## Phase actuelle
 
-**Phase 6 — Catalogue jeux** ✅ terminée (API + seed + CRUD admin + sync client).
+**Phase 7 partielle** — adapter jeux mock + launch démo.  
+**Phase 8 / favoris** — portail compte + favoris.
 
-Prochaine étape recommandée : **Phase 7** (game provider adapter).
+Prochaine étape côté jeux réels : brancher `ClientGameProvider` dès réception de la doc API partenaire.
 
 ```bash
 pnpm --filter @vpower777/api dev
@@ -45,5 +46,5 @@ pnpm --filter @vpower777/client-web dev
 pnpm --filter @vpower777/admin-web dev
 # Client http://localhost:3000/fr
 # Admin  http://localhost:3001/fr/login
-# Catalogue public GET http://localhost:4000/api/v1/catalog/games
+# Launch POST /api/v1/games/:id/launch (JWT)
 ```

@@ -10,6 +10,8 @@
     "help": "Help",
     "login": "Log in",
     "register": "Sign up",
+    "account": "My account",
+    "logout": "Log out",
     "walletSoon": "Wallet",
     "comingSoon": "Coming soon"
   },
@@ -87,6 +89,26 @@
     "emptyTitle": "No games found",
     "emptyBody": "Try another search or choose a different collection.",
     "loadError": "Unable to load the catalog. Check the API."
+  },
+  "play": {
+    "eyebrow": "Demo session",
+    "body": "The partner game engine is not connected yet. This screen simulates launch until API docs arrive.",
+    "hint": "Provider mode: mock",
+    "backCatalog": "Back to catalog",
+    "backHome": "Home"
+  },
+  "account": {
+    "eyebrow": "Player area",
+    "title": "My account",
+    "subtitle": "Manage your VPower777 profile.",
+    "loading": "Loading…",
+    "email": "Email",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "save": "Save",
+    "saving": "Saving…",
+    "logout": "Log out",
+    "error": "Unable to update profile"
   },
   "help": {
     "title": "Help center",

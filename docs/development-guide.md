@@ -72,6 +72,23 @@ Game catalog:
 - Admin UI CRUD on `/fr/games`
 - Client home + `/games` synced from public catalog (no mocks)
 
+## Phase 7 (partial)
+
+Game provider adapter (no partner docs yet):
+
+- `GameIntegrationModule` + `GameProvider` interface
+- `MockGameProvider` + stub `ClientGameProvider`
+- `POST /api/v1/games/:id/launch` (JWT) → demo `/play/[slug]`
+- `GAME_PROVIDER_MODE=mock|client` + `GAME_API_*` config getters
+
+Real `ClientGameProvider` HTTP mapping waits for partner API docs.
+
+## Phase 8 (done) + favorites
+
+- `PATCH /api/v1/users/me` profile
+- Client `/account` + session-aware header
+- Favorites `GET/POST/DELETE /api/v1/users/me/favorites` + tile heart + home carousel
+
 ## Dual local strategy
 
 1. **Docker** — PostgreSQL + Redis via Compose (`pnpm infra:up` when Docker is installed).

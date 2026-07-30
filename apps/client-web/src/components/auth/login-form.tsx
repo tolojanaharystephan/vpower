@@ -5,8 +5,9 @@ import { useMutation } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { loginUser, persistTokens } from '@/lib/api';
+import { loginUser } from '@/lib/api';
 import { Link, useRouter } from '@/i18n/navigation';
+import { useSession } from '@/components/auth/session-provider';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/components/ui/password-input';
@@ -27,6 +28,7 @@ type LoginFormProps = {
 export function LoginForm({ embedded, onSwitch, onSuccess }: LoginFormProps) {
   const t = useTranslations('auth');
   const router = useRouter();
+  const { setSession } = useSession();
   const {
     register,
     handleSubmit,
@@ -36,8 +38,8 @@ export function LoginForm({ embedded, onSwitch, onSuccess }: LoginFormProps) {
 
   const mutation = useMutation({
     mutationFn: loginUser,
-    onSuccess: (data) => {
-      persistTokens(data.accessToken, data.refreshToken);
+    onSuccess: async (data) => {
+      await setSession(data.accessToken, data.refreshToken);
       onSuccess?.();
       router.push('/games');
     },

@@ -7,11 +7,13 @@ import { Link } from '@/i18n/navigation';
 import type { CatalogGame } from '@/lib/catalog';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { usePlayGame } from '@/hooks/use-play-game';
 
 const AUTOPLAY_MS = 5500;
 
 export function FavoritesCarousel({ games }: { games: CatalogGame[] }) {
   const t = useTranslations('carousel');
+  const play = usePlayGame();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const count = games.length;
@@ -113,12 +115,14 @@ export function FavoritesCarousel({ games }: { games: CatalogGame[] }) {
                   {game.blurb}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Link href={`/games#${game.slug}`}>
-                    <Button size="lg" className="btn-shine gap-2">
-                      <Play className="h-4 w-4 fill-current" />
-                      {t('play')}
-                    </Button>
-                  </Link>
+                  <Button
+                    size="lg"
+                    className="btn-shine gap-2"
+                    onClick={() => void play(game.id, game.slug)}
+                  >
+                    <Play className="h-4 w-4 fill-current" />
+                    {t('play')}
+                  </Button>
                   <Link href="/games">
                     <Button size="lg" variant="secondary">
                       {t('browse')}

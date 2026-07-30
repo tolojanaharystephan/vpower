@@ -10,6 +10,7 @@ import { UsersModule } from './modules/users/users.module';
 import { RbacModule } from './modules/rbac/rbac.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { GamesModule } from './modules/games/games.module';
+import { GameIntegrationModule } from './modules/game-integration/game-integration.module';
 
 /**
  * Modular monolith root.
@@ -26,6 +27,7 @@ import { GamesModule } from './modules/games/games.module';
     AuthModule,
     AdminModule,
     GamesModule,
+    GameIntegrationModule,
     HealthModule,
     MetaModule,
   ],

@@ -38,6 +38,22 @@ export class AppConfigService {
     return this.config.get('GAME_PROVIDER_MODE', { infer: true });
   }
 
+  get gameApiBaseUrl(): string {
+    return this.config.get('GAME_API_BASE_URL', { infer: true }) || '';
+  }
+
+  get gameApiKey(): string {
+    return this.config.get('GAME_API_KEY', { infer: true }) || '';
+  }
+
+  get gameApiSecret(): string {
+    return this.config.get('GAME_API_SECRET', { infer: true }) || '';
+  }
+
+  get gameApiTimeout(): number {
+    return this.config.get('GAME_API_TIMEOUT', { infer: true });
+  }
+
   get logLevel(): AppEnv['LOG_LEVEL'] {
     return this.config.get('LOG_LEVEL', { infer: true });
   }

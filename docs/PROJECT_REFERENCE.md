@@ -79,8 +79,8 @@ vpower777/
 
 | Phase | Description | Statut |
 |-------|-------------|--------|
-| **Phase 7** | Game Provider Adapter + API reelle | **A FAIRE** (prochaine) |
-| **Phase 8** | Customer Portal | **A FAIRE** |
+| **Phase 7** | Game Provider Adapter + API reelle | **PARTIELLE** (mock + launch; client stub) |
+| **Phase 8** | Customer Portal | **TERMINEE** |
 | **Phase 9** | Support Center | **A FAIRE** |
 | **Phase 10** | Tickets + conversations + messagerie | **A FAIRE** |
 | **Phase 11** | Translation Service | **A FAIRE** |
@@ -662,14 +662,14 @@ Role: SUPER_ADMIN
 
 ## 17. PROCHAINE ETAPE RECOMMANDEE
 
-**Phase 7 — Game Provider Adapter + API reelle**
+**Phase 7 — Game Provider Adapter (partiel)**
 
-Actions requises:
-1. Creer l'interface `GameProvider` (provider pattern)
-2. Implementer `MockGameProvider` pour le dev
-3. Implementer `ClientGameProvider` pour l'API reelle
-4. Creer le module `GameIntegrationModule`
-5. Ajouter les endpoints de sync (pull games from provider)
-6. Ajouter les endpoints launch (redirect to game)
-7. Tests typecheck + lint
-8. Mise a jour documentation
+Fait:
+1. Interface `GameProvider` + `MockGameProvider` + stub `ClientGameProvider`
+2. Module `GameIntegrationModule`
+3. Endpoint launch `POST /api/v1/games/:id/launch`
+4. Page démo client `/play/[slug]`
+
+En attente (doc API partenaire):
+5. Mapping HTTP réel dans `ClientGameProvider`
+6. Sync pull catalogue depuis le provider

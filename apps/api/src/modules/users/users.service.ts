@@ -115,6 +115,23 @@ export class UsersService {
       .where(eq(users.id, userId));
   }
 
+  async updateProfile(
+    userId: string,
+    input: { firstName?: string; lastName?: string },
+  ): Promise<User> {
+    const [updated] = await this.db
+      .update(users)
+      .set({
+        ...(input.firstName !== undefined ? { firstName: input.firstName || null } : {}),
+        ...(input.lastName !== undefined ? { lastName: input.lastName || null } : {}),
+        updatedAt: new Date(),
+      })
+      .where(eq(users.id, userId))
+      .returning();
+    if (!updated) throw new Error('Failed to update profile');
+    return updated;
+  }
+
   toPublic(user: User) {
     return {
       id: user.id,

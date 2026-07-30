@@ -10,6 +10,8 @@
     "help": "Aide",
     "login": "Connexion",
     "register": "Inscription",
+    "account": "Mon compte",
+    "logout": "Déconnexion",
     "walletSoon": "Portefeuille",
     "comingSoon": "Bientôt disponible"
   },
@@ -87,6 +89,26 @@
     "emptyTitle": "Aucun jeu trouvé",
     "emptyBody": "Essayez une autre recherche ou choisissez une autre collection.",
     "loadError": "Impossible de charger le catalogue. Vérifiez l'API."
+  },
+  "play": {
+    "eyebrow": "Session démo",
+    "body": "Le moteur de jeu partenaire n'est pas encore branché. Cette page simule le lancement en attendant la documentation API.",
+    "hint": "Mode provider : mock",
+    "backCatalog": "Retour au catalogue",
+    "backHome": "Accueil"
+  },
+  "account": {
+    "eyebrow": "Espace joueur",
+    "title": "Mon compte",
+    "subtitle": "Gérez votre profil VPower777.",
+    "loading": "Chargement…",
+    "email": "Email",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "save": "Enregistrer",
+    "saving": "Enregistrement…",
+    "logout": "Déconnexion",
+    "error": "Impossible de mettre à jour le profil"
   },
   "help": {
     "title": "Centre d'aide",

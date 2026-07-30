@@ -1,9 +1,9 @@
 import { setRequestLocale } from 'next-intl/server';
 import { HeroSection } from '@/components/landing/hero-section';
-import { FavoritesCarousel } from '@/components/landing/favorites-carousel';
+import { HomeFavorites } from '@/components/landing/home-favorites';
 import { GameRail } from '@/components/landing/game-rail';
 import { PromoStrip } from '@/components/landing/promo-strip';
-import { favoriteGames, fetchCatalogGames, gamesByTag } from '@/lib/catalog';
+import { fetchCatalogGames, gamesByTag } from '@/lib/catalog';
 
 export default async function HomePage({
   params,
@@ -23,7 +23,7 @@ export default async function HomePage({
   return (
     <>
       <HeroSection />
-      <FavoritesCarousel games={favoriteGames(games)} />
+      <HomeFavorites fallback={games} />
       <GameRail titleKey="featured" games={gamesByTag(games, 'featured')} />
       <PromoStrip />
       <GameRail titleKey="new" games={gamesByTag(games, 'new')} />

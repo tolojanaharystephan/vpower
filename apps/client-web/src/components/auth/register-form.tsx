@@ -5,8 +5,9 @@ import { useMutation } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { persistTokens, registerUser } from '@/lib/api';
+import { registerUser } from '@/lib/api';
 import { Link, useRouter } from '@/i18n/navigation';
+import { useSession } from '@/components/auth/session-provider';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/components/ui/password-input';
@@ -29,6 +30,7 @@ type RegisterFormProps = {
 export function RegisterForm({ embedded, onSwitch, onSuccess }: RegisterFormProps) {
   const t = useTranslations('auth');
   const router = useRouter();
+  const { setSession } = useSession();
   const {
     register,
     handleSubmit,
@@ -38,8 +40,8 @@ export function RegisterForm({ embedded, onSwitch, onSuccess }: RegisterFormProp
 
   const mutation = useMutation({
     mutationFn: registerUser,
-    onSuccess: (data) => {
-      persistTokens(data.accessToken, data.refreshToken);
+    onSuccess: async (data) => {
+      await setSession(data.accessToken, data.refreshToken);
       onSuccess?.();
       router.push('/games');
     },
