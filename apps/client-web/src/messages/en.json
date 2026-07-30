@@ -100,7 +100,7 @@
   "account": {
     "eyebrow": "Player area",
     "title": "My account",
-    "subtitle": "Manage your VPower777 profile.",
+    "subtitle": "Update your personal information.",
     "loading": "Loading…",
     "email": "Email",
     "firstName": "First name",
@@ -108,7 +108,18 @@
     "save": "Save",
     "saving": "Saving…",
     "logout": "Log out",
-    "error": "Unable to update profile"
+    "error": "Unable to update profile",
+    "badgeActive": "Active account",
+    "badgeVerified": "Email verified",
+    "badgeUnverified": "Email unverified",
+    "statFavorites": "Favorites",
+    "statMember": "Member since",
+    "statRoles": "Roles",
+    "infoEyebrow": "Identity",
+    "infoTitle": "Personal information",
+    "sessionEyebrow": "Security",
+    "sessionTitle": "Session",
+    "sessionBody": "Sign out of this device when you're done. Favorites and profile stay synced."
   },
   "help": {
     "title": "Help center",

@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { and, eq, isNull } from 'drizzle-orm';
+import { and, count, desc, eq, ilike, isNull, or, type SQL } from 'drizzle-orm';
 import type { Role } from '@vpower777/types';
 import { DRIZZLE } from '../../database/database.constants';
 import type { Database } from '../../database/database';
@@ -34,6 +34,72 @@ export class UsersService {
       .where(and(eq(users.id, id), isNull(users.deletedAt)))
       .limit(1);
     return user;
+  }
+
+  async listUsers(input?: {
+    search?: string;
+    page?: number;
+    limit?: number;
+  }): Promise<{
+    data: Array<
+      ReturnType<UsersService['toPublic']> & {
+        isActive: boolean;
+        lastLoginAt: Date | null;
+        roles: Role[];
+      }
+    >;
+    total: number;
+  }> {
+    const page = input?.page ?? 1;
+    const limit = Math.min(input?.limit ?? 50, 100);
+    const offset = (page - 1) * limit;
+    const conditions: SQL[] = [isNull(users.deletedAt)];
+    if (input?.search?.trim()) {
+      const q = `%${input.search.trim()}%`;
+      conditions.push(
+        or(ilike(users.email, q), ilike(users.firstName, q), ilike(users.lastName, q))!,
+      );
+    }
+    const where = and(...conditions);
+
+    const [rows, countResult] = await Promise.all([
+      this.db
+        .select({
+          id: users.id,
+          email: users.email,
+          firstName: users.firstName,
+          lastName: users.lastName,
+          isActive: users.isActive,
+          emailVerifiedAt: users.emailVerifiedAt,
+          lastLoginAt: users.lastLoginAt,
+          createdAt: users.createdAt,
+        })
+        .from(users)
+        .where(where)
+        .orderBy(desc(users.createdAt))
+        .limit(limit)
+        .offset(offset),
+      this.db.select({ total: count() }).from(users).where(where),
+    ]);
+
+    const data = await Promise.all(
+      rows.map(async (row) => {
+        const rbac = await this.getRolesAndPermissions(row.id);
+        return {
+          id: row.id,
+          email: row.email,
+          firstName: row.firstName,
+          lastName: row.lastName,
+          emailVerifiedAt: row.emailVerifiedAt,
+          createdAt: row.createdAt,
+          isActive: row.isActive,
+          lastLoginAt: row.lastLoginAt,
+          roles: rbac.roles,
+        };
+      }),
+    );
+
+    return { data, total: Number(countResult[0]?.total ?? 0) };
   }
 
   async createUser(input: {

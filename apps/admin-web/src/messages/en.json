@@ -93,8 +93,20 @@
   },
   "users": {
     "title": "Users",
-    "comingTitle": "User management",
-    "comingBody": "Account and role management — available after the catalog and client portal."
+    "subtitle": "Registered accounts",
+    "listEyebrow": "Directory",
+    "listSubtitle": "{count} account(s)",
+    "searchPlaceholder": "Search email or name…",
+    "loading": "Loading users…",
+    "empty": "No users found.",
+    "loadError": "Unable to load users. Check the API.",
+    "colUser": "User",
+    "colRoles": "Roles",
+    "colStatus": "Status",
+    "colCreated": "Created",
+    "colLastLogin": "Last login",
+    "active": "Active",
+    "inactive": "Inactive"
   },
   "games": {
     "title": "Games",

@@ -93,8 +93,20 @@
   },
   "users": {
     "title": "Utilisateurs",
-    "comingTitle": "Gestion des utilisateurs",
-    "comingBody": "Gestion des comptes et rôles — disponible après le catalogue et le portail client."
+    "subtitle": "Comptes inscrits",
+    "listEyebrow": "Annuaire",
+    "listSubtitle": "{count} compte(s)",
+    "searchPlaceholder": "Rechercher email ou nom…",
+    "loading": "Chargement des utilisateurs…",
+    "empty": "Aucun utilisateur trouvé.",
+    "loadError": "Impossible de charger les utilisateurs. Vérifiez l'API.",
+    "colUser": "Utilisateur",
+    "colRoles": "Rôles",
+    "colStatus": "Statut",
+    "colCreated": "Créé le",
+    "colLastLogin": "Dernière connexion",
+    "active": "Actif",
+    "inactive": "Inactif"
   },
   "games": {
     "title": "Jeux",

@@ -100,7 +100,7 @@
   "account": {
     "eyebrow": "Espace joueur",
     "title": "Mon compte",
-    "subtitle": "Gérez votre profil VPower777.",
+    "subtitle": "Mettez à jour vos informations personnelles.",
     "loading": "Chargement…",
     "email": "Email",
     "firstName": "Prénom",
@@ -108,7 +108,18 @@
     "save": "Enregistrer",
     "saving": "Enregistrement…",
     "logout": "Déconnexion",
-    "error": "Impossible de mettre à jour le profil"
+    "error": "Impossible de mettre à jour le profil",
+    "badgeActive": "Compte actif",
+    "badgeVerified": "Email vérifié",
+    "badgeUnverified": "Email non vérifié",
+    "statFavorites": "Favoris",
+    "statMember": "Membre depuis",
+    "statRoles": "Rôles",
+    "infoEyebrow": "Identité",
+    "infoTitle": "Informations personnelles",
+    "sessionEyebrow": "Sécurité",
+    "sessionTitle": "Session",
+    "sessionBody": "Déconnectez-vous de cet appareil si vous avez terminé. Vos favoris et votre profil restent synchronisés."
   },
   "help": {
     "title": "Centre d'aide",

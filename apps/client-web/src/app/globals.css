@@ -725,6 +725,27 @@ button:disabled,
   animation: modal-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.profile-hero {
+  background: var(--vp-surface);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.profile-hero-band {
+  background:
+    radial-gradient(ellipse 80% 120% at 10% 0%, rgba(212, 160, 23, 0.22), transparent 50%),
+    radial-gradient(ellipse 60% 80% at 90% 20%, rgba(212, 160, 23, 0.08), transparent 45%),
+    linear-gradient(135deg, #16161e 0%, #0f0f14 55%, #141218 100%);
+}
+
+.profile-stat {
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.profile-stat:hover {
+  border-color: rgba(212, 160, 23, 0.28);
+  transform: translateY(-2px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   .animate-modal-in,

@@ -36,3 +36,6 @@ Default seed (when set in `.env`):
 
 Leave `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` empty to disable auto-seed.
 Catalog games seed runs automatically when the `games` table is empty.
+
+### Phase 8 note
+- Users list at `/fr/users` via `GET /api/v1/users` (`users:read`) — registered clients appear here.

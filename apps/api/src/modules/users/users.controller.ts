@@ -7,10 +7,12 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import { CurrentUser } from '../../common/decorators';
+import { CurrentUser, RequirePermissions } from '../../common/decorators';
 import type { AuthUser } from '../auth/auth.types';
+import { QueryUsersDto } from './dto/query-users.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { FavoritesService } from './favorites.service';
 import { UsersService } from './users.service';
@@ -23,6 +25,13 @@ export class UsersController {
     private readonly users: UsersService,
     private readonly favorites: FavoritesService,
   ) {}
+
+  @Get()
+  @RequirePermissions('users:read')
+  @ApiOperation({ summary: 'List users (admin)' })
+  async list(@Query() query: QueryUsersDto) {
+    return this.users.listUsers(query);
+  }
 
   @Get('me')
   @ApiOperation({ summary: 'Current authenticated user profile' })

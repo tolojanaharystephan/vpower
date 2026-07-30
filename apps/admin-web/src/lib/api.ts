@@ -288,3 +288,31 @@ export async function listCategories(accessToken: string): Promise<GameCategory[
   if (!res.ok) await parseError(res);
   return res.json() as Promise<GameCategory[]>;
 }
+
+export type AdminUser = {
+  id: string;
+  email: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  emailVerifiedAt?: string | null;
+  createdAt: string;
+  isActive: boolean;
+  lastLoginAt?: string | null;
+  roles: string[];
+};
+
+export async function listUsers(
+  accessToken: string,
+  params?: { search?: string; page?: number; limit?: number },
+): Promise<{ data: AdminUser[]; total: number }> {
+  const query = new URLSearchParams();
+  if (params?.search) query.set('search', params.search);
+  query.set('page', String(params?.page ?? 1));
+  query.set('limit', String(params?.limit ?? 50));
+
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/users?${query}`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{ data: AdminUser[]; total: number }>;
+}
