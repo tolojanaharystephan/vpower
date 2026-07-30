@@ -75,7 +75,9 @@ export function UsersAdminPanel() {
               ) : (
                 users.map((user) => {
                   const name =
-                    [user.firstName, user.lastName].filter(Boolean).join(' ') || user.email.split('@')[0];
+                    [user.firstName, user.lastName].filter(Boolean).join(' ') ||
+                    user.email.split('@')[0] ||
+                    'VP';
                   const initials = name.slice(0, 2).toUpperCase();
                   return (
                     <tr key={user.id} className="border-b border-[var(--vp-border)] last:border-0">

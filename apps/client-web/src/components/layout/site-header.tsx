@@ -7,6 +7,7 @@ import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useAuthUi } from '@/components/auth/auth-ui-context';
 import { useSession } from '@/components/auth/session-provider';
 import { BrandMark } from '@/components/brand/brand-mark';
+import { NotificationBell } from '@/components/notifications/notification-bell';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -85,6 +86,7 @@ export function SiteHeader() {
           </Link>
           {ready && isAuthenticated ? (
             <>
+              <NotificationBell />
               <Link href="/account">
                 <Button variant="ghost" size="sm">
                   {user?.firstName || t('account')}

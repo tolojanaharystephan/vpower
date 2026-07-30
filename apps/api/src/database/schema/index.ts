@@ -1,6 +1,7 @@
 import {
   boolean,
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   text,
@@ -215,6 +216,104 @@ export const userGameHistory = pgTable('user_game_history', {
   viewedAt: timestamp('viewed_at', { withTimezone: true }).defaultNow().notNull(),
 });
 
+/** Phase 9–10 — support tickets MVP */
+export const ticketStatusEnum = pgEnum('ticket_status', [
+  'open',
+  'pending',
+  'resolved',
+  'closed',
+]);
+
+export const ticketPriorityEnum = pgEnum('ticket_priority', ['low', 'normal', 'high']);
+
+export const messageAuthorTypeEnum = pgEnum('message_author_type', ['user', 'staff', 'bot']);
+
+export const messageKindEnum = pgEnum('message_kind', ['text', 'voice']);
+
+export const supportTickets = pgTable('support_tickets', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  subject: text('subject').notNull(),
+  status: ticketStatusEnum('status').notNull().default('open'),
+  priority: ticketPriorityEnum('priority').notNull().default('normal'),
+  /** Viewer hint (BCP-47), free-form — not an enum. */
+  preferredLang: text('preferred_lang'),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+  closedAt: timestamp('closed_at', { withTimezone: true }),
+});
+
+export const supportMessages = pgTable('support_messages', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  ticketId: uuid('ticket_id')
+    .notNull()
+    .references(() => supportTickets.id, { onDelete: 'cascade' }),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  authorType: messageAuthorTypeEnum('author_type').notNull(),
+  kind: messageKindEnum('kind').notNull().default('text'),
+  body: text('body').notNull().default(''),
+  /** Relative path or public URL for voice messages. */
+  audioUrl: text('audio_url'),
+  /** Detected language code (BCP-47), free-form. */
+  sourceLang: text('source_lang'),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+export const supportMessageTranslations = pgTable(
+  'support_message_translations',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    messageId: uuid('message_id')
+      .notNull()
+      .references(() => supportMessages.id, { onDelete: 'cascade' }),
+    targetLang: text('target_lang').notNull(),
+    body: text('body').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex('support_message_translations_msg_lang_uidx').on(
+      table.messageId,
+      table.targetLang,
+    ),
+  ],
+);
+
+export const notificationTypeEnum = pgEnum('notification_type', [
+  'support_message',
+  'support_status',
+]);
+
+export const notifications = pgTable('notifications', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  type: notificationTypeEnum('type').notNull(),
+  title: text('title').notNull(),
+  body: text('body').notNull(),
+  data: jsonb('data').$type<Record<string, unknown>>().default({}).notNull(),
+  readAt: timestamp('read_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+/** FAQ entries for first-line support bot (quick / global answers). */
+export const supportBotFaqs = pgTable('support_bot_faqs', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  /** Comma/space separated keywords for matching (any language). */
+  keywords: text('keywords').notNull(),
+  question: text('question').notNull(),
+  answer: text('answer').notNull(),
+  locale: text('locale'),
+  sortOrder: integer('sort_order').notNull().default(0),
+  isActive: boolean('is_active').notNull().default(true),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 export type RoleRow = typeof roles.$inferSelect;
@@ -222,6 +321,11 @@ export type PermissionRow = typeof permissions.$inferSelect;
 export type Game = typeof games.$inferSelect;
 export type GameProvider = typeof gameProviders.$inferSelect;
 export type GameCategory = typeof gameCategories.$inferSelect;
+export type SupportTicket = typeof supportTickets.$inferSelect;
+export type SupportMessage = typeof supportMessages.$inferSelect;
+export type SupportMessageTranslation = typeof supportMessageTranslations.$inferSelect;
+export type Notification = typeof notifications.$inferSelect;
+export type SupportBotFaq = typeof supportBotFaqs.$inferSelect;
 
 export const schema = {
   systemMeta,
@@ -239,4 +343,9 @@ export const schema = {
   games,
   userFavorites,
   userGameHistory,
+  supportTickets,
+  supportMessages,
+  supportMessageTranslations,
+  notifications,
+  supportBotFaqs,
 };

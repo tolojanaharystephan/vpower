@@ -20,6 +20,7 @@ Validated at API boot via Zod (`apps/api/src/config/env.schema.ts`).
 | `PAYMENTS_ENABLED` | `false` |
 | `LIVE_GAMES_ENABLED` | `false` |
 | `TRANSLATION_ENABLED` | `false` |
+| `GOOGLE_TRANSLATION_API_KEY` | Optional; required when translation is on |
 | `GAME_PROVIDER_MODE` | `mock` |
 
 ## Admin seed (Phase 5)

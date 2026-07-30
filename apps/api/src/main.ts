@@ -1,8 +1,10 @@
 import { RequestMethod, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { API_PREFIX } from '@vpower777/config';
 import helmet from 'helmet';
 import { randomUUID } from 'node:crypto';
+import { join } from 'node:path';
 import type { NextFunction, Response } from 'express';
 import { AppModule } from './app.module';
 import { CORRELATION_ID_HEADER, REQUEST_ID_HEADER } from './common/constants';
@@ -11,10 +13,14 @@ import { setupSwagger } from './common/swagger';
 import { AppConfigService } from './config/app-config.service';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     rawBody: false,
   });
   const config = app.get(AppConfigService);
+
+  app.useStaticAssets(join(process.cwd(), 'uploads'), {
+    prefix: '/uploads/',
+  });
 
   // Apply early so unmatched routes / favicon also get correlation IDs
   app.use((req: RequestWithIds, res: Response, next: NextFunction) => {

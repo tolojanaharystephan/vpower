@@ -82,6 +82,18 @@ export class AppConfigService {
     return this.config.get('SEED_ADMIN_ROLE', { infer: true });
   }
 
+  get translationEnabled(): boolean {
+    return this.config.get('TRANSLATION_ENABLED', { infer: true });
+  }
+
+  get googleTranslationApiKey(): string {
+    return this.config.get('GOOGLE_TRANSLATION_API_KEY', { infer: true }) || '';
+  }
+
+  get jwtSecret(): string {
+    return this.config.get('JWT_SECRET', { infer: true });
+  }
+
   /** Strict CORS allowlist for browser clients. */
   get corsOrigins(): string[] {
     return [this.appUrl, this.adminUrl, this.apiUrl];

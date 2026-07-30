@@ -158,8 +158,51 @@
   },
   "support": {
     "title": "Support",
-    "comingTitle": "Help desk",
-    "comingBody": "Tickets and agent tools will be available in upcoming support phases."
+    "inboxEyebrow": "Inbox",
+    "inboxSubtitle": "{count} ticket(s)",
+    "searchPlaceholder": "Search subject or email…",
+    "filterAll": "All statuses",
+    "loading": "Loading…",
+    "empty": "No tickets yet.",
+    "loadError": "Unable to load tickets",
+    "selectTicket": "Select a ticket to open the conversation",
+    "colSubject": "Subject",
+    "colUser": "Player",
+    "colStatus": "Status",
+    "colPriority": "Priority",
+    "colUpdated": "Updated",
+    "detailEyebrow": "Details",
+    "close": "Close",
+    "replyPlaceholder": "Write a reply…",
+    "sendReply": "Send reply",
+    "sending": "Sending…",
+    "authorStaff": "Staff",
+    "authorUser": "Player",
+    "authorBot": "Assistant",
+    "preferredLang": "Player language hint",
+    "displayLang": "Display in (any code)",
+    "showOriginal": "Show original text",
+    "showingOriginal": "Original message",
+    "translatedFrom": "Translated from {lang}",
+    "detectedLang": "Detected: {lang}",
+    "recordVoice": "Voice",
+    "stopVoice": "Stop",
+    "status": {
+      "open": "Open",
+      "pending": "Pending",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "priority": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications",
+    "markAll": "Mark all read"
   },
   "errors": {
     "notFoundTitle": "Page not found",

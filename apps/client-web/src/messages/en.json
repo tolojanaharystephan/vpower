@@ -119,7 +119,59 @@
     "infoTitle": "Personal information",
     "sessionEyebrow": "Security",
     "sessionTitle": "Session",
-    "sessionBody": "Sign out of this device when you're done. Favorites and profile stay synced."
+    "sessionBody": "Sign out of this device when you're done. Favorites and profile stay synced.",
+    "supportLink": "Contact support"
+  },
+  "support": {
+    "eyebrow": "Help desk",
+    "title": "Support",
+    "subtitle": "Chat with our team in your language — translations are dynamic.",
+    "loading": "Loading…",
+    "empty": "No tickets yet. Create one if you need help.",
+    "selectTicket": "Select a ticket or create a new one",
+    "newTicket": "New ticket",
+    "createTitle": "New request",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send request",
+    "sending": "Sending…",
+    "send": "Send",
+    "back": "Back to list",
+    "replyPlaceholder": "Write your reply…",
+    "closedHint": "This ticket is closed. Open a new one if you still need help.",
+    "authorYou": "You",
+    "authorStaff": "Support",
+    "authorBot": "Assistant",
+    "updatedAt": "Updated {date}",
+    "displayLang": "Display language code",
+    "showOriginal": "Show original",
+    "showingOriginal": "Original message",
+    "translatedFrom": "Translated from {lang}",
+    "tabAssistant": "Quick help",
+    "tabTickets": "My tickets",
+    "recordVoice": "Voice",
+    "stopVoice": "Stop",
+    "status": {
+      "open": "Open",
+      "pending": "Pending",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    }
+  },
+  "supportBot": {
+    "title": "Quick assistant",
+    "subtitle": "Instant answers to common questions — escalate anytime.",
+    "welcome": "Hi! Ask about account, games, deposits… If I cannot help, talk to a human agent.",
+    "placeholder": "Ask a quick question…",
+    "talkToHuman": "Talk to a human agent",
+    "escalating": "Opening ticket…",
+    "escalateSubject": "Help request (via assistant)",
+    "escalateDefault": "I need help from a human agent."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications",
+    "markAll": "Mark all read"
   },
   "help": {
     "title": "Help center",
@@ -129,11 +181,13 @@
     "cardGamesTitle": "Browse games",
     "cardGamesBody": "Explore the current selection and find your next favorite title.",
     "cardPromosTitle": "Offers & promotions",
-    "cardPromosBody": "See the latest welcome and weekly highlights at a glance."
+    "cardPromosBody": "See the latest welcome and weekly highlights at a glance.",
+    "cardSupportTitle": "Contact support",
+    "cardSupportBody": "Create a ticket and track replies from your account."
   },
   "faq": {
     "title": "FAQ",
-    "subtitle": "A few clear answers before the full support center arrives.",
+    "subtitle": "A few clear answers — open a support ticket if you need more help.",
     "q1": "How do I create an account?",
     "a1": "Use Sign up, then verify your email once mailer is enabled.",
     "q2": "Are deposits available?",

@@ -316,3 +316,174 @@ export async function listUsers(
   if (!res.ok) await parseError(res);
   return res.json() as Promise<{ data: AdminUser[]; total: number }>;
 }
+
+export type TicketStatus = 'open' | 'pending' | 'resolved' | 'closed';
+export type TicketPriority = 'low' | 'normal' | 'high';
+
+export type AdminSupportMessage = {
+  id: string;
+  ticketId: string;
+  userId: string;
+  authorType: 'user' | 'staff' | 'bot';
+  kind?: 'text' | 'voice';
+  audioUrl?: string | null;
+  body: string;
+  translatedBody?: string | null;
+  sourceLang?: string | null;
+  targetLang?: string | null;
+  createdAt: string;
+};
+
+export type AdminSupportTicket = {
+  id: string;
+  userId: string;
+  subject: string;
+  status: TicketStatus;
+  priority: TicketPriority;
+  preferredLang?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  closedAt?: string | null;
+  user?: {
+    id: string;
+    email: string;
+    firstName?: string | null;
+    lastName?: string | null;
+  };
+  messages?: AdminSupportMessage[];
+};
+
+export async function listAdminTickets(
+  accessToken: string,
+  params?: { search?: string; status?: TicketStatus; page?: number; limit?: number },
+): Promise<{ data: AdminSupportTicket[]; total: number }> {
+  const query = new URLSearchParams();
+  if (params?.search) query.set('search', params.search);
+  if (params?.status) query.set('status', params.status);
+  query.set('page', String(params?.page ?? 1));
+  query.set('limit', String(params?.limit ?? 50));
+
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/support/admin/tickets?${query}`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{ data: AdminSupportTicket[]; total: number }>;
+}
+
+export async function getAdminTicket(
+  accessToken: string,
+  id: string,
+  targetLang?: string,
+): Promise<AdminSupportTicket> {
+  const query = new URLSearchParams();
+  if (targetLang) query.set('targetLang', targetLang);
+  const qs = query.toString();
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/support/tickets/${id}${qs ? `?${qs}` : ''}`,
+    { headers: authHeaders(accessToken) },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<AdminSupportTicket>;
+}
+
+export async function replyAdminTicket(
+  accessToken: string,
+  ticketId: string,
+  body: string,
+  targetLang?: string,
+): Promise<{ ticket: AdminSupportTicket; message: AdminSupportMessage }> {
+  const query = new URLSearchParams();
+  if (targetLang) query.set('targetLang', targetLang);
+  const qs = query.toString();
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/support/tickets/${ticketId}/messages${qs ? `?${qs}` : ''}`,
+    {
+      method: 'POST',
+      headers: authHeaders(accessToken),
+      body: JSON.stringify({ body }),
+    },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{ ticket: AdminSupportTicket; message: AdminSupportMessage }>;
+}
+
+export async function replyAdminVoice(
+  accessToken: string,
+  ticketId: string,
+  blob: Blob,
+  targetLang?: string,
+): Promise<{ ticket: AdminSupportTicket; message: AdminSupportMessage }> {
+  const query = new URLSearchParams();
+  if (targetLang) query.set('targetLang', targetLang);
+  const qs = query.toString();
+  const form = new FormData();
+  form.append('audio', blob, `voice-${Date.now()}.webm`);
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/support/tickets/${ticketId}/messages/voice${qs ? `?${qs}` : ''}`,
+    {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${accessToken}` },
+      body: form,
+    },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{ ticket: AdminSupportTicket; message: AdminSupportMessage }>;
+}
+
+export async function updateAdminTicket(
+  accessToken: string,
+  ticketId: string,
+  payload: { status?: TicketStatus; priority?: TicketPriority },
+): Promise<AdminSupportTicket> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/support/tickets/${ticketId}`, {
+    method: 'PATCH',
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<AdminSupportTicket>;
+}
+
+export type AppNotification = {
+  id: string;
+  type: string;
+  title: string;
+  body: string;
+  data: Record<string, unknown>;
+  readAt?: string | null;
+  createdAt: string;
+};
+
+export async function listNotifications(accessToken: string): Promise<AppNotification[]> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/notifications`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<AppNotification[]>;
+}
+
+export async function unreadNotificationCount(accessToken: string): Promise<number> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/notifications/unread-count`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  const json = (await res.json()) as { count: number };
+  return json.count;
+}
+
+export async function markNotificationRead(accessToken: string, id: string) {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/notifications/${id}/read`, {
+    method: 'PATCH',
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+}
+
+export async function markAllNotificationsRead(accessToken: string) {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/notifications/read-all`, {
+    method: 'POST',
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+}
+

@@ -158,8 +158,51 @@
   },
   "support": {
     "title": "Support",
-    "comingTitle": "Centre d'assistance",
-    "comingBody": "Les tickets et outils agents seront disponibles dans les prochaines phases support."
+    "inboxEyebrow": "Boîte de réception",
+    "inboxSubtitle": "{count} ticket(s)",
+    "searchPlaceholder": "Rechercher sujet ou email…",
+    "filterAll": "Tous les statuts",
+    "loading": "Chargement…",
+    "empty": "Aucun ticket pour le moment.",
+    "loadError": "Impossible de charger les tickets",
+    "selectTicket": "Sélectionnez un ticket pour ouvrir la conversation",
+    "colSubject": "Sujet",
+    "colUser": "Joueur",
+    "colStatus": "Statut",
+    "colPriority": "Priorité",
+    "colUpdated": "Mis à jour",
+    "detailEyebrow": "Détails",
+    "close": "Fermer",
+    "replyPlaceholder": "Écrire une réponse…",
+    "sendReply": "Envoyer la réponse",
+    "sending": "Envoi…",
+    "authorStaff": "Équipe",
+    "authorUser": "Joueur",
+    "authorBot": "Assistant",
+    "preferredLang": "Indice langue joueur",
+    "displayLang": "Afficher en (code libre)",
+    "showOriginal": "Voir le texte original",
+    "showingOriginal": "Message original",
+    "translatedFrom": "Traduit depuis {lang}",
+    "detectedLang": "Détecté : {lang}",
+    "recordVoice": "Vocal",
+    "stopVoice": "Stop",
+    "status": {
+      "open": "Ouvert",
+      "pending": "En attente",
+      "resolved": "Résolu",
+      "closed": "Fermé"
+    },
+    "priority": {
+      "low": "Basse",
+      "normal": "Normale",
+      "high": "Haute"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "Aucune notification",
+    "markAll": "Tout marquer lu"
   },
   "errors": {
     "notFoundTitle": "Page introuvable",

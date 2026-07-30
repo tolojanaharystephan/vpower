@@ -119,7 +119,59 @@
     "infoTitle": "Informations personnelles",
     "sessionEyebrow": "Sécurité",
     "sessionTitle": "Session",
-    "sessionBody": "Déconnectez-vous de cet appareil si vous avez terminé. Vos favoris et votre profil restent synchronisés."
+    "sessionBody": "Déconnectez-vous de cet appareil si vous avez terminé. Vos favoris et votre profil restent synchronisés.",
+    "supportLink": "Contacter le support"
+  },
+  "support": {
+    "eyebrow": "Assistance",
+    "title": "Support",
+    "subtitle": "Discutez avec l'équipe dans votre langue — traductions dynamiques.",
+    "loading": "Chargement…",
+    "empty": "Aucun ticket pour le moment. Créez-en un si vous avez besoin d'aide.",
+    "selectTicket": "Sélectionnez un ticket ou créez-en un nouveau",
+    "newTicket": "Nouveau ticket",
+    "createTitle": "Nouvelle demande",
+    "subject": "Sujet",
+    "message": "Message",
+    "submit": "Envoyer la demande",
+    "sending": "Envoi…",
+    "send": "Envoyer",
+    "back": "Retour à la liste",
+    "replyPlaceholder": "Écrivez votre réponse…",
+    "closedHint": "Ce ticket est fermé. Ouvrez-en un nouveau si vous avez encore besoin d'aide.",
+    "authorYou": "Vous",
+    "authorStaff": "Support",
+    "authorBot": "Assistant",
+    "updatedAt": "Mis à jour le {date}",
+    "displayLang": "Code langue d'affichage",
+    "showOriginal": "Voir l'original",
+    "showingOriginal": "Message original",
+    "translatedFrom": "Traduit depuis {lang}",
+    "tabAssistant": "Aide rapide",
+    "tabTickets": "Mes tickets",
+    "recordVoice": "Vocal",
+    "stopVoice": "Stop",
+    "status": {
+      "open": "Ouvert",
+      "pending": "En attente",
+      "resolved": "Résolu",
+      "closed": "Fermé"
+    }
+  },
+  "supportBot": {
+    "title": "Assistant rapide",
+    "subtitle": "Réponses immédiates aux questions courantes — passez à un agent quand vous voulez.",
+    "welcome": "Bonjour ! Posez une question sur le compte, les jeux, les dépôts… Sinon, parlez à un agent.",
+    "placeholder": "Posez une question rapide…",
+    "talkToHuman": "Parler à un agent",
+    "escalating": "Ouverture du ticket…",
+    "escalateSubject": "Demande d'aide (via assistant)",
+    "escalateDefault": "J'ai besoin d'aide d'un agent humain."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "Aucune notification",
+    "markAll": "Tout marquer lu"
   },
   "help": {
     "title": "Centre d'aide",
@@ -129,11 +181,13 @@
     "cardGamesTitle": "Explorer les jeux",
     "cardGamesBody": "Parcourez la sélection actuelle et trouvez votre prochain jeu favori.",
     "cardPromosTitle": "Offres et promotions",
-    "cardPromosBody": "Découvrez en un coup d'œil les offres de bienvenue et sélections de la semaine."
+    "cardPromosBody": "Découvrez en un coup d'œil les offres de bienvenue et sélections de la semaine.",
+    "cardSupportTitle": "Contacter le support",
+    "cardSupportBody": "Créez un ticket et suivez les réponses depuis votre compte."
   },
   "faq": {
     "title": "FAQ",
-    "subtitle": "Quelques réponses claires avant l'arrivée du centre de support complet.",
+    "subtitle": "Quelques réponses claires — ouvrez un ticket support si vous avez besoin d'aide.",
     "q1": "Comment créer un compte ?",
     "a1": "Utilisez Inscription, puis vérifiez votre email lorsque le mailer sera activé.",
     "q2": "Les dépôts sont-ils disponibles ?",

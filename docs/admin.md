@@ -39,3 +39,9 @@ Catalog games seed runs automatically when the `games` table is empty.
 
 ### Phase 8 note
 - Users list at `/fr/users` via `GET /api/v1/users` (`users:read`) — registered clients appear here.
+
+### Phases 9–10
+- Support inbox at `/fr/support` — 3-zone call-center layout (queue + chat + meta)
+- Realtime via Socket.IO (`/support`) + in-app notification bell
+- Dynamic translation: set display language code freely; original always preserved
+- Uses `support:read` / `support:write`

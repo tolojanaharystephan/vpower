@@ -1,9 +1,10 @@
 'use client';
 
-import { Bell, LogOut, Search } from 'lucide-react';
+import { LogOut, Search } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useAdminAuth } from '@/components/auth/admin-auth-provider';
 import { LocaleSwitcher } from '@/components/layout/locale-switcher';
+import { NotificationBell } from '@/components/notifications/notification-bell';
 import { Button } from '@/components/ui/button';
 
 function initials(email?: string | null, firstName?: string | null) {
@@ -49,14 +50,7 @@ export function AdminTopbar({
 
           <LocaleSwitcher className="rounded-lg border border-[var(--vp-border)] bg-white/[0.03] px-2.5 py-1.5 text-xs uppercase tracking-wider text-[var(--vp-muted)] transition hover:border-[rgba(212,160,23,0.35)] hover:text-[var(--vp-fg)]" />
 
-          <button
-            type="button"
-            aria-label={t('notifications')}
-            className="relative grid h-10 w-10 place-items-center rounded-xl border border-[var(--vp-border)] bg-white/[0.03] text-[var(--vp-muted)] transition hover:border-[rgba(212,160,23,0.35)] hover:text-[var(--vp-fg)]"
-          >
-            <Bell className="h-4 w-4" />
-            <span className="absolute right-2.5 top-2.5 h-1.5 w-1.5 rounded-full bg-[var(--vp-accent)] shadow-[0_0_8px_var(--vp-accent)]" />
-          </button>
+          <NotificationBell />
 
           <div className="flex items-center gap-2.5 rounded-xl border border-[var(--vp-border)] bg-white/[0.03] py-1.5 pl-1.5 pr-2.5">
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-[rgba(212,160,23,0.16)] font-[family-name:var(--font-display)] text-xs text-[var(--vp-accent)]">

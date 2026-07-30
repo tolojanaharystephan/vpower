@@ -89,6 +89,17 @@ Real `ClientGameProvider` HTTP mapping waits for partner API docs.
 - Client `/account` + session-aware header
 - Favorites `GET/POST/DELETE /api/v1/users/me/favorites` + tile heart + home carousel
 
+## Phases 9–10 (done — MVP) + realtime / translation
+
+- Schema: `support_tickets`, `support_messages`, `support_message_translations`, `notifications`
+- API SupportModule + NotificationsModule + TranslationModule
+- Socket.IO namespace `/support` (JWT) — events `message:new`, `ticket:*`, `notification:new`
+- Dynamic message translation (Google when `TRANSLATION_ENABLED=true` + API key; otherwise passthrough). Any `targetLang` code; detect on write; cache per message+lang
+- Voice messages (`POST .../messages/voice`, files under `/uploads/support/`)
+- Quick FAQ bot (`POST /support/bot/chat`) + escalate to human ticket (`POST /support/bot/escalate`)
+- Client `/support` chat layout + assistant tab + notification bell
+- Admin `/support` 3-zone inbox + voice reply + notification bell
+
 ## Dual local strategy
 
 1. **Docker** — PostgreSQL + Redis via Compose (`pnpm infra:up` when Docker is installed).

@@ -11,6 +11,9 @@ import { RbacModule } from './modules/rbac/rbac.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { GamesModule } from './modules/games/games.module';
 import { GameIntegrationModule } from './modules/game-integration/game-integration.module';
+import { SupportModule } from './modules/support/support.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
+import { TranslationModule } from './modules/translation/translation.module';
 
 /**
  * Modular monolith root.
@@ -28,6 +31,9 @@ import { GameIntegrationModule } from './modules/game-integration/game-integrati
     AdminModule,
     GamesModule,
     GameIntegrationModule,
+    TranslationModule,
+    NotificationsModule,
+    SupportModule,
     HealthModule,
     MetaModule,
   ],

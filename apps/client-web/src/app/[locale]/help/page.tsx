@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { CircleHelp, Gift, Gamepad2 } from 'lucide-react';
+import { CircleHelp, Gift, Gamepad2, Headphones } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
 export default async function HelpPage({
@@ -20,7 +20,7 @@ export default async function HelpPage({
         </h1>
         <p className="mt-3 max-w-2xl text-[var(--vp-muted)]">{t('subtitle')}</p>
       </div>
-      <div className="mt-9 grid gap-4 md:grid-cols-3">
+      <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Link href="/faq" className="help-card">
           <CircleHelp className="h-6 w-6 text-[var(--vp-accent)]" />
           <h2>{t('cardFaqTitle')}</h2>
@@ -35,6 +35,11 @@ export default async function HelpPage({
           <Gift className="h-6 w-6 text-[var(--vp-accent)]" />
           <h2>{t('cardPromosTitle')}</h2>
           <p>{t('cardPromosBody')}</p>
+        </Link>
+        <Link href="/support" className="help-card">
+          <Headphones className="h-6 w-6 text-[var(--vp-accent)]" />
+          <h2>{t('cardSupportTitle')}</h2>
+          <p>{t('cardSupportBody')}</p>
         </Link>
       </div>
     </div>

@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
-import { CalendarDays, Heart, Mail, ShieldCheck } from 'lucide-react';
+import { CalendarDays, Heart, Headphones, Mail, ShieldCheck } from 'lucide-react';
 import { z } from 'zod';
-import { useRouter } from '@/i18n/navigation';
+import { Link, useRouter } from '@/i18n/navigation';
 import { useSession } from '@/components/auth/session-provider';
 import { listFavorites, updateMe } from '@/lib/api';
 import { Button } from '@/components/ui/button';
@@ -218,10 +218,17 @@ export function AccountPanel() {
             {t('sessionTitle')}
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[var(--vp-muted)]">{t('sessionBody')}</p>
+          <Link
+            href="/support"
+            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[var(--vp-accent)] hover:underline"
+          >
+            <Headphones className="h-4 w-4" />
+            {t('supportLink')}
+          </Link>
           <Button
             type="button"
             variant="secondary"
-            className="mt-6 w-full"
+            className="mt-4 w-full"
             onClick={async () => {
               await logout();
               router.push('/');
