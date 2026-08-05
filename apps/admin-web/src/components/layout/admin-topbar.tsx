@@ -1,6 +1,6 @@
 'use client';
 
-import { LogOut, Search } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useAdminAuth } from '@/components/auth/admin-auth-provider';
 import { LocaleSwitcher } from '@/components/layout/locale-switcher';
@@ -24,42 +24,28 @@ export function AdminTopbar({
   const { user, roles, logout } = useAdminAuth();
 
   return (
-    <header className="admin-topbar sticky top-0 z-20 border-b border-[var(--vp-border)] px-5 sm:px-6 lg:px-8">
-      <div className="flex min-h-[4.75rem] items-center justify-between gap-4 py-3">
+    <header className="admin-topbar sticky top-0 z-20 px-5 sm:px-6 lg:px-8">
+      <div className="flex min-h-[4.5rem] items-center justify-between gap-4 py-3">
         <div className="min-w-0">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--vp-accent)]">
-            {t('operations')}
-          </p>
-          <h1 className="truncate font-[family-name:var(--font-display)] text-xl tracking-wide text-[var(--vp-fg)] sm:text-2xl">
-            {title}
-          </h1>
-          {subtitle ? (
-            <p className="mt-0.5 truncate text-sm text-[var(--vp-muted)]">{subtitle}</p>
-          ) : null}
+          <h1 className="admin-title truncate">{title}</h1>
+          {subtitle ? <p className="admin-subtitle truncate">{subtitle}</p> : null}
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <label className="admin-search hidden md:flex">
-            <Search className="h-4 w-4 shrink-0 text-[var(--vp-muted)]" aria-hidden />
-            <input
-              type="search"
-              placeholder={t('searchPlaceholder')}
-              className="w-44 bg-transparent text-sm text-[var(--vp-fg)] outline-none placeholder:text-[var(--vp-muted)] lg:w-56"
-            />
-          </label>
-
+        <div className="flex items-center gap-2 sm:gap-2.5">
           <LocaleSwitcher className="rounded-lg border border-[var(--vp-border)] bg-white/[0.03] px-2.5 py-1.5 text-xs uppercase tracking-wider text-[var(--vp-muted)] transition hover:border-[rgba(212,160,23,0.35)] hover:text-[var(--vp-fg)]" />
 
           <NotificationBell />
 
-          <div className="flex items-center gap-2.5 rounded-xl border border-[var(--vp-border)] bg-white/[0.03] py-1.5 pl-1.5 pr-2.5">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-[rgba(212,160,23,0.16)] font-[family-name:var(--font-display)] text-xs text-[var(--vp-accent)]">
+          <div className="flex items-center gap-2.5 rounded-xl border border-[var(--vp-border)] bg-white/[0.03] py-1.5 pl-1.5 pr-2 sm:pr-2.5">
+            <span className="admin-avatar h-9 w-9 text-xs">
               {initials(user?.email, user?.firstName)}
             </span>
             <div className="hidden min-w-0 lg:block">
-              <p className="max-w-[10rem] truncate text-sm text-[var(--vp-fg)]">{user?.email}</p>
+              <p className="max-w-[11rem] truncate text-sm text-[var(--vp-fg)]">
+                {user?.firstName || user?.email || 'Admin'}
+              </p>
               <p className="truncate text-[10px] uppercase tracking-[0.12em] text-[var(--vp-muted)]">
-                {roles.join(' · ') || '—'}
+                {roles.join(' · ') || t('staffConsole')}
               </p>
             </div>
             <Button

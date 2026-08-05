@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { CircleHelp, Gift, Gamepad2, Headphones } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { CareAtmosphere } from '@/components/help/care-atmosphere';
 
 export default async function HelpPage({
   params,
@@ -11,37 +12,82 @@ export default async function HelpPage({
   setRequestLocale(locale);
   const t = await getTranslations('help');
 
+  const cards = [
+    {
+      href: '/faq' as const,
+      icon: CircleHelp,
+      title: t('cardFaqTitle'),
+      body: t('cardFaqBody'),
+      cta: t('cardFaqCta'),
+    },
+    {
+      href: '/games' as const,
+      icon: Gamepad2,
+      title: t('cardGamesTitle'),
+      body: t('cardGamesBody'),
+      cta: t('cardGamesCta'),
+    },
+    {
+      href: '/promotions' as const,
+      icon: Gift,
+      title: t('cardPromosTitle'),
+      body: t('cardPromosBody'),
+      cta: t('cardPromosCta'),
+    },
+    {
+      href: '/support' as const,
+      icon: Headphones,
+      title: t('cardSupportTitle'),
+      body: t('cardSupportBody'),
+      cta: t('cardSupportCta'),
+    },
+  ];
+
+  const steps = [
+    { title: t('step1Title'), body: t('step1Body') },
+    { title: t('step2Title'), body: t('step2Body') },
+    { title: t('step3Title'), body: t('step3Body') },
+  ];
+
   return (
-    <div className="mx-auto max-w-5xl px-4 pb-16 pt-28 sm:px-6 lg:px-8">
-      <div className="page-header">
-        <p className="page-header-eyebrow">VPower777</p>
-        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wide">
-          {t('title')}
-        </h1>
-        <p className="mt-3 max-w-2xl text-[var(--vp-muted)]">{t('subtitle')}</p>
-      </div>
-      <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Link href="/faq" className="help-card">
-          <CircleHelp className="h-6 w-6 text-[var(--vp-accent)]" />
-          <h2>{t('cardFaqTitle')}</h2>
-          <p>{t('cardFaqBody')}</p>
-        </Link>
-        <Link href="/games" className="help-card">
-          <Gamepad2 className="h-6 w-6 text-[var(--vp-accent)]" />
-          <h2>{t('cardGamesTitle')}</h2>
-          <p>{t('cardGamesBody')}</p>
-        </Link>
-        <Link href="/promotions" className="help-card">
-          <Gift className="h-6 w-6 text-[var(--vp-accent)]" />
-          <h2>{t('cardPromosTitle')}</h2>
-          <p>{t('cardPromosBody')}</p>
-        </Link>
-        <Link href="/support" className="help-card">
-          <Headphones className="h-6 w-6 text-[var(--vp-accent)]" />
-          <h2>{t('cardSupportTitle')}</h2>
-          <p>{t('cardSupportBody')}</p>
-        </Link>
-      </div>
+    <div className="care-shell mx-auto max-w-6xl px-4 pb-20 pt-28 sm:px-6 lg:px-8">
+      <section className="care-hero">
+        <div className="animate-fade-up">
+          <p className="care-kicker">{t('eyebrow')}</p>
+          <h1 className="care-title">{t('title')}</h1>
+          <p className="care-lede">{t('subtitle')}</p>
+        </div>
+        <CareAtmosphere label={t('visualLabel')} className="animate-fade-up" />
+      </section>
+
+      <section className="care-path" aria-label={t('pathLabel')}>
+        {steps.map((step, index) => (
+          <article key={step.title} className="care-step animate-fade-up">
+            <span className="care-step-index">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="mt-14">
+        <div className="mb-6 max-w-xl">
+          <h2 className="care-section-title">{t('destinationsTitle')}</h2>
+          <p className="care-section-lede">{t('destinationsBody')}</p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {cards.map(({ href, icon: Icon, title, body, cta }) => (
+            <Link key={href} href={href} className="help-card">
+              <span className="help-card-icon">
+                <Icon className="h-5 w-5" aria-hidden />
+              </span>
+              <h2>{title}</h2>
+              <p>{body}</p>
+              <span className="help-card-cta">{cta}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

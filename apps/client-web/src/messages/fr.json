@@ -1,4 +1,7 @@
 {
+  "common": {
+    "loading": "Chargement…"
+  },
   "brand": {
     "name": "VPower777",
     "tagline": "L'expérience jeu nouvelle génération"
@@ -88,7 +91,8 @@
     },
     "emptyTitle": "Aucun jeu trouvé",
     "emptyBody": "Essayez une autre recherche ou choisissez une autre collection.",
-    "loadError": "Impossible de charger le catalogue. Vérifiez l'API."
+    "loadError": "Impossible de charger le catalogue. Vérifiez l'API.",
+    "loading": "Chargement du catalogue…"
   },
   "play": {
     "eyebrow": "Session démo",
@@ -123,12 +127,13 @@
     "supportLink": "Contacter le support"
   },
   "support": {
-    "eyebrow": "Assistance",
-    "title": "Support",
-    "subtitle": "Discutez avec l'équipe dans votre langue — traductions dynamiques.",
+    "eyebrow": "Avec vous",
+    "title": "Un support qui laisse respirer",
+    "subtitle": "Commencez par l'assistant, ou ouvrez un ticket — les réponses restent dans votre langue, à votre rythme.",
     "loading": "Chargement…",
     "empty": "Aucun ticket pour le moment. Créez-en un si vous avez besoin d'aide.",
-    "selectTicket": "Sélectionnez un ticket ou créez-en un nouveau",
+    "selectTicket": "Choisissez une conversation",
+    "selectTicketHint": "Sélectionnez un ticket à gauche, ou créez-en un nouveau quand vous êtes prêt.",
     "newTicket": "Nouveau ticket",
     "createTitle": "Nouvelle demande",
     "subject": "Sujet",
@@ -160,8 +165,9 @@
   },
   "supportBot": {
     "title": "Assistant rapide",
-    "subtitle": "Réponses immédiates aux questions courantes — passez à un agent quand vous voulez.",
+    "subtitle": "Des réponses douces d'abord — un agent humain dès que vous en avez besoin.",
     "welcome": "Bonjour ! Posez une question sur le compte, les jeux, les dépôts… Sinon, parlez à un agent.",
+    "welcomeTitle": "Commencer en douceur",
     "placeholder": "Posez une question rapide…",
     "talkToHuman": "Parler à un agent",
     "escalating": "Ouverture du ticket…",
@@ -174,20 +180,39 @@
     "markAll": "Tout marquer lu"
   },
   "help": {
-    "title": "Centre d'aide",
-    "subtitle": "Trouvez les réponses essentielles, explorez le catalogue et suivez les offres depuis un espace clair et apaisé.",
+    "eyebrow": "Accompagnement",
+    "title": "Une aide plus apaisante",
+    "subtitle": "Un espace plus calme pour trouver des réponses, explorer le catalogue et joindre le support — sans le bruit.",
+    "visualLabel": "Marque d'accompagnement VPower777",
+    "pathLabel": "Comment fonctionne l'aide",
+    "step1Title": "Commencer clairement",
+    "step1Body": "Parcourez la FAQ pour l'essentiel — compte, catalogue et ce qui est disponible aujourd'hui.",
+    "step2Title": "Explorer à votre rythme",
+    "step2Body": "Passez aux jeux ou aux promotions quand vous cherchez de l'inspiration plutôt que des réponses.",
+    "step3Title": "Parler quand il le faut",
+    "step3Body": "Ouvrez l'assistant ou un ticket — les réponses restent dans votre compte, dans votre langue.",
+    "destinationsTitle": "Où aller ensuite",
+    "destinationsBody": "Quatre chemins doux. Choisissez celui qui correspond à votre besoin du moment.",
     "cardFaqTitle": "Questions fréquentes",
     "cardFaqBody": "Création de compte, disponibilité et réponses essentielles au même endroit.",
+    "cardFaqCta": "Lire la FAQ",
     "cardGamesTitle": "Explorer les jeux",
     "cardGamesBody": "Parcourez la sélection actuelle et trouvez votre prochain jeu favori.",
+    "cardGamesCta": "Ouvrir le catalogue",
     "cardPromosTitle": "Offres et promotions",
     "cardPromosBody": "Découvrez en un coup d'œil les offres de bienvenue et sélections de la semaine.",
+    "cardPromosCta": "Voir les offres",
     "cardSupportTitle": "Contacter le support",
-    "cardSupportBody": "Créez un ticket et suivez les réponses depuis votre compte."
+    "cardSupportBody": "Créez un ticket et suivez les réponses depuis votre compte.",
+    "cardSupportCta": "Obtenir de l'aide"
   },
   "faq": {
-    "title": "FAQ",
-    "subtitle": "Quelques réponses claires — ouvrez un ticket support si vous avez besoin d'aide.",
+    "eyebrow": "Réponses",
+    "title": "Des questions claires, un rythme doux",
+    "subtitle": "L'essentiel — ouvrez le support quand vous avez besoin d'une personne, pas d'une autre page.",
+    "visualLabel": "Atmosphère FAQ",
+    "supportHint": "Toujours bloqué ?",
+    "supportLink": "Parler au support",
     "q1": "Comment créer un compte ?",
     "a1": "Utilisez Inscription, puis vérifiez votre email lorsque le mailer sera activé.",
     "q2": "Les dépôts sont-ils disponibles ?",

@@ -8,6 +8,10 @@
     "closeMenu": "Fermer le menu",
     "staffConsole": "Staff console",
     "admin": "Admin",
+    "adminPortal": "Portail admin",
+    "platformStatus": "État plateforme",
+    "operational": "Opérationnel",
+    "systemVersion": "VPower777 core",
     "showPassword": "Afficher le mot de passe",
     "hidePassword": "Masquer le mot de passe",
     "comingSoon": "Bientôt disponible",
@@ -27,7 +31,10 @@
     "support": "Support"
   },
   "login": {
-    "staffConsole": "Staff console",
+    "staffConsole": "Portail admin",
+    "portalLabel": "Portail d'administration",
+    "secureNotice": "Accès sécurisé réservé au personnel",
+    "techSupport": "Support technique",
     "eyebrow": "Operations center",
     "title": "Pilotez la plateforme, avec clarté.",
     "subtitle": "Gardez une vue nette sur vos joueurs, services et opérations depuis un seul espace.",

@@ -19,6 +19,7 @@ import {
 } from '@/lib/api';
 import { getApiBaseUrl } from '@/lib/utils';
 import { useAdminAuth } from '@/components/auth/admin-auth-provider';
+import { BrandLoader } from '@/components/brand/brand-loader';
 import { connectSupportSocket } from '@/lib/support-socket';
 import { VoiceRecorderButton } from '@/components/support/voice-recorder-button';
 import { Button } from '@/components/ui/button';
@@ -129,13 +130,10 @@ export function SupportAdminPanel() {
   const dateLocale = locale === 'en' ? 'en-US' : 'fr-FR';
 
   return (
-    <div className="flex h-[calc(100vh-8rem)] min-h-[32rem] overflow-hidden rounded-2xl border border-[var(--vp-border)] bg-[var(--vp-surface)]">
-      {/* Left: ticket queue */}
-      <aside className="flex w-full max-w-xs flex-col border-r border-[var(--vp-border)] sm:max-w-[18rem]">
+    <div className="support-workspace animate-fade-up">
+      <aside className="support-queue">
         <div className="space-y-2 border-b border-[var(--vp-border)] p-3">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-accent)]">
-            {t('inboxEyebrow')}
-          </p>
+          <p className="admin-eyebrow">{t('inboxEyebrow')}</p>
           <label className="relative block">
             <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--vp-muted)]" />
             <Input
@@ -146,7 +144,7 @@ export function SupportAdminPanel() {
             />
           </label>
           <select
-            className="h-9 w-full rounded-md border border-[var(--vp-border)] bg-transparent px-2 text-xs text-[var(--vp-fg)]"
+            className="admin-select h-9 text-xs"
             value={status}
             onChange={(e) => setStatus(e.target.value as TicketStatus | '')}
           >
@@ -160,7 +158,9 @@ export function SupportAdminPanel() {
         </div>
         <ul className="flex-1 overflow-y-auto">
           {listQuery.isLoading ? (
-            <li className="px-3 py-8 text-center text-sm text-[var(--vp-muted)]">{t('loading')}</li>
+            <li className="px-3 py-10">
+              <BrandLoader size="sm" label={t('loading')} className="mx-auto" />
+            </li>
           ) : tickets.length === 0 ? (
             <li className="px-3 py-8 text-center text-sm text-[var(--vp-muted)]">{t('empty')}</li>
           ) : (
@@ -168,8 +168,8 @@ export function SupportAdminPanel() {
               <li key={row.id}>
                 <button
                   type="button"
-                  className={`w-full border-b border-[var(--vp-border)] px-3 py-3 text-left transition hover:bg-white/[0.03] ${
-                    selectedId === row.id ? 'bg-[rgba(212,160,23,0.08)]' : ''
+                  className={`support-queue-item ${
+                    selectedId === row.id ? 'support-queue-item-active' : ''
                   }`}
                   onClick={() => setSelectedId(row.id)}
                 >
@@ -177,8 +177,16 @@ export function SupportAdminPanel() {
                   <p className="mt-0.5 truncate text-[11px] text-[var(--vp-muted)]">
                     {row.user?.email}
                   </p>
-                  <div className="mt-1 flex items-center justify-between gap-2">
-                    <span className="text-[10px] uppercase tracking-wider text-[var(--vp-accent)]">
+                  <div className="mt-2 flex items-center justify-between gap-2">
+                    <span
+                      className={`status-pill ${
+                        row.status === 'open'
+                          ? 'status-pill-on'
+                          : row.status === 'pending'
+                            ? 'status-pill-warn'
+                            : 'status-pill-off'
+                      }`}
+                    >
                       {t(`status.${row.status}`)}
                     </span>
                     <span className="text-[10px] text-[var(--vp-muted)]">
@@ -192,11 +200,13 @@ export function SupportAdminPanel() {
         </ul>
       </aside>
 
-      {/* Center: chat */}
-      <section className="flex min-w-0 flex-1 flex-col">
+      <section className="support-chat-pane">
         {!ticket ? (
-          <div className="grid flex-1 place-items-center text-sm text-[var(--vp-muted)]">
-            {t('selectTicket')}
+          <div className="grid flex-1 place-items-center px-6 text-center">
+            <div>
+              <p className="admin-eyebrow">{t('detailEyebrow')}</p>
+              <p className="mt-2 text-sm text-[var(--vp-muted)]">{t('selectTicket')}</p>
+            </div>
           </div>
         ) : (
           <>
@@ -209,7 +219,7 @@ export function SupportAdminPanel() {
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 <select
-                  className="h-9 rounded-md border border-[var(--vp-border)] bg-transparent px-2 text-xs"
+                  className="admin-select h-9 w-auto min-w-[7.5rem] text-xs"
                   value={ticket.status}
                   disabled={updateMutation.isPending}
                   onChange={(e) => updateMutation.mutate({ status: e.target.value as TicketStatus })}
@@ -221,7 +231,7 @@ export function SupportAdminPanel() {
                   ))}
                 </select>
                 <select
-                  className="h-9 rounded-md border border-[var(--vp-border)] bg-transparent px-2 text-xs"
+                  className="admin-select h-9 w-auto min-w-[7rem] text-xs"
                   value={ticket.priority}
                   disabled={updateMutation.isPending}
                   onChange={(e) =>
@@ -253,7 +263,7 @@ export function SupportAdminPanel() {
 
             {ticket.status !== 'closed' ? (
               <form
-                className="border-t border-[var(--vp-border)] p-3"
+                className="border-t border-[var(--vp-border)] bg-black/20 p-3"
                 onSubmit={(e) => {
                   e.preventDefault();
                   if (!reply.trim()) return;
@@ -261,7 +271,7 @@ export function SupportAdminPanel() {
                 }}
               >
                 <textarea
-                  className="min-h-20 w-full rounded-xl border border-[var(--vp-border)] bg-transparent px-3 py-2 text-sm outline-none focus:border-[var(--vp-accent)]"
+                  className="admin-textarea"
                   value={reply}
                   onChange={(e) => setReply(e.target.value)}
                   placeholder={t('replyPlaceholder')}
@@ -284,22 +294,19 @@ export function SupportAdminPanel() {
         )}
       </section>
 
-      {/* Right: meta */}
-      <aside className="hidden w-56 flex-col border-l border-[var(--vp-border)] p-4 lg:flex">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-accent)]">
-          {t('detailEyebrow')}
-        </p>
+      <aside className="support-meta">
+        <p className="admin-eyebrow">{t('detailEyebrow')}</p>
         {ticket ? (
           <div className="mt-3 space-y-3 text-sm">
             <div>
-              <p className="text-[10px] uppercase text-[var(--vp-muted)]">{t('colUser')}</p>
-              <p className="text-[var(--vp-fg)]">{ticket.user?.email}</p>
+              <p className="text-[10px] uppercase tracking-wider text-[var(--vp-muted)]">{t('colUser')}</p>
+              <p className="mt-1 text-[var(--vp-fg)]">{ticket.user?.email}</p>
             </div>
             <div>
-              <p className="text-[10px] uppercase text-[var(--vp-muted)]">{t('preferredLang')}</p>
-              <p className="text-[var(--vp-fg)]">{ticket.preferredLang || '—'}</p>
+              <p className="text-[10px] uppercase tracking-wider text-[var(--vp-muted)]">{t('preferredLang')}</p>
+              <p className="mt-1 text-[var(--vp-fg)]">{ticket.preferredLang || '—'}</p>
             </div>
-            <label className="block text-[10px] uppercase text-[var(--vp-muted)]">
+            <label className="block text-[10px] uppercase tracking-wider text-[var(--vp-muted)]">
               {t('displayLang')}
               <Input
                 className="mt-1 h-9"
@@ -348,12 +355,8 @@ function ChatBubble({
   return (
     <div className={`flex ${staff ? 'justify-end' : 'justify-start'}`}>
       <div
-        className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 ${
-          bot
-            ? 'border border-[rgba(212,160,23,0.25)] bg-[rgba(212,160,23,0.06)] text-[var(--vp-fg)]'
-            : staff
-              ? 'bg-[rgba(212,160,23,0.18)] text-[var(--vp-fg)]'
-              : 'border border-[var(--vp-border)] bg-black/25 text-[var(--vp-fg)]'
+        className={`chat-bubble ${
+          bot ? 'chat-bubble-bot' : staff ? 'chat-bubble-staff' : 'chat-bubble-user'
         }`}
       >
         <div className="mb-1 flex gap-2 text-[10px] uppercase tracking-wider text-[var(--vp-muted)]">

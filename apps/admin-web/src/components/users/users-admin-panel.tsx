@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
-import { Search } from 'lucide-react';
+import { Search, Users } from 'lucide-react';
 import { getAdminAccessToken, listUsers } from '@/lib/api';
 import { useAdminAuth } from '@/components/auth/admin-auth-provider';
+import { BrandLoader } from '@/components/brand/brand-loader';
 import { Input } from '@/components/ui/input';
 
 export function UsersAdminPanel() {
@@ -26,50 +27,53 @@ export function UsersAdminPanel() {
   const dateLocale = locale === 'en' ? 'en-US' : 'fr-FR';
 
   return (
-    <div className="space-y-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="space-y-5 animate-fade-up">
+      <div className="admin-section-head">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--vp-accent)]">
-            {t('listEyebrow')}
-          </p>
-          <p className="mt-1 text-sm text-[var(--vp-muted)]">{t('listSubtitle', { count: total })}</p>
+          <p className="admin-eyebrow">{t('listEyebrow')}</p>
+          <p className="admin-subtitle">{t('listSubtitle', { count: total })}</p>
         </div>
-        <label className="relative min-w-[14rem] w-full sm:w-72">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--vp-muted)]" />
-          <Input
-            className="pl-9"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={t('searchPlaceholder')}
-          />
-        </label>
+        <div className="admin-toolbar w-full sm:w-auto">
+          <label className="relative min-w-[14rem] flex-1 sm:w-72">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--vp-muted)]" />
+            <Input
+              className="pl-9"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={t('searchPlaceholder')}
+            />
+          </label>
+        </div>
       </div>
 
       {isError ? <p className="text-sm text-red-400">{t('loadError')}</p> : null}
 
       <div className="dash-panel overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full text-left text-sm">
-            <thead className="border-b border-[var(--vp-border)] text-[10px] uppercase tracking-[0.14em] text-[var(--vp-muted)]">
+          <table className="admin-table">
+            <thead>
               <tr>
-                <th className="px-4 py-3 font-semibold">{t('colUser')}</th>
-                <th className="px-4 py-3 font-semibold">{t('colRoles')}</th>
-                <th className="px-4 py-3 font-semibold">{t('colStatus')}</th>
-                <th className="px-4 py-3 font-semibold">{t('colCreated')}</th>
-                <th className="px-4 py-3 font-semibold">{t('colLastLogin')}</th>
+                <th>{t('colUser')}</th>
+                <th>{t('colRoles')}</th>
+                <th>{t('colStatus')}</th>
+                <th>{t('colCreated')}</th>
+                <th>{t('colLastLogin')}</th>
               </tr>
             </thead>
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colSpan={5} className="px-4 py-10 text-center text-[var(--vp-muted)]">
-                    {t('loading')}
+                  <td colSpan={5} className="px-4 py-14">
+                    <BrandLoader size="sm" label={t('loading')} className="mx-auto" />
                   </td>
                 </tr>
               ) : users.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-4 py-10 text-center text-[var(--vp-muted)]">
-                    {t('empty')}
+                  <td colSpan={5} className="px-4 py-14 text-center">
+                    <span className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
+                      <Users className="h-5 w-5" />
+                    </span>
+                    <p className="text-sm text-[var(--vp-muted)]">{t('empty')}</p>
                   </td>
                 </tr>
               ) : (
@@ -80,32 +84,36 @@ export function UsersAdminPanel() {
                     'VP';
                   const initials = name.slice(0, 2).toUpperCase();
                   return (
-                    <tr key={user.id} className="border-b border-[var(--vp-border)] last:border-0">
-                      <td className="px-4 py-3">
+                    <tr key={user.id}>
+                      <td>
                         <div className="flex items-center gap-3">
-                          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[rgba(212,160,23,0.14)] font-[family-name:var(--font-display)] text-xs text-[var(--vp-accent)]">
-                            {initials}
-                          </span>
+                          <span className="admin-avatar h-10 w-10 text-xs">{initials}</span>
                           <div>
                             <p className="font-medium text-[var(--vp-fg)]">{name}</p>
                             <p className="text-xs text-[var(--vp-muted)]">{user.email}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-xs text-[var(--vp-muted)]">
-                        {user.roles.join(' · ') || '—'}
+                      <td>
+                        <div className="flex flex-wrap gap-1.5">
+                          {(user.roles.length ? user.roles : ['—']).map((role) => (
+                            <span key={role} className="admin-chip">
+                              {role}
+                            </span>
+                          ))}
+                        </div>
                       </td>
-                      <td className="px-4 py-3">
+                      <td>
                         <span
                           className={`status-pill ${user.isActive ? 'status-pill-on' : 'status-pill-off'}`}
                         >
                           {user.isActive ? t('active') : t('inactive')}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-[var(--vp-muted)]">
+                      <td className="text-[var(--vp-muted)]">
                         {new Date(user.createdAt).toLocaleDateString(dateLocale)}
                       </td>
-                      <td className="px-4 py-3 text-[var(--vp-muted)]">
+                      <td className="text-[var(--vp-muted)]">
                         {user.lastLoginAt
                           ? new Date(user.lastLoginAt).toLocaleString(dateLocale)
                           : '—'}

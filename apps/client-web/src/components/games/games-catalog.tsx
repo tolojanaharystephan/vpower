@@ -5,6 +5,7 @@ import { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { GameTile } from '@/components/games/game-tile';
+import { BrandLoader } from '@/components/brand/brand-loader';
 import { fetchCatalogGames, type GameTag } from '@/lib/catalog';
 import { cn } from '@/lib/utils';
 
@@ -35,18 +36,18 @@ export function GamesCatalog() {
 
   return (
     <section className="mt-8">
-      <div className="flex flex-col gap-4 border-y border-[rgba(245,240,232,0.08)] py-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+      <div className="catalog-toolbar flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex gap-1.5 overflow-x-auto rounded-lg border border-[rgba(245,240,232,0.08)] bg-black/25 p-1 scrollbar-none">
           {filters.map((item) => (
             <button
               key={item}
               type="button"
               onClick={() => setFilter(item)}
               className={cn(
-                'rounded-full border px-4 py-2 text-sm font-medium whitespace-nowrap transition',
+                'rounded-md px-3.5 py-2 text-sm font-medium whitespace-nowrap transition',
                 filter === item
-                  ? 'border-[rgba(212,160,23,0.55)] bg-[rgba(212,160,23,0.14)] text-[var(--vp-accent)]'
-                  : 'border-[rgba(245,240,232,0.1)] text-[var(--vp-muted)] hover:border-[rgba(245,240,232,0.24)] hover:text-[var(--vp-fg)]',
+                  ? 'bg-[rgba(212,160,23,0.18)] text-[var(--vp-accent-bright)] shadow-[0_0_16px_rgba(212,160,23,0.12)]'
+                  : 'text-[var(--vp-muted)] hover:text-[var(--vp-fg)]',
               )}
             >
               {t(`filter.${item}`)}
@@ -54,36 +55,34 @@ export function GamesCatalog() {
           ))}
         </div>
 
-        <label className="relative block sm:w-64">
+        <label className="relative block sm:w-72">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--vp-muted)]" />
           <input
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={t('searchPlaceholder')}
-            className="w-full rounded-lg border border-[rgba(245,240,232,0.1)] bg-black/20 py-2 pl-9 pr-3 text-sm text-[var(--vp-fg)] outline-none transition placeholder:text-[var(--vp-muted)] focus:border-[rgba(212,160,23,0.55)]"
+            className="w-full rounded-md border border-[rgba(245,240,232,0.1)] bg-black/30 py-2.5 pl-9 pr-3 text-sm text-[var(--vp-fg)] outline-none transition placeholder:text-[var(--vp-muted)] focus:border-[rgba(212,160,23,0.55)] focus:shadow-[0_0_0_3px_rgba(212,160,23,0.1)]"
           />
         </label>
       </div>
 
       {isLoading ? (
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="aspect-[3/4] animate-pulse rounded-lg bg-white/[0.04]" />
-          ))}
+        <div className="mt-12 grid min-h-64 place-items-center">
+          <BrandLoader size="md" label={t('loading')} />
         </div>
       ) : isError ? (
-        <div className="mt-8 grid min-h-64 place-items-center rounded-xl border border-dashed border-red-400/30 bg-[rgba(20,20,26,0.45)] p-8 text-center">
+        <div className="cinema-panel mt-8 grid min-h-64 place-items-center border-dashed border-red-400/30 p-8 text-center">
           <p className="text-sm text-red-300">{t('loadError')}</p>
         </div>
       ) : games.length ? (
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-5 lg:grid-cols-5">
           {games.map((game) => (
             <GameTile key={game.id} game={game} />
           ))}
         </div>
       ) : (
-        <div className="mt-8 grid min-h-64 place-items-center rounded-xl border border-dashed border-[rgba(245,240,232,0.14)] bg-[rgba(20,20,26,0.45)] p-8 text-center">
+        <div className="cinema-panel mt-8 grid min-h-64 place-items-center border-dashed p-8 text-center">
           <div>
             <p className="font-[family-name:var(--font-display)] text-xl tracking-wide text-[var(--vp-fg)]">
               {t('emptyTitle')}

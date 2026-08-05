@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Bot, MessageSquarePlus, Send } from 'lucide-react';
 import { useRouter } from '@/i18n/navigation';
 import { useSession } from '@/components/auth/session-provider';
+import { BrandLoader } from '@/components/brand/brand-loader';
 import {
   addTicketMessage,
   addTicketVoice,
@@ -136,8 +137,8 @@ export function SupportPanel() {
 
   if (!ready || !isAuthenticated || !accessToken) {
     return (
-      <div className="mx-auto max-w-5xl px-4 py-24 text-center text-[var(--vp-muted)]">
-        {t('loading')}
+      <div className="mx-auto grid max-w-5xl place-items-center px-4 py-24">
+        <BrandLoader size="md" label={t('loading')} />
       </div>
     );
   }
@@ -147,35 +148,37 @@ export function SupportPanel() {
   const dateLocale = locale === 'en' ? 'en-US' : 'fr-FR';
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12">
-      <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--vp-accent)]">
-            {t('eyebrow')}
-          </p>
-          <h1 className="mt-1 font-[family-name:var(--font-display)] text-3xl text-[var(--vp-fg)]">
+    <div className="care-shell mx-auto max-w-6xl px-4 pb-16 pt-24 sm:px-6 sm:pt-28 lg:px-8">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div className="max-w-xl animate-fade-up">
+          <p className="care-kicker">{t('eyebrow')}</p>
+          <h1 className="mt-3 font-[family-name:var(--font-display)] text-3xl tracking-wide text-[var(--vp-fg)] sm:text-4xl">
             {t('title')}
           </h1>
-          <p className="mt-1 text-sm text-[var(--vp-muted)]">{t('subtitle')}</p>
+          <p className="mt-2 text-[var(--vp-muted)] leading-relaxed">{t('subtitle')}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex rounded-xl border border-[var(--vp-border)] p-0.5">
+          <div className="flex rounded-2xl border border-[var(--vp-border)] bg-white/[0.02] p-1">
             <button
               type="button"
-              className={`rounded-lg px-3 py-1.5 text-xs ${
-                mode === 'assistant' ? 'bg-[rgba(212,160,23,0.2)] text-[var(--vp-accent)]' : 'text-[var(--vp-muted)]'
+              className={`rounded-xl px-3.5 py-2 text-xs transition ${
+                mode === 'assistant'
+                  ? 'bg-[rgba(212,160,23,0.2)] text-[var(--vp-accent)]'
+                  : 'text-[var(--vp-muted)] hover:text-[var(--vp-fg)]'
               }`}
               onClick={() => setMode('assistant')}
             >
-              <span className="inline-flex items-center gap-1">
+              <span className="inline-flex items-center gap-1.5">
                 <Bot className="h-3.5 w-3.5" />
                 {t('tabAssistant')}
               </span>
             </button>
             <button
               type="button"
-              className={`rounded-lg px-3 py-1.5 text-xs ${
-                mode === 'tickets' ? 'bg-[rgba(212,160,23,0.2)] text-[var(--vp-accent)]' : 'text-[var(--vp-muted)]'
+              className={`rounded-xl px-3.5 py-2 text-xs transition ${
+                mode === 'tickets'
+                  ? 'bg-[rgba(212,160,23,0.2)] text-[var(--vp-accent)]'
+                  : 'text-[var(--vp-muted)] hover:text-[var(--vp-fg)]'
               }`}
               onClick={() => setMode('tickets')}
             >
@@ -209,7 +212,7 @@ export function SupportPanel() {
       {error ? <p className="mb-3 text-sm text-red-400">{error}</p> : null}
 
       {mode === 'assistant' ? (
-        <div className="h-[min(70vh,40rem)] overflow-hidden rounded-2xl border border-[var(--vp-border)] bg-[var(--vp-surface)]">
+        <div className="support-care-shell h-[min(70vh,40rem)]">
           <SupportBotPanel
             accessToken={accessToken}
             preferredLang={targetLang}
@@ -221,11 +224,13 @@ export function SupportPanel() {
           />
         </div>
       ) : (
-        <div className="flex h-[min(70vh,40rem)] overflow-hidden rounded-2xl border border-[var(--vp-border)] bg-[var(--vp-surface)]">
+        <div className="support-care-shell flex h-[min(70vh,40rem)]">
           <aside className="flex w-full max-w-[15rem] flex-col border-r border-[var(--vp-border)] sm:max-w-[17rem]">
             <ul className="flex-1 overflow-y-auto">
               {listQuery.isLoading ? (
-                <li className="px-3 py-8 text-center text-sm text-[var(--vp-muted)]">{t('loading')}</li>
+                <li className="px-3 py-10">
+                  <BrandLoader size="sm" label={t('loading')} className="mx-auto" />
+                </li>
               ) : tickets.length === 0 ? (
                 <li className="px-3 py-8 text-center text-sm text-[var(--vp-muted)]">{t('empty')}</li>
               ) : (
@@ -233,7 +238,7 @@ export function SupportPanel() {
                   <li key={item.id}>
                     <button
                       type="button"
-                      className={`w-full border-b border-[var(--vp-border)] px-3 py-3 text-left hover:bg-white/[0.03] ${
+                      className={`w-full border-b border-[var(--vp-border)] px-3 py-3 text-left transition hover:bg-white/[0.03] ${
                         selectedId === item.id ? 'bg-[rgba(212,160,23,0.08)]' : ''
                       }`}
                       onClick={() => {
@@ -346,8 +351,13 @@ export function SupportPanel() {
                 )}
               </>
             ) : (
-              <div className="grid flex-1 place-items-center text-sm text-[var(--vp-muted)]">
-                {t('selectTicket')}
+              <div className="grid flex-1 place-items-center px-6 text-center text-sm text-[var(--vp-muted)]">
+                <div>
+                  <p className="font-[family-name:var(--font-display)] text-lg text-[var(--vp-fg)]">
+                    {t('selectTicket')}
+                  </p>
+                  <p className="mt-2 max-w-xs text-[var(--vp-muted)]">{t('selectTicketHint')}</p>
+                </div>
               </div>
             )}
           </section>

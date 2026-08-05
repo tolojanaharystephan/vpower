@@ -49,3 +49,6 @@ temp
 # Misc
 *.pem
 .cache
+
+# Stitch exports (keep root zip; extracted PNGs are large)
+docs/stitch-admin-ui/stitch_vpower777_cinema_premium_design_system/

@@ -63,21 +63,29 @@ export function SupportBotPanel({
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center gap-2 border-b border-[var(--vp-border)] px-4 py-3">
-        <Bot className="h-4 w-4 text-[var(--vp-accent)]" />
+      <div className="flex items-center gap-3 border-b border-[var(--vp-border)] px-4 py-3.5">
+        <span className="help-card-icon h-10 w-10">
+          <Bot className="h-4 w-4" />
+        </span>
         <div>
           <p className="text-sm font-medium text-[var(--vp-fg)]">{t('title')}</p>
           <p className="text-[11px] text-[var(--vp-muted)]">{t('subtitle')}</p>
         </div>
       </div>
-      <div className="flex-1 space-y-2 overflow-y-auto px-4 py-3">
-        {lines.map((line, i) => (
+      <div className="flex-1 space-y-2 overflow-y-auto px-3 py-3 sm:px-4">
+        <div className="support-bot-welcome">
+          <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--vp-accent)]">
+            {t('welcomeTitle')}
+          </p>
+          <p>{t('welcome')}</p>
+        </div>
+        {lines.slice(1).map((line, i) => (
           <div
             key={`${i}-${line.role}`}
             className={`flex ${line.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div
-              className={`max-w-[90%] rounded-2xl px-3 py-2 text-sm ${
+              className={`max-w-[90%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
                 line.role === 'user'
                   ? 'bg-[rgba(212,160,23,0.18)]'
                   : 'border border-[var(--vp-border)] bg-black/20'

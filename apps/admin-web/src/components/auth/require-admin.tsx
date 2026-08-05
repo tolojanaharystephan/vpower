@@ -3,6 +3,7 @@
 import { useEffect, type ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import { useAdminAuth } from '@/components/auth/admin-auth-provider';
+import { BrandLoader } from '@/components/brand/brand-loader';
 import { usePathname, useRouter } from '@/i18n/navigation';
 
 export function RequireAdmin({ children }: { children: ReactNode }) {
@@ -19,19 +20,11 @@ export function RequireAdmin({ children }: { children: ReactNode }) {
   }, [ready, isStaff, pathname, router]);
 
   if (!ready) {
-    return (
-      <div className="grid min-h-screen place-items-center bg-[var(--vp-bg)] text-[var(--vp-muted)]">
-        {t('loading')}
-      </div>
-    );
+    return <BrandLoader fullScreen size="lg" label={t('loading')} />;
   }
 
   if (!isStaff) {
-    return (
-      <div className="grid min-h-screen place-items-center bg-[var(--vp-bg)] text-[var(--vp-muted)]">
-        {t('redirecting')}
-      </div>
-    );
+    return <BrandLoader fullScreen size="md" label={t('redirecting')} />;
   }
 
   return children;

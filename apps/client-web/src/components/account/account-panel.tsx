@@ -9,6 +9,7 @@ import { CalendarDays, Heart, Headphones, Mail, ShieldCheck } from 'lucide-react
 import { z } from 'zod';
 import { Link, useRouter } from '@/i18n/navigation';
 import { useSession } from '@/components/auth/session-provider';
+import { BrandLoader } from '@/components/brand/brand-loader';
 import { listFavorites, updateMe } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -60,8 +61,8 @@ export function AccountPanel() {
 
   if (!ready || !user) {
     return (
-      <div className="mx-auto max-w-5xl px-4 py-24 text-center text-[var(--vp-muted)]">
-        {t('loading')}
+      <div className="mx-auto grid max-w-5xl place-items-center px-4 py-24">
+        <BrandLoader size="md" label={t('loading')} />
       </div>
     );
   }
@@ -77,12 +78,12 @@ export function AccountPanel() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:py-14">
-      {/* Profile hero — healthtech-inspired card header */}
-      <section className="profile-hero overflow-hidden rounded-3xl border border-[var(--vp-border)]">
+      {/* Profile hero */}
+      <section className="profile-hero cinema-panel overflow-hidden">
         <div className="profile-hero-band px-6 py-8 sm:px-8">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="flex items-center gap-4">
-              <span className="grid h-20 w-20 place-items-center rounded-2xl border border-[rgba(212,160,23,0.35)] bg-[rgba(11,11,15,0.55)] font-[family-name:var(--font-display)] text-2xl text-[var(--vp-accent)] shadow-lg backdrop-blur">
+              <span className="grid h-20 w-20 place-items-center rounded-xl border border-[rgba(212,160,23,0.4)] bg-[rgba(11,11,15,0.55)] font-[family-name:var(--font-display)] text-2xl text-[var(--vp-accent-bright)] shadow-[0_0_24px_rgba(212,160,23,0.2)] backdrop-blur">
                 {initials(user.firstName, user.lastName, user.email)}
               </span>
               <div>
@@ -112,9 +113,9 @@ export function AccountPanel() {
 
       {/* Stats strip */}
       <div className="mt-5 grid gap-3 sm:grid-cols-3">
-        <div className="profile-stat rounded-2xl border border-[var(--vp-border)] bg-[var(--vp-surface)] p-4">
+        <div className="profile-stat cinema-panel p-4">
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
+            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
               <Heart className="h-4 w-4" />
             </span>
             <div>
@@ -123,9 +124,9 @@ export function AccountPanel() {
             </div>
           </div>
         </div>
-        <div className="profile-stat rounded-2xl border border-[var(--vp-border)] bg-[var(--vp-surface)] p-4">
+        <div className="profile-stat cinema-panel p-4">
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
+            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
               <CalendarDays className="h-4 w-4" />
             </span>
             <div>
@@ -134,9 +135,9 @@ export function AccountPanel() {
             </div>
           </div>
         </div>
-        <div className="profile-stat rounded-2xl border border-[var(--vp-border)] bg-[var(--vp-surface)] p-4">
+        <div className="profile-stat cinema-panel p-4">
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
+            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
               <ShieldCheck className="h-4 w-4" />
             </span>
             <div>
@@ -152,7 +153,7 @@ export function AccountPanel() {
       {/* Personal info card */}
       <div className="mt-5 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
         <form
-          className="rounded-2xl border border-[var(--vp-border)] bg-[var(--vp-surface)] p-6 sm:p-7"
+          className="cinema-panel p-6 sm:p-7"
           onSubmit={handleSubmit(async (values) => {
             if (!accessToken) return;
             try {
@@ -210,7 +211,7 @@ export function AccountPanel() {
           </div>
         </form>
 
-        <aside className="rounded-2xl border border-[var(--vp-border)] bg-[var(--vp-surface)] p-6 sm:p-7">
+        <aside className="cinema-panel p-6 sm:p-7">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--vp-accent)]">
             {t('sessionEyebrow')}
           </p>
@@ -220,7 +221,7 @@ export function AccountPanel() {
           <p className="mt-3 text-sm leading-relaxed text-[var(--vp-muted)]">{t('sessionBody')}</p>
           <Link
             href="/support"
-            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[var(--vp-accent)] hover:underline"
+            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[var(--vp-accent)] hover:text-[var(--vp-accent-bright)] hover:underline"
           >
             <Headphones className="h-4 w-4" />
             {t('supportLink')}

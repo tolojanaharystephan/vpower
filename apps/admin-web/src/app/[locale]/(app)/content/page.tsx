@@ -11,7 +11,7 @@ export default function ContentPage() {
   return (
     <>
       <AdminTopbar title={t('title')} />
-      <div className="flex-1 p-5 sm:p-6 lg:p-8">
+      <div className="admin-page">
         <ComingSoon title={t('comingTitle')} body={t('comingBody')} icon={Newspaper} />
       </div>
     </>

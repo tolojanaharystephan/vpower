@@ -37,7 +37,7 @@ export function SiteHeader() {
       <div className="header-glass mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-2.5">
           <BrandMark className="h-8 w-8 transition group-hover:brightness-110 sm:h-9 sm:w-9" />
-          <span className="font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-accent)] transition group-hover:text-[#e0b12a] sm:text-2xl">
+          <span className="font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-accent)] transition group-hover:text-[var(--vp-accent-bright)] sm:text-2xl">
             {brand('name')}
           </span>
         </Link>

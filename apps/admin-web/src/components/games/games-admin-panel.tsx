@@ -17,6 +17,7 @@ import {
   type GameStatus,
 } from '@/lib/api';
 import { useAdminAuth } from '@/components/auth/admin-auth-provider';
+import { BrandLoader } from '@/components/brand/brand-loader';
 import { GameForm } from '@/components/games/game-form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -89,13 +90,11 @@ export function GamesAdminPanel() {
   );
 
   return (
-    <div className="space-y-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="space-y-5 animate-fade-up">
+      <div className="admin-section-head">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--vp-accent)]">
-            {t('catalogEyebrow')}
-          </p>
-          <p className="mt-1 text-sm text-[var(--vp-muted)]">{t('catalogSubtitle', { count: total })}</p>
+          <p className="admin-eyebrow">{t('catalogEyebrow')}</p>
+          <p className="admin-subtitle">{t('catalogSubtitle', { count: total })}</p>
         </div>
         <Button
           type="button"
@@ -111,7 +110,7 @@ export function GamesAdminPanel() {
         </Button>
       </div>
 
-      <div className="flex flex-wrap gap-3">
+      <div className="admin-toolbar">
         <label className="relative min-w-[14rem] flex-1">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--vp-muted)]" />
           <Input
@@ -122,7 +121,7 @@ export function GamesAdminPanel() {
           />
         </label>
         <select
-          className="h-10 rounded-md border border-[var(--vp-border)] bg-[var(--vp-surface)] px-3 text-sm text-[var(--vp-fg)] outline-none focus:border-[var(--vp-accent)]"
+          className="admin-select w-full sm:w-44"
           value={status}
           onChange={(e) => setStatus(e.target.value as GameStatus | '')}
         >
@@ -140,37 +139,37 @@ export function GamesAdminPanel() {
 
       <div className="dash-panel overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full text-left text-sm">
-            <thead className="border-b border-[var(--vp-border)] text-[10px] uppercase tracking-[0.14em] text-[var(--vp-muted)]">
+          <table className="admin-table">
+            <thead>
               <tr>
-                <th className="px-4 py-3 font-semibold">{t('colTitle')}</th>
-                <th className="px-4 py-3 font-semibold">{t('colProvider')}</th>
-                <th className="px-4 py-3 font-semibold">{t('colCategory')}</th>
-                <th className="px-4 py-3 font-semibold">{t('colStatus')}</th>
-                <th className="px-4 py-3 font-semibold">{t('colFlags')}</th>
-                <th className="px-4 py-3 font-semibold text-right">{t('colActions')}</th>
+                <th>{t('colTitle')}</th>
+                <th>{t('colProvider')}</th>
+                <th>{t('colCategory')}</th>
+                <th>{t('colStatus')}</th>
+                <th>{t('colFlags')}</th>
+                <th className="text-right">{t('colActions')}</th>
               </tr>
             </thead>
             <tbody>
               {gamesQuery.isLoading ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-10 text-center text-[var(--vp-muted)]">
-                    {t('loading')}
+                  <td colSpan={6} className="py-14">
+                    <BrandLoader size="sm" label={t('loading')} className="mx-auto" />
                   </td>
                 </tr>
               ) : games.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-10 text-center text-[var(--vp-muted)]">
+                  <td colSpan={6} className="py-12 text-center text-[var(--vp-muted)]">
                     {t('empty')}
                   </td>
                 </tr>
               ) : (
                 games.map((game) => (
-                  <tr key={game.id} className="border-b border-[var(--vp-border)] last:border-0">
-                    <td className="px-4 py-3">
+                  <tr key={game.id}>
+                    <td>
                       <div className="flex items-center gap-3">
                         <span
-                          className="h-8 w-8 shrink-0 rounded-lg border border-[var(--vp-border)]"
+                          className="h-9 w-9 shrink-0 rounded-xl border border-[var(--vp-border)] shadow-inner"
                           style={{ background: game.accent ?? 'rgba(212,160,23,0.2)' }}
                         />
                         <div>
@@ -179,23 +178,41 @@ export function GamesAdminPanel() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-[var(--vp-muted)]">{game.provider.name}</td>
-                    <td className="px-4 py-3 text-[var(--vp-muted)]">{game.category.name}</td>
-                    <td className="px-4 py-3">
-                      <span className="rounded-full bg-white/[0.05] px-2 py-0.5 text-[10px] uppercase tracking-wider text-[var(--vp-fg)]">
+                    <td className="text-[var(--vp-muted)]">{game.provider.name}</td>
+                    <td className="text-[var(--vp-muted)]">{game.category.name}</td>
+                    <td>
+                      <span
+                        className={`status-pill ${
+                          game.status === 'active'
+                            ? 'status-pill-on'
+                            : game.status === 'draft'
+                              ? 'status-pill-warn'
+                              : 'status-pill-off'
+                        }`}
+                      >
                         {t(`status.${game.status}`)}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-xs text-[var(--vp-muted)]">
-                      {[
-                        game.isFeatured ? t('flagFeatured') : null,
-                        game.isNew ? t('flagNew') : null,
-                        game.isPopular ? t('flagPopular') : null,
-                      ]
-                        .filter(Boolean)
-                        .join(' · ') || '—'}
+                    <td>
+                      <div className="flex flex-wrap gap-1.5">
+                        {(() => {
+                          const flags = [
+                            game.isFeatured ? t('flagFeatured') : null,
+                            game.isNew ? t('flagNew') : null,
+                            game.isPopular ? t('flagPopular') : null,
+                          ].filter(Boolean) as string[];
+                          if (!flags.length) {
+                            return <span className="text-[var(--vp-muted)]">—</span>;
+                          }
+                          return flags.map((flag) => (
+                            <span key={flag} className="admin-chip">
+                              {flag}
+                            </span>
+                          ));
+                        })()}
+                      </div>
                     </td>
-                    <td className="px-4 py-3">
+                    <td>
                       <div className="flex justify-end gap-1">
                         <Button
                           type="button"
@@ -211,9 +228,8 @@ export function GamesAdminPanel() {
                         </Button>
                         <Button
                           type="button"
-                          variant="ghost"
+                          variant="danger"
                           size="sm"
-                          className="text-red-300 hover:text-red-200"
                           onClick={() => {
                             if (window.confirm(t('deleteConfirm', { title: game.title }))) {
                               void deleteMutation.mutateAsync(game.id);

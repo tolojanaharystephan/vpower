@@ -1,4 +1,7 @@
 {
+  "common": {
+    "loading": "Loading…"
+  },
   "brand": {
     "name": "VPower777",
     "tagline": "Next-generation gaming experience"
@@ -88,7 +91,8 @@
     },
     "emptyTitle": "No games found",
     "emptyBody": "Try another search or choose a different collection.",
-    "loadError": "Unable to load the catalog. Check the API."
+    "loadError": "Unable to load the catalog. Check the API.",
+    "loading": "Loading catalog…"
   },
   "play": {
     "eyebrow": "Demo session",
@@ -123,12 +127,13 @@
     "supportLink": "Contact support"
   },
   "support": {
-    "eyebrow": "Help desk",
-    "title": "Support",
-    "subtitle": "Chat with our team in your language — translations are dynamic.",
+    "eyebrow": "Here with you",
+    "title": "Support with room to breathe",
+    "subtitle": "Ask the assistant first, or open a ticket — replies stay in your language, at your pace.",
     "loading": "Loading…",
     "empty": "No tickets yet. Create one if you need help.",
-    "selectTicket": "Select a ticket or create a new one",
+    "selectTicket": "Choose a conversation",
+    "selectTicketHint": "Pick a ticket on the left, or start a new one when you are ready.",
     "newTicket": "New ticket",
     "createTitle": "New request",
     "subject": "Subject",
@@ -160,8 +165,9 @@
   },
   "supportBot": {
     "title": "Quick assistant",
-    "subtitle": "Instant answers to common questions — escalate anytime.",
+    "subtitle": "Soft answers first — a human agent whenever you need one.",
     "welcome": "Hi! Ask about account, games, deposits… If I cannot help, talk to a human agent.",
+    "welcomeTitle": "Start gently",
     "placeholder": "Ask a quick question…",
     "talkToHuman": "Talk to a human agent",
     "escalating": "Opening ticket…",
@@ -174,20 +180,39 @@
     "markAll": "Mark all read"
   },
   "help": {
-    "title": "Help center",
-    "subtitle": "Find quick answers, explore the catalog, and keep up with every offer from one calm, focused place.",
+    "eyebrow": "Guidance",
+    "title": "Help that feels calm",
+    "subtitle": "A quieter place to find answers, explore the catalog, and reach support — without the noise.",
+    "visualLabel": "VPower777 care mark",
+    "pathLabel": "How help works",
+    "step1Title": "Start with clarity",
+    "step1Body": "Browse the FAQ for the essentials — account, catalog, and what is available today.",
+    "step2Title": "Explore at your pace",
+    "step2Body": "Jump into games or promotions when you want inspiration rather than answers.",
+    "step3Title": "Talk when you need to",
+    "step3Body": "Open the assistant or a ticket — replies stay in your account, in your language.",
+    "destinationsTitle": "Where to go next",
+    "destinationsBody": "Four soft paths. Pick the one that matches what you need right now.",
     "cardFaqTitle": "Frequently asked questions",
     "cardFaqBody": "Account setup, availability, and the essentials in one place.",
+    "cardFaqCta": "Read FAQ",
     "cardGamesTitle": "Browse games",
     "cardGamesBody": "Explore the current selection and find your next favorite title.",
+    "cardGamesCta": "Open catalog",
     "cardPromosTitle": "Offers & promotions",
     "cardPromosBody": "See the latest welcome and weekly highlights at a glance.",
+    "cardPromosCta": "See offers",
     "cardSupportTitle": "Contact support",
-    "cardSupportBody": "Create a ticket and track replies from your account."
+    "cardSupportBody": "Create a ticket and track replies from your account.",
+    "cardSupportCta": "Get support"
   },
   "faq": {
-    "title": "FAQ",
-    "subtitle": "A few clear answers — open a support ticket if you need more help.",
+    "eyebrow": "Answers",
+    "title": "Clear questions, soft pace",
+    "subtitle": "A few essentials — open support when you need a person, not another page.",
+    "visualLabel": "FAQ atmosphere",
+    "supportHint": "Still stuck?",
+    "supportLink": "Talk to support",
     "q1": "How do I create an account?",
     "a1": "Use Sign up, then verify your email once mailer is enabled.",
     "q2": "Are deposits available?",

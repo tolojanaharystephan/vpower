@@ -10,7 +10,7 @@ export default function GamesPage() {
   return (
     <>
       <AdminTopbar title={t('title')} subtitle={t('subtitle')} />
-      <div className="flex-1 p-5 sm:p-6 lg:p-8">
+      <div className="admin-page">
         <GamesAdminPanel />
       </div>
     </>

@@ -158,14 +158,14 @@ export function GameForm({
             </Field>
             <Field label={t('fieldDescription')}>
               <textarea
-                className="min-h-24 w-full rounded-md border border-[var(--vp-border)] bg-[var(--vp-bg)] px-3 py-2 text-sm text-[var(--vp-fg)] outline-none transition focus:border-[var(--vp-accent)]"
+                className="admin-textarea"
                 {...register('description')}
               />
             </Field>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label={t('fieldProvider')} error={errors.providerId?.message}>
                 <select
-                  className="h-10 w-full rounded-md border border-[var(--vp-border)] bg-[var(--vp-bg)] px-3 text-sm text-[var(--vp-fg)] outline-none focus:border-[var(--vp-accent)]"
+                  className="admin-select"
                   {...register('providerId')}
                 >
                   {providers.map((p) => (
@@ -177,7 +177,7 @@ export function GameForm({
               </Field>
               <Field label={t('fieldCategory')} error={errors.categoryId?.message}>
                 <select
-                  className="h-10 w-full rounded-md border border-[var(--vp-border)] bg-[var(--vp-bg)] px-3 text-sm text-[var(--vp-fg)] outline-none focus:border-[var(--vp-accent)]"
+                  className="admin-select"
                   {...register('categoryId')}
                 >
                   {categories.map((c) => (
@@ -191,7 +191,7 @@ export function GameForm({
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label={t('fieldStatus')}>
                 <select
-                  className="h-10 w-full rounded-md border border-[var(--vp-border)] bg-[var(--vp-bg)] px-3 text-sm text-[var(--vp-fg)] outline-none focus:border-[var(--vp-accent)]"
+                  className="admin-select"
                   {...register('status')}
                 >
                   {(['draft', 'active', 'inactive', 'archived'] as GameStatus[]).map((status) => (

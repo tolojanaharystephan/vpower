@@ -12,12 +12,12 @@ export default async function GamesPage({
 
   return (
     <div className="mx-auto max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:px-8">
-      <div className="page-header">
+      <div className="page-header mb-2">
         <p className="page-header-eyebrow">VPower777</p>
-        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wide text-[var(--vp-fg)]">
+        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wide text-[var(--vp-fg)] sm:text-5xl">
           {t('title')}
         </h1>
-        <p className="mt-3 max-w-xl text-[var(--vp-muted)]">{t('subtitle')}</p>
+        <p className="mt-3 max-w-xl text-[var(--vp-muted)] leading-relaxed">{t('subtitle')}</p>
       </div>
       <GamesCatalog />
     </div>

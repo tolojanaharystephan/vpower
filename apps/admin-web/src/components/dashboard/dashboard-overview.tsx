@@ -14,6 +14,7 @@ import {
 import { useLocale, useTranslations } from 'next-intl';
 import { fetchAdminOverview, getAdminAccessToken } from '@/lib/api';
 import { useAdminAuth } from '@/components/auth/admin-auth-provider';
+import { BrandLoader } from '@/components/brand/brand-loader';
 import { PilotChart } from '@/components/dashboard/pilot-chart';
 
 function buildPilotSeries(usersTotal: number, labels: string[]) {
@@ -77,16 +78,8 @@ function StatCard({
 
 function OverviewSkeleton() {
   return (
-    <div className="space-y-6 animate-pulse">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {[1, 2, 3, 4].map((item) => (
-          <div key={item} className="stat-card h-36 bg-white/[0.03]" />
-        ))}
-      </div>
-      <div className="grid gap-4 xl:grid-cols-[1.7fr_1fr]">
-        <div className="dash-panel h-80 bg-white/[0.03]" />
-        <div className="dash-panel h-80 bg-white/[0.03]" />
-      </div>
+    <div className="grid min-h-[28rem] place-items-center">
+      <BrandLoader size="lg" />
     </div>
   );
 }

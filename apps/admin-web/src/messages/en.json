@@ -8,6 +8,10 @@
     "closeMenu": "Close menu",
     "staffConsole": "Staff console",
     "admin": "Admin",
+    "adminPortal": "Admin portal",
+    "platformStatus": "Platform status",
+    "operational": "Operational",
+    "systemVersion": "VPower777 core",
     "showPassword": "Show password",
     "hidePassword": "Hide password",
     "comingSoon": "Coming soon",
@@ -27,7 +31,10 @@
     "support": "Support"
   },
   "login": {
-    "staffConsole": "Staff console",
+    "staffConsole": "Admin portal",
+    "portalLabel": "Administration portal",
+    "secureNotice": "Secure access reserved for staff",
+    "techSupport": "Technical support",
     "eyebrow": "Operations center",
     "title": "Run the platform with clarity.",
     "subtitle": "Keep a clear view of players, services, and operations from one place.",
