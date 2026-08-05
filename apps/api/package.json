@@ -31,7 +31,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "dotenv": "^16.5.0",
-    "drizzle-orm": "^0.44.2",
+    "drizzle-orm": "^0.45.2",
     "helmet": "^8.1.0",
     "ioredis": "^5.6.1",
     "passport": "^0.7.0",
