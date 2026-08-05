@@ -47,4 +47,17 @@ pnpm db:studio     # Drizzle Studio
 - `system_meta` — bootstrap / key-value
 - `feature_flags` — flag persistence ready for later phases
 
-Domain tables (users, games, support, …) arrive in later phases.
+## Domain tables (current)
+
+Auth / users: `users`, `roles`, `permissions`, `role_permissions`, `user_roles`, refresh / reset / verification tokens.
+
+Games: `game_providers`, `game_categories`, `games`, `user_favorites`, `user_game_history`.
+
+**Support (Phases 9–10 + realtime):**
+- `support_tickets` — includes free-form `preferred_lang`
+- `support_messages` — original `body` + detected `source_lang` + `kind` (`text`|`voice`) + `audio_url`
+- `support_message_translations` — cache `(message_id, target_lang)`
+- `support_bot_faqs` — FAQ for first-line quick assistant
+- `notifications` — in-app notifications (support message / status)
+
+Later: `support_attachments`, `support_agents`, knowledge base / FAQ tables.

@@ -79,13 +79,13 @@ vpower777/
 
 | Phase | Description | Statut |
 |-------|-------------|--------|
-| **Phase 7** | Game Provider Adapter + API reelle | **A FAIRE** (prochaine) |
-| **Phase 8** | Customer Portal | **A FAIRE** |
-| **Phase 9** | Support Center | **A FAIRE** |
-| **Phase 10** | Tickets + conversations + messagerie | **A FAIRE** |
-| **Phase 11** | Translation Service | **A FAIRE** |
-| **Phase 12** | Notifications | **A FAIRE** |
-| **Phase 13** | Admin Support Management | **A FAIRE** |
+| **Phase 7** | Game Provider Adapter + API reelle | **PARTIELLE** (mock + launch; client stub) |
+| **Phase 8** | Customer Portal | **TERMINEE** |
+| **Phase 9** | Support Center | **TERMINEE** (MVP + realtime UI) |
+| **Phase 10** | Tickets + conversations + messagerie | **TERMINEE** (MVP + Socket.IO) |
+| **Phase 11** | Translation Service | **PARTIELLE** (Google detect/translate branché support) |
+| **Phase 12** | Notifications | **PARTIELLE** (in-app + WS pour support) |
+| **Phase 13** | Admin Support Management | **PARTIELLE** (inbox 3-zones MVP) |
 | **Phase 14** | Preparation Payment Architecture | **A FAIRE** |
 | **Phase 15** | Preparation Live Games Architecture | **A FAIRE** |
 | **Phase 16** | Tests complets | **A FAIRE** |
@@ -111,7 +111,9 @@ vpower777/
 | `UsersModule` | `modules/users/users.module.ts` | CRUD utilisateurs |
 | `AuthModule` | `modules/auth/auth.module.ts` | JWT auth, login, register, refresh, etc. |
 | `AdminModule` | `modules/admin/admin.module.ts` | Admin overview + seed admin |
-| `GamesModule` | `modules/games/games.module.ts` | Games, categories, providers CRUD |
+| `GamesModule` | `modules/games/games.module.ts` | Games, categories, providers CRUD + public catalog + seed |
+| `GameIntegrationModule` | `modules/game-integration/` | Launch session (mock / client stub) |
+| `SupportModule` | `modules/support/support.module.ts` | Tickets + messages (joueur + inbox admin) |
 | `HealthModule` | `modules/health/health.module.ts` | Health, liveness, readiness checks |
 | `MetaModule` | `modules/meta/meta.module.ts` | Root info, favicon |
 
@@ -138,6 +140,14 @@ vpower777/
 | POST | `/api/v1/games` | JWT + `games:write` | default | Creer un jeu |
 | PUT | `/api/v1/games/:id` | JWT + `games:write` | default | Modifier un jeu |
 | DELETE | `/api/v1/games/:id` | JWT + `games:write` | default | Supprimer un jeu (soft) |
+| GET | `/api/v1/catalog/games` | Public | — | Catalogue client (status=active) |
+| GET | `/api/v1/catalog/categories` | Public | — | Categories actives |
+| POST | `/api/v1/support/tickets` | JWT | default | Creer un ticket (joueur) |
+| GET | `/api/v1/support/tickets` | JWT | default | Lister mes tickets |
+| GET | `/api/v1/support/tickets/:id` | JWT (owner ou `support:read`) | default | Detail + thread |
+| POST | `/api/v1/support/tickets/:id/messages` | JWT (owner ou `support:write`) | default | Ajouter un message |
+| PATCH | `/api/v1/support/tickets/:id` | JWT + `support:write` | default | Statut / priorite |
+| GET | `/api/v1/support/admin/tickets` | JWT + `support:read` | default | Inbox admin |
 | GET | `/api/v1/game-categories` | JWT | default | Liste categories |
 | GET | `/api/v1/game-categories/:id` | JWT | default | Detail categorie |
 | POST | `/api/v1/game-categories` | JWT + `games:write` | default | Creer une categorie |
@@ -197,12 +207,12 @@ vpower777/
 | `games` | Jeux | `provider_id` -> `game_providers`, `category_id` -> `game_categories` |
 | `user_favorites` | Jeux favoris | `user_id` -> `users`, `game_id` -> `games` |
 | `user_game_history` | Historique consultation | `user_id` -> `users`, `game_id` -> `games` |
+| `support_tickets` | Tickets support MVP | `user_id` -> `users` |
+| `support_messages` | Messages support MVP | `ticket_id` -> `support_tickets`, `user_id` -> `users` |
 
 ### 5.2 Tables prevues (pas encore creees)
 
-**LOT 2 — Support:**
-- `support_tickets` — Tickets support
-- `support_messages` — Messages support
+**LOT 2 — Support (extensions):**
 - `support_attachments` — Pieces jointes
 - `support_agents` — Agents support
 - `knowledge_base_articles` — Base de connaissances
@@ -274,8 +284,10 @@ Le `RbacSeedService` seed les roles et permissions au `OnModuleInit` du `RbacMod
 | `/[locale]` | **Implementee** | Landing page (hero, carrousel, rails, promos) |
 | `/[locale]/games` | **Implementee** | Catalogue jeux (API, filtres, pagination) |
 | `/[locale]/promotions` | **Implementee** | Page promotions |
-| `/[locale]/faq` | **Implementee** | FAQ (2 items) |
-| `/[locale]/help` | **Stub** | Titre + sous-titre uniquement |
+| `/[locale]/faq` | **Implementee** | FAQ |
+| `/[locale]/help` | **Implementee** | Centre d'aide + lien support |
+| `/[locale]/support` | **Implementee** | Tickets joueur (liste, creation, thread) |
+| `/[locale]/account` | **Implementee** | Profil joueur |
 | `/[locale]/login` | **Placeholder** | Spinner, vrai UX = modal |
 | `/[locale]/register` | **Placeholder** | Spinner, vrai UX = modal |
 
@@ -324,10 +336,10 @@ Le `RbacSeedService` seed les roles et permissions au `OnModuleInit` du `RbacMod
 |-------|--------|-------------|
 | `/login` | **Implementee** | Formulaire connexion admin |
 | `/` | **Implementee** | Dashboard avec stats API |
-| `/users` | **Coming Soon** | Gestion utilisateurs |
+| `/users` | **Implementee** | Liste utilisateurs (`users:read`) |
 | `/games` | **Implementee** | CRUD jeux (liste, creation, edition, suppression) |
 | `/content` | **Coming Soon** | Contenu CMS |
-| `/support` | **Coming Soon** | Tickets support |
+| `/support` | **Implementee** | Inbox tickets + reponse / statut (MVP) |
 
 ### 8.2 Composants
 
@@ -491,10 +503,10 @@ Fichiers: `base.json`, `nextjs.json`, `nestjs.json`, `react-library.json`
 | `games` | 6 | **Cree** (games, categories, providers dans GamesModule) |
 | `game-categories` | 6 | **Cree** (dans GamesModule) |
 | `game-providers` | 6 | **Cree** (dans GamesModule) |
-| `customer-portal` | 8 | A creer |
-| `support` | 9 | A creer |
-| `tickets` | 10 | A creer |
-| `conversations` | 10 | A creer |
+| `customer-portal` | 8 | Couvert par UsersModule + client `/account` |
+| `support` | 9–10 | **Cree** (SupportModule MVP) |
+| `tickets` | 10 | Inclus dans SupportModule |
+| `conversations` | 10 | Inclus via `support_messages` |
 | `content` | 10 | A creer |
 | `translation` | 11 | A creer |
 | `notifications` | 12 | A creer |
@@ -660,14 +672,14 @@ Role: SUPER_ADMIN
 
 ## 17. PROCHAINE ETAPE RECOMMANDEE
 
-**Phase 7 — Game Provider Adapter + API reelle**
+**Phase 7 — Game Provider Adapter (partiel)**
 
-Actions requises:
-1. Creer l'interface `GameProvider` (provider pattern)
-2. Implementer `MockGameProvider` pour le dev
-3. Implementer `ClientGameProvider` pour l'API reelle
-4. Creer le module `GameIntegrationModule`
-5. Ajouter les endpoints de sync (pull games from provider)
-6. Ajouter les endpoints launch (redirect to game)
-7. Tests typecheck + lint
-8. Mise a jour documentation
+Fait:
+1. Interface `GameProvider` + `MockGameProvider` + stub `ClientGameProvider`
+2. Module `GameIntegrationModule`
+3. Endpoint launch `POST /api/v1/games/:id/launch`
+4. Page démo client `/play/[slug]`
+
+En attente (doc API partenaire):
+5. Mapping HTTP réel dans `ClientGameProvider`
+6. Sync pull catalogue depuis le provider

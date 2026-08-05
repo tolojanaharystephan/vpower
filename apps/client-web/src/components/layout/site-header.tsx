@@ -5,7 +5,9 @@ import { Menu, Search, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useAuthUi } from '@/components/auth/auth-ui-context';
+import { useSession } from '@/components/auth/session-provider';
 import { BrandMark } from '@/components/brand/brand-mark';
+import { NotificationBell } from '@/components/notifications/notification-bell';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -16,6 +18,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
   const { openAuth } = useAuthUi();
+  const { ready, isAuthenticated, user, logout } = useSession();
   const [open, setOpen] = useState(false);
 
   const switchLocale = () => {
@@ -34,7 +37,7 @@ export function SiteHeader() {
       <div className="header-glass mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-2.5">
           <BrandMark className="h-8 w-8 transition group-hover:brightness-110 sm:h-9 sm:w-9" />
-          <span className="font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-accent)] transition group-hover:text-[#e0b12a] sm:text-2xl">
+          <span className="font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-accent)] transition group-hover:text-[var(--vp-accent-bright)] sm:text-2xl">
             {brand('name')}
           </span>
         </Link>
@@ -81,12 +84,34 @@ export function SiteHeader() {
           >
             <Search className="h-4 w-4" />
           </Link>
-          <Button variant="ghost" size="sm" onClick={() => openAuth('login')}>
-            {t('login')}
-          </Button>
-          <Button size="sm" onClick={() => openAuth('register')}>
-            {t('register')}
-          </Button>
+          {ready && isAuthenticated ? (
+            <>
+              <NotificationBell />
+              <Link href="/account">
+                <Button variant="ghost" size="sm">
+                  {user?.firstName || t('account')}
+                </Button>
+              </Link>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => {
+                  void logout().then(() => router.push('/'));
+                }}
+              >
+                {t('logout')}
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="ghost" size="sm" onClick={() => openAuth('login')}>
+                {t('login')}
+              </Button>
+              <Button size="sm" onClick={() => openAuth('register')}>
+                {t('register')}
+              </Button>
+            </>
+          )}
         </div>
 
         <button
@@ -119,6 +144,15 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          {isAuthenticated ? (
+            <Link
+              href="/account"
+              onClick={() => setOpen(false)}
+              className="rounded-lg px-3 py-2 text-[var(--vp-fg)] transition hover:bg-white/5"
+            >
+              {t('account')}
+            </Link>
+          ) : null}
           <p className="text-sm text-[var(--vp-muted)]/60">
             {t('live')} / {t('walletSoon')} — {t('comingSoon')}
           </p>
@@ -130,25 +164,40 @@ export function SiteHeader() {
             {locale === 'fr' ? 'EN' : 'FR'}
           </button>
           <div className="flex gap-2 pt-2">
-            <Button
-              variant="secondary"
-              className="flex-1"
-              onClick={() => {
-                setOpen(false);
-                openAuth('login');
-              }}
-            >
-              {t('login')}
-            </Button>
-            <Button
-              className="flex-1"
-              onClick={() => {
-                setOpen(false);
-                openAuth('register');
-              }}
-            >
-              {t('register')}
-            </Button>
+            {isAuthenticated ? (
+              <Button
+                variant="secondary"
+                className="flex-1"
+                onClick={() => {
+                  setOpen(false);
+                  void logout().then(() => router.push('/'));
+                }}
+              >
+                {t('logout')}
+              </Button>
+            ) : (
+              <>
+                <Button
+                  variant="secondary"
+                  className="flex-1"
+                  onClick={() => {
+                    setOpen(false);
+                    openAuth('login');
+                  }}
+                >
+                  {t('login')}
+                </Button>
+                <Button
+                  className="flex-1"
+                  onClick={() => {
+                    setOpen(false);
+                    openAuth('register');
+                  }}
+                >
+                  {t('register')}
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>

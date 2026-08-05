@@ -38,6 +38,22 @@ export class AppConfigService {
     return this.config.get('GAME_PROVIDER_MODE', { infer: true });
   }
 
+  get gameApiBaseUrl(): string {
+    return this.config.get('GAME_API_BASE_URL', { infer: true }) || '';
+  }
+
+  get gameApiKey(): string {
+    return this.config.get('GAME_API_KEY', { infer: true }) || '';
+  }
+
+  get gameApiSecret(): string {
+    return this.config.get('GAME_API_SECRET', { infer: true }) || '';
+  }
+
+  get gameApiTimeout(): number {
+    return this.config.get('GAME_API_TIMEOUT', { infer: true });
+  }
+
   get logLevel(): AppEnv['LOG_LEVEL'] {
     return this.config.get('LOG_LEVEL', { infer: true });
   }
@@ -64,6 +80,18 @@ export class AppConfigService {
 
   get seedAdminRole() {
     return this.config.get('SEED_ADMIN_ROLE', { infer: true });
+  }
+
+  get translationEnabled(): boolean {
+    return this.config.get('TRANSLATION_ENABLED', { infer: true });
+  }
+
+  get googleTranslationApiKey(): string {
+    return this.config.get('GOOGLE_TRANSLATION_API_KEY', { infer: true }) || '';
+  }
+
+  get jwtSecret(): string {
+    return this.config.get('JWT_SECRET', { infer: true });
   }
 
   /** Strict CORS allowlist for browser clients. */
