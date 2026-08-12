@@ -27,13 +27,18 @@ export type MeResponse = {
 };
 
 export type LaunchSession = {
-  mode: 'mock' | 'client';
+  mode: 'mock' | 'client' | 'vblink';
   gameId: string;
   slug: string;
   title: string;
   sessionId: string;
   launchUrl: string;
   message: string;
+  externalLogin?: {
+    account: string;
+    password: string;
+    lobbyUrl: string;
+  };
 };
 
 export type FavoriteGame = {

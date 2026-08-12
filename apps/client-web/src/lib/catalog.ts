@@ -7,6 +7,7 @@ export type CatalogGame = {
   slug: string;
   title: string;
   provider: string;
+  providerSlug: string;
   tag: GameTag;
   accent: string;
   blurb: string;
@@ -38,6 +39,7 @@ export function mapCatalogGame(game: CatalogApiGame): CatalogGame {
     slug: game.slug,
     title: game.title,
     provider: game.provider.name,
+    providerSlug: game.provider.slug,
     tag: primaryTag(game),
     accent: game.accent || '#D4A017',
     blurb: game.description?.trim() || game.title,

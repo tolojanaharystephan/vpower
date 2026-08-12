@@ -40,7 +40,7 @@ export function BrandLoader({
           <i />
         </span>
         <div className="vp-loader-coin absolute inset-0 grid place-items-center">
-          <BrandMark className={cn(s.coin, 'drop-shadow-[0_0_18px_rgba(212,160,23,0.45)]')} />
+          <BrandMark className={cn(s.coin, 'drop-shadow-[0_0_18px_rgba(252,185,0,0.45)]')} />
         </div>
       </div>
       {label ? (

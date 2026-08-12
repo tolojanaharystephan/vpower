@@ -163,7 +163,7 @@ export function SupportPanel() {
               type="button"
               className={`rounded-xl px-3.5 py-2 text-xs transition ${
                 mode === 'assistant'
-                  ? 'bg-[rgba(212,160,23,0.2)] text-[var(--vp-accent)]'
+                  ? 'bg-[rgba(46,163,242,0.2)] text-[var(--vp-accent)]'
                   : 'text-[var(--vp-muted)] hover:text-[var(--vp-fg)]'
               }`}
               onClick={() => setMode('assistant')}
@@ -177,7 +177,7 @@ export function SupportPanel() {
               type="button"
               className={`rounded-xl px-3.5 py-2 text-xs transition ${
                 mode === 'tickets'
-                  ? 'bg-[rgba(212,160,23,0.2)] text-[var(--vp-accent)]'
+                  ? 'bg-[rgba(46,163,242,0.2)] text-[var(--vp-accent)]'
                   : 'text-[var(--vp-muted)] hover:text-[var(--vp-fg)]'
               }`}
               onClick={() => setMode('tickets')}
@@ -239,7 +239,7 @@ export function SupportPanel() {
                     <button
                       type="button"
                       className={`w-full border-b border-[var(--vp-border)] px-3 py-3 text-left transition hover:bg-white/[0.03] ${
-                        selectedId === item.id ? 'bg-[rgba(212,160,23,0.08)]' : ''
+                        selectedId === item.id ? 'bg-[rgba(46,163,242,0.08)]' : ''
                       }`}
                       onClick={() => {
                         setCreating(false);
@@ -393,9 +393,9 @@ function Bubble({
       <div
         className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 ${
           msg.authorType === 'bot'
-            ? 'border border-[rgba(212,160,23,0.25)] bg-[rgba(212,160,23,0.06)]'
+            ? 'border border-[rgba(46,163,242,0.25)] bg-[rgba(46,163,242,0.06)]'
             : mine
-              ? 'bg-[rgba(212,160,23,0.18)]'
+              ? 'bg-[rgba(46,163,242,0.18)]'
               : 'border border-[var(--vp-border)] bg-black/25'
         }`}
       >

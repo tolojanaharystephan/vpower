@@ -83,7 +83,7 @@ export function AccountPanel() {
         <div className="profile-hero-band px-6 py-8 sm:px-8">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="flex items-center gap-4">
-              <span className="grid h-20 w-20 place-items-center rounded-xl border border-[rgba(212,160,23,0.4)] bg-[rgba(11,11,15,0.55)] font-[family-name:var(--font-display)] text-2xl text-[var(--vp-accent-bright)] shadow-[0_0_24px_rgba(212,160,23,0.2)] backdrop-blur">
+              <span className="grid h-20 w-20 place-items-center rounded-xl border border-[rgba(46,163,242,0.4)] bg-[rgba(11,11,15,0.55)] font-[family-name:var(--font-display)] text-2xl text-[var(--vp-accent-bright)] shadow-[0_0_24px_rgba(46,163,242,0.2)] backdrop-blur">
                 {initials(user.firstName, user.lastName, user.email)}
               </span>
               <div>
@@ -115,7 +115,7 @@ export function AccountPanel() {
       <div className="mt-5 grid gap-3 sm:grid-cols-3">
         <div className="profile-stat cinema-panel p-4">
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
+            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[rgba(46,163,242,0.12)] text-[var(--vp-accent)]">
               <Heart className="h-4 w-4" />
             </span>
             <div>
@@ -126,7 +126,7 @@ export function AccountPanel() {
         </div>
         <div className="profile-stat cinema-panel p-4">
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
+            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[rgba(46,163,242,0.12)] text-[var(--vp-accent)]">
               <CalendarDays className="h-4 w-4" />
             </span>
             <div>
@@ -137,7 +137,7 @@ export function AccountPanel() {
         </div>
         <div className="profile-stat cinema-panel p-4">
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
+            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[rgba(46,163,242,0.12)] text-[var(--vp-accent)]">
               <ShieldCheck className="h-4 w-4" />
             </span>
             <div>

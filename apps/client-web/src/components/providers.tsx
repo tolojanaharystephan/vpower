@@ -6,6 +6,7 @@ import { AuthUiProvider } from '@/components/auth/auth-ui-context';
 import { SessionProvider } from '@/components/auth/session-provider';
 import { AuthModal } from '@/components/auth/auth-modal';
 import { AuthDeepLink } from '@/components/auth/auth-deep-link';
+import { SupportChatLauncher } from '@/components/support/support-chat-launcher';
 
 export function Providers({ children }: { children: ReactNode }) {
   const [client] = useState(
@@ -23,6 +24,7 @@ export function Providers({ children }: { children: ReactNode }) {
         <AuthUiProvider>
           {children}
           <AuthModal />
+          <SupportChatLauncher />
           <Suspense fallback={null}>
             <AuthDeepLink />
           </Suspense>

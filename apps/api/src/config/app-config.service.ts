@@ -54,6 +54,21 @@ export class AppConfigService {
     return this.config.get('GAME_API_TIMEOUT', { infer: true });
   }
 
+  get vblink() {
+    return {
+      enabled: this.config.get('VBLINK_ENABLED', { infer: true }),
+      apiBaseUrl: (this.config.get('VBLINK_API_BASE_URL', { infer: true }) || '').replace(/\/$/, ''),
+      appId: this.config.get('VBLINK_APP_ID', { infer: true }) || '',
+      appSecret: this.config.get('VBLINK_APP_SECRET', { infer: true }) || '',
+      agentAccount: this.config.get('VBLINK_AGENT_ACCOUNT', { infer: true }) || '',
+      lobbyUrl: (this.config.get('VBLINK_LOBBY_URL', { infer: true }) || 'https://www.vblink777.club').replace(
+        /\/$/,
+        '',
+      ),
+      timeoutMs: this.config.get('VBLINK_TIMEOUT_MS', { infer: true }),
+    };
+  }
+
   get logLevel(): AppEnv['LOG_LEVEL'] {
     return this.config.get('LOG_LEVEL', { infer: true });
   }

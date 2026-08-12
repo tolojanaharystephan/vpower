@@ -11,7 +11,7 @@ export function HeroCtas() {
 
   return (
     <div className="mt-8 flex flex-wrap gap-3 animate-fade-up animate-delay-2">
-      <Link href="/games">
+      <Link href="/providers">
         <Button size="lg" className="btn-shine">
           {t('ctaPrimary')}
         </Button>

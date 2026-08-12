@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { CircleHelp, Gift, Gamepad2, Headphones } from 'lucide-react';
+import { CircleHelp, Gamepad2, Headphones } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { CareAtmosphere } from '@/components/help/care-atmosphere';
 
@@ -21,18 +21,11 @@ export default async function HelpPage({
       cta: t('cardFaqCta'),
     },
     {
-      href: '/games' as const,
+      href: '/providers' as const,
       icon: Gamepad2,
       title: t('cardGamesTitle'),
       body: t('cardGamesBody'),
       cta: t('cardGamesCta'),
-    },
-    {
-      href: '/promotions' as const,
-      icon: Gift,
-      title: t('cardPromosTitle'),
-      body: t('cardPromosBody'),
-      cta: t('cardPromosCta'),
     },
     {
       href: '/support' as const,
@@ -75,7 +68,7 @@ export default async function HelpPage({
           <h2 className="care-section-title">{t('destinationsTitle')}</h2>
           <p className="care-section-lede">{t('destinationsBody')}</p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map(({ href, icon: Icon, title, body, cta }) => (
             <Link key={href} href={href} className="help-card">
               <span className="help-card-icon">

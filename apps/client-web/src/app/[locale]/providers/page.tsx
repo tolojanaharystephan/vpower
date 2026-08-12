@@ -1,8 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { PortalHub } from '@/components/portal/portal-hub';
 
-/** Home = reference portal (providers / social / contact). Catalog menu removed. */
-export default async function HomePage({
+export default async function ProvidersPage({
   params,
 }: {
   params: Promise<{ locale: string }>;

@@ -7,13 +7,19 @@ export type LaunchSessionInput = {
 };
 
 export type LaunchSessionResult = {
-  mode: 'mock' | 'client';
+  mode: 'mock' | 'client' | 'vblink';
   gameId: string;
   slug: string;
   title: string;
   sessionId: string;
   launchUrl: string;
   message: string;
+  /** Present for providers without SSO launch (VBlink FastAPI PDF). */
+  externalLogin?: {
+    account: string;
+    password: string;
+    lobbyUrl: string;
+  };
 };
 
 export type RemoteGameSummary = {
@@ -23,11 +29,11 @@ export type RemoteGameSummary = {
 };
 
 /**
- * Internal contract for the external games partner.
- * Do not invent partner HTTP routes here — implement ClientGameProvider when docs arrive.
+ * Internal contract for external game studios.
+ * Per-provider adapters (VBlink, …) are selected by RoutingGameProvider.
  */
 export interface GameProvider {
-  readonly mode: 'mock' | 'client';
+  readonly mode: 'mock' | 'client' | 'vblink';
   listRemoteGames(): Promise<RemoteGameSummary[]>;
   launchSession(input: LaunchSessionInput): Promise<LaunchSessionResult>;
 }

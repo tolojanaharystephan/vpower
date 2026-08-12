@@ -5,9 +5,10 @@ import type { Database } from '../../database/database';
 import { gameProviders, gameCategories, games } from '../../database/schema';
 
 const PROVIDERS = [
-  { name: 'Studio A', slug: 'studio-a' },
-  { name: 'Studio B', slug: 'studio-b' },
-  { name: 'Studio C', slug: 'studio-c' },
+  { name: 'VBlink', slug: 'vblink' },
+  { name: 'Goldendragon', slug: 'goldendragon' },
+  { name: 'Magiccity', slug: 'magiccity' },
+  { name: '100plus', slug: '100plus' },
 ] as const;
 
 const CATEGORIES = [
@@ -34,7 +35,7 @@ const SEED_GAMES: SeedGame[] = [
     slug: 'neon-reels',
     title: 'Neon Reels',
     description: 'Rouleaux électriques, jackpots qui claquent. / Electric reels, jackpots that hit hard.',
-    providerSlug: 'studio-a',
+    providerSlug: 'vblink',
     categorySlug: 'slots',
     accent: '#D4A017',
     isFeatured: true,
@@ -44,7 +45,7 @@ const SEED_GAMES: SeedGame[] = [
     slug: 'obsidian-spin',
     title: 'Obsidian Spin',
     description: 'Spin sombre, gains qui brûlent. / Dark spin, fiery wins.',
-    providerSlug: 'studio-b',
+    providerSlug: 'goldendragon',
     categorySlug: 'slots',
     accent: '#C45C26',
     isFeatured: true,
@@ -54,7 +55,7 @@ const SEED_GAMES: SeedGame[] = [
     slug: 'gold-circuit',
     title: 'Gold Circuit',
     description: 'Circuit doré pour les chasseurs de bonus. / Golden circuit for bonus hunters.',
-    providerSlug: 'studio-a',
+    providerSlug: 'vblink',
     categorySlug: 'jackpot',
     accent: '#E8C547',
     isPopular: true,
@@ -64,7 +65,7 @@ const SEED_GAMES: SeedGame[] = [
     slug: 'velvet-ace',
     title: 'Velvet Ace',
     description: 'Cartes velours, ambiance salon privé. / Velvet cards, private-room vibes.',
-    providerSlug: 'studio-c',
+    providerSlug: 'magiccity',
     categorySlug: 'table',
     accent: '#8B3A3A',
     isNew: true,
@@ -74,7 +75,7 @@ const SEED_GAMES: SeedGame[] = [
     slug: 'aurora-jack',
     title: 'Aurora Jack',
     description: 'Aurores boréales et multiplies sauvages. / Northern lights and wild multipliers.',
-    providerSlug: 'studio-b',
+    providerSlug: '100plus',
     categorySlug: 'jackpot',
     accent: '#3D7EA6',
     isNew: true,
@@ -84,7 +85,7 @@ const SEED_GAMES: SeedGame[] = [
     slug: 'ember-wheel',
     title: 'Ember Wheel',
     description: 'La roue de braise tourne encore. / The ember wheel keeps spinning.',
-    providerSlug: 'studio-c',
+    providerSlug: 'goldendragon',
     categorySlug: 'slots',
     accent: '#B33B1E',
     isPopular: true,
@@ -94,7 +95,7 @@ const SEED_GAMES: SeedGame[] = [
     slug: 'midnight-flush',
     title: 'Midnight Flush',
     description: 'Poker de minuit, tension maximale. / Midnight poker, maximum tension.',
-    providerSlug: 'studio-a',
+    providerSlug: 'vblink',
     categorySlug: 'table',
     accent: '#5C4B8A',
     isFeatured: true,
@@ -104,7 +105,7 @@ const SEED_GAMES: SeedGame[] = [
     slug: 'crystal-run',
     title: 'Crystal Run',
     description: 'Course de cristaux, free spins en chaîne. / Crystal rush, chained free spins.',
-    providerSlug: 'studio-b',
+    providerSlug: '100plus',
     categorySlug: 'slots',
     accent: '#2F6F6A',
     isNew: true,
@@ -122,6 +123,8 @@ export class GamesSeedService implements OnModuleInit {
   constructor(@Inject(DRIZZLE) private readonly db: Database) {}
 
   async onModuleInit() {
+    await this.ensurePortalProviders();
+
     const [countRow] = await this.db.select({ total: count() }).from(games);
     if (Number(countRow?.total ?? 0) > 0) {
       this.logger.log('Games catalog already seeded — skip');
@@ -184,5 +187,34 @@ export class GamesSeedService implements OnModuleInit {
     }
 
     this.logger.log(`Seeded ${SEED_GAMES.length} games, ${PROVIDERS.length} providers, ${CATEGORIES.length} categories`);
+  }
+
+  /** Always ensure client portal providers exist (VBlink, Goldendragon, Magiccity, 100plus). */
+  private async ensurePortalProviders() {
+    for (const p of PROVIDERS) {
+      const [existing] = await this.db
+        .select()
+        .from(gameProviders)
+        .where(eq(gameProviders.slug, p.slug))
+        .limit(1);
+      if (existing) continue;
+      await this.db.insert(gameProviders).values({ ...p, isActive: true });
+      this.logger.log(`Ensured portal provider: ${p.slug}`);
+    }
+
+    // One-shot remap from legacy Studio A/B/C seeds → portal providers
+    const legacy = await this.db.select().from(gameProviders);
+    const bySlug = new Map(legacy.map((p) => [p.slug, p.id]));
+    const remap: Array<[string, string]> = [
+      ['studio-a', 'vblink'],
+      ['studio-b', 'goldendragon'],
+      ['studio-c', 'magiccity'],
+    ];
+    for (const [from, to] of remap) {
+      const fromId = bySlug.get(from);
+      const toId = bySlug.get(to);
+      if (!fromId || !toId) continue;
+      await this.db.update(games).set({ providerId: toId }).where(eq(games.providerId, fromId));
+    }
   }
 }

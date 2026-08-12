@@ -29,6 +29,15 @@ export const envSchema = z.object({
   GAME_API_TIMEOUT: z.coerce.number().int().positive().default(10000),
   GAME_PROVIDER_MODE: z.enum(['mock', 'client']).default('mock'),
 
+  /** VBlink FastAPI (see FastApi EN PDF) — per-provider; other studios later */
+  VBLINK_ENABLED: booleanFromEnv.default(false),
+  VBLINK_API_BASE_URL: z.string().url().optional().or(z.literal('')).default(''),
+  VBLINK_APP_ID: z.string().optional().default(''),
+  VBLINK_APP_SECRET: z.string().optional().default(''),
+  VBLINK_AGENT_ACCOUNT: z.string().optional().default(''),
+  VBLINK_LOBBY_URL: z.string().url().optional().or(z.literal('')).default('https://www.vblink777.club'),
+  VBLINK_TIMEOUT_MS: z.coerce.number().int().positive().default(15000),
+
   GOOGLE_TRANSLATION_API_KEY: z.string().optional().default(''),
   TRANSLATION_ENABLED: booleanFromEnv.default(false),
 

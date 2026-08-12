@@ -41,7 +41,7 @@ export function LoginForm({ embedded, onSwitch, onSuccess }: LoginFormProps) {
     onSuccess: async (data) => {
       await setSession(data.accessToken, data.refreshToken);
       onSuccess?.();
-      router.push('/games');
+      router.push('/providers');
     },
     onError: (err: Error) => {
       setError('root', { message: err.message || t('errorGeneric') });

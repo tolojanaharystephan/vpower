@@ -216,6 +216,33 @@ export const userGameHistory = pgTable('user_game_history', {
   viewedAt: timestamp('viewed_at', { withTimezone: true }).defaultNow().notNull(),
 });
 
+/** Maps our users to external provider player accounts (VBlink FastAPI, etc.). */
+export const providerPlayerAccounts = pgTable(
+  'provider_player_accounts',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    providerSlug: text('provider_slug').notNull(),
+    /** Account without agent prefix (sent to FastAPI). */
+    externalAccount: text('external_account').notNull(),
+    /** Full account returned by provider (with prefix), when available. */
+    fullAccount: text('full_account'),
+    /** Player password used at create time (needed until SSO exists). */
+    externalPassword: text('external_password').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex('provider_player_accounts_user_provider_uidx').on(table.userId, table.providerSlug),
+    uniqueIndex('provider_player_accounts_slug_account_uidx').on(
+      table.providerSlug,
+      table.externalAccount,
+    ),
+  ],
+);
+
 /** Phase 9–10 — support tickets MVP */
 export const ticketStatusEnum = pgEnum('ticket_status', [
   'open',
@@ -326,6 +353,7 @@ export type SupportMessage = typeof supportMessages.$inferSelect;
 export type SupportMessageTranslation = typeof supportMessageTranslations.$inferSelect;
 export type Notification = typeof notifications.$inferSelect;
 export type SupportBotFaq = typeof supportBotFaqs.$inferSelect;
+export type ProviderPlayerAccount = typeof providerPlayerAccounts.$inferSelect;
 
 export const schema = {
   systemMeta,
@@ -343,6 +371,7 @@ export const schema = {
   games,
   userFavorites,
   userGameHistory,
+  providerPlayerAccounts,
   supportTickets,
   supportMessages,
   supportMessageTranslations,

@@ -87,7 +87,7 @@ export function SupportBotPanel({
             <div
               className={`max-w-[90%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
                 line.role === 'user'
-                  ? 'bg-[rgba(212,160,23,0.18)]'
+                  ? 'bg-[rgba(46,163,242,0.18)]'
                   : 'border border-[var(--vp-border)] bg-black/20'
               }`}
             >

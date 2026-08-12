@@ -10,24 +10,22 @@ export async function SiteFooter() {
   const columns = [
     {
       title: t('colExplore'),
-      links: [
-        { href: '/games' as const, label: t('games') },
-        { href: '/promotions' as const, label: t('promotions') },
-      ],
+      links: [{ href: '/providers' as const, label: t('providers') }],
     },
     {
       title: t('colSupport'),
       links: [
         { href: '/help' as const, label: t('help') },
+        { href: '/support' as const, label: t('support') },
         { href: '/faq' as const, label: t('faq') },
       ],
     },
   ] as const;
 
   return (
-    <footer className="relative overflow-hidden border-t border-[rgba(245,240,232,0.08)] bg-[#08080c]">
+    <footer className="relative overflow-hidden border-t border-[rgba(255,255,255,0.08)] bg-[#08080c]">
       <div
-        className="pointer-events-none absolute -left-24 top-10 h-56 w-56 rounded-full bg-[rgba(212,160,23,0.06)] blur-3xl"
+        className="pointer-events-none absolute -left-24 top-10 h-56 w-56 rounded-full bg-[rgba(46,163,242,0.1)] blur-3xl"
         aria-hidden
       />
 
@@ -53,7 +51,7 @@ export async function SiteFooter() {
               {(['X', 'IG', 'YT'] as const).map((label) => (
                 <span
                   key={label}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(245,240,232,0.12)] text-[10px] font-semibold tracking-wider text-[var(--vp-muted)]"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(255,255,255,0.12)] text-[10px] font-semibold tracking-wider text-[var(--vp-muted)]"
                   title={t('socialSoon')}
                 >
                   {label}
@@ -104,7 +102,7 @@ export async function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-[rgba(245,240,232,0.08)] pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-[rgba(255,255,255,0.08)] pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-[var(--vp-muted)]">
             © {year} {brand('name')}. {t('rights')}
           </p>

@@ -27,23 +27,33 @@ export function SiteHeader() {
   };
 
   const links = [
-    { href: '/games', label: t('games') },
-    { href: '/promotions', label: t('promotions') },
+    { href: '/providers', label: t('providers') },
+    { href: '/support', label: t('support') },
     { href: '/help', label: t('help') },
   ] as const;
 
+  const overCarousel = pathname === '/' || pathname === '/providers';
+
   return (
     <header className="absolute inset-x-0 top-0 z-40">
-      <div className="header-glass mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
-        <Link href="/" className="group flex items-center gap-2.5">
+      <div
+        className={cn(
+          'mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8',
+          overCarousel ? 'header-over-carousel' : 'header-glass',
+        )}
+      >        <Link href="/" className="group flex items-center gap-2.5">
           <BrandMark className="h-8 w-8 transition group-hover:brightness-110 sm:h-9 sm:w-9" />
-          <span className="font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-accent)] transition group-hover:text-[var(--vp-accent-bright)] sm:text-2xl">
+          <span className="font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-fg)] transition group-hover:text-[var(--vp-accent)] sm:text-2xl">
             {brand('name')}
           </span>
         </Link>
 
-        <nav className="nav-pill absolute left-1/2 hidden -translate-x-1/2 items-center md:flex">
-          {links.map((link) => (
+        <nav
+          className={cn(
+            'nav-pill absolute left-1/2 hidden -translate-x-1/2 items-center md:flex',
+            overCarousel && 'nav-pill-on-carousel',
+          )}
+        >          {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -61,12 +71,6 @@ export function SiteHeader() {
           >
             {t('live')}
           </span>
-          <span
-            className="nav-pill-item cursor-not-allowed opacity-45"
-            title={t('comingSoon')}
-          >
-            {t('walletSoon')}
-          </span>
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
@@ -78,7 +82,7 @@ export function SiteHeader() {
             {locale === 'fr' ? 'EN' : 'FR'}
           </button>
           <Link
-            href="/games"
+            href="/providers"
             className="rounded-md p-2 text-[var(--vp-muted)] transition hover:bg-white/5 hover:text-[var(--vp-fg)]"
             aria-label="Search"
           >
@@ -126,7 +130,7 @@ export function SiteHeader() {
 
       <div
         className={cn(
-          'border-t border-[rgba(245,240,232,0.08)] bg-[rgba(11,11,15,0.97)] px-4 py-4 backdrop-blur-md md:hidden',
+          'border-t border-[rgba(255,255,255,0.08)] bg-[rgba(11,11,15,0.97)] px-4 py-4 backdrop-blur-md md:hidden',
           open ? 'block animate-fade-up' : 'hidden',
         )}
       >
@@ -138,7 +142,7 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className={cn(
                 'rounded-lg px-3 py-2 text-[var(--vp-fg)] transition hover:bg-white/5',
-                pathname === link.href && 'bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]',
+                pathname === link.href && 'bg-[rgba(46,163,242,0.12)] text-[var(--vp-accent)]',
               )}
             >
               {link.label}
@@ -153,8 +157,8 @@ export function SiteHeader() {
               {t('account')}
             </Link>
           ) : null}
-          <p className="text-sm text-[var(--vp-muted)]/60">
-            {t('live')} / {t('walletSoon')} — {t('comingSoon')}
+          <p className="text-sm text-[var(--vp-muted)]">
+            {t('live')} — {t('comingSoon')}
           </p>
           <button
             type="button"

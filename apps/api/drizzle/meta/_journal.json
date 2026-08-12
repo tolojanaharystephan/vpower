@@ -50,6 +50,13 @@
       "when": 1785399769583,
       "tag": "0006_robust_dexter_bennett",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1786400000000,
+      "tag": "0007_provider_player_accounts",
+      "breakpoints": true
     }
   ]
 }
