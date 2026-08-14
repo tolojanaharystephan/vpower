@@ -27,18 +27,22 @@ export type MeResponse = {
 };
 
 export type LaunchSession = {
-  mode: 'mock' | 'client' | 'vblink';
+  mode: 'client' | 'vblink';
   gameId: string;
   slug: string;
   title: string;
   sessionId: string;
   launchUrl: string;
   message: string;
-  externalLogin?: {
-    account: string;
-    password: string;
-    lobbyUrl: string;
-  };
+  vblinkAccount?: string;
+  vblinkPassword?: string;
+  requiresManualLogin?: boolean;
+};
+
+export type WalletBalance = {
+  balanceCents: number;
+  balance: string;
+  currency: string;
 };
 
 export type FavoriteGame = {
@@ -174,6 +178,44 @@ export async function launchGame(
   });
   if (!res.ok) await parseError(res);
   return res.json() as Promise<LaunchSession>;
+}
+
+/** Enter partner casino VBlink (Bitsky-style): wallet → deposit → Game Mainpage. */
+export async function enterVblink(accessToken: string): Promise<LaunchSession> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/platforms/vblink/enter`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<LaunchSession>;
+}
+
+export async function getWallet(accessToken: string): Promise<WalletBalance> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/wallet/me`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<WalletBalance>;
+}
+
+/** Dev-only top-up until Stripe/LOT2 payments. */
+export async function devCreditWallet(
+  accessToken: string,
+  amountCents = 10_000,
+): Promise<WalletBalance & { creditedCents: number }> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/wallet/dev-credit`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ amountCents }),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<WalletBalance & { creditedCents: number }>;
 }
 
 export async function listFavorites(accessToken: string): Promise<FavoriteGame[]> {

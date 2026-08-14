@@ -44,18 +44,18 @@ const DEFAULT_FAQS: Array<{
     sortOrder: 21,
   },
   {
-    keywords: 'game jeu play lancer launch catalog catalogue',
+    keywords: 'game jeu play lancer launch catalog catalogue vblink',
     question: 'How do I play a game?',
     answer:
-      'Open the catalog, pick a title, and use Play. While the partner API is in mock mode you will see a demo launch screen.',
+      'Sign in on VPower, open VBlink from the providers portal, then use “Open game” to enter www.vblink777.club with the account we create for you.',
     locale: 'en',
     sortOrder: 30,
   },
   {
-    keywords: 'jeu jouer lancer catalogue play',
+    keywords: 'jeu jouer lancer catalogue play vblink',
     question: 'Comment lancer un jeu ?',
     answer:
-      'Ouvrez le catalogue, choisissez un titre et cliquez Jouer. En mode mock, un écran de démo s’affiche jusqu’à la connexion partenaire.',
+      'Connectez-vous sur VPower, ouvrez VBlink depuis le portail, puis « Ouvrir le jeu » pour entrer sur www.vblink777.club avec le compte créé pour vous.',
     locale: 'fr',
     sortOrder: 31,
   },
@@ -85,9 +85,31 @@ export class SupportBotService implements OnModuleInit {
 
   async onModuleInit() {
     const [row] = await this.db.select({ total: count() }).from(supportBotFaqs);
-    if (Number(row?.total ?? 0) > 0) return;
-    await this.db.insert(supportBotFaqs).values(DEFAULT_FAQS);
-    this.logger.log(`Seeded ${DEFAULT_FAQS.length} support bot FAQ entries`);
+    if (Number(row?.total ?? 0) === 0) {
+      await this.db.insert(supportBotFaqs).values(DEFAULT_FAQS);
+      this.logger.log(`Seeded ${DEFAULT_FAQS.length} support bot FAQ entries`);
+      return;
+    }
+
+    // Retire obsolete mock-mode FAQ copy if still present from earlier seeds.
+    await this.db
+      .update(supportBotFaqs)
+      .set({
+        answer:
+          'Sign in on VPower, open VBlink from the providers portal, then use “Open game” to enter www.vblink777.club with the account we create for you.',
+        keywords: 'game jeu play lancer launch catalog catalogue vblink',
+        updatedAt: new Date(),
+      })
+      .where(eq(supportBotFaqs.question, 'How do I play a game?'));
+    await this.db
+      .update(supportBotFaqs)
+      .set({
+        answer:
+          'Connectez-vous sur VPower, ouvrez VBlink depuis le portail, puis « Ouvrir le jeu » pour entrer sur www.vblink777.club avec le compte créé pour vous.',
+        keywords: 'jeu jouer lancer catalogue play vblink',
+        updatedAt: new Date(),
+      })
+      .where(eq(supportBotFaqs.question, 'Comment lancer un jeu ?'));
   }
 
   async listActive(locale?: string): Promise<SupportBotFaq[]> {

@@ -8,6 +8,7 @@ import { useAuthUi } from '@/components/auth/auth-ui-context';
 import { useSession } from '@/components/auth/session-provider';
 import { BrandMark } from '@/components/brand/brand-mark';
 import { NotificationBell } from '@/components/notifications/notification-bell';
+import { WalletChip } from '@/components/wallet/wallet-chip';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -90,6 +91,7 @@ export function SiteHeader() {
           </Link>
           {ready && isAuthenticated ? (
             <>
+              <WalletChip />
               <NotificationBell />
               <Link href="/account">
                 <Button variant="ghost" size="sm">

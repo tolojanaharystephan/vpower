@@ -20,6 +20,10 @@
     "walletSoon": "Portefeuille",
     "comingSoon": "Bientôt disponible"
   },
+  "wallet": {
+    "devCredit": "+100$",
+    "devCreditHint": "Crédit test (avant paiements réels)"
+  },
   "hero": {
     "eyebrow": "Jouez au-delà de l'ordinaire",
     "headline": "La scène s'allume.\nÀ toi de jouer.",
@@ -96,8 +100,8 @@
       "new": "Nouveautés",
       "popular": "Populaires"
     },
-    "emptyTitle": "Aucun jeu trouvé",
-    "emptyBody": "Essayez une autre recherche ou choisissez une autre collection.",
+    "emptyTitle": "Catalogue vide",
+    "emptyBody": "Plus de titres factices. Entrez sur VBlink depuis le portail, ou ajoutez des jeux via l’admin.",
     "loadError": "Impossible de charger le catalogue. Vérifiez l'API.",
     "loading": "Chargement du catalogue…"
   },
@@ -122,8 +126,9 @@
     "contactBody": "Lignes SMS et pages Facebook par fournisseur, reprises du portail de référence.",
     "textLine": "Text {phone}",
     "enterGames": "Entrer dans les jeux",
+    "enterCasino": "Entrer sur VBlink",
     "vblinkTagline": "Dive into a world of gaming wonders",
-    "vblinkBody": "Slots et tables VBlink — ouvrez le lobby, puis jouez depuis le catalogue.",
+    "vblinkBody": "VBlink est un site de jeux partenaire (comme sur Bitsky) : connexion et argent sur VPower, catalogue de jeux sur VBlink.",
     "goldendragonTagline": "Unleash the power of the dragon",
     "goldendragonBody": "Lobbies Goldendragon aux visuels riches et à l'énergie progressive.",
     "magiccityTagline": "Where fantasy meets reality",
@@ -132,20 +137,41 @@
     "hundredPlusBody": "100plus — une large sélection pour sessions casual ou haute intensité."
   },
   "play": {
-    "eyebrow": "Session démo",
-    "body": "Le moteur de jeu partenaire n'est pas encore branché. Cette page simule le lancement en attendant la documentation API.",
-    "hint": "Mode provider : mock",
-    "backProviders": "Retour aux fournisseurs",
+    "eyebrow": "Session",
+    "body": "Lancez un jeu depuis le portail VBlink.",
+    "hint": "Plateforme live — VBlink",
+    "backProviders": "Retour aux partenaires",
     "backHome": "Accueil"
   },
   "vblinkPlay": {
-    "body": "Votre compte joueur VBlink a été créé sur la plateforme partenaire. Copiez les identifiants, ouvrez le lobby, puis connectez-vous pour jouer.",
-    "account": "Compte",
+    "title": "Casino VBlink",
+    "body": "VPower prépare votre compte joueur VBlink, puis ouvre le site public.",
+    "loginTitle": "Connectez-vous sur VPower",
+    "loginBody": "Inscrivez-vous ou connectez-vous ici. Ensuite on prépare votre compte VBlink.",
+    "loginCta": "Se connecter",
+    "entering": "Préparation du compte VBlink…",
+    "enterError": "Impossible de préparer le compte VBlink. Vérifiez la config API / whitelist IP.",
+    "retry": "Réessayer",
+    "transferred": "{amount} transférés.",
+    "noTransfer": "",
+    "account": "Identifiant VBlink",
     "password": "Mot de passe",
-    "openLobby": "Ouvrir le lobby VBlink",
-    "backGames": "Retour aux jeux VBlink",
-    "missingTitle": "Pas de session VBlink",
-    "missingBody": "Lancez d'abord un jeu VBlink depuis le catalogue."
+    "copy": "Copier",
+    "showPassword": "Afficher le mot de passe",
+    "hidePassword": "Masquer le mot de passe",
+    "redirectTitle": "Vous allez être redirigé vers notre partenaire de jeu",
+    "openGame": "Ouvrir le jeu",
+    "openLobby": "Ouvrir VBlink",
+    "openVblink": "Ouvrir VBlink",
+    "backProviders": "Retour au portail",
+    "backGames": "Retour aux jeux",
+    "missingTitle": "Session indisponible",
+    "missingBody": "Revenez à la liste des jeux et réessayez.",
+    "embedHint": "Aperçu (si bloqué, utilisez Ouvrir le jeu)",
+    "helpLogin": "Connexion VBlink",
+    "helpBody": "Copiez vos identifiants, ouvrez VBlink, puis connectez-vous pour jouer.",
+    "manualBody": "Votre compte VBlink est prêt. Copiez vos identifiants, ouvrez le jeu, puis connectez-vous sur VBlink.",
+    "loginHint": "Connectez-vous sur la page qui s'ouvre avec cet identifiant et mot de passe"
   },
   "account": {
     "eyebrow": "Espace joueur",

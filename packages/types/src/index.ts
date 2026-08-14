@@ -32,7 +32,7 @@ export type HealthStatus = {
   timestamp: string;
 };
 
-/** Game provider mode — mock until Phase 7 real adapter. */
-export type GameProviderMode = 'mock' | 'client';
+/** Live game partner mode (VBlink FastAPI). */
+export type GameProviderMode = 'client';
 
 export * from './roles';

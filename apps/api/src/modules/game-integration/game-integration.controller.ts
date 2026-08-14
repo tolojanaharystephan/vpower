@@ -12,7 +12,7 @@ export class GameIntegrationController {
   constructor(private readonly integration: GameIntegrationService) {}
 
   @Post(':id/launch')
-  @ApiOperation({ summary: 'Launch a game session via configured provider (mock or client)' })
+  @ApiOperation({ summary: 'Launch game session via VBlink (create player + Game Mainpage)' })
   @ApiParam({ name: 'id', type: String })
   async launch(
     @Param('id') id: string,

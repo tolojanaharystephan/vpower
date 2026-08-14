@@ -30,7 +30,11 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       ...(details !== undefined ? { details } : {}),
     };
 
-    if (statusCode >= 500) {
+    const expectedUpstream =
+      statusCode === HttpStatus.BAD_GATEWAY &&
+      (code.startsWith('VBLINK_') || code === 'BAD_GATEWAY');
+
+    if (statusCode >= 500 && !expectedUpstream) {
       this.logger.error(
         {
           correlationId: body.correlationId,
@@ -132,6 +136,8 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         return 'RATE_LIMITED';
       case HttpStatus.UNPROCESSABLE_ENTITY:
         return 'VALIDATION_ERROR';
+      case HttpStatus.BAD_GATEWAY:
+        return 'BAD_GATEWAY';
       default:
         return status >= 500 ? 'INTERNAL_ERROR' : 'HTTP_ERROR';
     }

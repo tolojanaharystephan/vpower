@@ -1,23 +1,23 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { AppConfigModule } from '../../config/app-config.module';
 import { GamesModule } from '../games/games.module';
+import { UsersModule } from '../users/users.module';
 import { ClientGameProvider } from './client-game-provider';
 import { GAME_PROVIDER } from './game-provider.interface';
 import { GameIntegrationController } from './game-integration.controller';
 import { GameIntegrationService } from './game-integration.service';
-import { MockGameProvider } from './mock-game-provider';
+import { PlatformsController } from './platforms.controller';
 import { RoutingGameProvider } from './routing-game-provider';
-import { VblinkApiClient } from './vblink/vblink-api-client';
-import { VblinkGameProvider } from './vblink/vblink-game-provider';
+import { VblinkClientService } from './vblink-client.service';
+import { VblinkSignatureService } from './vblink-signature.service';
 
 @Module({
-  imports: [GamesModule, AppConfigModule],
-  controllers: [GameIntegrationController],
+  imports: [GamesModule, AppConfigModule, forwardRef(() => UsersModule)],
+  controllers: [GameIntegrationController, PlatformsController],
   providers: [
-    MockGameProvider,
+    VblinkSignatureService,
+    VblinkClientService,
     ClientGameProvider,
-    VblinkApiClient,
-    VblinkGameProvider,
     RoutingGameProvider,
     {
       provide: GAME_PROVIDER,
@@ -25,6 +25,6 @@ import { VblinkGameProvider } from './vblink/vblink-game-provider';
     },
     GameIntegrationService,
   ],
-  exports: [GameIntegrationService],
+  exports: [GameIntegrationService, VblinkClientService, VblinkSignatureService],
 })
 export class GameIntegrationModule {}

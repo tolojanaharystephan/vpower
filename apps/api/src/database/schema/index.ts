@@ -8,6 +8,7 @@ import {
   timestamp,
   uniqueIndex,
   uuid,
+  varchar,
 } from 'drizzle-orm/pg-core';
 
 export const systemMeta = pgTable('system_meta', {
@@ -33,6 +34,10 @@ export const users = pgTable('users', {
   passwordHash: text('password_hash').notNull(),
   firstName: text('first_name'),
   lastName: text('last_name'),
+  /** VBlink FastAPI player account (full_account when available). */
+  vblinkAccount: varchar('vblink_account', { length: 64 }),
+  /** AES-256-GCM ciphertext of the VBlink technical password. */
+  vblinkPasswordEncrypted: text('vblink_password_encrypted'),
   isActive: boolean('is_active').notNull().default(true),
   emailVerifiedAt: timestamp('email_verified_at', { withTimezone: true }),
   lastLoginAt: timestamp('last_login_at', { withTimezone: true }),
@@ -243,6 +248,29 @@ export const providerPlayerAccounts = pgTable(
   ],
 );
 
+/** VPower cash wallet — auth & money stay here; game credits push to studios via FastAPI. */
+export const userWallets = pgTable('user_wallets', {
+  userId: uuid('user_id')
+    .primaryKey()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  /** Integer cents to avoid float issues. */
+  balanceCents: integer('balance_cents').notNull().default(0),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+export const walletTransactions = pgTable('wallet_transactions', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  /** Positive = credit to VPower, negative = debit. */
+  amountCents: integer('amount_cents').notNull(),
+  kind: text('kind').notNull(),
+  reference: text('reference'),
+  meta: text('meta'),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
 /** Phase 9–10 — support tickets MVP */
 export const ticketStatusEnum = pgEnum('ticket_status', [
   'open',
@@ -354,6 +382,8 @@ export type SupportMessageTranslation = typeof supportMessageTranslations.$infer
 export type Notification = typeof notifications.$inferSelect;
 export type SupportBotFaq = typeof supportBotFaqs.$inferSelect;
 export type ProviderPlayerAccount = typeof providerPlayerAccounts.$inferSelect;
+export type UserWallet = typeof userWallets.$inferSelect;
+export type WalletTransaction = typeof walletTransactions.$inferSelect;
 
 export const schema = {
   systemMeta,
@@ -372,6 +402,8 @@ export const schema = {
   userFavorites,
   userGameHistory,
   providerPlayerAccounts,
+  userWallets,
+  walletTransactions,
   supportTickets,
   supportMessages,
   supportMessageTranslations,

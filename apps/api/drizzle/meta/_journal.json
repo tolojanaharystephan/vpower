@@ -57,6 +57,34 @@
       "when": 1786400000000,
       "tag": "0007_provider_player_accounts",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1786500000000,
+      "tag": "0008_user_wallets",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1786600000000,
+      "tag": "0009_users_vblink",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1786700000000,
+      "tag": "0010_users_vblink_varchar",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1786800000000,
+      "tag": "0011_users_vblink_password_encrypted",
+      "breakpoints": true
     }
   ]
 }

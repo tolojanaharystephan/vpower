@@ -65,7 +65,7 @@
     "usersHint": "Registered accounts",
     "usersDelta": "+12%",
     "gameProvider": "Game provider",
-    "gameProviderHint": "Mock until Phase 7",
+    "gameProviderHint": "VBlink FastAPI (live)",
     "payments": "Payments",
     "paymentsActive": "Active",
     "paymentsInactive": "Inactive",

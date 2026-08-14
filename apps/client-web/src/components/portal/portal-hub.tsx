@@ -183,8 +183,15 @@ export function PortalHub() {
                 ))}
               </ul>
               <div className="mt-4 flex flex-wrap gap-2">
-                <Link href={`/games?provider=${provider.slug}`} className="flex-1">
-                  <Button className="w-full">{t('enterGames')}</Button>
+                <Link
+                  href={
+                    provider.slug === 'vblink' ? '/play/vblink' : `/games?provider=${provider.slug}`
+                  }
+                  className="flex-1"
+                >
+                  <Button className="w-full">
+                    {provider.slug === 'vblink' ? t('enterCasino') : t('enterGames')}
+                  </Button>
                 </Link>
                 {provider.phones[0] ? (
                   <a href={`sms:${provider.phones[0]}`} className="flex-1">

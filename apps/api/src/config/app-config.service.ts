@@ -55,16 +55,23 @@ export class AppConfigService {
   }
 
   get vblink() {
+    const enabled = this.config.get('VBLINK_ENABLED', { infer: true });
+    const appId = this.config.get('VBLINK_APP_ID', { infer: true });
+    const appSecret = this.config.get('VBLINK_APP_SECRET', { infer: true });
+    const encryptionKey = this.config.get('VBLINK_ENCRYPTION_KEY', { infer: true });
+    const agentAccount = this.config.get('VBLINK_AGENT_ACCOUNT', { infer: true });
+    const lobbyUrl = (
+      this.config.get('VBLINK_LOBBY_URL', { infer: true }) || 'https://www.vblink777.club'
+    ).replace(/\/$/, '');
+    const apiBaseUrl = this.config.get('VBLINK_API_BASE_URL', { infer: true }).replace(/\/$/, '');
     return {
-      enabled: this.config.get('VBLINK_ENABLED', { infer: true }),
-      apiBaseUrl: (this.config.get('VBLINK_API_BASE_URL', { infer: true }) || '').replace(/\/$/, ''),
-      appId: this.config.get('VBLINK_APP_ID', { infer: true }) || '',
-      appSecret: this.config.get('VBLINK_APP_SECRET', { infer: true }) || '',
-      agentAccount: this.config.get('VBLINK_AGENT_ACCOUNT', { infer: true }) || '',
-      lobbyUrl: (this.config.get('VBLINK_LOBBY_URL', { infer: true }) || 'https://www.vblink777.club').replace(
-        /\/$/,
-        '',
-      ),
+      enabled,
+      apiBaseUrl,
+      appId,
+      appSecret,
+      encryptionKey,
+      agentAccount,
+      lobbyUrl,
       timeoutMs: this.config.get('VBLINK_TIMEOUT_MS', { infer: true }),
     };
   }

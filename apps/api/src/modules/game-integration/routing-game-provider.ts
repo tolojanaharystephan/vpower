@@ -1,6 +1,4 @@
-import { Injectable } from '@nestjs/common';
-import { AppConfigService } from '../../config/app-config.service';
-import { GamesService } from '../games/games.service';
+import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import { ClientGameProvider } from './client-game-provider';
 import type {
   GameProvider,
@@ -8,38 +6,36 @@ import type {
   LaunchSessionResult,
   RemoteGameSummary,
 } from './game-provider.interface';
-import { MockGameProvider } from './mock-game-provider';
-import { VblinkGameProvider } from './vblink/vblink-game-provider';
+import { VblinkClientService } from './vblink-client.service';
 
 /**
- * Routes launch by catalog provider slug.
- * VBlink uses FastAPI PDF integration; others stay on mock/client until wired.
+ * Real platform routing: VBlink FastAPI only.
+ * No mock launch path.
  */
 @Injectable()
 export class RoutingGameProvider implements GameProvider {
   readonly mode = 'client' as const;
 
   constructor(
-    private readonly config: AppConfigService,
-    private readonly games: GamesService,
-    private readonly vblink: VblinkGameProvider,
-    private readonly mock: MockGameProvider,
+    private readonly vblink: VblinkClientService,
     private readonly client: ClientGameProvider,
   ) {}
 
-  private get fallback(): GameProvider {
-    return this.config.gameProviderMode === 'client' ? this.client : this.mock;
+  private assertLive() {
+    if (!this.vblink.isConfigured()) {
+      throw new ServiceUnavailableException(
+        'Game platform is not configured. Set VBLINK_ENABLED=true with App ID / App Secret / API base URL.',
+      );
+    }
   }
 
   listRemoteGames(): Promise<RemoteGameSummary[]> {
-    return this.fallback.listRemoteGames();
+    this.assertLive();
+    return this.client.listRemoteGames();
   }
 
-  async launchSession(input: LaunchSessionInput): Promise<LaunchSessionResult> {
-    const game = await this.games.findGameById(input.gameId);
-    if (game?.provider.slug === 'vblink' && this.vblink.isConfigured()) {
-      return this.vblink.launchSession(input);
-    }
-    return this.fallback.launchSession(input);
+  launchSession(input: LaunchSessionInput): Promise<LaunchSessionResult> {
+    this.assertLive();
+    return this.client.launchSession(input);
   }
 }

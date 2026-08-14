@@ -1,12 +1,13 @@
 import { setRequestLocale } from 'next-intl/server';
-import { VblinkEntryScreen } from '@/components/games/vblink-entry-screen';
+import { PlayLaunchScreen } from '@/components/games/play-launch-screen';
 
-export default async function VblinkPlayPage({
+/** Portal entry for VBlink — same launch UX as /play/[slug]. */
+export default async function PlayVblinkPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <VblinkEntryScreen />;
+  return <PlayLaunchScreen slug="vblink" title="VBlink" />;
 }

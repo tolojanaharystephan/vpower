@@ -14,6 +14,7 @@ import { GameIntegrationModule } from './modules/game-integration/game-integrati
 import { SupportModule } from './modules/support/support.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { TranslationModule } from './modules/translation/translation.module';
+import { WalletModule } from './modules/wallet/wallet.module';
 
 /**
  * Modular monolith root.
@@ -31,6 +32,7 @@ import { TranslationModule } from './modules/translation/translation.module';
     AdminModule,
     GamesModule,
     GameIntegrationModule,
+    WalletModule,
     TranslationModule,
     NotificationsModule,
     SupportModule,

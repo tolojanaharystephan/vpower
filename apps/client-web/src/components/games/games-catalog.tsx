@@ -110,6 +110,11 @@ export function GamesCatalog() {
               {t('emptyTitle')}
             </p>
             <p className="mt-2 max-w-sm text-sm text-[var(--vp-muted)]">{t('emptyBody')}</p>
+            <Link href="/play/vblink" className="mt-6 inline-block">
+              <span className="text-sm font-semibold text-[var(--vp-accent)] hover:text-[var(--vp-accent-bright)]">
+                VBlink →
+              </span>
+            </Link>
           </div>
         </div>
       )}

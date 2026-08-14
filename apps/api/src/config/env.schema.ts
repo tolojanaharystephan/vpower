@@ -27,14 +27,17 @@ export const envSchema = z.object({
   GAME_API_KEY: z.string().optional().default(''),
   GAME_API_SECRET: z.string().optional().default(''),
   GAME_API_TIMEOUT: z.coerce.number().int().positive().default(10000),
-  GAME_PROVIDER_MODE: z.enum(['mock', 'client']).default('mock'),
+  /** Live partner mode only (VBlink). Mock removed. */
+  GAME_PROVIDER_MODE: z.enum(['client']).default('client'),
 
-  /** VBlink FastAPI (see FastApi EN PDF) — per-provider; other studios later */
+  /** VBlink FastAPI credentials (required). */
   VBLINK_ENABLED: booleanFromEnv.default(false),
-  VBLINK_API_BASE_URL: z.string().url().optional().or(z.literal('')).default(''),
-  VBLINK_APP_ID: z.string().optional().default(''),
-  VBLINK_APP_SECRET: z.string().optional().default(''),
-  VBLINK_AGENT_ACCOUNT: z.string().optional().default(''),
+  VBLINK_API_BASE_URL: z.string().url(),
+  VBLINK_APP_ID: z.string().min(1),
+  VBLINK_APP_SECRET: z.string().min(1),
+  /** AES key for VBlink player passwords stored in DB. */
+  VBLINK_ENCRYPTION_KEY: z.string().min(32),
+  VBLINK_AGENT_ACCOUNT: z.string().min(1),
   VBLINK_LOBBY_URL: z.string().url().optional().or(z.literal('')).default('https://www.vblink777.club'),
   VBLINK_TIMEOUT_MS: z.coerce.number().int().positive().default(15000),
 

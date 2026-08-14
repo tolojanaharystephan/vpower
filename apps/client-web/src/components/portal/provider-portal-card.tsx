@@ -15,11 +15,13 @@ import type { PortalProvider } from '@/lib/portal';
 
 export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
   const t = useTranslations('portal');
-  const gamesHref = `/games?provider=${provider.slug}`;
+  // VBlink = live partner casino. Others pending their own FastAPI docs.
+  const enterHref =
+    provider.slug === 'vblink' ? '/play/vblink' : `/games?provider=${provider.slug}`;
 
   return (
     <article className="portal-provider-card group">
-      <Link href={gamesHref} className="relative block aspect-[16/11] overflow-hidden">
+      <Link href={enterHref} className="relative block aspect-[16/11] overflow-hidden">
         <Image
           src={provider.imageUrl}
           alt={provider.name}
@@ -37,7 +39,7 @@ export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
       </Link>
 
       <div className="flex flex-1 flex-col p-5">
-        <Link href={gamesHref}>
+        <Link href={enterHref}>
           <h3 className="font-[family-name:var(--font-display)] text-2xl tracking-wide text-[var(--vp-fg)] transition group-hover:text-[var(--vp-accent-bright)]">
             {provider.name}
           </h3>
@@ -75,10 +77,10 @@ export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
         </div>
 
         <div className="mt-5 flex flex-wrap gap-2">
-          <Link href={gamesHref} className="min-w-[10rem] flex-1">
+          <Link href={enterHref} className="min-w-[10rem] flex-1">
             <Button className="w-full">
               <Gamepad2 className="h-4 w-4" />
-              {t('enterGames')}
+              {provider.slug === 'vblink' ? t('enterCasino') : t('enterGames')}
             </Button>
           </Link>
           {provider.phones[0] ? (

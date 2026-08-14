@@ -20,6 +20,10 @@
     "walletSoon": "Wallet",
     "comingSoon": "Coming soon"
   },
+  "wallet": {
+    "devCredit": "+$100",
+    "devCreditHint": "Dev credit (until real payments)"
+  },
   "hero": {
     "eyebrow": "Play beyond the ordinary",
     "headline": "The stage lights up.\nYour move.",
@@ -96,8 +100,8 @@
       "new": "New",
       "popular": "Popular"
     },
-    "emptyTitle": "No games found",
-    "emptyBody": "Try another search or choose a different collection.",
+    "emptyTitle": "Catalog is empty",
+    "emptyBody": "Placeholder titles were removed. Enter VBlink from the portal, or add games in admin.",
     "loadError": "Unable to load the catalog. Check the API.",
     "loading": "Loading catalog…"
   },
@@ -122,8 +126,9 @@
     "contactBody": "Text lines and Facebook pages per provider, mirrored from the reference portal.",
     "textLine": "Text {phone}",
     "enterGames": "Enter games",
+    "enterCasino": "Enter VBlink",
     "vblinkTagline": "Dive into a world of gaming wonders",
-    "vblinkBody": "Slots and table thrills from VBlink — open the lobby, then play from the catalog.",
+    "vblinkBody": "VBlink is a partner game site (Bitsky-style hybrid): login and money on VPower, the real game library on VBlink.",
     "goldendragonTagline": "Unleash the power of the dragon",
     "goldendragonBody": "Goldendragon lobbies with rich visuals and progressive energy.",
     "magiccityTagline": "Where fantasy meets reality",
@@ -132,20 +137,41 @@
     "hundredPlusBody": "100plus — a broad selection for casual and high-energy sessions."
   },
   "play": {
-    "eyebrow": "Demo session",
-    "body": "The partner game engine is not connected yet. This screen simulates launch until API docs arrive.",
-    "hint": "Provider mode: mock",
-    "backProviders": "Back to providers",
+    "eyebrow": "Session",
+    "body": "Launch from the VBlink portal.",
+    "hint": "Live platform — VBlink",
+    "backProviders": "Back to partners",
     "backHome": "Home"
   },
   "vblinkPlay": {
-    "body": "Your VBlink player account was created on the partner platform. Copy the credentials, open the lobby, then sign in to play.",
-    "account": "Account",
+    "title": "VBlink casino",
+    "body": "VPower prepares your VBlink player account, then opens the public site.",
+    "loginTitle": "Sign in on VPower first",
+    "loginBody": "Register or sign in here. Then we prepare your VBlink account.",
+    "loginCta": "Sign in",
+    "entering": "Preparing VBlink account…",
+    "enterError": "Could not prepare the VBlink account. Check API config / IP whitelist.",
+    "retry": "Retry",
+    "transferred": "Transferred {amount}.",
+    "noTransfer": "",
+    "account": "VBlink ID",
     "password": "Password",
-    "openLobby": "Open VBlink lobby",
-    "backGames": "Back to VBlink games",
-    "missingTitle": "No VBlink session",
-    "missingBody": "Launch a VBlink game from the catalog first."
+    "copy": "Copy",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "redirectTitle": "You are about to be redirected to our game partner",
+    "openLobby": "Open VBlink",
+    "openVblink": "Open VBlink",
+    "openGame": "Open game",
+    "backProviders": "Back to portal",
+    "backGames": "Back to games",
+    "missingTitle": "Session unavailable",
+    "missingBody": "Go back to the games list and try again.",
+    "embedHint": "Preview (if blocked, use Open game)",
+    "helpLogin": "VBlink login",
+    "helpBody": "Copy your credentials, open VBlink, then sign in to play.",
+    "manualBody": "Your VBlink account is ready. Copy your credentials, open the game, then sign in on VBlink.",
+    "loginHint": "Sign in on the page that opens with this ID and password."
   },
   "account": {
     "eyebrow": "Player area",

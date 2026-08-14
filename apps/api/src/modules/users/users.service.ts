@@ -1,4 +1,11 @@
-import { Injectable, Inject } from '@nestjs/common';
+import {
+  Injectable,
+  Inject,
+  Logger,
+  NotFoundException,
+  ServiceUnavailableException,
+} from '@nestjs/common';
+import { randomBytes } from 'node:crypto';
 import { and, count, desc, eq, ilike, isNull, or, type SQL } from 'drizzle-orm';
 import type { Role } from '@vpower777/types';
 import { DRIZZLE } from '../../database/database.constants';
@@ -13,10 +20,21 @@ import {
 } from '../../database/schema';
 import type { PermissionCode } from '../rbac/permissions.constants';
 import { hashPassword } from '../../common/crypto/password';
+import {
+  decryptVblinkPassword,
+  encryptVblinkPassword,
+} from '../../common/crypto/vblink-password';
+import { VblinkClientService } from '../game-integration/vblink-client.service';
+import { VblinkApiException } from '../game-integration/vblink/vblink-errors';
 
 @Injectable()
 export class UsersService {
-  constructor(@Inject(DRIZZLE) private readonly db: Database) {}
+  private readonly logger = new Logger(UsersService.name);
+
+  constructor(
+    @Inject(DRIZZLE) private readonly db: Database,
+    private readonly vblink: VblinkClientService,
+  ) {}
 
   async findByEmail(email: string): Promise<User | undefined> {
     const [user] = await this.db
@@ -198,6 +216,60 @@ export class UsersService {
     return updated;
   }
 
+  /**
+   * Ensure FastAPI player exists for this VPower user.
+   * Stores the technical password encrypted (AES-256-GCM).
+   * Returns plaintext only to launchSession (authenticated owner), never via /me.
+   */
+  async ensureVblinkAccount(
+    userId: string,
+  ): Promise<{ account: string; password: string }> {
+    if (!this.vblink.isConfigured()) {
+      throw new ServiceUnavailableException('VBlink is not configured');
+    }
+
+    const user = await this.findById(userId);
+    if (!user) throw new NotFoundException('User not found');
+
+    if (user.vblinkAccount && user.vblinkPasswordEncrypted) {
+      return {
+        account: user.vblinkAccount,
+        password: decryptVblinkPassword(user.vblinkPasswordEncrypted),
+      };
+    }
+
+    const account = randomVblinkAccount(userId);
+    const password = randomVblinkPassword();
+
+    let storedAccount = account;
+    try {
+      const created = await this.vblink.createPlayer(account, password);
+      storedAccount = created.fullAccount || account;
+      if (created.alreadyExists) {
+        this.logger.warn(`VBlink account already exists for user ${userId} (code 12)`);
+        await this.vblink.resetPassword(account, password);
+      }
+    } catch (err) {
+      if (err instanceof VblinkApiException && err.vblinkCode === 12) {
+        this.logger.warn(`VBlink account already exists for user ${userId} (code 12)`);
+        await this.vblink.resetPassword(account, password);
+      } else {
+        throw err;
+      }
+    }
+
+    await this.db
+      .update(users)
+      .set({
+        vblinkAccount: storedAccount,
+        vblinkPasswordEncrypted: encryptVblinkPassword(password),
+        updatedAt: new Date(),
+      })
+      .where(eq(users.id, userId));
+
+    return { account: storedAccount, password };
+  }
+
   toPublic(user: User) {
     return {
       id: user.id,
@@ -208,4 +280,38 @@ export class UsersService {
       createdAt: user.createdAt,
     };
   }
+}
+
+const LETTERS = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+const DIGITS = '23456789';
+const SYMBOLS = '!@#$()%^/.,';
+const ALL_PASS = LETTERS + DIGITS + SYMBOLS;
+
+/** 3–16 alphanumeric, derived from user id + random suffix. */
+function randomVblinkAccount(userId: string): string {
+  const compact = userId.replace(/[^a-zA-Z0-9]/g, '').slice(0, 10);
+  const suffix = randomBytes(2).toString('hex');
+  return `vp${compact}${suffix}`.slice(0, 16);
+}
+
+/** 16 chars, letters + digits + VBlink-allowed symbols. */
+function randomVblinkPassword(): string {
+  const bytes = randomBytes(16);
+  const pick = (alphabet: string, byte: number) => alphabet[byte % alphabet.length] ?? alphabet[0]!;
+  const chars: string[] = [
+    pick(LETTERS, bytes[0] ?? 0),
+    pick(DIGITS, bytes[1] ?? 0),
+    pick(SYMBOLS, bytes[2] ?? 0),
+  ];
+  for (let i = 3; i < 16; i++) {
+    chars.push(pick(ALL_PASS, bytes[i] ?? 0));
+  }
+  for (let i = chars.length - 1; i > 0; i--) {
+    const j = (bytes[i] ?? 0) % (i + 1);
+    const a = chars[i] ?? 'a';
+    const b = chars[j] ?? 'a';
+    chars[i] = b;
+    chars[j] = a;
+  }
+  return chars.join('');
 }
