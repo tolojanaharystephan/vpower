@@ -19,9 +19,9 @@ export function AdminMark({
       <title>{title}</title>
       <defs>
         <linearGradient id={goldId} x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#F0C84A" />
-          <stop offset="0.5" stopColor="#D4A017" />
-          <stop offset="1" stopColor="#8A6010" />
+          <stop stopColor="#FFD24D" />
+          <stop offset="0.5" stopColor="#FCB900" />
+          <stop offset="1" stopColor="#E09900" />
         </linearGradient>
       </defs>
       <circle cx="32" cy="32" r="30" fill="#0B0B0F" />
@@ -48,7 +48,7 @@ export function AdminMark({
       >
         777
       </text>
-      <path d="M46 12 L42 20 H46 L43 28 L52 16 H47 Z" fill="#F0C84A" />
+      <path d="M46 12 L42 20 H46 L43 28 L52 16 H47 Z" fill="#FFD24D" />
     </svg>
   );
 }

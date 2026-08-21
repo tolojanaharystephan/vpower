@@ -18,7 +18,7 @@ export function ComingSoon({
   return (
     <div className="empty-state p-6">
       <div className="max-w-md text-center animate-fade-up">
-        <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[rgba(212,160,23,0.14)] text-[var(--vp-accent)]">
+        <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[rgba(46,163,242,0.14)] text-[var(--vp-accent)]">
           <Icon className="h-6 w-6" aria-hidden />
         </span>
         <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--vp-accent)]">

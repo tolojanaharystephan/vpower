@@ -27,7 +27,7 @@ export default function AppShellLayout({ children }: { children: ReactNode }) {
           aria-label={open ? common('closeMenu') : common('openMenu')}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
-          className="fixed bottom-5 right-5 z-40 grid h-12 w-12 place-items-center rounded-2xl border border-[rgba(212,160,23,0.45)] bg-[linear-gradient(145deg,rgba(212,160,23,0.2),rgba(18,18,24,0.95))] text-[var(--vp-accent)] shadow-[0_12px_40px_rgba(0,0,0,0.45)] md:hidden"
+          className="fixed bottom-5 right-5 z-40 grid h-12 w-12 place-items-center rounded-2xl border border-[rgba(46,163,242,0.45)] bg-[linear-gradient(145deg,rgba(46,163,242,0.2),rgba(18,18,24,0.95))] text-[var(--vp-accent)] shadow-[0_12px_40px_rgba(0,0,0,0.45)] md:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>

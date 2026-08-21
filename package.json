@@ -17,7 +17,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
     "infra:up": "node infra/scripts/infra-up.mjs",
-    "infra:up:docker": "docker compose up -d",
+    "infra:up:docker": "docker compose up -d postgres redis",
     "infra:up:native": "powershell -NoProfile -ExecutionPolicy Bypass -File infra/scripts/infra-up-native.ps1",
     "infra:down": "docker compose down",
     "infra:ps": "docker compose ps",

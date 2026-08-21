@@ -71,7 +71,7 @@ export function NotificationBell() {
       <button
         type="button"
         aria-label={t('title')}
-        className="relative grid h-10 w-10 place-items-center rounded-xl border border-[var(--vp-border)] bg-white/[0.03] text-[var(--vp-muted)] transition hover:border-[rgba(212,160,23,0.35)] hover:text-[var(--vp-fg)]"
+        className="relative grid h-10 w-10 place-items-center rounded-xl border border-[var(--vp-border)] bg-white/[0.03] text-[var(--vp-muted)] transition hover:border-[rgba(46,163,242,0.35)] hover:text-[var(--vp-fg)]"
         onClick={() => setOpen((v) => !v)}
       >
         <Bell className="h-4 w-4" />
