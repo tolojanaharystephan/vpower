@@ -22,7 +22,8 @@
   },
   "wallet": {
     "devCredit": "+$100",
-    "devCreditHint": "Dev credit (until real payments)"
+    "devCreditHint": "Dev credit (until real payments)",
+    "balanceLabel": "Balance"
   },
   "hero": {
     "eyebrow": "Play beyond the ordinary",
