@@ -31,13 +31,13 @@ export function PilotChart({
       <svg viewBox={`0 0 ${width} ${height}`} className="h-[220px] w-full" role="img" aria-label={seriesLabel}>
         <defs>
           <linearGradient id="pilotFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="rgba(212,160,23,0.38)" />
-            <stop offset="100%" stopColor="rgba(212,160,23,0)" />
+            <stop offset="0%" stopColor="rgba(46,163,242,0.38)" />
+            <stop offset="100%" stopColor="rgba(46,163,242,0)" />
           </linearGradient>
           <linearGradient id="pilotStroke" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#a67c0f" />
-            <stop offset="50%" stopColor="#d4a017" />
-            <stop offset="100%" stopColor="#f0c14a" />
+            <stop offset="0%" stopColor="#0693e3" />
+            <stop offset="50%" stopColor="#2ea3f2" />
+            <stop offset="100%" stopColor="#8ed1fc" />
           </linearGradient>
         </defs>
 

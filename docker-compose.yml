@@ -4,34 +4,112 @@ services:
     container_name: vpower777-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: vpower777
-      POSTGRES_PASSWORD: vpower777
-      POSTGRES_DB: vpower777
+      POSTGRES_USER: ${POSTGRES_USER:-vpower777}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vpower777}
+      POSTGRES_DB: ${POSTGRES_DB:-vpower777}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    volumes:
-      - ./infra/docker/data/postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U vpower777 -d vpower777"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-vpower777} -d ${POSTGRES_DB:-vpower777}",
+        ]
       interval: 5s
       timeout: 5s
       retries: 10
+    networks:
+      - vpower777
 
   redis:
     image: redis:7-alpine
     container_name: vpower777-redis
     restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
     ports:
       - "6379:6379"
-    volumes:
-      - ./infra/docker/data/redis:/data
-    command: ["redis-server", "--appendonly", "yes"]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 5s
       retries: 10
+    networks:
+      - vpower777
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: vpower777-backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      API_PORT: 3000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-vpower777}:${POSTGRES_PASSWORD:-vpower777}@postgres:5432/${POSTGRES_DB:-vpower777}
+      REDIS_URL: redis://redis:6379
+      APP_URL: ${APP_URL:-https://staging.vpower777.fun}
+      ADMIN_URL: ${ADMIN_URL:-https://staging.vpower777.fun}
+      API_URL: ${API_URL:-https://staging.vpower777.fun}
+    volumes:
+      - backend_uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    expose:
+      - "3000"
+    networks:
+      - vpower777
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://staging.vpower777.fun}
+    container_name: vpower777-frontend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      HOSTNAME: 0.0.0.0
+    depends_on:
+      backend:
+        condition: service_healthy
+    expose:
+      - "3001"
+    networks:
+      - vpower777
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: vpower777-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/certs:/etc/nginx/certs
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - vpower777
+
+volumes:
+  postgres_data:
+  redis_data:
+  backend_uploads:
 
 networks:
-  default:
+  vpower777:
     name: vpower777-network

@@ -30,8 +30,8 @@ function run(command, args, options = {}) {
 }
 
 if (hasDocker()) {
-  console.log('[infra] Docker detected → docker compose up -d');
-  run('docker', ['compose', 'up', '-d']);
+  console.log('[infra] Docker detected → docker compose up -d postgres redis');
+  run('docker', ['compose', 'up', '-d', 'postgres', 'redis']);
 } else {
   console.log('[infra] Docker not found → native local mode');
   console.log('[infra] Tip: install Docker Desktop later, or keep using native Postgres/Redis.\n');

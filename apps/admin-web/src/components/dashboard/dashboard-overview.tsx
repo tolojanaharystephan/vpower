@@ -44,7 +44,7 @@ function StatCard({
   const t = useTranslations('common');
 
   return (
-    <div className="stat-card group p-5 transition duration-300 hover:-translate-y-0.5 hover:border-[rgba(212,160,23,0.28)]">
+    <div className="stat-card group p-5 transition duration-300 hover:-translate-y-0.5 hover:border-[rgba(46,163,242,0.28)]">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-xs uppercase tracking-[0.16em] text-[var(--vp-muted)]">{label}</p>
@@ -52,7 +52,7 @@ function StatCard({
             {value}
           </p>
         </div>
-        <span className="grid h-10 w-10 place-items-center rounded-xl bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)] transition group-hover:bg-[rgba(212,160,23,0.2)]">
+        <span className="grid h-10 w-10 place-items-center rounded-xl bg-[rgba(46,163,242,0.12)] text-[var(--vp-accent)] transition group-hover:bg-[rgba(46,163,242,0.2)]">
           <Icon className="h-4 w-4" />
         </span>
       </div>
@@ -222,7 +222,7 @@ export function DashboardOverview() {
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-white/[0.06]">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#a67c0f] to-[var(--vp-accent)] transition-all duration-700"
+                      className="h-full rounded-full bg-gradient-to-r from-[#0693e3] to-[var(--vp-accent)] transition-all duration-700"
                       style={{ width: `${item.value}%` }}
                     />
                   </div>
@@ -249,7 +249,7 @@ export function DashboardOverview() {
                   key={item}
                   className="flex gap-3 rounded-xl border border-transparent bg-white/[0.02] px-3 py-2.5 text-sm text-[var(--vp-muted)] transition hover:border-[var(--vp-border)]"
                 >
-                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[rgba(212,160,23,0.12)] text-xs font-semibold text-[var(--vp-accent)]">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[rgba(46,163,242,0.12)] text-xs font-semibold text-[var(--vp-accent)]">
                     {index + 1}
                   </span>
                   <span className="pt-0.5 leading-snug">{item}</span>

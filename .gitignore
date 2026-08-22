@@ -40,6 +40,8 @@ Thumbs.db
 
 # Docker / local volumes
 infra/docker/data
+nginx/certs/*
+!nginx/certs/.gitkeep
 
 # Uploads (local)
 uploads

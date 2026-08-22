@@ -1,0 +1,49 @@
+# Dependencies / package managers
+node_modules
+.pnpm-store
+**/.pnpm-store
+
+# Git / IDE
+.git
+.github
+.vscode
+.idea
+**/.DS_Store
+
+# Env / secrets (injected at runtime via compose)
+.env
+.env.*
+!.env.example
+
+# Builds / caches
+**/.next
+**/.turbo
+**/dist
+**/build
+**/coverage
+**/*.tsbuildinfo
+.next
+.turbo
+dist
+
+# Local infra data & TLS material
+infra/docker/data
+nginx/certs/*
+!nginx/certs/.gitkeep
+
+# Docs / assets not needed in images
+docs
+*.md
+!packages/**/*.md
+*.pdf
+*.zip
+tmp
+temp
+uploads
+tmp-pdf-extract.txt
+agent-transcripts
+.cursor
+
+# Tests (not required for production image runtime)
+**/*.spec.ts
+**/__tests__

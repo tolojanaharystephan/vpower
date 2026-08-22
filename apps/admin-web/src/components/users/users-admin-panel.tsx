@@ -70,7 +70,7 @@ export function UsersAdminPanel() {
               ) : users.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="px-4 py-14 text-center">
-                    <span className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-[rgba(212,160,23,0.12)] text-[var(--vp-accent)]">
+                    <span className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-[rgba(46,163,242,0.12)] text-[var(--vp-accent)]">
                       <Users className="h-5 w-5" />
                     </span>
                     <p className="text-sm text-[var(--vp-muted)]">{t('empty')}</p>

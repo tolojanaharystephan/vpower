@@ -49,6 +49,27 @@ export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
           {t(provider.bodyKey)}
         </p>
 
+        {provider.phones.length > 0 ? (
+          <div className="mt-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
+              {t('contactEyebrow')}
+            </p>
+            <ul className="mt-2 space-y-1.5">
+              {provider.phones.map((phone) => (
+                <li key={`${provider.slug}-${phone}`}>
+                  <a
+                    href={`sms:${phone}`}
+                    className="inline-flex items-center gap-2 text-sm text-[var(--vp-accent-bright)] transition hover:underline"
+                  >
+                    <MessageCircle className="h-3.5 w-3.5" />
+                    {t('textLine', { phone })}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
         <div className="mt-4 flex flex-wrap gap-2">
           {provider.facebook ? (
             <a

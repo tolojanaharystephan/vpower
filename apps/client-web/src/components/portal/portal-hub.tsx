@@ -3,7 +3,6 @@
 import {
   Facebook,
   Instagram,
-  MessageCircle,
   Youtube,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -53,7 +52,7 @@ export function PortalHub() {
             <Link href="#providers">
               <Button size="lg">{t('ctaAdventure')}</Button>
             </Link>
-            <Link href="#contact">
+            <Link href="#providers">
               <Button
                 size="lg"
                 variant="secondary"
@@ -133,77 +132,6 @@ export function PortalHub() {
               loading="lazy"
             />
           </div>
-        </div>
-      </section>
-
-      <section id="contact" className="mx-auto max-w-7xl scroll-mt-24 px-4 py-14 sm:px-6 lg:px-8">
-        <div className="mb-8 max-w-2xl">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--vp-accent)]">
-            {t('contactEyebrow')}
-          </p>
-          <h2 className="mt-2 font-[family-name:var(--font-display)] text-3xl tracking-wide text-[var(--vp-fg)]">
-            {t('contactTitle')}
-          </h2>
-          <p className="mt-3 text-[var(--vp-muted)]">{t('contactBody')}</p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          {PORTAL_PROVIDERS.map((provider) => (
-            <div key={`contact-${provider.slug}`} className="cinema-panel p-5">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="font-[family-name:var(--font-display)] text-xl text-[var(--vp-fg)]">
-                    {provider.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-[var(--vp-muted)]">{t(provider.taglineKey)}</p>
-                </div>
-                {provider.facebook ? (
-                  <a
-                    href={provider.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="portal-social-chip"
-                  >
-                    <Facebook className="h-3.5 w-3.5" />
-                    Ads / Page
-                  </a>
-                ) : null}
-              </div>
-              <ul className="mt-4 space-y-2">
-                {provider.phones.map((phone) => (
-                  <li key={`${provider.slug}-${phone}`}>
-                    <a
-                      href={`sms:${phone}`}
-                      className="inline-flex items-center gap-2 text-sm text-[var(--vp-accent-bright)] transition hover:underline"
-                    >
-                      <MessageCircle className="h-3.5 w-3.5" />
-                      {t('textLine', { phone })}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <Link
-                  href={
-                    provider.slug === 'vblink' ? '/play/vblink' : `/games?provider=${provider.slug}`
-                  }
-                  className="flex-1"
-                >
-                  <Button className="w-full">
-                    {provider.slug === 'vblink' ? t('enterCasino') : t('enterGames')}
-                  </Button>
-                </Link>
-                {provider.phones[0] ? (
-                  <a href={`sms:${provider.phones[0]}`} className="flex-1">
-                    <Button variant="secondary" className="w-full">
-                      <MessageCircle className="h-4 w-4" />
-                      {t('textUs')}
-                    </Button>
-                  </a>
-                ) : null}
-              </div>
-            </div>
-          ))}
         </div>
       </section>
     </div>

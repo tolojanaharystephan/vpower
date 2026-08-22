@@ -170,7 +170,7 @@ export function GamesAdminPanel() {
                       <div className="flex items-center gap-3">
                         <span
                           className="h-9 w-9 shrink-0 rounded-xl border border-[var(--vp-border)] shadow-inner"
-                          style={{ background: game.accent ?? 'rgba(212,160,23,0.2)' }}
+                          style={{ background: game.accent ?? 'rgba(46,163,242,0.2)' }}
                         />
                         <div>
                           <p className="font-medium text-[var(--vp-fg)]">{game.title}</p>

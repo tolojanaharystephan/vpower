@@ -22,7 +22,8 @@
   },
   "wallet": {
     "devCredit": "+100$",
-    "devCreditHint": "Crédit test (avant paiements réels)"
+    "devCreditHint": "Crédit test (avant paiements réels)",
+    "balanceLabel": "Solde"
   },
   "hero": {
     "eyebrow": "Jouez au-delà de l'ordinaire",

@@ -7,8 +7,7 @@ import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useAuthUi } from '@/components/auth/auth-ui-context';
 import { useSession } from '@/components/auth/session-provider';
 import { BrandMark } from '@/components/brand/brand-mark';
-import { NotificationBell } from '@/components/notifications/notification-bell';
-import { WalletChip } from '@/components/wallet/wallet-chip';
+import { UserMenu } from '@/components/layout/user-menu';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -19,7 +18,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
   const { openAuth } = useAuthUi();
-  const { ready, isAuthenticated, user, logout } = useSession();
+  const { ready, isAuthenticated } = useSession();
   const [open, setOpen] = useState(false);
 
   const switchLocale = () => {
@@ -39,12 +38,13 @@ export function SiteHeader() {
     <header className="absolute inset-x-0 top-0 z-40">
       <div
         className={cn(
-          'mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8',
+          'mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-20 sm:px-6 lg:px-8',
           overCarousel ? 'header-over-carousel' : 'header-glass',
         )}
-      >        <Link href="/" className="group flex items-center gap-2.5">
-          <BrandMark className="h-8 w-8 transition group-hover:brightness-110 sm:h-9 sm:w-9" />
-          <span className="font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-fg)] transition group-hover:text-[var(--vp-accent)] sm:text-2xl">
+      >
+        <Link href="/" className="group flex min-w-0 items-center gap-2.5">
+          <BrandMark className="h-8 w-8 shrink-0 transition group-hover:brightness-110 sm:h-9 sm:w-9" />
+          <span className="truncate font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-fg)] transition group-hover:text-[var(--vp-accent)] sm:text-2xl">
             {brand('name')}
           </span>
         </Link>
@@ -54,27 +54,22 @@ export function SiteHeader() {
             'nav-pill absolute left-1/2 hidden -translate-x-1/2 items-center md:flex',
             overCarousel && 'nav-pill-on-carousel',
           )}
-        >          {links.map((link) => (
+        >
+          {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={cn(
-                'nav-pill-item',
-                pathname === link.href && 'nav-pill-item-active',
-              )}
+              className={cn('nav-pill-item', pathname === link.href && 'nav-pill-item-active')}
             >
               {link.label}
             </Link>
           ))}
-          <span
-            className="nav-pill-item cursor-not-allowed opacity-45"
-            title={t('comingSoon')}
-          >
+          <span className="nav-pill-item cursor-not-allowed opacity-45" title={t('comingSoon')}>
             {t('live')}
           </span>
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden shrink-0 items-center gap-2 md:flex">
           <button
             type="button"
             onClick={switchLocale}
@@ -90,24 +85,7 @@ export function SiteHeader() {
             <Search className="h-4 w-4" />
           </Link>
           {ready && isAuthenticated ? (
-            <>
-              <WalletChip />
-              <NotificationBell />
-              <Link href="/account">
-                <Button variant="ghost" size="sm">
-                  {user?.firstName || t('account')}
-                </Button>
-              </Link>
-              <Button
-                size="sm"
-                variant="secondary"
-                onClick={() => {
-                  void logout().then(() => router.push('/'));
-                }}
-              >
-                {t('logout')}
-              </Button>
-            </>
+            <UserMenu />
           ) : (
             <>
               <Button variant="ghost" size="sm" onClick={() => openAuth('login')}>
@@ -120,14 +98,17 @@ export function SiteHeader() {
           )}
         </div>
 
-        <button
-          type="button"
-          className="md:hidden text-[var(--vp-fg)]"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Menu"
-        >
-          {open ? <X /> : <Menu />}
-        </button>
+        <div className="flex shrink-0 items-center gap-2 md:hidden">
+          {ready && isAuthenticated ? <UserMenu avatarOnly /> : null}
+          <button
+            type="button"
+            className="text-[var(--vp-fg)]"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Menu"
+          >
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       <div
@@ -150,15 +131,6 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          {isAuthenticated ? (
-            <Link
-              href="/account"
-              onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-2 text-[var(--vp-fg)] transition hover:bg-white/5"
-            >
-              {t('account')}
-            </Link>
-          ) : null}
           <p className="text-sm text-[var(--vp-muted)]">
             {t('live')} — {t('comingSoon')}
           </p>
@@ -169,42 +141,29 @@ export function SiteHeader() {
           >
             {locale === 'fr' ? 'EN' : 'FR'}
           </button>
-          <div className="flex gap-2 pt-2">
-            {isAuthenticated ? (
+          {isAuthenticated ? null : (
+            <div className="flex gap-2 pt-2">
               <Button
                 variant="secondary"
                 className="flex-1"
                 onClick={() => {
                   setOpen(false);
-                  void logout().then(() => router.push('/'));
+                  openAuth('login');
                 }}
               >
-                {t('logout')}
+                {t('login')}
               </Button>
-            ) : (
-              <>
-                <Button
-                  variant="secondary"
-                  className="flex-1"
-                  onClick={() => {
-                    setOpen(false);
-                    openAuth('login');
-                  }}
-                >
-                  {t('login')}
-                </Button>
-                <Button
-                  className="flex-1"
-                  onClick={() => {
-                    setOpen(false);
-                    openAuth('register');
-                  }}
-                >
-                  {t('register')}
-                </Button>
-              </>
-            )}
-          </div>
+              <Button
+                className="flex-1"
+                onClick={() => {
+                  setOpen(false);
+                  openAuth('register');
+                }}
+              >
+                {t('register')}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </header>

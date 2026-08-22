@@ -32,7 +32,7 @@ export function AdminTopbar({
         </div>
 
         <div className="flex items-center gap-2 sm:gap-2.5">
-          <LocaleSwitcher className="rounded-lg border border-[var(--vp-border)] bg-white/[0.03] px-2.5 py-1.5 text-xs uppercase tracking-wider text-[var(--vp-muted)] transition hover:border-[rgba(212,160,23,0.35)] hover:text-[var(--vp-fg)]" />
+          <LocaleSwitcher className="rounded-lg border border-[var(--vp-border)] bg-white/[0.03] px-2.5 py-1.5 text-xs uppercase tracking-wider text-[var(--vp-muted)] transition hover:border-[rgba(46,163,242,0.35)] hover:text-[var(--vp-fg)]" />
 
           <NotificationBell />
 
