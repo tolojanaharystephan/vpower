@@ -76,6 +76,18 @@ export class AppConfigService {
     };
   }
 
+  get plus100() {
+    const apiUrl = (this.config.get('PLUS100_API_URL', { infer: true }) || '').replace(
+      /\/$/,
+      '',
+    );
+    return {
+      apiUrl,
+      agentId: this.config.get('PLUS100_AGENT_ID', { infer: true }) || '',
+      secretKey: this.config.get('PLUS100_SECRET_KEY', { infer: true }) || '',
+    };
+  }
+
   get logLevel(): AppEnv['LOG_LEVEL'] {
     return this.config.get('LOG_LEVEL', { infer: true });
   }
