@@ -82,7 +82,7 @@ export class AppConfigService {
       '',
     );
     return {
-      apiUrl,
+      baseUrl: apiUrl,
       agentId: this.config.get('PLUS100_AGENT_ID', { infer: true }) || '',
       secretKey: this.config.get('PLUS100_SECRET_KEY', { infer: true }) || '',
     };

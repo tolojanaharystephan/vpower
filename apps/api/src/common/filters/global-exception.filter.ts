@@ -32,7 +32,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     const expectedUpstream =
       statusCode === HttpStatus.BAD_GATEWAY &&
-      (code.startsWith('VBLINK_') || code === 'BAD_GATEWAY');
+      (code.startsWith('VBLINK_') || code.startsWith('PLUS100_') || code === 'BAD_GATEWAY');
 
     if (statusCode >= 500 && !expectedUpstream) {
       this.logger.error(
