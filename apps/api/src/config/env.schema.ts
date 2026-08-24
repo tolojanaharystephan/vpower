@@ -33,8 +33,8 @@ export const envSchema = z.object({
   /** VBlink FastAPI credentials (required). */
   VBLINK_ENABLED: booleanFromEnv.default(false),
   VBLINK_API_BASE_URL: z.string().url(),
-  VBLINK_APP_ID: z.string().min(1),
-  VBLINK_APP_SECRET: z.string().min(1),
+  VBLINK_APP_ID: z.string().trim().min(1),
+  VBLINK_APP_SECRET: z.string().trim().min(1),
   /** AES key for VBlink player passwords stored in DB. */
   VBLINK_ENCRYPTION_KEY: z.string().min(32),
   VBLINK_AGENT_ACCOUNT: z.string().min(1),

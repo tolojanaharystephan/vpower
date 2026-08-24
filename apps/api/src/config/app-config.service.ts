@@ -56,8 +56,11 @@ export class AppConfigService {
 
   get vblink() {
     const enabled = this.config.get('VBLINK_ENABLED', { infer: true });
-    const appId = this.config.get('VBLINK_APP_ID', { infer: true });
-    const appSecret = this.config.get('VBLINK_APP_SECRET', { infer: true });
+    const appIdRaw = this.config.get('VBLINK_APP_ID', { infer: true }).trim();
+    const appSecret = this.config.get('VBLINK_APP_SECRET', { infer: true }).trim();
+    // Common copy error: lowercase L instead of capital i (Gf0lw vs Gf0Iw).
+    const appId =
+      appIdRaw === 'Gf0lwLAG431qx7107' ? 'Gf0IwLAG431qx7107' : appIdRaw;
     const encryptionKey = this.config.get('VBLINK_ENCRYPTION_KEY', { infer: true });
     const agentAccount = this.config.get('VBLINK_AGENT_ACCOUNT', { infer: true });
     const lobbyUrl = (

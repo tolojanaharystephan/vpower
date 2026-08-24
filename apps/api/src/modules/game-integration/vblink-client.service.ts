@@ -183,9 +183,18 @@ export class VblinkClientService implements OnModuleInit {
       }
 
       const code = Number(json.code);
-      this.logger.log(`Vblink response code ${code} for ${path}`);
+      const detail =
+        json.data &&
+        typeof json.data === 'object' &&
+        'info' in json.data &&
+        typeof (json.data as { info?: unknown }).info === 'string'
+          ? (json.data as { info: string }).info
+          : '';
       const hint = VBLINK_ERROR_MESSAGES[code] || `VBlink error ${code}`;
-      const message = json.msg || json.message || hint;
+      const message = detail || json.msg || json.message || hint;
+      this.logger.log(
+        `Vblink response code ${code} for ${path} appid=${c.appId} secretLen=${c.appSecret.length}`,
+      );
 
       if (isVblinkSuccessCode(code)) {
         return json.data;

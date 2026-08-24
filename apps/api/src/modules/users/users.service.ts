@@ -284,8 +284,7 @@ export class UsersService {
 
 const LETTERS = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
 const DIGITS = '23456789';
-const SYMBOLS = '!@#$()%^/.,';
-const ALL_PASS = LETTERS + DIGITS + SYMBOLS;
+const ALL_PASS = LETTERS + DIGITS;
 
 /** 3–16 alphanumeric, derived from user id + random suffix. */
 function randomVblinkAccount(userId: string): string {
@@ -294,16 +293,12 @@ function randomVblinkAccount(userId: string): string {
   return `vp${compact}${suffix}`.slice(0, 16);
 }
 
-/** 16 chars, letters + digits + VBlink-allowed symbols. */
+/** 16 chars, letters + digits only (PDF allows symbols; they break form-sign on some stacks). */
 function randomVblinkPassword(): string {
   const bytes = randomBytes(16);
   const pick = (alphabet: string, byte: number) => alphabet[byte % alphabet.length] ?? alphabet[0]!;
-  const chars: string[] = [
-    pick(LETTERS, bytes[0] ?? 0),
-    pick(DIGITS, bytes[1] ?? 0),
-    pick(SYMBOLS, bytes[2] ?? 0),
-  ];
-  for (let i = 3; i < 16; i++) {
+  const chars: string[] = [pick(LETTERS, bytes[0] ?? 0), pick(DIGITS, bytes[1] ?? 0)];
+  for (let i = 2; i < 16; i++) {
     chars.push(pick(ALL_PASS, bytes[i] ?? 0));
   }
   for (let i = chars.length - 1; i > 0; i--) {
