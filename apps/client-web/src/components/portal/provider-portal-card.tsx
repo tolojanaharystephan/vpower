@@ -15,9 +15,13 @@ import type { PortalProvider } from '@/lib/portal';
 
 export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
   const t = useTranslations('portal');
-  // VBlink = live partner casino. Others pending their own FastAPI docs.
+  // VBlink + 100plus = live partner lobbies. Others pending their own API docs.
   const enterHref =
-    provider.slug === 'vblink' ? '/play/vblink' : `/games?provider=${provider.slug}`;
+    provider.slug === 'vblink'
+      ? '/play/vblink'
+      : provider.slug === '100plus'
+        ? '/play/100plus'
+        : `/games?provider=${provider.slug}`;
 
   return (
     <article className="portal-provider-card group">

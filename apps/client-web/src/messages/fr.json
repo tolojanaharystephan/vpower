@@ -172,7 +172,29 @@
     "helpLogin": "Connexion VBlink",
     "helpBody": "Copiez vos identifiants, ouvrez VBlink, puis connectez-vous pour jouer.",
     "manualBody": "Votre compte VBlink est prêt. Copiez vos identifiants, ouvrez le jeu, puis connectez-vous sur VBlink.",
-    "loginHint": "Connectez-vous sur la page qui s'ouvre avec cet identifiant et mot de passe"
+    "loginHint": "Connectez-vous sur la page qui s'ouvre avec cet identifiant et mot de passe",
+    "lobbyHint": "Connectez-vous sur la page qui s'ouvre avec cet identifiant et mot de passe"
+  },
+  "plus100Play": {
+    "loginTitle": "Connectez-vous sur VPower",
+    "loginBody": "Inscrivez-vous ou connectez-vous ici. Ensuite on prépare le lobby 100plus.",
+    "loginCta": "Se connecter",
+    "entering": "Préparation du lobby 100plus…",
+    "enterError": "Impossible d'ouvrir 100plus. Vérifiez PLUS100_API_URL / identifiants agent / whitelist IP.",
+    "retry": "Réessayer",
+    "account": "Identifiant 100plus",
+    "password": "Mot de passe",
+    "copy": "Copier",
+    "showPassword": "Afficher le mot de passe",
+    "hidePassword": "Masquer le mot de passe",
+    "redirectTitle": "Vous allez ouvrir le lobby 100plus",
+    "openGame": "Ouvrir le lobby",
+    "backProviders": "Retour au portail",
+    "backGames": "Retour aux jeux",
+    "missingTitle": "Session indisponible",
+    "missingBody": "Revenez au portail et réessayez.",
+    "loginHint": "Connectez-vous sur la page qui s'ouvre avec cet identifiant et mot de passe",
+    "lobbyHint": "Ouvrez le lobby. Gardez ces identifiants si une connexion est demandée."
   },
   "account": {
     "eyebrow": "Espace joueur",

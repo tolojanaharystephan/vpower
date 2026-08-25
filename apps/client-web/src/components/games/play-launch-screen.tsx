@@ -7,7 +7,7 @@ import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import { useAuthUi } from '@/components/auth/auth-ui-context';
 import { useSession } from '@/components/auth/session-provider';
-import { enterVblink, launchGame } from '@/lib/api';
+import { enterPlus100, enterVblink, launchGame } from '@/lib/api';
 
 type LaunchState = {
   title: string;
@@ -32,7 +32,7 @@ export function PlayLaunchScreen({
   title?: string;
   gameId?: string;
 }) {
-  const t = useTranslations('vblinkPlay');
+  const t = useTranslations(slug === '100plus' ? 'plus100Play' : 'vblinkPlay');
   const locale = useLocale();
   const { openAuth } = useAuthUi();
   const { accessToken, isAuthenticated, ready } = useSession();
@@ -54,19 +54,21 @@ export function PlayLaunchScreen({
 
     void (async () => {
       try {
-        if (slug !== 'vblink' && !gameId) {
+        if (slug !== 'vblink' && slug !== '100plus' && !gameId) {
           throw new Error(t('enterError'));
         }
 
         const session =
           slug === 'vblink' && !gameId
             ? await enterVblink(accessToken)
-            : await launchGame(accessToken, gameId!, locale);
+            : slug === '100plus' && !gameId
+              ? await enterPlus100(accessToken, locale)
+              : await launchGame(accessToken, gameId!, locale);
 
         setState({
           title: session.title || title || slug,
-          account: session.vblinkAccount || '',
-          password: session.vblinkPassword || '',
+          account: session.vblinkAccount || session.plus100Account || '',
+          password: session.vblinkPassword || session.plus100Password || '',
           launchUrl: session.launchUrl,
           requiresManualLogin: session.requiresManualLogin ?? true,
         });
@@ -143,7 +145,7 @@ export function PlayLaunchScreen({
     );
   }
 
-  if (state?.requiresManualLogin && state.account) {
+  if (state?.launchUrl && (state.requiresManualLogin ? state.account : true)) {
     return (
       <div className="mx-auto flex min-h-[70vh] max-w-lg flex-col justify-center px-4 py-20">
         <h1 className="font-[family-name:var(--font-display)] text-2xl text-[var(--vp-fg)] sm:text-3xl">
@@ -153,62 +155,66 @@ export function PlayLaunchScreen({
           <p className="mt-2 text-sm text-[var(--vp-muted)]">{state.title}</p>
         ) : null}
 
-        <div className="cinema-panel mt-6 space-y-4 p-5">
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
-              {t('account')}
-            </p>
-            <div className="mt-1 flex items-center gap-2">
-              <code className="flex-1 truncate rounded-md bg-black/35 px-3 py-2 text-sm text-[var(--vp-fg)]">
-                {state.account}
-              </code>
-              <Button
-                type="button"
-                size="sm"
-                variant="secondary"
-                onClick={() => void copyField('account', state.account)}
-              >
-                {copied === 'account' ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                {t('copy')}
-              </Button>
-            </div>
-          </div>
-          {state.password ? (
+        {state.account ? (
+          <div className="cinema-panel mt-6 space-y-4 p-5">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
-                {t('password')}
+                {t('account')}
               </p>
               <div className="mt-1 flex items-center gap-2">
                 <code className="flex-1 truncate rounded-md bg-black/35 px-3 py-2 text-sm text-[var(--vp-fg)]">
-                  {showPassword ? state.password : '•'.repeat(Math.min(12, state.password.length))}
+                  {state.account}
                 </code>
                 <Button
                   type="button"
                   size="sm"
                   variant="secondary"
-                  aria-label={showPassword ? t('hidePassword') : t('showPassword')}
-                  onClick={() => setShowPassword((v) => !v)}
+                  onClick={() => void copyField('account', state.account)}
                 >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="secondary"
-                  onClick={() => void copyField('password', state.password)}
-                >
-                  {copied === 'password' ? (
-                    <Check className="h-4 w-4" />
-                  ) : (
-                    <Copy className="h-4 w-4" />
-                  )}
+                  {copied === 'account' ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   {t('copy')}
                 </Button>
               </div>
             </div>
-          ) : null}
-          <p className="text-xs text-[var(--vp-muted)]">{t('loginHint')}</p>
-        </div>
+            {state.password ? (
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
+                  {t('password')}
+                </p>
+                <div className="mt-1 flex items-center gap-2">
+                  <code className="flex-1 truncate rounded-md bg-black/35 px-3 py-2 text-sm text-[var(--vp-fg)]">
+                    {showPassword ? state.password : '•'.repeat(Math.min(12, state.password.length))}
+                  </code>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="secondary"
+                    aria-label={showPassword ? t('hidePassword') : t('showPassword')}
+                    onClick={() => setShowPassword((v) => !v)}
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </Button>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="secondary"
+                    onClick={() => void copyField('password', state.password)}
+                  >
+                    {copied === 'password' ? (
+                      <Check className="h-4 w-4" />
+                    ) : (
+                      <Copy className="h-4 w-4" />
+                    )}
+                    {t('copy')}
+                  </Button>
+                </div>
+              </div>
+            ) : null}
+            <p className="text-xs text-[var(--vp-muted)]">
+              {state.requiresManualLogin ? t('loginHint') : t('lobbyHint')}
+            </p>
+          </div>
+        ) : null}
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Button className="flex-1" size="lg" onClick={openGame}>

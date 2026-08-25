@@ -1,6 +1,7 @@
 import { Module, forwardRef } from '@nestjs/common';
 import { AppConfigModule } from '../../config/app-config.module';
 import { GamesModule } from '../games/games.module';
+import { Provider100PlusModule } from '../provider-100plus/provider-100plus.module';
 import { UsersModule } from '../users/users.module';
 import { ClientGameProvider } from './client-game-provider';
 import { GAME_PROVIDER } from './game-provider.interface';
@@ -12,7 +13,12 @@ import { VblinkClientService } from './vblink-client.service';
 import { VblinkSignatureService } from './vblink-signature.service';
 
 @Module({
-  imports: [GamesModule, AppConfigModule, forwardRef(() => UsersModule)],
+  imports: [
+    GamesModule,
+    AppConfigModule,
+    forwardRef(() => UsersModule),
+    Provider100PlusModule,
+  ],
   controllers: [GameIntegrationController, PlatformsController],
   providers: [
     VblinkSignatureService,

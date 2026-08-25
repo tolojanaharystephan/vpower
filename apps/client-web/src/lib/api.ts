@@ -36,6 +36,8 @@ export type LaunchSession = {
   message: string;
   vblinkAccount?: string;
   vblinkPassword?: string;
+  plus100Account?: string;
+  plus100Password?: string;
   requiresManualLogin?: boolean;
 };
 
@@ -188,6 +190,22 @@ export async function enterVblink(accessToken: string): Promise<LaunchSession> {
       Authorization: `Bearer ${accessToken}`,
       'Content-Type': 'application/json',
     },
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<LaunchSession>;
+}
+
+export async function enterPlus100(
+  accessToken: string,
+  locale?: string,
+): Promise<LaunchSession> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/platforms/100plus/enter`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ locale }),
   });
   if (!res.ok) await parseError(res);
   return res.json() as Promise<LaunchSession>;

@@ -172,7 +172,29 @@
     "helpLogin": "VBlink login",
     "helpBody": "Copy your credentials, open VBlink, then sign in to play.",
     "manualBody": "Your VBlink account is ready. Copy your credentials, open the game, then sign in on VBlink.",
-    "loginHint": "Sign in on the page that opens with this ID and password."
+    "loginHint": "Sign in on the page that opens with this ID and password.",
+    "lobbyHint": "Sign in on the page that opens with this ID and password."
+  },
+  "plus100Play": {
+    "loginTitle": "Sign in on VPower first",
+    "loginBody": "Register or sign in here. Then we prepare your 100plus lobby.",
+    "loginCta": "Sign in",
+    "entering": "Preparing 100plus lobby…",
+    "enterError": "Could not open 100plus. Check PLUS100_API_URL / agent credentials / IP whitelist.",
+    "retry": "Retry",
+    "account": "100plus ID",
+    "password": "Password",
+    "copy": "Copy",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "redirectTitle": "You are about to open the 100plus lobby",
+    "openGame": "Open lobby",
+    "backProviders": "Back to portal",
+    "backGames": "Back to games",
+    "missingTitle": "Session unavailable",
+    "missingBody": "Go back to the portal and try again.",
+    "loginHint": "Sign in on the page that opens with this ID and password.",
+    "lobbyHint": "Open the lobby. Keep these credentials if the session asks you to sign in."
   },
   "account": {
     "eyebrow": "Player area",

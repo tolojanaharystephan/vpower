@@ -91,4 +91,46 @@ describe('Plus100ApiClient.post', () => {
     expect(err).toMatchObject({ plus100Code: 'E001', action: 'retry' });
     expect(warn).toHaveBeenCalledWith(expect.stringContaining('code=E001 action=retry'));
   });
+
+  it('addAccount posts to /b/addAccount and returns the generated account', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      status: 200,
+      text: async () => JSON.stringify({ status: 'success', account: '01123123123' }),
+    }) as unknown as typeof fetch;
+
+    const client = new Plus100ApiClient(mockConfig());
+    const result = await client.addAccount({
+      type: 'player',
+      password: 'Test001a',
+      name: 'player_001',
+    });
+
+    expect(result.account).toBe('01123123123');
+    const [calledUrl, init] = (global.fetch as jest.Mock).mock.calls[0] as [string, RequestInit];
+    expect(new URL(calledUrl).pathname).toBe('/b/addAccount');
+    expect(init.body).toContain('"type":"player"');
+    expect(init.body).not.toContain('"account"');
+  });
+
+  it('launchGame posts MD5 password to /launchGame (not /b/)', async () => {
+    const { createHash } = await import('node:crypto');
+    global.fetch = jest.fn().mockResolvedValue({
+      status: 200,
+      text: async () =>
+        JSON.stringify({ status: 'success', clientUrl: 'https://lobby.example/play' }),
+    }) as unknown as typeof fetch;
+
+    const client = new Plus100ApiClient(mockConfig());
+    const result = await client.launchGame('01123123123', 'Test001a', 'fr');
+
+    expect(result.clientUrl).toBe('https://lobby.example/play');
+    const [calledUrl, init] = (global.fetch as jest.Mock).mock.calls[0] as [string, RequestInit];
+    expect(calledUrl).toBe('https://api.100plus.test/launchGame');
+    expect(JSON.parse(String(init.body))).toEqual({
+      account: '01123123123',
+      password: createHash('md5').update('Test001a', 'utf8').digest('hex'),
+      lang: 'en',
+    });
+  });
 });
+

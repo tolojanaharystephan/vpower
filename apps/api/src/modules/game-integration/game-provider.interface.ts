@@ -21,6 +21,8 @@ export type LaunchSessionResult = {
   vblinkPassword?: string;
   /** True: PDF has no SSO — player logs in on VBlink with account + password. */
   requiresManualLogin?: boolean;
+  plus100Account?: string;
+  plus100Password?: string;
 };
 
 export type RemoteGameSummary = {
