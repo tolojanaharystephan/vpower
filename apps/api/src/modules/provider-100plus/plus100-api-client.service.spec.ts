@@ -40,7 +40,7 @@ describe('Plus100ApiClient.post', () => {
 
     expect(url.origin + url.pathname).toBe('https://api.100plus.test/b/echo');
     expect(url.searchParams.get('from')).toBe('USsupport01');
-    expect(url.searchParams.get('secret')).toBe('SecretKey');
+    expect(url.searchParams.get('secret')).toBe('very');
     expect(url.searchParams.get('hash')).toBe(generateHash(body, 'very', 'SecretKey'));
 
     expect(init.method).toBe('POST');

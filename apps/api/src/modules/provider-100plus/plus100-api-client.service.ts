@@ -44,7 +44,7 @@ export class Plus100ApiClient {
     this.assertConfigured();
     const { baseUrl, agentId, authCode, secretKey } = this.config.plus100;
     const hash = generateHash(body, authCode, secretKey);
-    const url = this.buildUrl(baseUrl, method, hash, agentId, secretKey);
+    const url = this.buildUrl(baseUrl, method, hash, agentId, authCode);
     return this.requestJson<T>(url, body, method);
   }
 
@@ -190,12 +190,13 @@ export class Plus100ApiClient {
     method: string,
     hash: string,
     agentId: string,
-    secretKey: string,
+    authCode: string,
   ): string {
     const url = new URL(`${baseUrl}/b/${method}`);
     url.searchParams.set('hash', hash);
     url.searchParams.set('from', agentId);
-    url.searchParams.set('secret', secretKey);
+    // Live API: query `secret` is the Authorization Code, not the HMAC secret key.
+    url.searchParams.set('secret', authCode);
     return url.toString();
   }
 }
