@@ -41,10 +41,13 @@ export const envSchema = z.object({
   VBLINK_LOBBY_URL: z.string().url().optional().or(z.literal('')).default('https://www.vblink777.club'),
   VBLINK_TIMEOUT_MS: z.coerce.number().int().positive().default(15000),
 
-  /** 100Plus game provider (optional until the module is wired). */
+  /** 100Plus game provider (optional until credentials are set). */
   PLUS100_API_URL: z.string().url().optional().or(z.literal('')).default(''),
-  PLUS100_AGENT_ID: z.string().optional().default(''),
-  PLUS100_SECRET_KEY: z.string().optional().default(''),
+  /** Agent account used as `from` (e.g. USsupport01). */
+  PLUS100_AGENT_ID: z.string().trim().optional().default(''),
+  /** API Authorization Code — HMAC key prefix, not the agent login. */
+  PLUS100_AUTH_CODE: z.string().trim().optional().default(''),
+  PLUS100_SECRET_KEY: z.string().trim().optional().default(''),
 
   GOOGLE_TRANSLATION_API_KEY: z.string().optional().default(''),
   TRANSLATION_ENABLED: booleanFromEnv.default(false),

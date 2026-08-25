@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import type { AppEnv } from './env.schema';
+import { normalizePlus100BaseUrl } from '../modules/provider-100plus/plus100-url';
 
 @Injectable()
 export class AppConfigService {
@@ -80,14 +81,14 @@ export class AppConfigService {
   }
 
   get plus100() {
-    const apiUrl = (this.config.get('PLUS100_API_URL', { infer: true }) || '').replace(
-      /\/$/,
-      '',
+    const apiUrl = normalizePlus100BaseUrl(
+      this.config.get('PLUS100_API_URL', { infer: true }) || '',
     );
     return {
       baseUrl: apiUrl,
-      agentId: this.config.get('PLUS100_AGENT_ID', { infer: true }) || '',
-      secretKey: this.config.get('PLUS100_SECRET_KEY', { infer: true }) || '',
+      agentId: (this.config.get('PLUS100_AGENT_ID', { infer: true }) || '').trim(),
+      authCode: (this.config.get('PLUS100_AUTH_CODE', { infer: true }) || '').trim(),
+      secretKey: (this.config.get('PLUS100_SECRET_KEY', { infer: true }) || '').trim(),
     };
   }
 

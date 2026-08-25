@@ -37,13 +37,13 @@ export class Plus100ApiClient {
 
   isConfigured(): boolean {
     const c = this.config.plus100;
-    return Boolean(c.baseUrl && c.agentId && c.secretKey);
+    return Boolean(c.baseUrl && c.agentId && c.authCode && c.secretKey);
   }
 
   async post<T = unknown>(method: string, body: object): Promise<T> {
     this.assertConfigured();
-    const { baseUrl, agentId, secretKey } = this.config.plus100;
-    const hash = generateHash(body, agentId, secretKey);
+    const { baseUrl, agentId, authCode, secretKey } = this.config.plus100;
+    const hash = generateHash(body, authCode, secretKey);
     const url = this.buildUrl(baseUrl, method, hash, agentId, secretKey);
     return this.requestJson<T>(url, body, method);
   }
@@ -180,7 +180,7 @@ export class Plus100ApiClient {
   private assertConfigured() {
     if (!this.isConfigured()) {
       throw new ServiceUnavailableException(
-        '100Plus is not configured. Set PLUS100_API_URL, PLUS100_AGENT_ID, PLUS100_SECRET_KEY.',
+        '100Plus is not configured. Set PLUS100_API_URL, PLUS100_AGENT_ID, PLUS100_AUTH_CODE, PLUS100_SECRET_KEY.',
       );
     }
   }

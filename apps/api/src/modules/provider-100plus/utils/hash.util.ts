@@ -6,8 +6,8 @@ export function encodePhpUnescapedJson(value: object): string {
 }
 
 /** HMAC-SHA256 hex matching 100Plus PHP `getHash($param, $APIAuthorizationCode, $secretkey)`. */
-export function generateHash(body: object, agentId: string, secretKey: string): string {
-  const key = `${agentId}${secretKey}`;
+export function generateHash(body: object, authCode: string, secretKey: string): string {
+  const key = `${authCode}${secretKey}`;
   const message = encodePhpUnescapedJson(body);
   return createHmac('sha256', key).update(message, 'utf8').digest('hex');
 }

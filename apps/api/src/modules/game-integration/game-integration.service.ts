@@ -43,7 +43,7 @@ export class GameIntegrationService {
   enterPlus100(userId: string, locale?: string): Promise<LaunchSessionResult> {
     if (!this.plus100.isConfigured()) {
       throw new ServiceUnavailableException(
-        '100Plus is not configured. Set PLUS100_API_URL, PLUS100_AGENT_ID, PLUS100_SECRET_KEY.',
+        '100Plus is not configured. Set PLUS100_API_URL, PLUS100_AGENT_ID, PLUS100_AUTH_CODE, PLUS100_SECRET_KEY.',
       );
     }
     return this.plus100.launchLobby(userId, locale);

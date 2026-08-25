@@ -8,7 +8,8 @@ function mockConfig(): AppConfigService {
   return {
     plus100: {
       baseUrl: 'https://api.100plus.test',
-      agentId: 'very',
+      agentId: 'USsupport01',
+      authCode: 'very',
       secretKey: 'SecretKey',
     },
   } as AppConfigService;
@@ -38,7 +39,7 @@ describe('Plus100ApiClient.post', () => {
     const expectedBody = encodePhpUnescapedJson(body);
 
     expect(url.origin + url.pathname).toBe('https://api.100plus.test/b/echo');
-    expect(url.searchParams.get('from')).toBe('very');
+    expect(url.searchParams.get('from')).toBe('USsupport01');
     expect(url.searchParams.get('secret')).toBe('SecretKey');
     expect(url.searchParams.get('hash')).toBe(generateHash(body, 'very', 'SecretKey'));
 
