@@ -16,7 +16,7 @@
     "comingSoon": "Pronto",
     "language": "Idioma"
   },
-  "wallet": { "devCredit": "+100 $", "devCreditHint": "Crédito de prueba — la caja real llega pronto", "balanceLabel": "Saldo" },
+  "wallet": { "devCredit": "+100 $", "devCreditHint": "Crédito de prueba — alimenta la sala que elijas. La caja real llega pronto", "balanceLabel": "Saldo", "walletsLabel": "Carteras", "roomsTitle": "Carteras por sala", "roomsSubtitle": "Cada sala tiene su propio saldo.", "fundRoom": "Alimentar", "openRoom": "Jugar", "manageWallets": "Gestionar carteras", "thisRoom": "Esta sala" },
   "hero": {
     "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
     "headline": "El hall se enciende.\nEl juego es tuyo.",
@@ -201,7 +201,10 @@
     "sessionEyebrow": "Seguridad",
     "sessionTitle": "Sesión",
     "sessionBody": "Cierra sesión en este dispositivo. Tu cuenta y favoritos siguen sincronizados.",
-    "supportLink": "Contactar soporte"
+    "supportLink": "Contactar soporte",
+    "walletsEyebrow": "Carteras",
+    "walletsTitle": "Un saldo por sala",
+    "walletsBody": "Alimenta la sala donde juegas. Las ganancias de esa sala vuelven aquí."
   },
   "support": {
     "eyebrow": "Soporte",

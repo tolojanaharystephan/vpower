@@ -1,5 +1,6 @@
 import {
   boolean,
+  index,
   integer,
   jsonb,
   pgEnum,
@@ -248,28 +249,39 @@ export const providerPlayerAccounts = pgTable(
   ],
 );
 
-/** VPower cash wallet — auth & money stay here; game credits push to studios via FastAPI. */
-export const userWallets = pgTable('user_wallets', {
-  userId: uuid('user_id')
-    .primaryKey()
-    .references(() => users.id, { onDelete: 'cascade' }),
-  /** Integer cents to avoid float issues. */
-  balanceCents: integer('balance_cents').notNull().default(0),
-  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
-});
+/** One VPower cash wallet per partner room. Deposits and wins stay on that room. */
+export const userWallets = pgTable(
+  'user_wallets',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    roomSlug: text('room_slug').notNull(),
+    /** Integer cents to avoid float issues. */
+    balanceCents: integer('balance_cents').notNull().default(0),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [uniqueIndex('user_wallets_user_room_uidx').on(table.userId, table.roomSlug)],
+);
 
-export const walletTransactions = pgTable('wallet_transactions', {
-  id: uuid('id').defaultRandom().primaryKey(),
-  userId: uuid('user_id')
-    .notNull()
-    .references(() => users.id, { onDelete: 'cascade' }),
-  /** Positive = credit to VPower, negative = debit. */
-  amountCents: integer('amount_cents').notNull(),
-  kind: text('kind').notNull(),
-  reference: text('reference'),
-  meta: text('meta'),
-  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
-});
+export const walletTransactions = pgTable(
+  'wallet_transactions',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    roomSlug: text('room_slug').notNull(),
+    /** Positive = credit to VPower, negative = debit. */
+    amountCents: integer('amount_cents').notNull(),
+    kind: text('kind').notNull(),
+    reference: text('reference'),
+    meta: text('meta'),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [index('wallet_transactions_user_room_idx').on(table.userId, table.roomSlug)],
+);
 
 /** Phase 9–10 — support tickets MVP */
 export const ticketStatusEnum = pgEnum('ticket_status', [

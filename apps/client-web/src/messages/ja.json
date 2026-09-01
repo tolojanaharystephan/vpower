@@ -16,7 +16,7 @@
     "comingSoon": "近日公開",
     "language": "言語"
   },
-  "wallet": { "devCredit": "+$100", "devCreditHint": "テストクレジット — 本格キャッシャーは近日公開", "balanceLabel": "残高" },
+  "wallet": { "devCredit": "+$100", "devCreditHint": "テストクレジット — 選んだルームに入金。本格キャッシャーは近日公開", "balanceLabel": "残高", "walletsLabel": "ウォレット", "roomsTitle": "ルーム別ウォレット", "roomsSubtitle": "ルームごとに残高が分かれます。", "fundRoom": "入金", "openRoom": "プレイ", "manageWallets": "ウォレット管理", "thisRoom": "このルーム" },
   "hero": {
     "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
     "headline": "ホールが灯る。\nフロアは、あなたのもの。",
@@ -201,7 +201,10 @@
     "sessionEyebrow": "セキュリティ",
     "sessionTitle": "セッション",
     "sessionBody": "この端末からログアウトします。アカウントとお気に入りは同期されたままです。",
-    "supportLink": "サポートに連絡"
+    "supportLink": "サポートに連絡",
+    "walletsEyebrow": "ウォレット",
+    "walletsTitle": "ルームごとに残高",
+    "walletsBody": "プレイするルームに入金。そのルームの配当はここに戻ります。"
   },
   "support": {
     "eyebrow": "サポート",

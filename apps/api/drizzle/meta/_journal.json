@@ -85,6 +85,13 @@
       "when": 1786800000000,
       "tag": "0011_users_vblink_password_encrypted",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1786900000000,
+      "tag": "0012_room_wallets",
+      "breakpoints": true
     }
   ]
 }

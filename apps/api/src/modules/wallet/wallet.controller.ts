@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '../../common/decorators';
 import type { AuthUser } from '../auth/auth.types';
@@ -12,26 +12,33 @@ export class WalletController {
   constructor(private readonly wallet: WalletService) {}
 
   @Get('me')
-  @ApiOperation({ summary: 'VPower wallet balance (money stays on VPower until game transfer)' })
+  @ApiOperation({ summary: 'All room wallets for the current player' })
   async me(@CurrentUser() user: AuthUser) {
-    const balanceCents = await this.wallet.getBalanceCents(user.id);
-    return {
-      balanceCents,
-      balance: this.wallet.formatDollars(balanceCents),
-      currency: 'USD',
-    };
+    return this.wallet.listForUser(user.id);
+  }
+
+  @Get('me/:roomSlug')
+  @ApiOperation({ summary: 'One room wallet' })
+  async meRoom(@CurrentUser() user: AuthUser, @Param('roomSlug') roomSlug: string) {
+    const slug = this.wallet.parseRoomSlug(roomSlug);
+    const listed = await this.wallet.listForUser(user.id);
+    const room = listed.wallets.find((w) => w.roomSlug === slug)!;
+    return { currency: listed.currency, ...room };
   }
 
   @Post('dev-credit')
   @ApiOperation({
-    summary: 'Dev-only: credit VPower wallet (pre-Stripe). Disabled in production.',
+    summary: 'Dev-only: credit a room wallet (pre-Stripe). Disabled in production.',
   })
   async devCredit(@CurrentUser() user: AuthUser, @Body() body: DevCreditDto) {
-    const amountCents = body.amountCents ?? 10_000; // $100 default for tests
-    const wallet = await this.wallet.devCredit(user.id, amountCents);
+    const amountCents = body.amountCents ?? 10_000;
+    const listed = await this.wallet.devCredit(user.id, body.roomSlug, amountCents);
+    const room = listed.wallets.find((w) => w.roomSlug === body.roomSlug)!;
     return {
-      balanceCents: wallet.balanceCents,
-      balance: this.wallet.formatDollars(wallet.balanceCents),
+      ...listed,
+      roomSlug: room.roomSlug,
+      balanceCents: room.balanceCents,
+      balance: room.balance,
       creditedCents: amountCents,
     };
   }

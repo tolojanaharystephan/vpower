@@ -16,7 +16,7 @@
     "comingSoon": "곧 오픈",
     "language": "언어"
   },
-  "wallet": { "devCredit": "+$100", "devCreditHint": "테스트 크레딧 — 실제 캐셔 곧 오픈", "balanceLabel": "잔액" },
+  "wallet": { "devCredit": "+$100", "devCreditHint": "테스트 크레딧 — 선택한 룸에 충전. 실제 캐셔 곧 오픈", "balanceLabel": "잔액", "walletsLabel": "지갑", "roomsTitle": "룸별 지갑", "roomsSubtitle": "룸마다 잔액이 따로 있습니다.", "fundRoom": "충전", "openRoom": "플레이", "manageWallets": "지갑 관리", "thisRoom": "이 룸" },
   "hero": {
     "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
     "headline": "홀이 켜집니다.\n무대는 당신 것입니다.",
@@ -201,7 +201,10 @@
     "sessionEyebrow": "보안",
     "sessionTitle": "세션",
     "sessionBody": "이 기기에서 로그아웃합니다. 계정과 즐겨찾기는 계속 동기화됩니다.",
-    "supportLink": "고객지원 문의"
+    "supportLink": "고객지원 문의",
+    "walletsEyebrow": "지갑",
+    "walletsTitle": "룸마다 잔액 하나",
+    "walletsBody": "플레이할 룸에 충전하세요. 그 룸의 당첨금은 여기로 돌아옵니다."
   },
   "support": {
     "eyebrow": "고객지원",

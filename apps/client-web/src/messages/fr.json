@@ -21,8 +21,15 @@
   },
   "wallet": {
     "devCredit": "+100$",
-    "devCreditHint": "Crédit de test — la caisse réelle arrive",
-    "balanceLabel": "Solde"
+    "devCreditHint": "Crédit de test — alimente la salle choisie. La caisse réelle arrive.",
+    "balanceLabel": "Solde",
+    "walletsLabel": "Portefeuilles",
+    "roomsTitle": "Portefeuilles par salle",
+    "roomsSubtitle": "Chaque salle a son propre compte.",
+    "fundRoom": "Alimenter",
+    "openRoom": "Jouer",
+    "manageWallets": "Gérer les portefeuilles",
+    "thisRoom": "Cette salle"
   },
   "hero": {
     "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
@@ -218,7 +225,10 @@
     "sessionEyebrow": "Sécurité",
     "sessionTitle": "Session",
     "sessionBody": "Déconnecte cet appareil. Ton compte et tes favoris restent synchronisés.",
-    "supportLink": "Contacter le support"
+    "supportLink": "Contacter le support",
+    "walletsEyebrow": "Portefeuilles",
+    "walletsTitle": "Un solde par salle",
+    "walletsBody": "Alimente la salle où tu joues. Les gains de cette salle reviennent ici."
   },
   "support": {
     "eyebrow": "Support",

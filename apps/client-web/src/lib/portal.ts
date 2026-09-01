@@ -201,8 +201,12 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
 
 
 export function getPortalProvider(slug: string) {
-
   return PORTAL_PROVIDERS.find((p) => p.slug === slug);
+}
 
+export function roomPlayHref(slug: string): string {
+  if (slug === 'vblink') return '/play/vblink';
+  if (slug === '100plus') return '/play/100plus';
+  return `/games?provider=${slug}`;
 }
 

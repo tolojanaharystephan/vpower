@@ -3,12 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { LogOut, UserRound } from 'lucide-react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link, useRouter } from '@/i18n/navigation';
 import { useSession } from '@/components/auth/session-provider';
 import { WalletChip } from '@/components/wallet/wallet-chip';
 import { NotificationBell } from '@/components/notifications/notification-bell';
-import { devCreditWallet, getWallet } from '@/lib/api';
+import { useRoomWallets } from '@/components/wallet/use-room-wallets';
 
 function initials(first?: string | null, last?: string | null, email?: string) {
   const a = first?.trim()?.[0];
@@ -21,23 +20,10 @@ export function UserMenu({ avatarOnly = false }: { avatarOnly?: boolean }) {
   const t = useTranslations('nav');
   const tw = useTranslations('wallet');
   const router = useRouter();
-  const { user, logout, accessToken } = useSession();
+  const { user, logout } = useSession();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
-  const queryClient = useQueryClient();
-
-  const walletQuery = useQuery({
-    queryKey: ['wallet'],
-    queryFn: () => getWallet(accessToken!),
-    enabled: Boolean(accessToken),
-  });
-
-  const credit = useMutation({
-    mutationFn: () => devCreditWallet(accessToken!, 10_000),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ['wallet'] });
-    },
-  });
+  const { wallets } = useRoomWallets();
 
   useEffect(() => {
     if (!open) return;
@@ -87,13 +73,20 @@ export function UserMenu({ avatarOnly = false }: { avatarOnly?: boolean }) {
           <div className="border-b border-[var(--vp-border)] px-4 py-3">
             <p className="truncate font-semibold text-[var(--vp-fg)]">{displayName}</p>
             <p className="mt-0.5 truncate text-xs text-[var(--vp-muted)]">{user.email}</p>
-            <p className="mt-2 text-xs text-[var(--vp-accent-bright)]">
-              {tw('balanceLabel')}: ${walletQuery.data?.balance ?? '…'}
-            </p>
+            <div className="mt-2 space-y-1 text-xs text-[var(--vp-accent-bright)]">
+              {wallets.length === 0
+                ? `${tw('balanceLabel')}: …`
+                : wallets.map((wallet) => (
+                    <span key={wallet.roomSlug} className="flex justify-between gap-3">
+                      <span className="truncate text-[var(--vp-muted)]">{wallet.name}</span>
+                      <span className="shrink-0">${wallet.balance}</span>
+                    </span>
+                  ))}
+            </div>
           </div>
           <div className="flex flex-col p-2">
             <Link
-              href="/account"
+              href="/account#wallets"
               role="menuitem"
               onClick={() => setOpen(false)}
               className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-[var(--vp-fg)] transition hover:bg-white/5"
@@ -101,16 +94,6 @@ export function UserMenu({ avatarOnly = false }: { avatarOnly?: boolean }) {
               <UserRound className="h-4 w-4 text-[var(--vp-muted)]" />
               {t('account')}
             </Link>
-            <button
-              type="button"
-              role="menuitem"
-              className="flex items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-[var(--vp-muted)] transition hover:bg-white/5 hover:text-[var(--vp-fg)]"
-              disabled={credit.isPending}
-              title={tw('devCreditHint')}
-              onClick={() => credit.mutate()}
-            >
-              {tw('devCredit')}
-            </button>
             <button
               type="button"
               role="menuitem"

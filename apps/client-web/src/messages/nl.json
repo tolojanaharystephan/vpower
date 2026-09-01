@@ -16,7 +16,7 @@
     "comingSoon": "Binnenkort",
     "language": "Taal"
   },
-  "wallet": { "devCredit": "+$100", "devCreditHint": "Testtegoed — live kassa komt eraan", "balanceLabel": "Saldo" },
+  "wallet": { "devCredit": "+$100", "devCreditHint": "Testtegoed — voedt de zaal die je kiest. Live kassa komt eraan", "balanceLabel": "Saldo", "walletsLabel": "Portefeuilles", "roomsTitle": "Portefeuilles per zaal", "roomsSubtitle": "Elke zaal heeft een eigen saldo.", "fundRoom": "Voeden", "openRoom": "Spelen", "manageWallets": "Portefeuilles beheren", "thisRoom": "Deze zaal" },
   "hero": {
     "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
     "headline": "De hall gaat aan.\nDe vloer is van jou.",
@@ -201,7 +201,10 @@
     "sessionEyebrow": "Beveiliging",
     "sessionTitle": "Sessie",
     "sessionBody": "Log uit op dit apparaat. Account en favorieten blijven gesynchroniseerd.",
-    "supportLink": "Contact support"
+    "supportLink": "Contact support",
+    "walletsEyebrow": "Portefeuilles",
+    "walletsTitle": "Eén saldo per zaal",
+    "walletsBody": "Voed de zaal waar je speelt. Winst van die zaal komt hier terug."
   },
   "support": {
     "eyebrow": "Support",

@@ -11,6 +11,7 @@ import { dateTagFor } from '@vpower777/config';
 import { Link, useRouter } from '@/i18n/navigation';
 import { useSession } from '@/components/auth/session-provider';
 import { BrandLoader } from '@/components/brand/brand-loader';
+import { RoomWalletsPanel } from '@/components/wallet/room-wallets-panel';
 import { listFavorites, updateMe } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -150,6 +151,8 @@ export function AccountPanel() {
           </div>
         </div>
       </div>
+
+      <RoomWalletsPanel />
 
       {/* Personal info card */}
       <div className="mt-5 grid gap-5 lg:grid-cols-[1.4fr_1fr]">

@@ -36,3 +36,4 @@ export type HealthStatus = {
 export type GameProviderMode = 'client';
 
 export * from './roles';
+export * from './rooms';

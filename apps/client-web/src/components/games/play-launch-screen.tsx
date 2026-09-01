@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { useAuthUi } from '@/components/auth/auth-ui-context';
 import { useSession } from '@/components/auth/session-provider';
 import { enterPlus100, enterVblink, launchGame } from '@/lib/api';
+import { RoomWalletLine } from '@/components/wallet/room-wallets-panel';
 
 type LaunchState = {
   title: string;
@@ -154,6 +155,9 @@ export function PlayLaunchScreen({
         {state.title ? (
           <p className="mt-2 text-sm text-[var(--vp-muted)]">{state.title}</p>
         ) : null}
+        <RoomWalletLine
+          roomSlug={slug === '100plus' ? '100plus' : 'vblink'}
+        />
 
         {state.account ? (
           <div className="cinema-panel mt-6 space-y-4 p-5">

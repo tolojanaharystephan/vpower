@@ -16,7 +16,7 @@
     "comingSoon": "即将上线",
     "language": "语言"
   },
-  "wallet": { "devCredit": "+$100", "devCreditHint": "测试额度 — 正式收银台即将开放", "balanceLabel": "余额" },
+  "wallet": { "devCredit": "+$100", "devCreditHint": "测试额度 — 充入所选场馆。正式收银台即将开放", "balanceLabel": "余额", "walletsLabel": "钱包", "roomsTitle": "分场馆钱包", "roomsSubtitle": "每个场馆有独立余额。", "fundRoom": "充值", "openRoom": "开始", "manageWallets": "管理钱包", "thisRoom": "本场馆" },
   "hero": {
     "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
     "headline": "大厅亮灯。\n舞台归你。",
@@ -201,7 +201,10 @@
     "sessionEyebrow": "安全",
     "sessionTitle": "会话",
     "sessionBody": "退出此设备。账户与收藏仍会同步。",
-    "supportLink": "联系客服"
+    "supportLink": "联系客服",
+    "walletsEyebrow": "钱包",
+    "walletsTitle": "一场馆一余额",
+    "walletsBody": "给要玩的场馆充值。该场馆的赢利回到这里。"
   },
   "support": {
     "eyebrow": "客服",

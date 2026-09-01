@@ -16,7 +16,7 @@
     "comingSoon": "Удахгүй",
     "language": "Хэл"
   },
-  "wallet": { "devCredit": "+$100", "devCreditHint": "Туршилтын кредит — жинхэнэ касс удахгүй", "balanceLabel": "Үлдэгдэл" },
+  "wallet": { "devCredit": "+$100", "devCreditHint": "Туршилтын кредит — сонгосон танхимыг цэнэглэнэ. Жинхэнэ касс удахгүй", "balanceLabel": "Үлдэгдэл", "walletsLabel": "Хэтэвч", "roomsTitle": "Танхим бүрийн хэтэвч", "roomsSubtitle": "Танхим бүр өөрийн үлдэгдэлтэй.", "fundRoom": "Цэнэглэх", "openRoom": "Тоглох", "manageWallets": "Хэтэвч удирдах", "thisRoom": "Энэ танхим" },
   "hero": {
     "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
     "headline": "Танхим гэрэлтэнэ.\nТалбай чинийх.",
@@ -201,7 +201,10 @@
     "sessionEyebrow": "Аюулгүй байдал",
     "sessionTitle": "Сесс",
     "sessionBody": "Энэ төхөөрөмжөөс гар. Бүртгэл, дуртай зүйлс синк хэвээр.",
-    "supportLink": "Дэмжлэгтэй холбогдох"
+    "supportLink": "Дэмжлэгтэй холбогдох",
+    "walletsEyebrow": "Хэтэвч",
+    "walletsTitle": "Танхим бүрт нэг үлдэгдэл",
+    "walletsBody": "Тоглох танхимаа цэнэглэ. Тухайн танхимын хожсон мөнгө энд буцна."
   },
   "support": {
     "eyebrow": "Дэмжлэг",

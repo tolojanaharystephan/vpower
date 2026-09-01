@@ -10,15 +10,19 @@ import { BrandLoader } from '@/components/brand/brand-loader';
 import { Link } from '@/i18n/navigation';
 import { fetchCatalogGames, type GameTag } from '@/lib/catalog';
 import { getPortalProvider } from '@/lib/portal';
+import { useRoomWallets } from '@/components/wallet/use-room-wallets';
 import { cn } from '@/lib/utils';
 
 type Filter = 'all' | GameTag;
 
 export function GamesCatalog() {
   const t = useTranslations('gamesPage');
+  const tw = useTranslations('wallet');
   const searchParams = useSearchParams();
   const providerSlug = searchParams.get('provider')?.toLowerCase() ?? '';
   const portalProvider = providerSlug ? getPortalProvider(providerSlug) : undefined;
+  const { bySlug } = useRoomWallets();
+  const roomWallet = providerSlug ? bySlug(providerSlug) : undefined;
   const [filter, setFilter] = useState<Filter>('all');
   const [query, setQuery] = useState('');
 
@@ -47,6 +51,11 @@ export function GamesCatalog() {
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-[rgba(46,163,242,0.28)] bg-[rgba(46,163,242,0.08)] px-4 py-3">
           <p className="text-sm text-[var(--vp-fg)]">
             {t('providerFilter', { name: portalProvider.name })}
+            {roomWallet ? (
+              <span className="ml-2 text-[var(--vp-accent-bright)]">
+                · {tw('balanceLabel')} ${roomWallet.balance}
+              </span>
+            ) : null}
           </p>
           <Link
             href="/providers"

@@ -21,8 +21,15 @@
   },
   "wallet": {
     "devCredit": "+$100",
-    "devCreditHint": "Test credit — live cashier coming soon",
-    "balanceLabel": "Balance"
+    "devCreditHint": "Test credit — funds the room you pick. Live cashier coming soon",
+    "balanceLabel": "Balance",
+    "walletsLabel": "Wallets",
+    "roomsTitle": "Wallets by room",
+    "roomsSubtitle": "Each room has its own balance.",
+    "fundRoom": "Fund",
+    "openRoom": "Play",
+    "manageWallets": "Manage wallets",
+    "thisRoom": "This room"
   },
   "hero": {
     "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
@@ -218,7 +225,10 @@
     "sessionEyebrow": "Security",
     "sessionTitle": "Session",
     "sessionBody": "Sign out of this device. Your account and favorites stay in sync.",
-    "supportLink": "Contact support"
+    "supportLink": "Contact support",
+    "walletsEyebrow": "Wallets",
+    "walletsTitle": "One balance per room",
+    "walletsBody": "Fund the room you play. Wins in that room come back here."
   },
   "support": {
     "eyebrow": "Support",

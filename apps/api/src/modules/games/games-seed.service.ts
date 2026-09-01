@@ -1,15 +1,11 @@
 import { Injectable, Inject, Logger, OnModuleInit } from '@nestjs/common';
+import { ROOM_NAMES, ROOM_SLUGS } from '@vpower777/types';
 import { and, eq, inArray, isNull } from 'drizzle-orm';
 import { DRIZZLE } from '../../database/database.constants';
 import type { Database } from '../../database/database';
 import { gameProviders, gameCategories, games } from '../../database/schema';
 
-const PORTAL_PROVIDERS = [
-  { name: 'VBlink', slug: 'vblink' },
-  { name: 'Goldendragon', slug: 'goldendragon' },
-  { name: 'Magiccity', slug: 'magiccity' },
-  { name: '100plus', slug: '100plus' },
-] as const;
+const PORTAL_PROVIDERS = ROOM_SLUGS.map((slug) => ({ name: ROOM_NAMES[slug], slug }));
 
 const CATEGORIES = [
   { name: 'Slots', slug: 'slots', description: 'Video slots & reels', sortOrder: 1 },

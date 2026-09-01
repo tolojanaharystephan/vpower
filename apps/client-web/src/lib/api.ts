@@ -41,10 +41,16 @@ export type LaunchSession = {
   requiresManualLogin?: boolean;
 };
 
-export type WalletBalance = {
+export type RoomWallet = {
+  roomSlug: string;
+  name: string;
   balanceCents: number;
   balance: string;
+};
+
+export type WalletList = {
   currency: string;
+  wallets: RoomWallet[];
 };
 
 export type FavoriteGame = {
@@ -211,29 +217,32 @@ export async function enterPlus100(
   return res.json() as Promise<LaunchSession>;
 }
 
-export async function getWallet(accessToken: string): Promise<WalletBalance> {
+export async function getWallets(accessToken: string): Promise<WalletList> {
   const res = await fetch(`${getApiBaseUrl()}/api/v1/wallet/me`, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
   if (!res.ok) await parseError(res);
-  return res.json() as Promise<WalletBalance>;
+  return res.json() as Promise<WalletList>;
 }
 
-/** Dev-only top-up until Stripe/LOT2 payments. */
+/** Dev-only top-up until Stripe/LOT2 payments. Credits one room wallet. */
 export async function devCreditWallet(
   accessToken: string,
+  roomSlug: string,
   amountCents = 10_000,
-): Promise<WalletBalance & { creditedCents: number }> {
+): Promise<WalletList & { creditedCents: number; roomSlug: string; balance: string }> {
   const res = await fetch(`${getApiBaseUrl()}/api/v1/wallet/dev-credit`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${accessToken}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ amountCents }),
+    body: JSON.stringify({ roomSlug, amountCents }),
   });
   if (!res.ok) await parseError(res);
-  return res.json() as Promise<WalletBalance & { creditedCents: number }>;
+  return res.json() as Promise<
+    WalletList & { creditedCents: number; roomSlug: string; balance: string }
+  >;
 }
 
 export async function listFavorites(accessToken: string): Promise<FavoriteGame[]> {

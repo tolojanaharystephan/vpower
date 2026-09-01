@@ -12,16 +12,15 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import type { PortalProvider } from '@/lib/portal';
+import { roomPlayHref } from '@/lib/portal';
+import { useRoomWallets } from '@/components/wallet/use-room-wallets';
 
 export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
   const t = useTranslations('portal');
-  // VBlink + 100plus = live partner lobbies. Others pending their own API docs.
-  const enterHref =
-    provider.slug === 'vblink'
-      ? '/play/vblink'
-      : provider.slug === '100plus'
-        ? '/play/100plus'
-        : `/games?provider=${provider.slug}`;
+  const tw = useTranslations('wallet');
+  const { bySlug } = useRoomWallets();
+  const wallet = bySlug(provider.slug);
+  const enterHref = roomPlayHref(provider.slug);
 
   return (
     <article className="portal-provider-card group">
@@ -49,6 +48,11 @@ export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
           </h3>
         </Link>
         <p className="mt-1 text-sm font-medium text-[var(--vp-accent)]">{t(provider.taglineKey)}</p>
+        {wallet ? (
+          <p className="mt-2 text-sm font-semibold text-[var(--vp-accent-bright)]">
+            {tw('balanceLabel')}: ${wallet.balance}
+          </p>
+        ) : null}
         <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--vp-muted)]">
           {t(provider.bodyKey)}
         </p>
