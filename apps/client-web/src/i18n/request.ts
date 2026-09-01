@@ -1,9 +1,10 @@
 import { getRequestConfig } from 'next-intl/server';
+import { isLocale } from '@vpower777/config';
 import { routing } from './routing';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;
-  if (!locale || !routing.locales.includes(locale as 'fr' | 'en')) {
+  if (!locale || !isLocale(locale)) {
     locale = routing.defaultLocale;
   }
 

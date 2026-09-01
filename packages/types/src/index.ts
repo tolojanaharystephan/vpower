@@ -1,6 +1,6 @@
 /** Shared domain contracts for client, admin, and API. Phase 0 stubs only. */
 
-export type Locale = 'fr' | 'en' | 'es' | 'de';
+export type Locale = 'fr' | 'en' | 'es' | 'nl' | 'zh' | 'ko' | 'ja' | 'mn';
 
 export type FeatureFlags = {
   paymentsEnabled: boolean;

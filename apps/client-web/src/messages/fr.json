@@ -18,7 +18,8 @@
     "account": "Mon compte",
     "logout": "Déconnexion",
     "walletSoon": "Portefeuille",
-    "comingSoon": "Bientôt disponible"
+    "comingSoon": "Bientôt disponible",
+    "language": "Langue"
   },
   "wallet": {
     "devCredit": "+100$",

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
 import { Bell } from 'lucide-react';
+import { dateTagFor } from '@vpower777/config';
 import { Link } from '@/i18n/navigation';
 import { useSession } from '@/components/auth/session-provider';
 import {
@@ -52,7 +53,7 @@ export function NotificationBell() {
 
   const count = countQuery.data ?? 0;
   const items = listQuery.data ?? [];
-  const dateLocale = locale === 'en' ? 'en-US' : 'fr-FR';
+  const dateLocale = dateTagFor(locale);
 
   return (
     <div className="relative">

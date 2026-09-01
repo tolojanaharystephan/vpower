@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
 import { CalendarDays, Heart, Headphones, Mail, ShieldCheck } from 'lucide-react';
 import { z } from 'zod';
+import { dateTagFor } from '@vpower777/config';
 import { Link, useRouter } from '@/i18n/navigation';
 import { useSession } from '@/components/auth/session-provider';
 import { BrandLoader } from '@/components/brand/brand-loader';
@@ -69,7 +70,7 @@ export function AccountPanel() {
 
   const displayName =
     [user.firstName, user.lastName].filter(Boolean).join(' ') || user.email.split('@')[0];
-  const dateLocale = locale === 'en' ? 'en-US' : 'fr-FR';
+  const dateLocale = dateTagFor(locale);
   const memberSince = new Date(user.createdAt).toLocaleDateString(dateLocale, {
     month: 'short',
     year: 'numeric',

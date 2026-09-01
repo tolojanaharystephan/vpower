@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
 import { Bot, MessageSquarePlus, Send } from 'lucide-react';
+import { dateTagFor } from '@vpower777/config';
 import { useRouter } from '@/i18n/navigation';
 import { useSession } from '@/components/auth/session-provider';
 import { BrandLoader } from '@/components/brand/brand-loader';
@@ -145,7 +146,7 @@ export function SupportPanel() {
 
   const tickets = listQuery.data?.data ?? [];
   const ticket = detailQuery.data;
-  const dateLocale = locale === 'en' ? 'en-US' : 'fr-FR';
+  const dateLocale = dateTagFor(locale);
 
   return (
     <div className="care-shell mx-auto max-w-6xl px-4 pb-16 pt-24 sm:px-6 sm:pt-28 lg:px-8">

@@ -18,7 +18,8 @@
     "account": "My account",
     "logout": "Log out",
     "walletSoon": "Wallet",
-    "comingSoon": "Coming soon"
+    "comingSoon": "Coming soon",
+    "language": "Language"
   },
   "wallet": {
     "devCredit": "+$100",

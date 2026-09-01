@@ -1,30 +1,24 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Menu, Search, X } from 'lucide-react';
 import { useState } from 'react';
-import { Link, usePathname, useRouter } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import { useAuthUi } from '@/components/auth/auth-ui-context';
 import { useSession } from '@/components/auth/session-provider';
 import { BrandMark } from '@/components/brand/brand-mark';
 import { BrandWordmark } from '@/components/brand/brand-wordmark';
+import { LocaleMenu } from '@/components/layout/locale-menu';
 import { UserMenu } from '@/components/layout/user-menu';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export function SiteHeader() {
   const t = useTranslations('nav');
-  const locale = useLocale();
   const pathname = usePathname();
-  const router = useRouter();
   const { openAuth } = useAuthUi();
   const { ready, isAuthenticated } = useSession();
   const [open, setOpen] = useState(false);
-
-  const switchLocale = () => {
-    const next = locale === 'fr' ? 'en' : 'fr';
-    router.replace(pathname, { locale: next });
-  };
 
   const links = [
     { href: '/providers', label: t('providers') },
@@ -71,13 +65,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-2 md:flex">
-          <button
-            type="button"
-            onClick={switchLocale}
-            className="rounded-md px-2 py-1 text-xs uppercase tracking-wider text-[var(--vp-muted)] transition hover:text-[var(--vp-fg)]"
-          >
-            {locale === 'fr' ? 'EN' : 'FR'}
-          </button>
+          <LocaleMenu />
           <Link
             href="/providers"
             className="rounded-md p-2 text-[var(--vp-muted)] transition hover:bg-white/5 hover:text-[var(--vp-fg)]"
@@ -135,13 +123,7 @@ export function SiteHeader() {
           <p className="text-sm text-[var(--vp-muted)]">
             {t('live')} — {t('comingSoon')}
           </p>
-          <button
-            type="button"
-            onClick={switchLocale}
-            className="mt-2 self-start rounded-md px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)] transition hover:bg-white/5 hover:text-[var(--vp-fg)]"
-          >
-            {locale === 'fr' ? 'EN' : 'FR'}
-          </button>
+          <LocaleMenu variant="panel" className="mt-2" onChosen={() => setOpen(false)} />
           {isAuthenticated ? null : (
             <div className="flex gap-2 pt-2">
               <Button

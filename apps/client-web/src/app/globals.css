@@ -40,7 +40,8 @@ body {
     radial-gradient(ellipse 50% 40% at 100% 0%, rgba(252, 185, 0, 0.07), transparent 45%),
     var(--vp-bg);
   color: var(--vp-fg);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-body), var(--font-noto), "PingFang SC", "Microsoft YaHei",
+    "Hiragino Sans", "Yu Gothic", "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -129,6 +130,60 @@ button:disabled,
   background: rgba(8, 8, 12, 0.28);
   box-shadow: none;
   backdrop-filter: blur(10px);
+}
+
+.locale-menu-trigger {
+  display: inline-flex;
+  max-width: 9.5rem;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 0.4rem;
+  padding: 0.35rem 0.55rem;
+  color: var(--vp-muted);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.locale-menu-trigger:hover {
+  color: var(--vp-fg);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.locale-menu-list {
+  position: absolute;
+  right: 0;
+  z-index: 50;
+  margin: 0.35rem 0 0;
+  min-width: 11rem;
+  list-style: none;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.65rem;
+  background: rgba(12, 14, 18, 0.97);
+  padding: 0.35rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+}
+
+.locale-menu-option {
+  display: block;
+  width: 100%;
+  border-radius: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  color: var(--vp-fg);
+  font-size: 0.85rem;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.locale-menu-option:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.locale-menu-option-active {
+  color: var(--vp-accent-bright);
+  background: rgba(46, 163, 242, 0.14);
 }
 
 .nav-pill-item {
