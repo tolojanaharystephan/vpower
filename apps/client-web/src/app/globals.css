@@ -167,14 +167,32 @@ button:disabled,
 }
 
 .locale-menu-option {
-  display: block;
+  display: flex;
   width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.65rem;
   border-radius: 0.4rem;
   padding: 0.45rem 0.65rem;
   color: var(--vp-fg);
   font-size: 0.85rem;
   text-align: left;
   transition: background 0.15s ease;
+}
+
+.locale-menu-fr {
+  flex-shrink: 0;
+  color: var(--vp-muted);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.locale-menu-option:hover .locale-menu-fr,
+.locale-menu-option:focus-visible .locale-menu-fr {
+  opacity: 1;
 }
 
 .locale-menu-option:hover {

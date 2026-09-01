@@ -3,7 +3,7 @@
 import { Globe } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
-import { LOCALE_LABELS, SUPPORTED_LOCALES, type Locale } from '@vpower777/config';
+import { LOCALE_LABELS, LOCALE_LABELS_FR, SUPPORTED_LOCALES, type Locale } from '@vpower777/config';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 
@@ -45,6 +45,20 @@ export function LocaleMenu({
     onChosen?.();
   };
 
+  const option = (code: Locale) => (
+    <button
+      key={code}
+      type="button"
+      title={LOCALE_LABELS_FR[code]}
+      aria-label={`${LOCALE_LABELS[code]} — ${LOCALE_LABELS_FR[code]}`}
+      onClick={() => choose(code)}
+      className={cn('locale-menu-option', code === locale && 'locale-menu-option-active')}
+    >
+      <span>{LOCALE_LABELS[code]}</span>
+      <span className="locale-menu-fr">{LOCALE_LABELS_FR[code]}</span>
+    </button>
+  );
+
   if (variant === 'panel') {
     return (
       <div className={cn('locale-menu-panel', className)}>
@@ -52,16 +66,7 @@ export function LocaleMenu({
           {t('language')}
         </p>
         <div className="grid grid-cols-2 gap-1.5">
-          {SUPPORTED_LOCALES.map((code) => (
-            <button
-              key={code}
-              type="button"
-              onClick={() => choose(code)}
-              className={cn('locale-menu-option', code === locale && 'locale-menu-option-active')}
-            >
-              {LOCALE_LABELS[code]}
-            </button>
-          ))}
+          {SUPPORTED_LOCALES.map((code) => option(code))}
         </div>
       </div>
     );
@@ -84,9 +89,7 @@ export function LocaleMenu({
         <ul className="locale-menu-list" role="listbox" aria-label={t('language')}>
           {SUPPORTED_LOCALES.map((code) => (
             <li key={code} role="option" aria-selected={code === locale}>
-              <button type="button" className={cn('locale-menu-option', code === locale && 'locale-menu-option-active')} onClick={() => choose(code)}>
-                {LOCALE_LABELS[code]}
-              </button>
+              {option(code)}
             </li>
           ))}
         </ul>

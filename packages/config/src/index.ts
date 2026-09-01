@@ -29,6 +29,18 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   mn: 'Монгол',
 };
 
+/** French designations shown on hover in the language menu. */
+export const LOCALE_LABELS_FR: Record<Locale, string> = {
+  fr: 'Français',
+  en: 'Anglais',
+  es: 'Espagnol',
+  nl: 'Néerlandais',
+  zh: 'Chinois',
+  ko: 'Coréen',
+  ja: 'Japonais',
+  mn: 'Mongol',
+};
+
 export const LOCALE_DATE_TAGS: Record<Locale, string> = {
   fr: 'fr-FR',
   en: 'en-US',
