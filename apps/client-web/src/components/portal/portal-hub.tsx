@@ -13,6 +13,7 @@ import {
   PORTAL_PROVIDERS,
   PORTAL_YOUTUBE_EMBED,
 } from '@/lib/portal';
+import { BrandWordmark } from '@/components/brand/brand-wordmark';
 import { ProviderBgCarousel } from '@/components/portal/provider-bg-carousel';
 import { ProviderPortalCard } from '@/components/portal/provider-portal-card';
 
@@ -39,9 +40,10 @@ export function PortalHub() {
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--vp-accent-bright)]">
             {t('eyebrow')}
           </p>
-          <h1 className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-4xl tracking-wide text-[var(--vp-fg)] sm:text-6xl">
-            {t('title')}
-          </h1>
+          <BrandWordmark
+            as="h1"
+            className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-4xl tracking-wide text-[var(--vp-fg)] sm:text-6xl"
+          />
           <p className="mt-2 text-sm font-medium uppercase tracking-[0.18em] text-[var(--vp-accent-gold)]">
             {t('providersLine')}
           </p>

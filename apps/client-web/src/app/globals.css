@@ -61,6 +61,13 @@ button:disabled,
   cursor: not-allowed;
 }
 
+/* ——— Brand wordmark (VPOWER777) ——— */
+.brand-wordmark {
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: 'lnum' 1, 'tnum' 1;
+}
+
 /* ——— Brand mark ——— */
 .brand-mark {
   display: inline-flex;

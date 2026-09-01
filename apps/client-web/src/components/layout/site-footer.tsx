@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { BrandMark } from '@/components/brand/brand-mark';
+import { BrandWordmark } from '@/components/brand/brand-wordmark';
 
 export async function SiteFooter() {
   const t = await getTranslations('footer');
@@ -34,9 +35,10 @@ export async function SiteFooter() {
           <div className="max-w-sm">
             <Link href="/" className="inline-flex items-center gap-2.5">
               <BrandMark className="h-9 w-9" />
-              <span className="font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-accent)]">
-                {brand('name')}
-              </span>
+              <BrandWordmark
+                name="VPower"
+                className="font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-accent)]"
+              />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-[var(--vp-muted)]">
               {t('blurb')}
@@ -111,7 +113,7 @@ export async function SiteFooter() {
       </div>
 
       <div className="footer-watermark" aria-hidden>
-        {brand('name')}
+        <BrandWordmark name="VPower" />
       </div>
     </footer>
   );

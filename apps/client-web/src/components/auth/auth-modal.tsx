@@ -6,6 +6,7 @@ import { useAuthUi } from '@/components/auth/auth-ui-context';
 import { LoginForm } from '@/components/auth/login-form';
 import { RegisterForm } from '@/components/auth/register-form';
 import { BrandMark } from '@/components/brand/brand-mark';
+import { BrandWordmark } from '@/components/brand/brand-wordmark';
 import { cn } from '@/lib/utils';
 
 export function AuthModal() {
@@ -35,9 +36,10 @@ export function AuthModal() {
           <div className="relative">
             <div className="flex items-center gap-3">
               <BrandMark className="h-10 w-10" />
-              <p className="font-[family-name:var(--font-display)] text-lg tracking-[0.08em] text-[var(--vp-accent)]">
-                {brand('name')}
-              </p>
+              <BrandWordmark
+                name="VPower"
+                className="font-[family-name:var(--font-display)] text-lg tracking-[0.08em] text-[var(--vp-accent)]"
+              />
             </div>
             <p className="mt-auto pt-16 font-[family-name:var(--font-display)] text-3xl leading-tight tracking-wide text-[var(--vp-fg)]">
               {t('panelHeadline')}

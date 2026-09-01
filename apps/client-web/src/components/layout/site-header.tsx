@@ -7,13 +7,13 @@ import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useAuthUi } from '@/components/auth/auth-ui-context';
 import { useSession } from '@/components/auth/session-provider';
 import { BrandMark } from '@/components/brand/brand-mark';
+import { BrandWordmark } from '@/components/brand/brand-wordmark';
 import { UserMenu } from '@/components/layout/user-menu';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export function SiteHeader() {
   const t = useTranslations('nav');
-  const brand = useTranslations('brand');
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
@@ -44,9 +44,10 @@ export function SiteHeader() {
       >
         <Link href="/" className="group flex min-w-0 items-center gap-2.5">
           <BrandMark className="h-8 w-8 shrink-0 transition group-hover:brightness-110 sm:h-9 sm:w-9" />
-          <span className="truncate font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-fg)] transition group-hover:text-[var(--vp-accent)] sm:text-2xl">
-            {brand('name')}
-          </span>
+          <BrandWordmark
+            name="VPower"
+            className="truncate font-[family-name:var(--font-display)] text-xl tracking-[0.06em] text-[var(--vp-fg)] transition group-hover:text-[var(--vp-accent)] sm:text-2xl"
+          />
         </Link>
 
         <nav
