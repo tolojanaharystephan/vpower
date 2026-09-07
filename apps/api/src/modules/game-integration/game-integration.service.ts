@@ -7,6 +7,7 @@ import {
   type RemoteGameSummary,
 } from './game-provider.interface';
 import { Provider100PlusService } from '../provider-100plus/provider-100plus.service';
+import { ProviderDragonfuryService } from '../provider-dragonfury/provider-dragonfury.service';
 import { ClientGameProvider } from './client-game-provider';
 import { VblinkClientService } from './vblink-client.service';
 
@@ -17,6 +18,7 @@ export class GameIntegrationService {
     private readonly client: ClientGameProvider,
     private readonly vblink: VblinkClientService,
     private readonly plus100: Provider100PlusService,
+    private readonly dragonfury: ProviderDragonfuryService,
   ) {}
 
   get mode() {
@@ -47,5 +49,14 @@ export class GameIntegrationService {
       );
     }
     return this.plus100.launchLobby(userId, locale);
+  }
+
+  enterDragonfury(userId: string): Promise<LaunchSessionResult> {
+    if (!this.dragonfury.isConfigured()) {
+      throw new ServiceUnavailableException(
+        'Dragon Fury is not configured. Set DRAGONFURY_ENABLED and credentials.',
+      );
+    }
+    return this.dragonfury.launchLobby(userId);
   }
 }

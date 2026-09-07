@@ -1,6 +1,11 @@
 {
-  "common": { "loading": "Ачааллаж байна…" },
-  "brand": { "name": "VPower777", "tagline": "Тоглоом, тойруугүй" },
+  "common": {
+    "loading": "Ачааллаж байна…"
+  },
+  "brand": {
+    "name": "VPower777",
+    "tagline": "Тоглоом, тойруугүй"
+  },
   "nav": {
     "games": "Тоглоом",
     "providers": "Танхим",
@@ -16,9 +21,20 @@
     "comingSoon": "Удахгүй",
     "language": "Хэл"
   },
-  "wallet": { "devCredit": "+$100", "devCreditHint": "Туршилтын кредит — сонгосон танхимыг цэнэглэнэ. Жинхэнэ касс удахгүй", "balanceLabel": "Үлдэгдэл", "walletsLabel": "Хэтэвч", "roomsTitle": "Танхим бүрийн хэтэвч", "roomsSubtitle": "Танхим бүр өөрийн үлдэгдэлтэй.", "fundRoom": "Цэнэглэх", "openRoom": "Тоглох", "manageWallets": "Хэтэвч удирдах", "thisRoom": "Энэ танхим" },
+  "wallet": {
+    "devCredit": "+$100",
+    "devCreditHint": "Туршилтын кредит — сонгосон танхимыг цэнэглэнэ. Жинхэнэ касс удахгүй",
+    "balanceLabel": "Үлдэгдэл",
+    "walletsLabel": "Хэтэвч",
+    "roomsTitle": "Танхим бүрийн хэтэвч",
+    "roomsSubtitle": "Танхим бүр өөрийн үлдэгдэлтэй.",
+    "fundRoom": "Цэнэглэх",
+    "openRoom": "Тоглох",
+    "manageWallets": "Хэтэвч удирдах",
+    "thisRoom": "Энэ танхим"
+  },
   "hero": {
-    "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
+    "eyebrow": "VBlink · Dragon Fury · 100plus",
     "headline": "Танхим гэрэлтэнэ.\nТалбай чинийх.",
     "sub": "Слот, загас, шууд, аркад. Дөрвөн түнш танхим. Нэг VPower777 нэвтрэлт.",
     "ctaPrimary": "Танхимуудыг харах",
@@ -33,12 +49,17 @@
     "prev": "Өмнөх",
     "next": "Дараах"
   },
-  "rails": { "featured": "Онцлох", "new": "Шинэ", "popular": "Их тоглосон", "viewAll": "Бүгдийг харах" },
+  "rails": {
+    "featured": "Онцлох",
+    "new": "Шинэ",
+    "popular": "Их тоглосон",
+    "viewAll": "Бүгдийг харах"
+  },
   "promos": {
     "title": "Санал",
     "subtitle": "VPower777 дээр одоо нээлттэй зүйл.",
     "welcomeTitle": "Тавтай морил",
-    "welcomeBody": "Бүртгэл нээж танхимд ор: VBlink, Goldendragon, Magiccity, 100plus.",
+    "welcomeBody": "Бүртгэл нээж танхимд ор: VBlink, Dragon Fury, 100plus.",
     "weeklyTitle": "Энэ долоо хоног",
     "weeklyBody": "Гэрэлтүүлэгт гарчиг — дараагийн тойрогт бэлэн."
   },
@@ -82,7 +103,12 @@
     "providerFilter": "Танхим: {name}",
     "clearProvider": "Бүх танхим",
     "providerSubtitle": "{name}-ийн гарчиг. Нэг товшилтоор нээнэ.",
-    "filter": { "all": "Бүх тоглоом", "featured": "Онцлох", "new": "Шинэ", "popular": "Их тоглосон" },
+    "filter": {
+      "all": "Бүх тоглоом",
+      "featured": "Онцлох",
+      "new": "Шинэ",
+      "popular": "Их тоглосон"
+    },
     "emptyTitle": "Танхим бэлтгэгдэж байна",
     "emptyBody": "VBlink порталаар лоббиг нээ.",
     "loadError": "Каталог ачаалагдсангүй. Дахин оролдоорой.",
@@ -91,8 +117,8 @@
   "portal": {
     "eyebrow": "Тавтай морил",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Goldendragon · Magiccity · 100plus",
-    "subtitle": "Нэг танхимаас дөрвөн шууд лобби. Слот, загас, аркад — танхим сонгоод тогло.",
+    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "subtitle": "Нэг танхимаас гурван шууд лобби. Слот, загас, аркад — танхим сонгоод тогло.",
     "ctaAdventure": "Тоглоомд орох",
     "ctaJoin": "Бүртгэл үүсгэх",
     "servicesEyebrow": "Танхим",
@@ -106,7 +132,7 @@
     "mediaBody": "Лавлах порталтай ижил суваг — үзээд тогло.",
     "contactEyebrow": "Холбоо",
     "contactTitle": "Танхим бүрийн шугам, хуудас",
-    "contactBody": "SMS болон Facebook: VBlink, Goldendragon, Magiccity, 100plus.",
+    "contactBody": "SMS болон Facebook: VBlink, Dragon Fury, 100plus.",
     "textLine": "SMS {phone}",
     "enterGames": "Тоглоом нээх",
     "enterCasino": "VBlink нээх",
@@ -117,7 +143,9 @@
     "magiccityTagline": "Аркад ба домог",
     "magiccityBody": "Magiccity: хүчтэй сэдэв, аркад хэмнэл.",
     "hundredPlusTagline": "Өргөн сонголт",
-    "hundredPlusBody": "100plus: энгийнээс өндөр эрчим хүртэл, ижил VPower777 хаалга."
+    "hundredPlusBody": "100plus: энгийнээс өндөр эрчим хүртэл, ижил VPower777 хаалга.",
+    "dragonfuryTagline": "Хүч ба хэмнэл",
+    "dragonfuryBody": "Dragon Fury лобби: бүртгэлийг энд үүсгэж, тоглоомыг түншийн сайт дээр."
   },
   "play": {
     "eyebrow": "Сесс",
@@ -236,7 +264,12 @@
     "tabTickets": "Миний тасалбар",
     "recordVoice": "Дуу",
     "stopVoice": "Зогсоох",
-    "status": { "open": "Нээлттэй", "pending": "Явагдаж байна", "resolved": "Шийдсэн", "closed": "Хаасан" }
+    "status": {
+      "open": "Нээлттэй",
+      "pending": "Явагдаж байна",
+      "resolved": "Шийдсэн",
+      "closed": "Хаасан"
+    }
   },
   "supportBot": {
     "title": "Туслах",
@@ -249,7 +282,11 @@
     "escalateSubject": "Тусламжийн хүсэлт",
     "escalateDefault": "Надад агент хэрэгтэй."
   },
-  "notifications": { "title": "Мэдэгдэл", "empty": "Шинэ зүйл алга.", "markAll": "Бүгдийг уншсан болгох" },
+  "notifications": {
+    "title": "Мэдэгдэл",
+    "empty": "Шинэ зүйл алга.",
+    "markAll": "Бүгдийг уншсан болгох"
+  },
   "help": {
     "eyebrow": "Тусламж",
     "title": "Тоглох, тодорхой",
@@ -259,7 +296,7 @@
     "step1Title": "Үндэс",
     "step1Body": "Бүртгэл, танхим, өнөөдөр нээлттэй зүйл.",
     "step2Title": "Танхим",
-    "step2Body": "VBlink, Goldendragon, Magiccity, 100plus — танхимаас орно.",
+    "step2Body": "VBlink, Dragon Fury, 100plus — танхимаас орно.",
     "step3Title": "Дэмжлэг",
     "step3Body": "Туслах эсвэл тасалбар. Хариу таны бүртгэлд, таны хэлээр үлдэнэ.",
     "destinationsTitle": "Товчлол",
@@ -268,7 +305,7 @@
     "cardFaqBody": "Бүртгэл, танхим, гол зүйл.",
     "cardFaqCta": "FAQ унших",
     "cardGamesTitle": "Тоглоомын танхим",
-    "cardGamesBody": "VBlink, Goldendragon, Magiccity, 100plus — SMS эсвэл Facebook.",
+    "cardGamesBody": "VBlink, Dragon Fury, 100plus — SMS эсвэл Facebook.",
     "cardGamesCta": "Танхим харах",
     "cardPromosTitle": "Санал",
     "cardPromosBody": "Тавтай морил болон энэ долоо хоногийн сонголт.",
@@ -292,5 +329,26 @@
     "a3": "Үгүй. Портал нээлттэй. Бүртгэл нь лобби нээх, мөрдөх, дэмжлэгт зориулагдсан.",
     "q4": "Санал хаана байна?",
     "a4": "Саналын хуудас: тавтай морил болон энэ долоо хоногийн сонголт."
+  },
+  "dragonfuryPlay": {
+    "loginHint": "Нээгдсэн хуудас дээр энэ ID болон нууц үгийг ашигла.",
+    "openGame": "Dragon Fury нээх",
+    "retry": "Дахин оролдох",
+    "lobbyHint": "Лоббиг нээ. Нэвтрэх шаардлагатай бол эдгээр мэдээллийг хадгал.",
+    "loginCta": "Нэвтрэх",
+    "password": "Нууц үг",
+    "copy": "Хуулах",
+    "enterError": "Dragon Fury-г одоо нээх боломжгүй. Дахин оролдоно уу.",
+    "loginTitle": "Эхлээд нэвтэрнэ үү",
+    "hidePassword": "Нууц үг нуух",
+    "redirectTitle": "Dragon Fury лобби нээх",
+    "loginBody": "VPower777 бүртгэл Dragon Fury лоббиг нээнэ.",
+    "backGames": "Каталог руу буцах",
+    "missingTitle": "Сесс байхгүй",
+    "account": "Dragon Fury ID",
+    "backProviders": "Танхим руу буцах",
+    "showPassword": "Нууц үг харуулах",
+    "entering": "Dragon Fury бэлтгэж байна…",
+    "missingBody": "Танхим руу буцаад дахин оролдоорой."
   }
 }

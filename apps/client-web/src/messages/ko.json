@@ -1,6 +1,11 @@
 {
-  "common": { "loading": "불러오는 중…" },
-  "brand": { "name": "VPower777", "tagline": "게임, 우회 없이" },
+  "common": {
+    "loading": "불러오는 중…"
+  },
+  "brand": {
+    "name": "VPower777",
+    "tagline": "게임, 우회 없이"
+  },
   "nav": {
     "games": "게임",
     "providers": "룸",
@@ -16,9 +21,20 @@
     "comingSoon": "곧 오픈",
     "language": "언어"
   },
-  "wallet": { "devCredit": "+$100", "devCreditHint": "테스트 크레딧 — 선택한 룸에 충전. 실제 캐셔 곧 오픈", "balanceLabel": "잔액", "walletsLabel": "지갑", "roomsTitle": "룸별 지갑", "roomsSubtitle": "룸마다 잔액이 따로 있습니다.", "fundRoom": "충전", "openRoom": "플레이", "manageWallets": "지갑 관리", "thisRoom": "이 룸" },
+  "wallet": {
+    "devCredit": "+$100",
+    "devCreditHint": "테스트 크레딧 — 선택한 룸에 충전. 실제 캐셔 곧 오픈",
+    "balanceLabel": "잔액",
+    "walletsLabel": "지갑",
+    "roomsTitle": "룸별 지갑",
+    "roomsSubtitle": "룸마다 잔액이 따로 있습니다.",
+    "fundRoom": "충전",
+    "openRoom": "플레이",
+    "manageWallets": "지갑 관리",
+    "thisRoom": "이 룸"
+  },
   "hero": {
-    "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
+    "eyebrow": "VBlink · Dragon Fury · 100plus",
     "headline": "홀이 켜집니다.\n무대는 당신 것입니다.",
     "sub": "슬롯, 피싱, 라이브, 아케이드. 파트너 룸 네 곳. VPower777 로그인 하나.",
     "ctaPrimary": "룸 보기",
@@ -33,12 +49,17 @@
     "prev": "이전",
     "next": "다음"
   },
-  "rails": { "featured": "추천", "new": "신규", "popular": "인기", "viewAll": "전체 보기" },
+  "rails": {
+    "featured": "추천",
+    "new": "신규",
+    "popular": "인기",
+    "viewAll": "전체 보기"
+  },
   "promos": {
     "title": "혜택",
     "subtitle": "지금 VPower777에서 라이브인 내용.",
     "welcomeTitle": "웰컴",
-    "welcomeBody": "계정을 열고 홀로 들어가세요: VBlink, Goldendragon, Magiccity, 100plus.",
+    "welcomeBody": "계정을 열고 홀로 들어가세요: VBlink, Dragon Fury, 100plus.",
     "weeklyTitle": "이번 주",
     "weeklyBody": "스포트라이트 타이틀 — 다음 라운드 준비 완료."
   },
@@ -82,7 +103,12 @@
     "providerFilter": "룸: {name}",
     "clearProvider": "모든 룸",
     "providerSubtitle": "{name} 타이틀. 한 번에 실행.",
-    "filter": { "all": "모든 게임", "featured": "추천", "new": "신규", "popular": "인기" },
+    "filter": {
+      "all": "모든 게임",
+      "featured": "추천",
+      "new": "신규",
+      "popular": "인기"
+    },
     "emptyTitle": "룸 준비 중",
     "emptyBody": "VBlink 포털에서 로비를 여세요.",
     "loadError": "카탈로그를 불러오지 못했습니다. 다시 시도하세요.",
@@ -91,8 +117,8 @@
   "portal": {
     "eyebrow": "환영합니다",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Goldendragon · Magiccity · 100plus",
-    "subtitle": "하나의 홀에서 라이브 로비 네 곳. 슬롯, 피싱, 아케이드 — 룸을 고르고 플레이하세요.",
+    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "subtitle": "하나의 홀에서 라이브 로비 세 곳. 슬롯, 피싱, 아케이드 — 룸을 고르고 플레이하세요.",
     "ctaAdventure": "게임 입장",
     "ctaJoin": "계정 만들기",
     "servicesEyebrow": "룸",
@@ -106,7 +132,7 @@
     "mediaBody": "레퍼런스 포털과 같은 채널 — 보고, 플레이하세요.",
     "contactEyebrow": "연락처",
     "contactTitle": "룸별 라인과 페이지",
-    "contactBody": "SMS와 Facebook: VBlink, Goldendragon, Magiccity, 100plus.",
+    "contactBody": "SMS와 Facebook: VBlink, Dragon Fury, 100plus.",
     "textLine": "문자 {phone}",
     "enterGames": "게임 실행",
     "enterCasino": "VBlink 열기",
@@ -117,7 +143,9 @@
     "magiccityTagline": "아케이드와 신화",
     "magiccityBody": "Magiccity: 강한 테마, 아케이드 템포.",
     "hundredPlusTagline": "넓은 선택",
-    "hundredPlusBody": "100plus: 캐주얼부터 하이 에너지까지, 같은 VPower777 문."
+    "hundredPlusBody": "100plus: 캐주얼부터 하이 에너지까지, 같은 VPower777 문.",
+    "dragonfuryTagline": "파워와 페이스",
+    "dragonfuryBody": "Dragon Fury 로비: 계정은 여기서, 게임은 파트너 사이트에서."
   },
   "play": {
     "eyebrow": "세션",
@@ -236,7 +264,12 @@
     "tabTickets": "내 티켓",
     "recordVoice": "음성",
     "stopVoice": "중지",
-    "status": { "open": "열림", "pending": "진행 중", "resolved": "해결됨", "closed": "닫힘" }
+    "status": {
+      "open": "열림",
+      "pending": "진행 중",
+      "resolved": "해결됨",
+      "closed": "닫힘"
+    }
   },
   "supportBot": {
     "title": "어시스턴트",
@@ -249,7 +282,11 @@
     "escalateSubject": "도움 요청",
     "escalateDefault": "상담원이 필요합니다."
   },
-  "notifications": { "title": "알림", "empty": "새 소식이 없습니다.", "markAll": "모두 읽음" },
+  "notifications": {
+    "title": "알림",
+    "empty": "새 소식이 없습니다.",
+    "markAll": "모두 읽음"
+  },
   "help": {
     "eyebrow": "도움말",
     "title": "플레이, 분명하게",
@@ -259,7 +296,7 @@
     "step1Title": "기본",
     "step1Body": "계정, 룸, 오늘 열린 것.",
     "step2Title": "룸",
-    "step2Body": "VBlink, Goldendragon, Magiccity, 100plus — 홀에서 입장.",
+    "step2Body": "VBlink, Dragon Fury, 100plus — 홀에서 입장.",
     "step3Title": "고객지원",
     "step3Body": "어시스턴트 또는 티켓. 답변은 계정에, 당신의 언어로 남습니다.",
     "destinationsTitle": "바로가기",
@@ -268,7 +305,7 @@
     "cardFaqBody": "계정, 룸, 핵심.",
     "cardFaqCta": "FAQ 읽기",
     "cardGamesTitle": "게임 룸",
-    "cardGamesBody": "VBlink, Goldendragon, Magiccity, 100plus — SMS 또는 Facebook.",
+    "cardGamesBody": "VBlink, Dragon Fury, 100plus — SMS 또는 Facebook.",
     "cardGamesCta": "룸 보기",
     "cardPromosTitle": "혜택",
     "cardPromosBody": "웰컴과 이번 주 픽.",
@@ -292,5 +329,26 @@
     "a3": "아니요. 포털은 열려 있습니다. 계정은 로비 실행, 추적, 고객지원용입니다.",
     "q4": "혜택은 어디에 있나요?",
     "a4": "혜택 페이지: 웰컴과 이번 주 픽."
+  },
+  "dragonfuryPlay": {
+    "loginHint": "열리는 페이지에서 이 ID와 비밀번호를 사용하세요.",
+    "openGame": "Dragon Fury 열기",
+    "retry": "다시 시도",
+    "lobbyHint": "로비를 여세요. 로그인이 필요하면 이 자격 증명을 보관하세요.",
+    "loginCta": "로그인",
+    "password": "비밀번호",
+    "copy": "복사",
+    "enterError": "지금 Dragon Fury를 열 수 없습니다. 다시 시도하세요.",
+    "loginTitle": "먼저 로그인하세요",
+    "hidePassword": "비밀번호 숨기기",
+    "redirectTitle": "Dragon Fury 로비 열기",
+    "loginBody": "VPower777 계정으로 Dragon Fury 로비를 엽니다.",
+    "backGames": "카탈로그로 돌아가기",
+    "missingTitle": "세션 없음",
+    "account": "Dragon Fury ID",
+    "backProviders": "룸으로 돌아가기",
+    "showPassword": "비밀번호 표시",
+    "entering": "Dragon Fury 준비 중…",
+    "missingBody": "홀로 돌아가 다시 시도하세요."
   }
 }

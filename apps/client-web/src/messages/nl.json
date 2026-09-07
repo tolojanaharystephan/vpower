@@ -1,6 +1,11 @@
 {
-  "common": { "loading": "Laden…" },
-  "brand": { "name": "VPower777", "tagline": "Het spel, zonder omwegen" },
+  "common": {
+    "loading": "Laden…"
+  },
+  "brand": {
+    "name": "VPower777",
+    "tagline": "Het spel, zonder omwegen"
+  },
   "nav": {
     "games": "Spellen",
     "providers": "Zalen",
@@ -16,9 +21,20 @@
     "comingSoon": "Binnenkort",
     "language": "Taal"
   },
-  "wallet": { "devCredit": "+$100", "devCreditHint": "Testtegoed — voedt de zaal die je kiest. Live kassa komt eraan", "balanceLabel": "Saldo", "walletsLabel": "Portefeuilles", "roomsTitle": "Portefeuilles per zaal", "roomsSubtitle": "Elke zaal heeft een eigen saldo.", "fundRoom": "Voeden", "openRoom": "Spelen", "manageWallets": "Portefeuilles beheren", "thisRoom": "Deze zaal" },
+  "wallet": {
+    "devCredit": "+$100",
+    "devCreditHint": "Testtegoed — voedt de zaal die je kiest. Live kassa komt eraan",
+    "balanceLabel": "Saldo",
+    "walletsLabel": "Portefeuilles",
+    "roomsTitle": "Portefeuilles per zaal",
+    "roomsSubtitle": "Elke zaal heeft een eigen saldo.",
+    "fundRoom": "Voeden",
+    "openRoom": "Spelen",
+    "manageWallets": "Portefeuilles beheren",
+    "thisRoom": "Deze zaal"
+  },
   "hero": {
-    "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
+    "eyebrow": "VBlink · Dragon Fury · 100plus",
     "headline": "De hall gaat aan.\nDe vloer is van jou.",
     "sub": "Slots, vissen, live, arcade. Vier partnerzalen. Eén VPower777-login.",
     "ctaPrimary": "Zalen bekijken",
@@ -33,12 +49,17 @@
     "prev": "Vorige",
     "next": "Volgende"
   },
-  "rails": { "featured": "Uitgelicht", "new": "Nieuw", "popular": "Meest gespeeld", "viewAll": "Alles zien" },
+  "rails": {
+    "featured": "Uitgelicht",
+    "new": "Nieuw",
+    "popular": "Meest gespeeld",
+    "viewAll": "Alles zien"
+  },
   "promos": {
     "title": "Aanbiedingen",
     "subtitle": "Wat nu live staat op VPower777.",
     "welcomeTitle": "Welkom",
-    "welcomeBody": "Open een account en stap de hall in: VBlink, Goldendragon, Magiccity, 100plus.",
+    "welcomeBody": "Open een account en stap de hall in: VBlink, Dragon Fury, 100plus.",
     "weeklyTitle": "Deze week",
     "weeklyBody": "Titels in de spotlight — klaar voor de volgende ronde."
   },
@@ -82,7 +103,12 @@
     "providerFilter": "Zaal: {name}",
     "clearProvider": "Alle zalen",
     "providerSubtitle": "Titels van {name}. Eén klik om te starten.",
-    "filter": { "all": "Alle spellen", "featured": "Uitgelicht", "new": "Nieuw", "popular": "Meest gespeeld" },
+    "filter": {
+      "all": "Alle spellen",
+      "featured": "Uitgelicht",
+      "new": "Nieuw",
+      "popular": "Meest gespeeld"
+    },
     "emptyTitle": "Zaal in opbouw",
     "emptyBody": "Open de lobby via het VBlink-portaal.",
     "loadError": "Catalogus laadt niet. Probeer opnieuw.",
@@ -91,8 +117,8 @@
   "portal": {
     "eyebrow": "Welkom bij",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Goldendragon · Magiccity · 100plus",
-    "subtitle": "Vier live lobbies vanuit één hall. Slots, vissen, arcade — kies een zaal en speel.",
+    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "subtitle": "Drie live lobbies vanuit één hall. Slots, vissen, arcade — kies een zaal en speel.",
     "ctaAdventure": "Het spel in",
     "ctaJoin": "Account maken",
     "servicesEyebrow": "Zalen",
@@ -106,7 +132,7 @@
     "mediaBody": "Dezelfde kanalen als het referentieportaal — kijken, dan spelen.",
     "contactEyebrow": "Contact",
     "contactTitle": "Lijnen en pagina’s per zaal",
-    "contactBody": "Sms en Facebook: VBlink, Goldendragon, Magiccity, 100plus.",
+    "contactBody": "Sms en Facebook: VBlink, Dragon Fury, 100plus.",
     "textLine": "Sms {phone}",
     "enterGames": "Spellen starten",
     "enterCasino": "VBlink openen",
@@ -117,7 +143,9 @@
     "magiccityTagline": "Arcade en mythe",
     "magiccityBody": "Magiccity: sterke thema’s, arcade-tempo.",
     "hundredPlusTagline": "Breed aanbod",
-    "hundredPlusBody": "100plus: van casual tot high energy, dezelfde VPower777-deur."
+    "hundredPlusBody": "100plus: van casual tot high energy, dezelfde VPower777-deur.",
+    "dragonfuryTagline": "Kracht en tempo",
+    "dragonfuryBody": "Dragon Fury-lobby: account hier aangemaakt, spelen op de partnersite."
   },
   "play": {
     "eyebrow": "Sessie",
@@ -236,7 +264,12 @@
     "tabTickets": "Mijn tickets",
     "recordVoice": "Stem",
     "stopVoice": "Stop",
-    "status": { "open": "Open", "pending": "Bezig", "resolved": "Opgelost", "closed": "Gesloten" }
+    "status": {
+      "open": "Open",
+      "pending": "Bezig",
+      "resolved": "Opgelost",
+      "closed": "Gesloten"
+    }
   },
   "supportBot": {
     "title": "Assistent",
@@ -249,7 +282,11 @@
     "escalateSubject": "Hulpvraag",
     "escalateDefault": "Ik heb een agent nodig."
   },
-  "notifications": { "title": "Meldingen", "empty": "Niets nieuws.", "markAll": "Alles als gelezen" },
+  "notifications": {
+    "title": "Meldingen",
+    "empty": "Niets nieuws.",
+    "markAll": "Alles als gelezen"
+  },
   "help": {
     "eyebrow": "Hulp",
     "title": "Spelen, helder",
@@ -259,7 +296,7 @@
     "step1Title": "De basis",
     "step1Body": "Account, zalen, wat er vandaag open is.",
     "step2Title": "De zalen",
-    "step2Body": "VBlink, Goldendragon, Magiccity, 100plus — binnen via de hall.",
+    "step2Body": "VBlink, Dragon Fury, 100plus — binnen via de hall.",
     "step3Title": "Support",
     "step3Body": "Assistent of ticket. Antwoorden staan in je account, in jouw taal.",
     "destinationsTitle": "Snelkoppelingen",
@@ -268,7 +305,7 @@
     "cardFaqBody": "Account, zalen, essentie.",
     "cardFaqCta": "FAQ lezen",
     "cardGamesTitle": "Speelzalen",
-    "cardGamesBody": "VBlink, Goldendragon, Magiccity, 100plus — sms of Facebook.",
+    "cardGamesBody": "VBlink, Dragon Fury, 100plus — sms of Facebook.",
     "cardGamesCta": "Zalen zien",
     "cardPromosTitle": "Aanbiedingen",
     "cardPromosBody": "Welkom en de picks van deze week.",
@@ -292,5 +329,26 @@
     "a3": "Nee. Het portaal is open. Een account is voor lobbies starten, opvolging en support.",
     "q4": "Waar zijn de aanbiedingen?",
     "a4": "Pagina Aanbiedingen: welkom en de picks van deze week."
+  },
+  "dragonfuryPlay": {
+    "loginHint": "Op de pagina die opent: dit ID en wachtwoord.",
+    "openGame": "Dragon Fury openen",
+    "retry": "Opnieuw",
+    "lobbyHint": "Open de lobby. Bewaar deze gegevens als inloggen nodig is.",
+    "loginCta": "Inloggen",
+    "password": "Wachtwoord",
+    "copy": "Kopiëren",
+    "enterError": "Dragon Fury kan nu niet geopend worden. Probeer opnieuw.",
+    "loginTitle": "Log eerst in",
+    "hidePassword": "Wachtwoord verbergen",
+    "redirectTitle": "Dragon Fury-lobby openen",
+    "loginBody": "Een VPower777-account opent de Dragon Fury-lobby.",
+    "backGames": "Terug naar catalogus",
+    "missingTitle": "Sessie niet beschikbaar",
+    "account": "Dragon Fury-ID",
+    "backProviders": "Terug naar zalen",
+    "showPassword": "Wachtwoord tonen",
+    "entering": "Dragon Fury voorbereiden…",
+    "missingBody": "Ga terug naar de hall en probeer opnieuw."
   }
 }

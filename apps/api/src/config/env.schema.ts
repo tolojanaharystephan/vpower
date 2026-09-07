@@ -49,6 +49,23 @@ export const envSchema = z.object({
   PLUS100_AUTH_CODE: z.string().trim().optional().default(''),
   PLUS100_SECRET_KEY: z.string().trim().optional().default(''),
 
+  /**
+   * Dragon Fury FastAPI (same protocol as VBlink).
+   * API Server Domain ≠ Game Mainpage (pccnz… ≠ www.dragonfury.club).
+   */
+  DRAGONFURY_ENABLED: booleanFromEnv.default(false),
+  DRAGONFURY_API_BASE_URL: z.string().url().optional().or(z.literal('')).default(''),
+  DRAGONFURY_APP_ID: z.string().trim().optional().default(''),
+  DRAGONFURY_APP_SECRET: z.string().trim().optional().default(''),
+  DRAGONFURY_AGENT_ACCOUNT: z.string().trim().optional().default(''),
+  DRAGONFURY_LOBBY_URL: z
+    .string()
+    .url()
+    .optional()
+    .or(z.literal(''))
+    .default('https://www.dragonfury.club'),
+  DRAGONFURY_TIMEOUT_MS: z.coerce.number().int().positive().default(15000),
+
   GOOGLE_TRANSLATION_API_KEY: z.string().optional().default(''),
   TRANSLATION_ENABLED: booleanFromEnv.default(false),
 

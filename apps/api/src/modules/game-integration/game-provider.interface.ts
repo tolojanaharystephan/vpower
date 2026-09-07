@@ -23,6 +23,8 @@ export type LaunchSessionResult = {
   requiresManualLogin?: boolean;
   plus100Account?: string;
   plus100Password?: string;
+  dragonfuryAccount?: string;
+  dragonfuryPassword?: string;
 };
 
 export type RemoteGameSummary = {

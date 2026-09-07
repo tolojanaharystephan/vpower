@@ -27,4 +27,13 @@ export class PlatformsController {
   enterPlus100(@CurrentUser() user: AuthUser, @Body() body: LaunchGameDto = {}) {
     return this.integration.enterPlus100(user.id, body.locale);
   }
+
+  @Post('dragonfury/enter')
+  @ApiOperation({
+    summary:
+      'Enter Dragon Fury casino: provision player, return Game Mainpage URL + credentials',
+  })
+  enterDragonfury(@CurrentUser() user: AuthUser) {
+    return this.integration.enterDragonfury(user.id);
+  }
 }

@@ -38,6 +38,8 @@ export type LaunchSession = {
   vblinkPassword?: string;
   plus100Account?: string;
   plus100Password?: string;
+  dragonfuryAccount?: string;
+  dragonfuryPassword?: string;
   requiresManualLogin?: boolean;
 };
 
@@ -212,6 +214,19 @@ export async function enterPlus100(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ locale }),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<LaunchSession>;
+}
+
+/** Enter Dragon Fury casino (FastAPI same as VBlink): create player → Game Mainpage. */
+export async function enterDragonfury(accessToken: string): Promise<LaunchSession> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/platforms/dragonfury/enter`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
   });
   if (!res.ok) await parseError(res);
   return res.json() as Promise<LaunchSession>;

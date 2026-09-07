@@ -1,6 +1,11 @@
 {
-  "common": { "loading": "加载中…" },
-  "brand": { "name": "VPower777", "tagline": "游戏，直达" },
+  "common": {
+    "loading": "加载中…"
+  },
+  "brand": {
+    "name": "VPower777",
+    "tagline": "游戏，直达"
+  },
   "nav": {
     "games": "游戏",
     "providers": "场馆",
@@ -16,9 +21,20 @@
     "comingSoon": "即将上线",
     "language": "语言"
   },
-  "wallet": { "devCredit": "+$100", "devCreditHint": "测试额度 — 充入所选场馆。正式收银台即将开放", "balanceLabel": "余额", "walletsLabel": "钱包", "roomsTitle": "分场馆钱包", "roomsSubtitle": "每个场馆有独立余额。", "fundRoom": "充值", "openRoom": "开始", "manageWallets": "管理钱包", "thisRoom": "本场馆" },
+  "wallet": {
+    "devCredit": "+$100",
+    "devCreditHint": "测试额度 — 充入所选场馆。正式收银台即将开放",
+    "balanceLabel": "余额",
+    "walletsLabel": "钱包",
+    "roomsTitle": "分场馆钱包",
+    "roomsSubtitle": "每个场馆有独立余额。",
+    "fundRoom": "充值",
+    "openRoom": "开始",
+    "manageWallets": "管理钱包",
+    "thisRoom": "本场馆"
+  },
   "hero": {
-    "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
+    "eyebrow": "VBlink · Dragon Fury · 100plus",
     "headline": "大厅亮灯。\n舞台归你。",
     "sub": "老虎机、捕鱼、真人、街机。四座合作场馆。一次 VPower777 登录。",
     "ctaPrimary": "查看场馆",
@@ -33,12 +49,17 @@
     "prev": "上一页",
     "next": "下一页"
   },
-  "rails": { "featured": "精选", "new": "上新", "popular": "热玩", "viewAll": "查看全部" },
+  "rails": {
+    "featured": "精选",
+    "new": "上新",
+    "popular": "热玩",
+    "viewAll": "查看全部"
+  },
   "promos": {
     "title": "优惠",
     "subtitle": "VPower777 当前上线的内容。",
     "welcomeTitle": "欢迎礼",
-    "welcomeBody": "开户即可进入大厅：VBlink、Goldendragon、Magiccity、100plus。",
+    "welcomeBody": "开户即可进入大厅：VBlink、Dragon Fury、100plus。",
     "weeklyTitle": "本周",
     "weeklyBody": "聚光灯下的游戏 — 下一局随时开打。"
   },
@@ -82,7 +103,12 @@
     "providerFilter": "场馆：{name}",
     "clearProvider": "全部场馆",
     "providerSubtitle": "{name} 的游戏。一键启动。",
-    "filter": { "all": "全部游戏", "featured": "精选", "new": "上新", "popular": "热玩" },
+    "filter": {
+      "all": "全部游戏",
+      "featured": "精选",
+      "new": "上新",
+      "popular": "热玩"
+    },
     "emptyTitle": "场馆筹备中",
     "emptyBody": "通过 VBlink 门户打开大厅。",
     "loadError": "目录未能加载。请重试。",
@@ -91,8 +117,8 @@
   "portal": {
     "eyebrow": "欢迎来到",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Goldendragon · Magiccity · 100plus",
-    "subtitle": "一座大厅，四个在线大厅。老虎机、捕鱼、街机 — 选场馆，开玩。",
+    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "subtitle": "一座大厅，三个在线大厅。老虎机、捕鱼、街机 — 选场馆，开玩。",
     "ctaAdventure": "进入游戏",
     "ctaJoin": "创建账户",
     "servicesEyebrow": "场馆",
@@ -106,7 +132,7 @@
     "mediaBody": "与参考门户同一频道 — 先看，再玩。",
     "contactEyebrow": "联系",
     "contactTitle": "各场馆线路与主页",
-    "contactBody": "短信与 Facebook：VBlink、Goldendragon、Magiccity、100plus。",
+    "contactBody": "短信与 Facebook：VBlink、Dragon Fury、100plus。",
     "textLine": "短信 {phone}",
     "enterGames": "启动游戏",
     "enterCasino": "打开 VBlink",
@@ -117,7 +143,9 @@
     "magiccityTagline": "街机与传说",
     "magiccityBody": "Magiccity：鲜明主题，街机节奏。",
     "hundredPlusTagline": "选择更宽",
-    "hundredPlusBody": "100plus：从轻松到高能，同一扇 VPower777 门。"
+    "hundredPlusBody": "100plus：从轻松到高能，同一扇 VPower777 门。",
+    "dragonfuryTagline": "力度与节奏",
+    "dragonfuryBody": "Dragon Fury 大厅：账号在此创建，游戏在合作站点。"
   },
   "play": {
     "eyebrow": "会话",
@@ -236,7 +264,12 @@
     "tabTickets": "我的工单",
     "recordVoice": "语音",
     "stopVoice": "停止",
-    "status": { "open": "进行中", "pending": "处理中", "resolved": "已解决", "closed": "已关闭" }
+    "status": {
+      "open": "进行中",
+      "pending": "处理中",
+      "resolved": "已解决",
+      "closed": "已关闭"
+    }
   },
   "supportBot": {
     "title": "助手",
@@ -249,7 +282,11 @@
     "escalateSubject": "帮助请求",
     "escalateDefault": "我需要人工客服。"
   },
-  "notifications": { "title": "通知", "empty": "暂无新消息。", "markAll": "全部标为已读" },
+  "notifications": {
+    "title": "通知",
+    "empty": "暂无新消息。",
+    "markAll": "全部标为已读"
+  },
   "help": {
     "eyebrow": "帮助",
     "title": "玩法说明",
@@ -259,7 +296,7 @@
     "step1Title": "基础",
     "step1Body": "账户、场馆、今日开放内容。",
     "step2Title": "场馆",
-    "step2Body": "VBlink、Goldendragon、Magiccity、100plus — 从大厅进入。",
+    "step2Body": "VBlink、Dragon Fury、100plus — 从大厅进入。",
     "step3Title": "客服",
     "step3Body": "助手或工单。回复保存在你的账户，使用你的语言。",
     "destinationsTitle": "快捷入口",
@@ -268,7 +305,7 @@
     "cardFaqBody": "账户、场馆、要点。",
     "cardFaqCta": "阅读 FAQ",
     "cardGamesTitle": "游戏场馆",
-    "cardGamesBody": "VBlink、Goldendragon、Magiccity、100plus — 短信或 Facebook。",
+    "cardGamesBody": "VBlink、Dragon Fury、100plus — 短信或 Facebook。",
     "cardGamesCta": "查看场馆",
     "cardPromosTitle": "优惠",
     "cardPromosBody": "欢迎礼与本周精选。",
@@ -292,5 +329,26 @@
     "a3": "不需要。门户开放。账户用于启动大厅、跟进与客服。",
     "q4": "优惠在哪里？",
     "a4": "优惠页：欢迎礼与本周精选。"
+  },
+  "dragonfuryPlay": {
+    "loginHint": "在打开的页面使用此账号和密码。",
+    "openGame": "打开 Dragon Fury",
+    "retry": "重试",
+    "lobbyHint": "打开大厅。如需登录请保留这些凭据。",
+    "loginCta": "登录",
+    "password": "密码",
+    "copy": "复制",
+    "enterError": "暂时无法打开 Dragon Fury，请重试。",
+    "loginTitle": "请先登录",
+    "hidePassword": "隐藏密码",
+    "redirectTitle": "正在打开 Dragon Fury 大厅",
+    "loginBody": "VPower777 账户可打开 Dragon Fury 大厅。",
+    "backGames": "返回目录",
+    "missingTitle": "会话不可用",
+    "account": "Dragon Fury 账号",
+    "backProviders": "返回场馆",
+    "showPassword": "显示密码",
+    "entering": "正在准备 Dragon Fury…",
+    "missingBody": "返回大厅后重试。"
   }
 }

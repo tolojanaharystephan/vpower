@@ -24,8 +24,13 @@ export function generateRequestId(): string {
 export class VblinkSignatureService {
   constructor(private readonly config: AppConfigService) {}
 
-  sign(params: Record<string, unknown>, skipSecret = false): string {
-    const appSecret = this.config.vblink.appSecret;
+  sign(
+    params: Record<string, unknown>,
+    skipSecret = false,
+    /** Override when signing for another FastAPI partner (e.g. Dragon Fury). */
+    appSecretOverride?: string,
+  ): string {
+    const appSecret = (appSecretOverride ?? this.config.vblink.appSecret).trim();
     const normalized: Record<string, string> = {};
 
     for (const [key, value] of Object.entries(params)) {

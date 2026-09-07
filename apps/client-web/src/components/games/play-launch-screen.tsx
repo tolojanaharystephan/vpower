@@ -7,7 +7,7 @@ import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import { useAuthUi } from '@/components/auth/auth-ui-context';
 import { useSession } from '@/components/auth/session-provider';
-import { enterPlus100, enterVblink, launchGame } from '@/lib/api';
+import { enterDragonfury, enterPlus100, enterVblink, launchGame } from '@/lib/api';
 import { RoomWalletLine } from '@/components/wallet/room-wallets-panel';
 
 type LaunchState = {
@@ -20,8 +20,14 @@ type LaunchState = {
 
 type CopiedField = 'account' | 'password' | null;
 
+function playNs(slug: string) {
+  if (slug === '100plus') return 'plus100Play';
+  if (slug === 'dragonfury') return 'dragonfuryPlay';
+  return 'vblinkPlay';
+}
+
 /**
- * Player flow: click game → POST launch → ensure VBlink account →
+ * Player flow: click game → POST launch → ensure partner account →
  * show credentials + "Ouvrir le jeu" → window.open(launchUrl, '_blank').
  */
 export function PlayLaunchScreen({
@@ -33,7 +39,7 @@ export function PlayLaunchScreen({
   title?: string;
   gameId?: string;
 }) {
-  const t = useTranslations(slug === '100plus' ? 'plus100Play' : 'vblinkPlay');
+  const t = useTranslations(playNs(slug));
   const locale = useLocale();
   const { openAuth } = useAuthUi();
   const { accessToken, isAuthenticated, ready } = useSession();
@@ -55,7 +61,9 @@ export function PlayLaunchScreen({
 
     void (async () => {
       try {
-        if (slug !== 'vblink' && slug !== '100plus' && !gameId) {
+        const isPortalRoom =
+          slug === 'vblink' || slug === '100plus' || slug === 'dragonfury';
+        if (!isPortalRoom && !gameId) {
           throw new Error(t('enterError'));
         }
 
@@ -64,12 +72,22 @@ export function PlayLaunchScreen({
             ? await enterVblink(accessToken)
             : slug === '100plus' && !gameId
               ? await enterPlus100(accessToken, locale)
-              : await launchGame(accessToken, gameId!, locale);
+              : slug === 'dragonfury' && !gameId
+                ? await enterDragonfury(accessToken)
+                : await launchGame(accessToken, gameId!, locale);
 
         setState({
           title: session.title || title || slug,
-          account: session.vblinkAccount || session.plus100Account || '',
-          password: session.vblinkPassword || session.plus100Password || '',
+          account:
+            session.vblinkAccount ||
+            session.plus100Account ||
+            session.dragonfuryAccount ||
+            '',
+          password:
+            session.vblinkPassword ||
+            session.plus100Password ||
+            session.dragonfuryPassword ||
+            '',
           launchUrl: session.launchUrl,
           requiresManualLogin: session.requiresManualLogin ?? true,
         });
@@ -156,7 +174,13 @@ export function PlayLaunchScreen({
           <p className="mt-2 text-sm text-[var(--vp-muted)]">{state.title}</p>
         ) : null}
         <RoomWalletLine
-          roomSlug={slug === '100plus' ? '100plus' : 'vblink'}
+          roomSlug={
+            slug === '100plus'
+              ? '100plus'
+              : slug === 'dragonfury'
+                ? 'dragonfury'
+                : 'vblink'
+          }
         />
 
         {state.account ? (

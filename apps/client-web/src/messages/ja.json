@@ -1,6 +1,11 @@
 {
-  "common": { "loading": "読み込み中…" },
-  "brand": { "name": "VPower777", "tagline": "ゲームへ、遠回りせず" },
+  "common": {
+    "loading": "読み込み中…"
+  },
+  "brand": {
+    "name": "VPower777",
+    "tagline": "ゲームへ、遠回りせず"
+  },
   "nav": {
     "games": "ゲーム",
     "providers": "ルーム",
@@ -16,9 +21,20 @@
     "comingSoon": "近日公開",
     "language": "言語"
   },
-  "wallet": { "devCredit": "+$100", "devCreditHint": "テストクレジット — 選んだルームに入金。本格キャッシャーは近日公開", "balanceLabel": "残高", "walletsLabel": "ウォレット", "roomsTitle": "ルーム別ウォレット", "roomsSubtitle": "ルームごとに残高が分かれます。", "fundRoom": "入金", "openRoom": "プレイ", "manageWallets": "ウォレット管理", "thisRoom": "このルーム" },
+  "wallet": {
+    "devCredit": "+$100",
+    "devCreditHint": "テストクレジット — 選んだルームに入金。本格キャッシャーは近日公開",
+    "balanceLabel": "残高",
+    "walletsLabel": "ウォレット",
+    "roomsTitle": "ルーム別ウォレット",
+    "roomsSubtitle": "ルームごとに残高が分かれます。",
+    "fundRoom": "入金",
+    "openRoom": "プレイ",
+    "manageWallets": "ウォレット管理",
+    "thisRoom": "このルーム"
+  },
   "hero": {
-    "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
+    "eyebrow": "VBlink · Dragon Fury · 100plus",
     "headline": "ホールが灯る。\nフロアは、あなたのもの。",
     "sub": "スロット、フィッシング、ライブ、アーケード。提携ルーム4つ。VPower777のログインは1つ。",
     "ctaPrimary": "ルームを見る",
@@ -33,12 +49,17 @@
     "prev": "前へ",
     "next": "次へ"
   },
-  "rails": { "featured": "注目", "new": "新着", "popular": "人気", "viewAll": "すべて見る" },
+  "rails": {
+    "featured": "注目",
+    "new": "新着",
+    "popular": "人気",
+    "viewAll": "すべて見る"
+  },
   "promos": {
     "title": "オファー",
     "subtitle": "VPower777で今ライブのもの。",
     "welcomeTitle": "ウェルカム",
-    "welcomeBody": "アカウントを開き、ホールへ。VBlink、Goldendragon、Magiccity、100plus。",
+    "welcomeBody": "アカウントを開き、ホールへ。VBlink、Dragon Fury、100plus。",
     "weeklyTitle": "今週",
     "weeklyBody": "スポットライトのタイトル — 次のラウンドへ。"
   },
@@ -82,7 +103,12 @@
     "providerFilter": "ルーム: {name}",
     "clearProvider": "すべてのルーム",
     "providerSubtitle": "{name}のタイトル。ワンクリックで起動。",
-    "filter": { "all": "すべてのゲーム", "featured": "注目", "new": "新着", "popular": "人気" },
+    "filter": {
+      "all": "すべてのゲーム",
+      "featured": "注目",
+      "new": "新着",
+      "popular": "人気"
+    },
     "emptyTitle": "ルーム準備中",
     "emptyBody": "VBlinkポータルからロビーを開いてください。",
     "loadError": "カタログを読み込めませんでした。再試行してください。",
@@ -91,8 +117,8 @@
   "portal": {
     "eyebrow": "ようこそ",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Goldendragon · Magiccity · 100plus",
-    "subtitle": "1つのホールからライブロビー4つ。スロット、フィッシング、アーケード — ルームを選んでプレイ。",
+    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "subtitle": "1つのホールからライブロビー3つ。スロット、フィッシング、アーケード — ルームを選んでプレイ。",
     "ctaAdventure": "ゲームへ入る",
     "ctaJoin": "アカウントを作る",
     "servicesEyebrow": "ルーム",
@@ -106,7 +132,7 @@
     "mediaBody": "参考ポータルと同じチャンネル — 見て、それからプレイ。",
     "contactEyebrow": "連絡先",
     "contactTitle": "ルームごとの回線とページ",
-    "contactBody": "SMSとFacebook: VBlink、Goldendragon、Magiccity、100plus。",
+    "contactBody": "SMSとFacebook: VBlink、Dragon Fury、100plus。",
     "textLine": "SMS {phone}",
     "enterGames": "ゲームを起動",
     "enterCasino": "VBlinkを開く",
@@ -117,7 +143,9 @@
     "magiccityTagline": "アーケードと神話",
     "magiccityBody": "Magiccity: 強いテーマ、アーケードのテンポ。",
     "hundredPlusTagline": "広いフロア",
-    "hundredPlusBody": "100plus: カジュアルからハイエナジーまで、同じVPower777の扉。"
+    "hundredPlusBody": "100plus: カジュアルからハイエナジーまで、同じVPower777の扉。",
+    "dragonfuryTagline": "パワーとテンポ",
+    "dragonfuryBody": "Dragon Furyロビー: アカウントはここで作成、ゲームは提携サイト。"
   },
   "play": {
     "eyebrow": "セッション",
@@ -236,7 +264,12 @@
     "tabTickets": "マイチケット",
     "recordVoice": "音声",
     "stopVoice": "停止",
-    "status": { "open": "オープン", "pending": "対応中", "resolved": "解決", "closed": "クローズ" }
+    "status": {
+      "open": "オープン",
+      "pending": "対応中",
+      "resolved": "解決",
+      "closed": "クローズ"
+    }
   },
   "supportBot": {
     "title": "アシスタント",
@@ -249,7 +282,11 @@
     "escalateSubject": "ヘルプ依頼",
     "escalateDefault": "エージェントが必要です。"
   },
-  "notifications": { "title": "通知", "empty": "新しいものはありません。", "markAll": "すべて既読" },
+  "notifications": {
+    "title": "通知",
+    "empty": "新しいものはありません。",
+    "markAll": "すべて既読"
+  },
   "help": {
     "eyebrow": "ヘルプ",
     "title": "プレイを、はっきりと",
@@ -259,7 +296,7 @@
     "step1Title": "基本",
     "step1Body": "アカウント、ルーム、今日開いているもの。",
     "step2Title": "ルーム",
-    "step2Body": "VBlink、Goldendragon、Magiccity、100plus — ホールから入る。",
+    "step2Body": "VBlink、Dragon Fury、100plus — ホールから入る。",
     "step3Title": "サポート",
     "step3Body": "アシスタントかチケット。返信はアカウントに、あなたの言語で残ります。",
     "destinationsTitle": "ショートカット",
@@ -268,7 +305,7 @@
     "cardFaqBody": "アカウント、ルーム、要点。",
     "cardFaqCta": "FAQを読む",
     "cardGamesTitle": "ゲームルーム",
-    "cardGamesBody": "VBlink、Goldendragon、Magiccity、100plus — SMSまたはFacebook。",
+    "cardGamesBody": "VBlink、Dragon Fury、100plus — SMSまたはFacebook。",
     "cardGamesCta": "ルームを見る",
     "cardPromosTitle": "オファー",
     "cardPromosBody": "ウェルカムと今週のピック。",
@@ -292,5 +329,26 @@
     "a3": "いいえ。ポータルは開いています。アカウントはロビー起動、追跡、サポート用です。",
     "q4": "オファーはどこですか？",
     "a4": "オファーページ：ウェルカムと今週のピック。"
+  },
+  "dragonfuryPlay": {
+    "loginHint": "開いたページでこのIDとパスワードを使います。",
+    "openGame": "Dragon Furyを開く",
+    "retry": "再試行",
+    "lobbyHint": "ロビーを開いてください。ログインが必要ならこの認証情報を保管。",
+    "loginCta": "ログイン",
+    "password": "パスワード",
+    "copy": "コピー",
+    "enterError": "いまDragon Furyを開けません。再試行してください。",
+    "loginTitle": "先にログイン",
+    "hidePassword": "パスワードを隠す",
+    "redirectTitle": "Dragon Furyロビーを開く",
+    "loginBody": "VPower777アカウントでDragon Furyロビーを開きます。",
+    "backGames": "カタログに戻る",
+    "missingTitle": "セッション不可",
+    "account": "Dragon Fury ID",
+    "backProviders": "ルームに戻る",
+    "showPassword": "パスワードを表示",
+    "entering": "Dragon Furyを準備中…",
+    "missingBody": "ホールに戻って再試行してください。"
   }
 }

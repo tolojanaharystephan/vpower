@@ -1,6 +1,11 @@
 {
-  "common": { "loading": "Cargando…" },
-  "brand": { "name": "VPower777", "tagline": "El juego, sin rodeos" },
+  "common": {
+    "loading": "Cargando…"
+  },
+  "brand": {
+    "name": "VPower777",
+    "tagline": "El juego, sin rodeos"
+  },
   "nav": {
     "games": "Juegos",
     "providers": "Salas",
@@ -16,9 +21,20 @@
     "comingSoon": "Pronto",
     "language": "Idioma"
   },
-  "wallet": { "devCredit": "+100 $", "devCreditHint": "Crédito de prueba — alimenta la sala que elijas. La caja real llega pronto", "balanceLabel": "Saldo", "walletsLabel": "Carteras", "roomsTitle": "Carteras por sala", "roomsSubtitle": "Cada sala tiene su propio saldo.", "fundRoom": "Alimentar", "openRoom": "Jugar", "manageWallets": "Gestionar carteras", "thisRoom": "Esta sala" },
+  "wallet": {
+    "devCredit": "+100 $",
+    "devCreditHint": "Crédito de prueba — alimenta la sala que elijas. La caja real llega pronto",
+    "balanceLabel": "Saldo",
+    "walletsLabel": "Carteras",
+    "roomsTitle": "Carteras por sala",
+    "roomsSubtitle": "Cada sala tiene su propio saldo.",
+    "fundRoom": "Alimentar",
+    "openRoom": "Jugar",
+    "manageWallets": "Gestionar carteras",
+    "thisRoom": "Esta sala"
+  },
   "hero": {
-    "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
+    "eyebrow": "VBlink · Dragon Fury · 100plus",
     "headline": "El hall se enciende.\nEl juego es tuyo.",
     "sub": "Tragamonedas, pesca, en vivo, arcade. Cuatro salas socias. Un acceso VPower777.",
     "ctaPrimary": "Ver las salas",
@@ -33,12 +49,17 @@
     "prev": "Anterior",
     "next": "Siguiente"
   },
-  "rails": { "featured": "Destacados", "new": "Novedades", "popular": "Más jugados", "viewAll": "Ver todo" },
+  "rails": {
+    "featured": "Destacados",
+    "new": "Novedades",
+    "popular": "Más jugados",
+    "viewAll": "Ver todo"
+  },
   "promos": {
     "title": "Ofertas",
     "subtitle": "Lo que está activo ahora en VPower777.",
     "welcomeTitle": "Bienvenida",
-    "welcomeBody": "Abre una cuenta y entra al hall: VBlink, Goldendragon, Magiccity, 100plus.",
+    "welcomeBody": "Abre una cuenta y entra al hall: VBlink, Dragon Fury, 100plus.",
     "weeklyTitle": "Esta semana",
     "weeklyBody": "Títulos en el centro — listos para la siguiente ronda."
   },
@@ -82,7 +103,12 @@
     "providerFilter": "Sala: {name}",
     "clearProvider": "Todas las salas",
     "providerSubtitle": "Títulos de {name}. Un clic para lanzar.",
-    "filter": { "all": "Todos los juegos", "featured": "Destacados", "new": "Novedades", "popular": "Más jugados" },
+    "filter": {
+      "all": "Todos los juegos",
+      "featured": "Destacados",
+      "new": "Novedades",
+      "popular": "Más jugados"
+    },
     "emptyTitle": "Sala en preparación",
     "emptyBody": "Abre el lobby desde el portal VBlink.",
     "loadError": "El catálogo no cargó. Inténtalo de nuevo.",
@@ -91,8 +117,8 @@
   "portal": {
     "eyebrow": "Bienvenido a",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Goldendragon · Magiccity · 100plus",
-    "subtitle": "Cuatro lobbies en vivo desde un solo hall. Tragamonedas, pesca, arcade — elige sala y juega.",
+    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "subtitle": "Tres lobbies en vivo desde un solo hall. Tragamonedas, pesca, arcade — elige sala y juega.",
     "ctaAdventure": "Entrar al juego",
     "ctaJoin": "Crear una cuenta",
     "servicesEyebrow": "Salas",
@@ -106,7 +132,7 @@
     "mediaBody": "Los mismos canales que el portal de referencia — mira, luego juega.",
     "contactEyebrow": "Contacto",
     "contactTitle": "Líneas y páginas por sala",
-    "contactBody": "SMS y Facebook: VBlink, Goldendragon, Magiccity, 100plus.",
+    "contactBody": "SMS y Facebook: VBlink, Dragon Fury, 100plus.",
     "textLine": "SMS {phone}",
     "enterGames": "Lanzar juegos",
     "enterCasino": "Abrir VBlink",
@@ -117,7 +143,9 @@
     "magiccityTagline": "Arcade y mito",
     "magiccityBody": "Magiccity: temas fuertes, tempo arcade.",
     "hundredPlusTagline": "Selección amplia",
-    "hundredPlusBody": "100plus: de casual a alta energía, misma puerta VPower777."
+    "hundredPlusBody": "100plus: de casual a alta energía, misma puerta VPower777.",
+    "dragonfuryTagline": "Potencia y ritmo",
+    "dragonfuryBody": "Lobby Dragon Fury: cuenta creada aquí, juego en el sitio socio."
   },
   "play": {
     "eyebrow": "Sesión",
@@ -236,7 +264,12 @@
     "tabTickets": "Mis tickets",
     "recordVoice": "Voz",
     "stopVoice": "Parar",
-    "status": { "open": "Abierto", "pending": "En curso", "resolved": "Resuelto", "closed": "Cerrado" }
+    "status": {
+      "open": "Abierto",
+      "pending": "En curso",
+      "resolved": "Resuelto",
+      "closed": "Cerrado"
+    }
   },
   "supportBot": {
     "title": "Asistente",
@@ -249,7 +282,11 @@
     "escalateSubject": "Solicitud de ayuda",
     "escalateDefault": "Necesito un agente."
   },
-  "notifications": { "title": "Notificaciones", "empty": "Nada nuevo.", "markAll": "Marcar todo leído" },
+  "notifications": {
+    "title": "Notificaciones",
+    "empty": "Nada nuevo.",
+    "markAll": "Marcar todo leído"
+  },
   "help": {
     "eyebrow": "Ayuda",
     "title": "Jugar, en claro",
@@ -259,7 +296,7 @@
     "step1Title": "Lo básico",
     "step1Body": "Cuenta, salas, qué está abierto hoy.",
     "step2Title": "Las salas",
-    "step2Body": "VBlink, Goldendragon, Magiccity, 100plus — entra desde el hall.",
+    "step2Body": "VBlink, Dragon Fury, 100plus — entra desde el hall.",
     "step3Title": "Soporte",
     "step3Body": "Asistente o ticket. Las respuestas quedan en tu cuenta, en tu idioma.",
     "destinationsTitle": "Atajos",
@@ -268,7 +305,7 @@
     "cardFaqBody": "Cuenta, salas, esencial.",
     "cardFaqCta": "Leer FAQ",
     "cardGamesTitle": "Salas de juego",
-    "cardGamesBody": "VBlink, Goldendragon, Magiccity, 100plus — SMS o Facebook.",
+    "cardGamesBody": "VBlink, Dragon Fury, 100plus — SMS o Facebook.",
     "cardGamesCta": "Ver salas",
     "cardPromosTitle": "Ofertas",
     "cardPromosBody": "Bienvenida y selecciones de la semana.",
@@ -292,5 +329,26 @@
     "a3": "No. El portal está abierto. La cuenta sirve para lanzar lobbies, seguimiento y soporte.",
     "q4": "¿Dónde están las ofertas?",
     "a4": "Página Ofertas: bienvenida y selecciones de la semana."
+  },
+  "dragonfuryPlay": {
+    "loginHint": "En la página que se abre: este ID y esta contraseña.",
+    "openGame": "Abrir Dragon Fury",
+    "retry": "Reintentar",
+    "lobbyHint": "Abre el lobby. Guarda estos datos si piden inicio de sesión.",
+    "loginCta": "Iniciar sesión",
+    "password": "Contraseña",
+    "copy": "Copiar",
+    "enterError": "No se puede abrir Dragon Fury ahora. Inténtalo de nuevo.",
+    "loginTitle": "Inicia sesión primero",
+    "hidePassword": "Ocultar contraseña",
+    "redirectTitle": "Abriendo el lobby Dragon Fury",
+    "loginBody": "Una cuenta VPower777 abre el lobby Dragon Fury.",
+    "backGames": "Volver al catálogo",
+    "missingTitle": "Sesión no disponible",
+    "account": "ID Dragon Fury",
+    "backProviders": "Volver a las salas",
+    "showPassword": "Mostrar contraseña",
+    "entering": "Preparando Dragon Fury…",
+    "missingBody": "Vuelve al hall e inténtalo de nuevo."
   }
 }

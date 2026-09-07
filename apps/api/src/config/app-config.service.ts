@@ -92,6 +92,26 @@ export class AppConfigService {
     };
   }
 
+  get dragonfury() {
+    const enabled = this.config.get('DRAGONFURY_ENABLED', { infer: true });
+    const apiBaseUrl = (
+      this.config.get('DRAGONFURY_API_BASE_URL', { infer: true }) || ''
+    ).replace(/\/$/, '');
+    const lobbyUrl = (
+      this.config.get('DRAGONFURY_LOBBY_URL', { infer: true }) ||
+      'https://www.dragonfury.club'
+    ).replace(/\/$/, '');
+    return {
+      enabled,
+      apiBaseUrl,
+      appId: (this.config.get('DRAGONFURY_APP_ID', { infer: true }) || '').trim(),
+      appSecret: (this.config.get('DRAGONFURY_APP_SECRET', { infer: true }) || '').trim(),
+      agentAccount: (this.config.get('DRAGONFURY_AGENT_ACCOUNT', { infer: true }) || '').trim(),
+      lobbyUrl,
+      timeoutMs: this.config.get('DRAGONFURY_TIMEOUT_MS', { infer: true }),
+    };
+  }
+
   get logLevel(): AppEnv['LOG_LEVEL'] {
     return this.config.get('LOG_LEVEL', { infer: true });
   }

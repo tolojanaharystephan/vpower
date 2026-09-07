@@ -1,5 +1,7 @@
 {
-  "common": { "loading": "Loading…" },
+  "common": {
+    "loading": "Loading…"
+  },
   "brand": {
     "name": "VPower777",
     "tagline": "The game, no detours"
@@ -32,7 +34,7 @@
     "thisRoom": "This room"
   },
   "hero": {
-    "eyebrow": "VBlink · Goldendragon · Magiccity · 100plus",
+    "eyebrow": "VBlink · Dragon Fury · 100plus",
     "headline": "The hall lights up.\nThe floor is yours.",
     "sub": "Slots, fishing, live, arcade. Four partner rooms. One VPower777 login.",
     "ctaPrimary": "See the rooms",
@@ -55,9 +57,9 @@
   },
   "promos": {
     "title": "Offers",
-    "subtitle": "What's live on VPower777 right now.",
+    "subtitle": "What\u0027s live on VPower777 right now.",
     "welcomeTitle": "Welcome",
-    "welcomeBody": "Open an account and step into the hall: VBlink, Goldendragon, Magiccity, 100plus.",
+    "welcomeBody": "Open an account and step into the hall: VBlink, Dragon Fury, 100plus.",
     "weeklyTitle": "This week",
     "weeklyBody": "Titles in the spotlight — ready for the next round."
   },
@@ -74,7 +76,7 @@
     "submitRegister": "Sign up",
     "noAccount": "New here?",
     "hasAccount": "Already registered?",
-    "errorGeneric": "That didn't go through. Try again in a moment."
+    "errorGeneric": "That didn\u0027t go through. Try again in a moment."
   },
   "footer": {
     "blurb": "VPower777 — one hall, four live rooms. Slots, fishing, arcade.",
@@ -109,14 +111,14 @@
     },
     "emptyTitle": "Room in setup",
     "emptyBody": "Open the lobby through the VBlink portal.",
-    "loadError": "Catalog didn't load. Try again.",
+    "loadError": "Catalog didn\u0027t load. Try again.",
     "loading": "Loading catalog…"
   },
   "portal": {
     "eyebrow": "Welcome to",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Goldendragon · Magiccity · 100plus",
-    "subtitle": "Four live lobbies from one hall. Slots, fishing, arcade — pick a room and play.",
+    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "subtitle": "Three live lobbies from one hall. Slots, fishing, arcade — pick a room and play.",
     "ctaAdventure": "Enter the game",
     "ctaJoin": "Create an account",
     "servicesEyebrow": "Rooms",
@@ -130,7 +132,7 @@
     "mediaBody": "The same channels as the reference portal — watch, then play.",
     "contactEyebrow": "Contact",
     "contactTitle": "Lines and pages by room",
-    "contactBody": "SMS and Facebook: VBlink, Goldendragon, Magiccity, 100plus.",
+    "contactBody": "SMS and Facebook: VBlink, Dragon Fury, 100plus.",
     "textLine": "Text {phone}",
     "enterGames": "Launch games",
     "enterCasino": "Open VBlink",
@@ -141,7 +143,9 @@
     "magiccityTagline": "Arcade and myth",
     "magiccityBody": "Magiccity: strong themes, arcade tempo.",
     "hundredPlusTagline": "Wide floor",
-    "hundredPlusBody": "100plus: casual to high energy, same VPower777 door."
+    "hundredPlusBody": "100plus: casual to high energy, same VPower777 door.",
+    "dragonfuryTagline": "Power and pace",
+    "dragonfuryBody": "Dragon Fury lobby: account created here, games on the partner site."
   },
   "play": {
     "eyebrow": "Session",
@@ -157,7 +161,7 @@
     "loginBody": "A VPower777 account unlocks the VBlink room.",
     "loginCta": "Log in",
     "entering": "Preparing VBlink…",
-    "enterError": "Couldn't open VBlink just now. Try again.",
+    "enterError": "Couldn\u0027t open VBlink just now. Try again.",
     "retry": "Retry",
     "transferred": "{amount} transferred.",
     "noTransfer": "",
@@ -186,7 +190,7 @@
     "loginBody": "A VPower777 account opens the 100plus lobby.",
     "loginCta": "Log in",
     "entering": "Opening 100plus…",
-    "enterError": "Couldn't open 100plus just now. Try again.",
+    "enterError": "Couldn\u0027t open 100plus just now. Try again.",
     "retry": "Retry",
     "account": "100plus ID",
     "password": "Password",
@@ -213,7 +217,7 @@
     "save": "Save",
     "saving": "Saving…",
     "logout": "Log out",
-    "error": "Couldn't update. Try again.",
+    "error": "Couldn\u0027t update. Try again.",
     "badgeActive": "Active",
     "badgeVerified": "Email confirmed",
     "badgeUnverified": "Confirm email",
@@ -269,7 +273,7 @@
   },
   "supportBot": {
     "title": "Assistant",
-    "subtitle": "Fast answers. An agent when it's more complex.",
+    "subtitle": "Fast answers. An agent when it\u0027s more complex.",
     "welcome": "Account, rooms, deposit: ask. If not, an agent takes over.",
     "welcomeTitle": "How we can help",
     "placeholder": "Your question…",
@@ -290,9 +294,9 @@
     "visualLabel": "VPower777",
     "pathLabel": "Path",
     "step1Title": "The basics",
-    "step1Body": "Account, rooms, what's open today.",
+    "step1Body": "Account, rooms, what\u0027s open today.",
     "step2Title": "The rooms",
-    "step2Body": "VBlink, Goldendragon, Magiccity, 100plus — enter from the hall.",
+    "step2Body": "VBlink, Dragon Fury, 100plus — enter from the hall.",
     "step3Title": "Support",
     "step3Body": "Assistant or ticket. Replies live in your account, in your language.",
     "destinationsTitle": "Shortcuts",
@@ -301,10 +305,10 @@
     "cardFaqBody": "Account, rooms, essentials.",
     "cardFaqCta": "Read FAQ",
     "cardGamesTitle": "Game rooms",
-    "cardGamesBody": "VBlink, Goldendragon, Magiccity, 100plus — SMS or Facebook.",
+    "cardGamesBody": "VBlink, Dragon Fury, 100plus — SMS or Facebook.",
     "cardGamesCta": "See rooms",
     "cardPromosTitle": "Offers",
-    "cardPromosBody": "Welcome and this week's picks.",
+    "cardPromosBody": "Welcome and this week\u0027s picks.",
     "cardPromosCta": "See offers",
     "cardSupportTitle": "Support",
     "cardSupportBody": "Ticket from your account, tracked replies.",
@@ -324,6 +328,27 @@
     "q3": "Do I need an account to see the rooms?",
     "a3": "No. The portal is open. An account is for launching lobbies, tracking, and support.",
     "q4": "Where are the offers?",
-    "a4": "Offers page: welcome and this week's picks."
+    "a4": "Offers page: welcome and this week\u0027s picks."
+  },
+  "dragonfuryPlay": {
+    "loginHint": "On the page that opens: use this ID and password.",
+    "openGame": "Open Dragon Fury",
+    "retry": "Retry",
+    "lobbyHint": "Open the lobby. Keep these credentials if login is required.",
+    "loginCta": "Log in",
+    "password": "Password",
+    "copy": "Copy",
+    "enterError": "Can\u0027t open Dragon Fury right now. Try again.",
+    "loginTitle": "Sign in first",
+    "hidePassword": "Hide password",
+    "redirectTitle": "Opening Dragon Fury lobby",
+    "loginBody": "A VPower777 account opens the Dragon Fury lobby.",
+    "backGames": "Back to catalog",
+    "missingTitle": "Session unavailable",
+    "account": "Dragon Fury ID",
+    "backProviders": "Back to rooms",
+    "showPassword": "Show password",
+    "entering": "Preparing Dragon Fury…",
+    "missingBody": "Return to the hall and try again."
   }
 }
