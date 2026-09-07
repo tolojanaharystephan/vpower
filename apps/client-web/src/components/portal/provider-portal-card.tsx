@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import {
   Facebook,
   Instagram,
@@ -23,62 +22,59 @@ export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
   const enterHref = roomPlayHref(provider.slug);
 
   return (
-    <article className="portal-provider-card group">
-      <Link href={enterHref} className="relative block aspect-[16/11] overflow-hidden">
-        <Image
-          src={provider.imageUrl}
-          alt={provider.name}
-          fill
-          className="object-cover transition duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-        {provider.live ? (
-          <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-[rgba(252,185,0,0.55)] bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-accent-gold)] backdrop-blur">
-            <Radio className="h-3 w-3" />
-            {t('live')}
-          </span>
-        ) : null}
-      </Link>
+    <article
+      className="portal-provider-card group h-full"
+      style={{ ['--portal-card-accent' as string]: provider.accent }}
+    >
+      <div className="flex h-full flex-1 flex-col p-5 sm:p-6">
+        <div className="flex items-start justify-between gap-3">
+          <Link href={enterHref} className="min-w-0 flex-1">
+            <h3 className="font-[family-name:var(--font-display)] text-2xl tracking-wide text-[var(--vp-fg)] transition group-hover:text-[var(--vp-accent-bright)]">
+              {provider.name}
+            </h3>
+          </Link>
+          {provider.live ? (
+            <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[rgba(252,185,0,0.55)] bg-black/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-accent-gold)]">
+              <Radio className="h-3 w-3" />
+              {t('live')}
+            </span>
+          ) : null}
+        </div>
 
-      <div className="flex flex-1 flex-col p-5">
-        <Link href={enterHref}>
-          <h3 className="font-[family-name:var(--font-display)] text-2xl tracking-wide text-[var(--vp-fg)] transition group-hover:text-[var(--vp-accent-bright)]">
-            {provider.name}
-          </h3>
-        </Link>
         <p className="mt-1 text-sm font-medium text-[var(--vp-accent)]">{t(provider.taglineKey)}</p>
         {wallet ? (
           <p className="mt-2 text-sm font-semibold text-[var(--vp-accent-bright)]">
             {tw('balanceLabel')}: ${wallet.balance}
           </p>
         ) : null}
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--vp-muted)]">
+        <p className="mt-3 min-h-[3.25rem] text-sm leading-relaxed text-[var(--vp-muted)]">
           {t(provider.bodyKey)}
         </p>
 
-        {provider.phones.length > 0 ? (
-          <div className="mt-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
-              {t('contactEyebrow')}
-            </p>
-            <ul className="mt-2 space-y-1.5">
-              {provider.phones.map((phone) => (
-                <li key={`${provider.slug}-${phone}`}>
-                  <a
-                    href={`sms:${phone}`}
-                    className="inline-flex items-center gap-2 text-sm text-[var(--vp-accent-bright)] transition hover:underline"
-                  >
-                    <MessageCircle className="h-3.5 w-3.5" />
-                    {t('textLine', { phone })}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+        <div className="mt-4 flex-1">
+          {provider.phones.length > 0 ? (
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
+                {t('contactEyebrow')}
+              </p>
+              <ul className="mt-2 space-y-1.5">
+                {provider.phones.map((phone) => (
+                  <li key={`${provider.slug}-${phone}`}>
+                    <a
+                      href={`sms:${phone}`}
+                      className="inline-flex items-center gap-2 text-sm text-[var(--vp-accent-bright)] transition hover:underline"
+                    >
+                      <MessageCircle className="h-3.5 w-3.5" />
+                      {t('textLine', { phone })}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 flex min-h-[2rem] flex-wrap gap-2">
           {provider.facebook ? (
             <a
               href={provider.facebook}
