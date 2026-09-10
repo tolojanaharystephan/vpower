@@ -45,13 +45,12 @@ export function RoomAgentChatPanel({
 
   useEffect(() => {
     void load(roomSlug).catch((e) =>
-      setError(e instanceof Error ? e.message : t('error')),
+      setError(e instanceof Error ? e.message : 'Error'),
     );
     const id = setInterval(() => {
       void load(roomSlug).catch(() => undefined);
     }, 8000);
     return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken, roomSlug]);
 
   useEffect(() => {
@@ -125,7 +124,6 @@ export function RoomAgentChatPanel({
                     <p className="whitespace-pre-wrap text-sm text-[var(--vp-fg)]">{m.body}</p>
                   ) : null}
                   {m.imageUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={mediaUrl(m.imageUrl) ?? undefined}
                       alt={t('proof')}

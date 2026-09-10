@@ -151,7 +151,6 @@ export function RoomChatPanel() {
                 </p>
                 {m.body ? <p className="mt-1 whitespace-pre-wrap">{m.body}</p> : null}
                 {m.imageUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={mediaUrl(m.imageUrl) ?? undefined}
                     alt="Pièce jointe"
