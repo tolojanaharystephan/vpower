@@ -1,14 +1,27 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { AdminTopbar } from '@/components/layout/admin-topbar';
 import { DashboardOverview } from '@/components/dashboard/dashboard-overview';
 import { useAdminAuth } from '@/components/auth/admin-auth-provider';
+import { useRouter } from '@/i18n/navigation';
+import { BrandLoader } from '@/components/brand/brand-loader';
 
 export default function DashboardPage() {
   const t = useTranslations('dashboard');
-  const { user } = useAdminAuth();
+  const common = useTranslations('common');
+  const { user, isRoomAgent, ready } = useAdminAuth();
+  const router = useRouter();
   const name = user?.firstName ?? user?.email?.split('@')[0] ?? t('helloFallback');
+
+  useEffect(() => {
+    if (ready && isRoomAgent) router.replace('/room-players');
+  }, [ready, isRoomAgent, router]);
+
+  if (!ready || isRoomAgent) {
+    return <BrandLoader fullScreen size="md" label={common('redirecting')} />;
+  }
 
   return (
     <>

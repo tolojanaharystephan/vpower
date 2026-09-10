@@ -278,9 +278,70 @@ export const walletTransactions = pgTable(
     kind: text('kind').notNull(),
     reference: text('reference'),
     meta: text('meta'),
+    /** Staff/agent who performed agent_deposit / agent_withdraw. */
+    createdByUserId: uuid('created_by_user_id').references(() => users.id, {
+      onDelete: 'set null',
+    }),
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   },
-  (table) => [index('wallet_transactions_user_room_idx').on(table.userId, table.roomSlug)],
+  (table) => [
+    index('wallet_transactions_user_room_idx').on(table.userId, table.roomSlug),
+    index('wallet_transactions_room_kind_idx').on(table.roomSlug, table.kind),
+  ],
+);
+
+/** Which partner rooms a ROOM_AGENT may operate. */
+export const agentRoomScopes = pgTable(
+  'agent_room_scopes',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    roomSlug: text('room_slug').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex('agent_room_scopes_user_room_uidx').on(table.userId, table.roomSlug),
+  ],
+);
+
+/** One chat thread between a player and a room's agents. */
+export const roomConversations = pgTable(
+  'room_conversations',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    playerUserId: uuid('player_user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    roomSlug: text('room_slug').notNull(),
+    lastMessageAt: timestamp('last_message_at', { withTimezone: true }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex('room_conversations_player_room_uidx').on(table.playerUserId, table.roomSlug),
+    index('room_conversations_room_last_idx').on(table.roomSlug, table.lastMessageAt),
+  ],
+);
+
+export const roomChatAuthorEnum = pgEnum('room_chat_author', ['player', 'agent']);
+
+export const roomChatMessages = pgTable(
+  'room_chat_messages',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    conversationId: uuid('conversation_id')
+      .notNull()
+      .references(() => roomConversations.id, { onDelete: 'cascade' }),
+    authorUserId: uuid('author_user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    authorKind: roomChatAuthorEnum('author_kind').notNull(),
+    body: text('body').notNull().default(''),
+    imageUrl: text('image_url'),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [index('room_chat_messages_conv_created_idx').on(table.conversationId, table.createdAt)],
 );
 
 /** Phase 9–10 — support tickets MVP */
@@ -396,6 +457,9 @@ export type SupportBotFaq = typeof supportBotFaqs.$inferSelect;
 export type ProviderPlayerAccount = typeof providerPlayerAccounts.$inferSelect;
 export type UserWallet = typeof userWallets.$inferSelect;
 export type WalletTransaction = typeof walletTransactions.$inferSelect;
+export type AgentRoomScope = typeof agentRoomScopes.$inferSelect;
+export type RoomConversation = typeof roomConversations.$inferSelect;
+export type RoomChatMessage = typeof roomChatMessages.$inferSelect;
 
 export const schema = {
   systemMeta,
@@ -416,6 +480,9 @@ export const schema = {
   providerPlayerAccounts,
   userWallets,
   walletTransactions,
+  agentRoomScopes,
+  roomConversations,
+  roomChatMessages,
   supportTickets,
   supportMessages,
   supportMessageTranslations,

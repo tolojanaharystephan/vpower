@@ -21,14 +21,21 @@
     "switchLocale": "EN",
     "operations": "Operations",
     "searchPlaceholder": "Rechercher…",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "agentPortal": "Portail agent",
+    "agentMode": "Mode agent salle"
   },
   "nav": {
     "dashboard": "Dashboard",
     "users": "Utilisateurs",
     "games": "Jeux",
     "content": "Contenu",
-    "support": "Support"
+    "support": "Support",
+    "revenue": "Recettes",
+    "roomPlayers": "Joueurs salle",
+    "roomChat": "Chat salle",
+    "roomCash": "Caisse",
+    "agents": "Agents"
   },
   "login": {
     "staffConsole": "Portail admin",
@@ -46,13 +53,42 @@
     "formEyebrow": "Espace sécurisé",
     "formTitle": "Connexion",
     "formSubtitle": "Accédez à votre console d'administration.",
-    "formHint": "Accès réservé aux comptes avec la permission <code>admin:access</code>.",
+    "formHint": "Accès réservé aux comptes avec <code>admin:access</code> ou <code>agent:access</code>.",
     "email": "Email",
     "password": "Mot de passe",
     "submit": "Se connecter",
     "submitting": "Connexion…",
     "error": "Connexion impossible",
     "noAccess": "Ce compte n'a pas accès à l'administration."
+  },
+  "revenue": {
+    "title": "Recettes",
+    "subtitle": "Dépôts agents, retraits et net par salle + total plateforme.",
+    "deposits": "Recettes",
+    "withdrawals": "Retraits",
+    "net": "Net",
+    "platformTotal": "Total plateforme",
+    "period": "Période",
+    "day": "Jour",
+    "week": "Semaine",
+    "month": "Mois",
+    "all": "Tout"
+  },
+  "roomPlayers": {
+    "title": "Joueurs de la salle",
+    "subtitle": "Solde wallet et crédit / débit après preuve de virement."
+  },
+  "roomChat": {
+    "title": "Chat salle",
+    "subtitle": "Conversations joueur ↔ agent (preuves de dépôt)."
+  },
+  "roomCash": {
+    "title": "Caisse",
+    "subtitle": "Stats et opérations de votre salle."
+  },
+  "agentsPage": {
+    "title": "Agents",
+    "subtitle": "Créer et assigner des agents de salle."
   },
   "dashboard": {
     "title": "Dashboard",

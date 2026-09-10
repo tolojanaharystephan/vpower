@@ -237,7 +237,7 @@
   "support": {
     "eyebrow": "Support",
     "title": "Ask. Get an answer.",
-    "subtitle": "Assistant or ticket, in your language.",
+    "subtitle": "Assistant or room-agent chat — send your transfer proof here.",
     "loading": "Loading…",
     "empty": "No tickets yet. Open one if you need help.",
     "selectTicket": "Choose a conversation",
@@ -262,6 +262,7 @@
     "translatedFrom": "Translated from {lang}",
     "tabAssistant": "Quick help",
     "tabTickets": "My tickets",
+    "tabAgent": "Room agent",
     "recordVoice": "Voice",
     "stopVoice": "Stop",
     "status": {
@@ -271,14 +272,27 @@
       "closed": "Closed"
     }
   },
+  "roomChat": {
+    "title": "Agent chat",
+    "hint": "{room} agent — send a message or a transfer screenshot.",
+    "empty": "Send your first message to this room's agent.",
+    "you": "You",
+    "agent": "Agent",
+    "proof": "Transfer proof",
+    "placeholder": "Message for the agent…",
+    "attachProof": "Attach proof (image)",
+    "send": "Send",
+    "sending": "Sending…",
+    "error": "Unable to send the message."
+  },
   "supportBot": {
     "title": "Assistant",
-    "subtitle": "Fast answers. An agent when it\u0027s more complex.",
-    "welcome": "Account, rooms, deposit: ask. If not, an agent takes over.",
+    "subtitle": "Fast answers. A room agent when it's more complex.",
+    "welcome": "Account, rooms, deposit: ask. Otherwise talk to your room agent.",
     "welcomeTitle": "How we can help",
     "placeholder": "Your question…",
-    "talkToHuman": "Talk to an agent",
-    "escalating": "Opening ticket…",
+    "talkToHuman": "Talk to the room agent",
+    "escalating": "Opening chat…",
     "escalateSubject": "Help request",
     "escalateDefault": "I need an agent."
   },

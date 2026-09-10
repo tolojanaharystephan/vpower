@@ -55,7 +55,7 @@ describe('UsersService.ensureVblinkAccount', () => {
   }
 
   it('decrypts and returns an existing encrypted account without calling createPlayer', async () => {
-    const { encryptVblinkPassword } = await import('../../common/crypto/vblink-password');
+    const { encryptVblinkPassword } = await import('../../common/crypto/vblink-password.js');
     const encrypted = encryptVblinkPassword('Vpstored99a1!');
     const { service, vblink } = buildService({
       existingAccount: 'AG_existing',

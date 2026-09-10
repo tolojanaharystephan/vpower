@@ -1,36 +1,27 @@
 'use client';
 
 import { useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
 import { Bot, Send } from 'lucide-react';
-import {
-  chatSupportBot,
-  escalateSupportBot,
-  type BotChatReply,
-} from '@/lib/api';
+import { chatSupportBot, type BotChatReply } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 
 type ChatLine = { role: 'user' | 'bot'; text: string; meta?: BotChatReply };
 
 export function SupportBotPanel({
   accessToken,
-  preferredLang,
-  onEscalated,
+  preferredLang: _preferredLang,
+  onTalkToAgent,
 }: {
   accessToken: string;
   preferredLang: string;
-  onEscalated: (ticketId: string) => void;
+  onTalkToAgent: () => void;
 }) {
   const t = useTranslations('supportBot');
   const locale = useLocale();
-  const queryClient = useQueryClient();
   const [input, setInput] = useState('');
-  const [lines, setLines] = useState<ChatLine[]>([
-    { role: 'bot', text: t('welcome') },
-  ]);
-  const [lastBot, setLastBot] = useState<BotChatReply | null>(null);
-  const [lastUserMsg, setLastUserMsg] = useState('');
+  const [lines, setLines] = useState<ChatLine[]>([{ role: 'bot', text: t('welcome') }]);
 
   const chatMutation = useMutation({
     mutationFn: () =>
@@ -41,23 +32,7 @@ export function SupportBotPanel({
         { role: 'user', text: input.trim() },
         { role: 'bot', text: reply.answer, meta: reply },
       ]);
-      setLastUserMsg(input.trim());
-      setLastBot(reply);
       setInput('');
-    },
-  });
-
-  const escalateMutation = useMutation({
-    mutationFn: () =>
-      escalateSupportBot(accessToken, {
-        message: lastUserMsg || input.trim() || t('escalateDefault'),
-        preferredLang,
-        botAnswer: lastBot?.answer,
-        subject: t('escalateSubject'),
-      }),
-    onSuccess: async (ticket) => {
-      await queryClient.invalidateQueries({ queryKey: ['support-tickets'] });
-      onEscalated(ticket.id);
     },
   });
 
@@ -115,14 +90,8 @@ export function SupportBotPanel({
             <Send className="h-4 w-4" />
           </Button>
         </form>
-        <Button
-          type="button"
-          variant="secondary"
-          className="w-full"
-          disabled={escalateMutation.isPending}
-          onClick={() => escalateMutation.mutate()}
-        >
-          {escalateMutation.isPending ? t('escalating') : t('talkToHuman')}
+        <Button type="button" variant="secondary" className="w-full" onClick={onTalkToAgent}>
+          {t('talkToHuman')}
         </Button>
       </div>
     </div>

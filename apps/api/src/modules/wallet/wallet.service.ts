@@ -97,7 +97,14 @@ export class WalletService {
     return this.listForUser(userId);
   }
 
-  async credit(userId: string, roomSlug: string, amountCents: number, kind: string, reference?: string) {
+  async credit(
+    userId: string,
+    roomSlug: string,
+    amountCents: number,
+    kind: string,
+    reference?: string,
+    createdByUserId?: string,
+  ) {
     const slug = this.parseRoomSlug(roomSlug);
     if (amountCents <= 0) throw new BadRequestException('credit amount must be positive');
     await this.getOrCreate(userId, slug);
@@ -116,12 +123,20 @@ export class WalletService {
         amountCents,
         kind,
         reference,
+        createdByUserId: createdByUserId ?? null,
       });
       return wallet!;
     });
   }
 
-  async debit(userId: string, roomSlug: string, amountCents: number, kind: string, reference?: string) {
+  async debit(
+    userId: string,
+    roomSlug: string,
+    amountCents: number,
+    kind: string,
+    reference?: string,
+    createdByUserId?: string,
+  ) {
     const slug = this.parseRoomSlug(roomSlug);
     if (amountCents <= 0) throw new BadRequestException('debit amount must be positive');
     await this.getOrCreate(userId, slug);
@@ -149,9 +164,20 @@ export class WalletService {
         amountCents: -amountCents,
         kind,
         reference,
+        createdByUserId: createdByUserId ?? null,
       });
       return wallet;
     });
+  }
+
+  async listTransactions(userId: string, roomSlug: string, limit = 50) {
+    const slug = this.parseRoomSlug(roomSlug);
+    return this.db
+      .select()
+      .from(walletTransactions)
+      .where(and(eq(walletTransactions.userId, userId), eq(walletTransactions.roomSlug, slug)))
+      .orderBy(sql`${walletTransactions.createdAt} desc`)
+      .limit(limit);
   }
 
   formatDollars(cents: number): string {

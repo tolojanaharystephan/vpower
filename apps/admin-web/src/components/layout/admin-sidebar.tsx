@@ -4,27 +4,52 @@ import {
   Gamepad2,
   Headphones,
   LayoutDashboard,
+  MessageSquare,
   Newspaper,
   Users,
+  Wallet,
+  ChartColumn,
+  UserCog,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { AdminMark } from '@/components/brand/admin-mark';
 import { Link, usePathname } from '@/i18n/navigation';
+import { useAdminAuth } from '@/components/auth/admin-auth-provider';
 import { BRAND } from '@vpower777/config';
 import { cn } from '@/lib/utils';
 
-export const ADMIN_NAV = [
+const MASTER_NAV = [
   { href: '/', labelKey: 'dashboard' as const, icon: LayoutDashboard },
+  { href: '/revenue', labelKey: 'revenue' as const, icon: ChartColumn },
   { href: '/users', labelKey: 'users' as const, icon: Users },
+  { href: '/room-players', labelKey: 'roomPlayers' as const, icon: Users },
+  { href: '/room-chat', labelKey: 'roomChat' as const, icon: MessageSquare },
+  { href: '/room-cash', labelKey: 'roomCash' as const, icon: Wallet },
+  { href: '/agents', labelKey: 'agents' as const, icon: UserCog },
   { href: '/games', labelKey: 'games' as const, icon: Gamepad2 },
   { href: '/content', labelKey: 'content' as const, icon: Newspaper },
   { href: '/support', labelKey: 'support' as const, icon: Headphones },
 ];
 
+const AGENT_NAV = [
+  { href: '/room-players', labelKey: 'roomPlayers' as const, icon: Users },
+  { href: '/room-chat', labelKey: 'roomChat' as const, icon: MessageSquare },
+  { href: '/room-cash', labelKey: 'roomCash' as const, icon: Wallet },
+];
+
+/** @deprecated use getStaffNav — kept for mobile shell compatibility */
+export const ADMIN_NAV = MASTER_NAV;
+
+export function getStaffNav(isRoomAgent: boolean) {
+  return isRoomAgent ? AGENT_NAV : MASTER_NAV;
+}
+
 export function AdminSidebar() {
   const t = useTranslations('nav');
   const common = useTranslations('common');
   const pathname = usePathname();
+  const { isMasterAdmin, isRoomAgent } = useAdminAuth();
+  const nav = getStaffNav(isRoomAgent);
 
   return (
     <aside className="admin-sidebar">
@@ -35,7 +60,7 @@ export function AdminSidebar() {
             {BRAND.name}
           </p>
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--vp-muted)]">
-            {common('adminPortal')}
+            {isRoomAgent ? common('agentPortal') : common('adminPortal')}
           </p>
         </div>
       </div>
@@ -44,7 +69,7 @@ export function AdminSidebar() {
         <p className="px-3 pb-2 pt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--vp-muted)]">
           {common('menu')}
         </p>
-        {ADMIN_NAV.map((item) => {
+        {nav.map((item) => {
           const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
           const Icon = item.icon;
           return (
@@ -67,9 +92,8 @@ export function AdminSidebar() {
           </p>
           <p className="mt-1.5 flex items-center gap-2 text-xs text-[var(--vp-fg)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--vp-success)] shadow-[0_0_8px_rgba(81,199,125,0.8)]" />
-            {common('operational')}
+            {isMasterAdmin ? common('operational') : common('agentMode')}
           </p>
-          <p className="mt-1 text-[10px] text-[var(--vp-muted)]">{common('systemVersion')}</p>
         </div>
       </div>
     </aside>

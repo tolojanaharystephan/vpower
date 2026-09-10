@@ -512,3 +512,46 @@ export async function markAllNotificationsRead(accessToken: string) {
   if (!res.ok) await parseError(res);
 }
 
+export type RoomChatMessage = {
+  id: string;
+  body: string;
+  imageUrl?: string | null;
+  authorKind: 'player' | 'agent';
+  authorUserId: string;
+  authorName: string;
+  createdAt: string;
+};
+
+export async function fetchRoomConversation(accessToken: string, roomSlug: string) {
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/support/rooms/${encodeURIComponent(roomSlug)}/conversation`,
+    { headers: { Authorization: `Bearer ${accessToken}` } },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{
+    conversation: { id: string; roomSlug: string; playerUserId: string };
+    messages: RoomChatMessage[];
+  }>;
+}
+
+export async function postRoomChatMessage(
+  accessToken: string,
+  roomSlug: string,
+  body: string,
+  image?: File | null,
+) {
+  const form = new FormData();
+  if (body) form.append('body', body);
+  if (image) form.append('image', image);
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/support/rooms/${encodeURIComponent(roomSlug)}/conversation/messages`,
+    {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${accessToken}` },
+      body: form,
+    },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json();
+}
+

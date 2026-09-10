@@ -15,6 +15,8 @@ import {
   getAdminAccessToken,
   getAdminRefreshToken,
   hasAdminAccess,
+  hasStaffPortalAccess,
+  isRoomAgentOnly,
   loginAdmin,
   logoutAdmin,
   persistAdminSession,
@@ -32,6 +34,8 @@ type AdminAuthState = {
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   isStaff: boolean;
+  isMasterAdmin: boolean;
+  isRoomAgent: boolean;
 };
 
 const AdminAuthContext = createContext<AdminAuthState | null>(null);
@@ -61,7 +65,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       setUser(me);
       setRoles(me.roles);
       setPermissions(me.permissions);
-      if (!hasAdminAccess(me.permissions)) {
+      if (!hasStaffPortalAccess(me.permissions)) {
         clearAdminSession();
         setUser(null);
         setRoles([]);
@@ -85,7 +89,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
 
   const login = useCallback(async (email: string, password: string) => {
     const data = await loginAdmin({ email, password });
-    if (!hasAdminAccess(data.permissions)) {
+    if (!hasStaffPortalAccess(data.permissions)) {
       throw new Error('NO_ADMIN_ACCESS');
     }
     persistAdminSession(data);
@@ -114,7 +118,9 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       accessToken,
       login,
       logout,
-      isStaff: hasAdminAccess(permissions),
+      isStaff: hasStaffPortalAccess(permissions),
+      isMasterAdmin: hasAdminAccess(permissions),
+      isRoomAgent: isRoomAgentOnly(permissions),
     }),
     [ready, user, roles, permissions, accessToken, login, logout],
   );

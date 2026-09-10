@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/components/ui/password-input';
 import { useRouter } from '@/i18n/navigation';
+import { isRoomAgentOnly, readCachedSession } from '@/lib/api';
 
 const schema = z.object({
   email: z.string().email(),
@@ -36,7 +37,10 @@ export function AdminLoginForm() {
         setError(null);
         try {
           await login(values.email, values.password);
-          router.replace('/');
+          const session = readCachedSession();
+          router.replace(
+            isRoomAgentOnly(session?.permissions ?? []) ? '/room-players' : '/',
+          );
         } catch (err) {
           const message = err instanceof Error ? err.message : '';
           setError(message === 'NO_ADMIN_ACCESS' ? t('noAccess') : message || t('error'));

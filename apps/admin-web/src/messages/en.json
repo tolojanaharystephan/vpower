@@ -21,14 +21,21 @@
     "switchLocale": "FR",
     "operations": "Operations",
     "searchPlaceholder": "Search…",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "agentPortal": "Agent portal",
+    "agentMode": "Room agent mode"
   },
   "nav": {
     "dashboard": "Dashboard",
     "users": "Users",
     "games": "Games",
     "content": "Content",
-    "support": "Support"
+    "support": "Support",
+    "revenue": "Revenue",
+    "roomPlayers": "Room players",
+    "roomChat": "Room chat",
+    "roomCash": "Cash desk",
+    "agents": "Agents"
   },
   "login": {
     "staffConsole": "Admin portal",
@@ -46,13 +53,42 @@
     "formEyebrow": "Secure area",
     "formTitle": "Sign in",
     "formSubtitle": "Access your administration console.",
-    "formHint": "Access reserved for accounts with the <code>admin:access</code> permission.",
+    "formHint": "Access reserved for accounts with <code>admin:access</code> or <code>agent:access</code>.",
     "email": "Email",
     "password": "Password",
     "submit": "Sign in",
     "submitting": "Signing in…",
     "error": "Unable to sign in",
     "noAccess": "This account does not have administration access."
+  },
+  "revenue": {
+    "title": "Revenue",
+    "subtitle": "Agent deposits, withdrawals and net per room + platform total.",
+    "deposits": "Deposits",
+    "withdrawals": "Withdrawals",
+    "net": "Net",
+    "platformTotal": "Platform total",
+    "period": "Period",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "all": "All"
+  },
+  "roomPlayers": {
+    "title": "Room players",
+    "subtitle": "Wallet balance and credit / debit after transfer proof."
+  },
+  "roomChat": {
+    "title": "Room chat",
+    "subtitle": "Player ↔ agent conversations (deposit proofs)."
+  },
+  "roomCash": {
+    "title": "Cash desk",
+    "subtitle": "Stats and operations for your room."
+  },
+  "agentsPage": {
+    "title": "Agents",
+    "subtitle": "Create and assign room agents."
   },
   "dashboard": {
     "title": "Dashboard",

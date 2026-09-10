@@ -256,7 +256,7 @@
   "support": {
     "eyebrow": "Support",
     "title": "Une question, une réponse",
-    "subtitle": "Assistant ou ticket, dans ta langue.",
+    "subtitle": "Assistant ou chat agent de salle — envoie ta preuve de virement ici.",
     "loading": "Chargement…",
     "empty": "Aucun ticket. Ouvre-en un si tu as besoin d'aide.",
     "selectTicket": "Choisir une conversation",
@@ -281,6 +281,7 @@
     "translatedFrom": "Traduit de {lang}",
     "tabAssistant": "Aide rapide",
     "tabTickets": "Mes tickets",
+    "tabAgent": "Agent de salle",
     "recordVoice": "Vocal",
     "stopVoice": "Stop",
     "status": {
@@ -290,14 +291,27 @@
       "closed": "Fermé"
     }
   },
+  "roomChat": {
+    "title": "Chat agent",
+    "hint": "Agent {room} — envoie un message ou une capture de virement.",
+    "empty": "Écris ton premier message à l'agent de cette salle.",
+    "you": "Toi",
+    "agent": "Agent",
+    "proof": "Preuve de virement",
+    "placeholder": "Message pour l'agent…",
+    "attachProof": "Joindre une preuve (image)",
+    "send": "Envoyer",
+    "sending": "Envoi…",
+    "error": "Impossible d'envoyer le message."
+  },
   "supportBot": {
     "title": "Assistant",
-    "subtitle": "Réponse rapide. Un agent si c'est plus complexe.",
-    "welcome": "Compte, salles, dépôt : pose ta question. Sinon, un agent prend le relais.",
+    "subtitle": "Réponse rapide. Un agent de salle si c'est plus complexe.",
+    "welcome": "Compte, salles, dépôt : pose ta question. Sinon, parle à l'agent de ta salle.",
     "welcomeTitle": "Comment on peut t'aider",
     "placeholder": "Ta question…",
-    "talkToHuman": "Parler à un agent",
-    "escalating": "Ouverture du ticket…",
+    "talkToHuman": "Parler à l'agent de salle",
+    "escalating": "Ouverture du chat…",
     "escalateSubject": "Demande d'aide",
     "escalateDefault": "J'ai besoin d'un agent."
   },

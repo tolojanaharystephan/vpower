@@ -16,6 +16,7 @@ import { SupportModule } from './modules/support/support.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { TranslationModule } from './modules/translation/translation.module';
 import { WalletModule } from './modules/wallet/wallet.module';
+import { AgentModule } from './modules/agent/agent.module';
 
 /**
  * Modular monolith root.
@@ -35,6 +36,7 @@ import { WalletModule } from './modules/wallet/wallet.module';
     GameIntegrationModule,
     Provider100PlusModule,
     WalletModule,
+    AgentModule,
     TranslationModule,
     NotificationsModule,
     SupportModule,

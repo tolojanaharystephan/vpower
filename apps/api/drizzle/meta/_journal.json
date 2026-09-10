@@ -92,6 +92,13 @@
       "when": 1786900000000,
       "tag": "0012_room_wallets",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1787000000000,
+      "tag": "0013_agent_rooms_chat",
+      "breakpoints": true
     }
   ]
 }

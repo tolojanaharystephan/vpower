@@ -4,7 +4,8 @@ import { useState, type ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import { Menu, X } from 'lucide-react';
 import { RequireAdmin } from '@/components/auth/require-admin';
-import { ADMIN_NAV, AdminSidebar } from '@/components/layout/admin-sidebar';
+import { useAdminAuth } from '@/components/auth/admin-auth-provider';
+import { getStaffNav, AdminSidebar } from '@/components/layout/admin-sidebar';
 import { AdminMark } from '@/components/brand/admin-mark';
 import { Link, usePathname } from '@/i18n/navigation';
 import { BRAND } from '@vpower777/config';
@@ -15,6 +16,8 @@ export default function AppShellLayout({ children }: { children: ReactNode }) {
   const common = useTranslations('common');
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { isRoomAgent } = useAdminAuth();
+  const nav = getStaffNav(isRoomAgent);
 
   return (
     <RequireAdmin>
@@ -54,7 +57,7 @@ export default function AppShellLayout({ children }: { children: ReactNode }) {
                 {common('menu')}
               </p>
               <nav className="mt-2 space-y-1">
-                {ADMIN_NAV.map((item) => {
+                {nav.map((item) => {
                   const active =
                     item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
                   const Icon = item.icon;

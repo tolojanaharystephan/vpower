@@ -40,6 +40,8 @@ RUN apt-get update \
  && useradd --system --uid 1001 --gid nodejs nestjs
 
 COPY --from=build --chown=nestjs:nodejs /prod/api ./
+# SQL migrations (not always included by pnpm deploy)
+COPY --from=build --chown=nestjs:nodejs /app/apps/api/drizzle ./drizzle
 
 USER nestjs
 EXPOSE 3000

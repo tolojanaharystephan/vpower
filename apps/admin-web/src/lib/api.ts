@@ -48,6 +48,25 @@ const REFRESH_KEY = 'vp_admin_refresh_token';
 const SESSION_KEY = 'vp_admin_session';
 
 export const ADMIN_ACCESS_PERMISSION = 'admin:access';
+export const AGENT_ACCESS_PERMISSION = 'agent:access';
+
+export function hasAdminAccess(permissions: string[]) {
+  return permissions.includes(ADMIN_ACCESS_PERMISSION);
+}
+
+export function hasStaffPortalAccess(permissions: string[]) {
+  return (
+    permissions.includes(ADMIN_ACCESS_PERMISSION) ||
+    permissions.includes(AGENT_ACCESS_PERMISSION)
+  );
+}
+
+export function isRoomAgentOnly(permissions: string[]) {
+  return (
+    permissions.includes(AGENT_ACCESS_PERMISSION) &&
+    !permissions.includes(ADMIN_ACCESS_PERMISSION)
+  );
+}
 
 async function parseError(res: Response): Promise<never> {
   let body: ApiError | undefined;
@@ -149,10 +168,6 @@ export function readCachedSession(): {
   } catch {
     return null;
   }
-}
-
-export function hasAdminAccess(permissions: string[]) {
-  return permissions.includes(ADMIN_ACCESS_PERMISSION);
 }
 
 export type GameStatus = 'draft' | 'active' | 'inactive' | 'archived';
@@ -485,5 +500,255 @@ export async function markAllNotificationsRead(accessToken: string) {
     headers: authHeaders(accessToken),
   });
   if (!res.ok) await parseError(res);
+}
+
+export type AgentRoom = { roomSlug: string; name: string };
+
+export type RoomStats = {
+  roomSlug: string;
+  name: string;
+  depositsCents: number;
+  withdrawalsCents: number;
+  netCents: number;
+  deposits: string;
+  withdrawals: string;
+  net: string;
+  walletsBalance: string;
+};
+
+export type RevenueReport = {
+  rooms: RoomStats[];
+  totals: {
+    depositsCents: number;
+    withdrawalsCents: number;
+    netCents: number;
+    deposits: string;
+    withdrawals: string;
+    net: string;
+  };
+};
+
+export type AgentPlayer = {
+  id: string;
+  email: string;
+  displayName: string;
+  balance: string;
+  balanceCents: number;
+  roomSlug: string;
+};
+
+export type ChatConversation = {
+  id: string;
+  roomSlug: string;
+  roomName: string;
+  lastMessageAt: string;
+  player: { id: string; email: string; displayName: string };
+};
+
+export type ChatMessage = {
+  id: string;
+  body: string;
+  imageUrl?: string | null;
+  authorKind: 'player' | 'agent';
+  authorUserId: string;
+  authorName: string;
+  createdAt: string;
+};
+
+export async function fetchAgentRooms(accessToken: string): Promise<AgentRoom[]> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/agent/me/rooms`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<AgentRoom[]>;
+}
+
+export async function fetchRevenue(
+  accessToken: string,
+  opts?: { from?: string; to?: string },
+): Promise<RevenueReport> {
+  const params = new URLSearchParams();
+  if (opts?.from) params.set('from', opts.from);
+  if (opts?.to) params.set('to', opts.to);
+  const q = params.toString() ? `?${params}` : '';
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/admin/revenue${q}`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<RevenueReport>;
+}
+
+export async function fetchRoomStats(accessToken: string, roomSlug: string): Promise<RoomStats> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/agent/rooms/${roomSlug}/stats`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<RoomStats>;
+}
+
+export async function fetchRoomPlayers(
+  accessToken: string,
+  roomSlug: string,
+): Promise<AgentPlayer[]> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/agent/rooms/${roomSlug}/players`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<AgentPlayer[]>;
+}
+
+export async function fetchPlayerDetail(
+  accessToken: string,
+  roomSlug: string,
+  playerId: string,
+) {
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/agent/rooms/${roomSlug}/players/${playerId}`,
+    { headers: authHeaders(accessToken) },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{
+    player: AgentPlayer & { createdAt: string };
+    wallet: { balance: string; balanceCents: number; roomSlug: string; name: string };
+    transactions: Array<{
+      id: string;
+      kind: string;
+      amount: string;
+      amountCents: number;
+      createdAt: string;
+      reference?: string | null;
+    }>;
+    conversationId: string;
+  }>;
+}
+
+export async function creditPlayer(
+  accessToken: string,
+  roomSlug: string,
+  playerId: string,
+  amountCents: number,
+  note?: string,
+) {
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/agent/rooms/${roomSlug}/players/${playerId}/credit`,
+    {
+      method: 'POST',
+      headers: { ...authHeaders(accessToken), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amountCents, note }),
+    },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{ balance: string; balanceCents: number }>;
+}
+
+export async function debitPlayer(
+  accessToken: string,
+  roomSlug: string,
+  playerId: string,
+  amountCents: number,
+  note?: string,
+) {
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/agent/rooms/${roomSlug}/players/${playerId}/debit`,
+    {
+      method: 'POST',
+      headers: { ...authHeaders(accessToken), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amountCents, note }),
+    },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{ balance: string; balanceCents: number }>;
+}
+
+export async function fetchConversations(
+  accessToken: string,
+  roomSlug?: string,
+): Promise<ChatConversation[]> {
+  const q = roomSlug ? `?roomSlug=${encodeURIComponent(roomSlug)}` : '';
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/agent/conversations${q}`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<ChatConversation[]>;
+}
+
+export async function fetchConversationMessages(accessToken: string, conversationId: string) {
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/agent/conversations/${conversationId}/messages`,
+    { headers: authHeaders(accessToken) },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{
+    conversation: { id: string; roomSlug: string; playerUserId: string };
+    messages: ChatMessage[];
+  }>;
+}
+
+export async function postAgentChatMessage(
+  accessToken: string,
+  conversationId: string,
+  body: string,
+  image?: File | null,
+) {
+  const form = new FormData();
+  if (body) form.append('body', body);
+  if (image) form.append('image', image);
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/agent/conversations/${conversationId}/messages`,
+    {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${accessToken}` },
+      body: form,
+    },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json();
+}
+
+export async function fetchAgentAssignments(accessToken: string) {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/admin/agents`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<
+    Array<{ userId: string; email: string; displayName: string; rooms: string[] }>
+  >;
+}
+
+export async function createRoomAgent(
+  accessToken: string,
+  input: {
+    email: string;
+    password: string;
+    firstName?: string;
+    lastName?: string;
+    roomSlugs: string[];
+  },
+) {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/admin/agents`, {
+    method: 'POST',
+    headers: { ...authHeaders(accessToken), 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json();
+}
+
+export async function fetchRoomTransactions(accessToken: string, roomSlug: string) {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/agent/rooms/${roomSlug}/transactions`, {
+    headers: authHeaders(accessToken),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<
+    Array<{
+      id: string;
+      playerName: string;
+      email: string;
+      kind: string;
+      amount: string;
+      createdAt: string;
+      reference?: string | null;
+    }>
+  >;
 }
 

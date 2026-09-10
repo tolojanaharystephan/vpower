@@ -11,12 +11,12 @@ import { BRAND } from '@vpower777/config';
 
 export default function LoginPage() {
   const t = useTranslations('login');
-  const { ready, isStaff } = useAdminAuth();
+  const { ready, isStaff, isRoomAgent } = useAdminAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (ready && isStaff) router.replace('/');
-  }, [ready, isStaff, router]);
+    if (ready && isStaff) router.replace(isRoomAgent ? '/room-players' : '/');
+  }, [ready, isStaff, isRoomAgent, router]);
 
   return (
     <main className="grid min-h-screen lg:grid-cols-2">
