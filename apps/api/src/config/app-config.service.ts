@@ -112,6 +112,23 @@ export class AppConfigService {
     };
   }
 
+  get dgames() {
+    const enabled = this.config.get('DGAMES_ENABLED', { infer: true });
+    const apiBaseUrl = (this.config.get('DGAMES_API_BASE_URL', { infer: true }) || '')
+      .trim()
+      .replace(/\/$/, '');
+    return {
+      enabled,
+      apiBaseUrl,
+      hallId: (this.config.get('DGAMES_HALL_ID', { infer: true }) || '').trim(),
+      hallKey: (this.config.get('DGAMES_HALL_KEY', { infer: true }) || '').trim(),
+      currency: (this.config.get('DGAMES_CURRENCY', { infer: true }) || 'USD').trim() || 'USD',
+      timeoutMs: this.config.get('DGAMES_TIMEOUT_MS', { infer: true }),
+      domain: this.appUrl.replace(/\/$/, ''),
+      exitUrl: `${this.appUrl.replace(/\/$/, '')}/fr/play/dgames`,
+    };
+  }
+
   get logLevel(): AppEnv['LOG_LEVEL'] {
     return this.config.get('LOG_LEVEL', { infer: true });
   }

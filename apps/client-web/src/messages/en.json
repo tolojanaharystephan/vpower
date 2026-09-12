@@ -117,8 +117,8 @@
   "portal": {
     "eyebrow": "Welcome to",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Dragon Fury · 100plus",
-    "subtitle": "Three live lobbies from one hall. Slots, fishing, arcade — pick a room and play.",
+    "providersLine": "VBlink · Dragon Fury · 100plus · DGames",
+    "subtitle": "Four live lobbies from one hall. Slots, fishing, arcade — pick a room and play.",
     "ctaAdventure": "Enter the game",
     "ctaJoin": "Create an account",
     "servicesEyebrow": "Rooms",
@@ -132,7 +132,7 @@
     "mediaBody": "The same channels as the reference portal — watch, then play.",
     "contactEyebrow": "Contact",
     "contactTitle": "Lines and pages by room",
-    "contactBody": "SMS and Facebook: VBlink, Dragon Fury, 100plus.",
+    "contactBody": "SMS and Facebook: VBlink, Dragon Fury, 100plus. DGames via room-agent chat.",
     "textLine": "Text {phone}",
     "enterGames": "Launch games",
     "enterCasino": "Open VBlink",
@@ -145,7 +145,21 @@
     "hundredPlusTagline": "Wide floor",
     "hundredPlusBody": "100plus: casual to high energy, same VPower777 door.",
     "dragonfuryTagline": "Power and pace",
-    "dragonfuryBody": "Dragon Fury lobby: account created here, games on the partner site."
+    "dragonfuryBody": "Dragon Fury lobby: account created here, games on the partner site.",
+    "dgamesTagline": "GamesAPI catalog",
+    "dgamesBody": "DGames: VPower777 balance, titles via openGame, real-time wallet callbacks."
+  },
+  "dgamesPlay": {
+    "title": "DGames",
+    "body": "Pick a title. Your VPower777 DGames balance is used on every spin.",
+    "loginTitle": "Sign in first",
+    "loginBody": "A VPower777 account unlocks the DGames lobby.",
+    "loginCta": "Sign in",
+    "entering": "Opening…",
+    "enterError": "Unable to open DGames. Check hall / API configuration.",
+    "empty": "No games yet — the DGames hall may not be configured.",
+    "openExternal": "New tab",
+    "backProviders": "Back to rooms"
   },
   "play": {
     "eyebrow": "Session",

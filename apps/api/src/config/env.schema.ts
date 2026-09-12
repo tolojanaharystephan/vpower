@@ -66,6 +66,17 @@ export const envSchema = z.object({
     .default('https://www.dragonfury.club'),
   DRAGONFURY_TIMEOUT_MS: z.coerce.number().int().positive().default(15000),
 
+  /**
+   * DGames / GamesAPI (seamless wallet: getBalance + writeBet callbacks + openGame).
+   * Hall id/key/API URL come from their admin panel — leave empty until configured.
+   */
+  DGAMES_ENABLED: booleanFromEnv.default(false),
+  DGAMES_API_BASE_URL: z.string().optional().or(z.literal('')).default(''),
+  DGAMES_HALL_ID: z.string().trim().optional().default(''),
+  DGAMES_HALL_KEY: z.string().trim().optional().default(''),
+  DGAMES_CURRENCY: z.string().trim().optional().default('USD'),
+  DGAMES_TIMEOUT_MS: z.coerce.number().int().positive().default(15000),
+
   GOOGLE_TRANSLATION_API_KEY: z.string().optional().default(''),
   TRANSLATION_ENABLED: booleanFromEnv.default(false),
 

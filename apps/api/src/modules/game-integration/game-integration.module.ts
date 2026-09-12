@@ -3,6 +3,7 @@ import { AppConfigModule } from '../../config/app-config.module';
 import { GamesModule } from '../games/games.module';
 import { Provider100PlusModule } from '../provider-100plus/provider-100plus.module';
 import { ProviderDragonfuryModule } from '../provider-dragonfury/provider-dragonfury.module';
+import { ProviderDgamesModule } from '../provider-dgames/provider-dgames.module';
 import { UsersModule } from '../users/users.module';
 import { ClientGameProvider } from './client-game-provider';
 import { GAME_PROVIDER } from './game-provider.interface';
@@ -20,6 +21,7 @@ import { VblinkSignatureService } from './vblink-signature.service';
     forwardRef(() => UsersModule),
     Provider100PlusModule,
     ProviderDragonfuryModule,
+    ProviderDgamesModule,
   ],
   controllers: [GameIntegrationController, PlatformsController],
   providers: [

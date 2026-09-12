@@ -40,7 +40,20 @@ export type LaunchSession = {
   plus100Password?: string;
   dragonfuryAccount?: string;
   dragonfuryPassword?: string;
+  dgamesLogin?: string;
+  withoutFrame?: boolean;
+  exitButton?: boolean;
   requiresManualLogin?: boolean;
+};
+
+export type DgamesCatalogGame = {
+  id: string;
+  name: string;
+  img?: string;
+  device?: string;
+  title?: string;
+  categories?: string;
+  provider: string;
 };
 
 export type RoomWallet = {
@@ -230,6 +243,44 @@ export async function enterDragonfury(accessToken: string): Promise<LaunchSessio
   });
   if (!res.ok) await parseError(res);
   return res.json() as Promise<LaunchSession>;
+}
+
+export async function listDgamesGames(accessToken: string): Promise<DgamesCatalogGame[]> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/platforms/dgames/games`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<DgamesCatalogGame[]>;
+}
+
+export async function launchDgamesGame(
+  accessToken: string,
+  gameId: string,
+  locale?: string,
+): Promise<LaunchSession> {
+  const q = locale ? `?locale=${encodeURIComponent(locale)}` : '';
+  const res = await fetch(
+    `${getApiBaseUrl()}/api/v1/platforms/dgames/games/${encodeURIComponent(gameId)}/launch${q}`,
+    {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${accessToken}` },
+    },
+  );
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<LaunchSession>;
+}
+
+export async function enterDgames(
+  accessToken: string,
+  locale?: string,
+): Promise<LaunchSession & { games?: DgamesCatalogGame[] }> {
+  const q = locale ? `?locale=${encodeURIComponent(locale)}` : '';
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/platforms/dgames/enter${q}`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<LaunchSession & { games?: DgamesCatalogGame[] }>;
 }
 
 export async function getWallets(accessToken: string): Promise<WalletList> {

@@ -92,7 +92,7 @@ export function PortalHub() {
           </h2>
           <p className="mt-3 text-[var(--vp-muted)]">{t('servicesBody')}</p>
         </div>
-        <div className="grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {PORTAL_PROVIDERS.map((provider) => (
             <ProviderPortalCard key={provider.slug} provider={provider} />
           ))}

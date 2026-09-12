@@ -170,6 +170,51 @@ export class WalletService {
     });
   }
 
+  /**
+   * GamesAPI writeBet: subtract bet then add win in one atomic update.
+   * When `skipBalanceCheck` (refund), allow the balance to go negative.
+   */
+  async applyBetWin(
+    userId: string,
+    roomSlug: string,
+    betCents: number,
+    winCents: number,
+    reference?: string,
+    opts?: { skipBalanceCheck?: boolean },
+  ) {
+    const slug = this.parseRoomSlug(roomSlug);
+    if (betCents < 0 || winCents < 0) {
+      throw new BadRequestException('bet/win must be non-negative');
+    }
+    await this.getOrCreate(userId, slug);
+    const delta = winCents - betCents;
+    return this.db.transaction(async (tx) => {
+      const conditions = [eq(userWallets.userId, userId), eq(userWallets.roomSlug, slug)];
+      if (!opts?.skipBalanceCheck && betCents > 0) {
+        conditions.push(sql`${userWallets.balanceCents} >= ${betCents}`);
+      }
+      const [wallet] = await tx
+        .update(userWallets)
+        .set({
+          balanceCents: sql`${userWallets.balanceCents} + ${delta}`,
+          updatedAt: new Date(),
+        })
+        .where(and(...conditions))
+        .returning();
+      if (!wallet) {
+        throw new BadRequestException('fail_balance');
+      }
+      await tx.insert(walletTransactions).values({
+        userId,
+        roomSlug: slug,
+        amountCents: delta,
+        kind: 'dgames_bet',
+        reference: reference ?? null,
+      });
+      return wallet;
+    });
+  }
+
   async listTransactions(userId: string, roomSlug: string, limit = 50) {
     const slug = this.parseRoomSlug(roomSlug);
     return this.db

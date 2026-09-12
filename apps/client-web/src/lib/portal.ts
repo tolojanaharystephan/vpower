@@ -11,10 +11,14 @@ export type PortalSocial = {
 };
 
 export type PortalProvider = {
-  slug: 'vblink' | '100plus' | 'dragonfury';
+  slug: 'vblink' | '100plus' | 'dragonfury' | 'dgames';
   name: string;
-  taglineKey: 'vblinkTagline' | 'hundredPlusTagline' | 'dragonfuryTagline';
-  bodyKey: 'vblinkBody' | 'hundredPlusBody' | 'dragonfuryBody';
+  taglineKey:
+    | 'vblinkTagline'
+    | 'hundredPlusTagline'
+    | 'dragonfuryTagline'
+    | 'dgamesTagline';
+  bodyKey: 'vblinkBody' | 'hundredPlusBody' | 'dragonfuryBody' | 'dgamesBody';
   imageUrl: string;
   accent: string;
   /** SMS / text lines shown on the reference contact section */
@@ -86,6 +90,16 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
     instagram: 'https://www.instagram.com/us_100plus_new/',
     live: true,
   },
+  {
+    slug: 'dgames',
+    name: 'DGames',
+    taglineKey: 'dgamesTagline',
+    bodyKey: 'dgamesBody',
+    imageUrl: '/portal/dgames.jpg',
+    accent: '#7c5cff',
+    phones: [],
+    live: true,
+  },
 ];
 
 export function getPortalProvider(slug: string) {
@@ -96,5 +110,6 @@ export function roomPlayHref(slug: string): string {
   if (slug === 'vblink') return '/play/vblink';
   if (slug === '100plus') return '/play/100plus';
   if (slug === 'dragonfury') return '/play/dragonfury';
+  if (slug === 'dgames') return '/play/dgames';
   return `/games?provider=${slug}`;
 }

@@ -290,6 +290,26 @@ export const walletTransactions = pgTable(
   ],
 );
 
+/** Idempotent writeBet trades from DGames GamesAPI callbacks. */
+export const dgamesBetTrades = pgTable(
+  'dgames_bet_trades',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    tradeId: text('trade_id').notNull(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    login: text('login').notNull(),
+    betCents: integer('bet_cents').notNull(),
+    winCents: integer('win_cents').notNull(),
+    balanceAfterCents: integer('balance_after_cents').notNull(),
+    sessionId: text('session_id'),
+    gameId: text('game_id'),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [uniqueIndex('dgames_bet_trades_trade_uidx').on(table.tradeId)],
+);
+
 /** Which partner rooms a ROOM_AGENT may operate. */
 export const agentRoomScopes = pgTable(
   'agent_room_scopes',
@@ -460,6 +480,7 @@ export type WalletTransaction = typeof walletTransactions.$inferSelect;
 export type AgentRoomScope = typeof agentRoomScopes.$inferSelect;
 export type RoomConversation = typeof roomConversations.$inferSelect;
 export type RoomChatMessage = typeof roomChatMessages.$inferSelect;
+export type DgamesBetTrade = typeof dgamesBetTrades.$inferSelect;
 
 export const schema = {
   systemMeta,
@@ -480,6 +501,7 @@ export const schema = {
   providerPlayerAccounts,
   userWallets,
   walletTransactions,
+  dgamesBetTrades,
   agentRoomScopes,
   roomConversations,
   roomChatMessages,
