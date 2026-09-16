@@ -10,7 +10,7 @@ export const ROOM_NAMES: Record<RoomSlug, string> = {
   vblink: 'VBlink',
   '100plus': '100plus',
   dragonfury: 'Dragon Fury',
-  dgames: 'DGames',
+  dgames: 'dgamesonline',
 };
 
 /** Rooms shown on the portal and in the wallet UI. */

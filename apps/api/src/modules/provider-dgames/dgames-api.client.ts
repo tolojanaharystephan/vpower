@@ -129,6 +129,13 @@ export class DgamesApiClient {
         this.logger.warn(`DGames non-JSON response: ${text.slice(0, 300)}`);
         throw new ServiceUnavailableException('DGames returned non-JSON');
       }
+    } catch (err) {
+      if (err instanceof ServiceUnavailableException) throw err;
+      const msg = err instanceof Error ? err.message : String(err);
+      this.logger.warn(`DGames request failed (${url}): ${msg}`);
+      throw new ServiceUnavailableException(
+        `DGames unreachable (${msg}). Check DNS / API host for tbs2api.lvslot.net.`,
+      );
     } finally {
       clearTimeout(timer);
     }

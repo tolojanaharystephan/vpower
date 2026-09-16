@@ -101,7 +101,7 @@ export function DgamesPlayScreen() {
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--vp-accent)]">
-            DGames
+            dgamesonline
           </p>
           <h1 className="mt-2 font-[family-name:var(--font-display)] text-3xl text-[var(--vp-fg)]">
             {t('title')}

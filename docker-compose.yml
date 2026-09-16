@@ -46,6 +46,9 @@ services:
       dockerfile: backend/Dockerfile
     container_name: vpower777-backend
     restart: unless-stopped
+    # Partner GamesAPI DNS returns 0.0.0.0 for many datacenter resolvers; pin the live A record.
+    extra_hosts:
+      - "tbs2api.lvslot.net:185.192.23.13"
     env_file:
       - .env
     environment:

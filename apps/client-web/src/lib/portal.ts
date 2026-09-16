@@ -92,7 +92,7 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
   },
   {
     slug: 'dgames',
-    name: 'DGames',
+    name: 'dgamesonline',
     taglineKey: 'dgamesTagline',
     bodyKey: 'dgamesBody',
     imageUrl: '/portal/dgames.jpg',

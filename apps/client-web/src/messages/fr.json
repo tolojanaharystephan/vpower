@@ -115,7 +115,7 @@
   "portal": {
     "eyebrow": "Bienvenue sur",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Dragon Fury · 100plus · DGames",
+    "providersLine": "VBlink · Dragon Fury · 100plus · dgamesonline",
     "subtitle": "Quatre lobbies live depuis un seul hall. Slots, pêche, arcade — entre, joue, enchaîne.",
     "ctaAdventure": "Entrer dans le jeu",
     "ctaJoin": "Créer un compte",
@@ -130,7 +130,7 @@
     "mediaBody": "Les mêmes canaux que le portail de référence — pour voir, puis jouer.",
     "contactEyebrow": "Contact",
     "contactTitle": "Lignes et pages par salle",
-    "contactBody": "SMS et Facebook : VBlink, Dragon Fury, 100plus. DGames via le chat agent.",
+    "contactBody": "SMS et Facebook : VBlink, Dragon Fury, 100plus. dgamesonline via le chat agent.",
     "textLine": "SMS {phone}",
     "enterGames": "Lancer les jeux",
     "enterCasino": "Ouvrir VBlink",
@@ -145,17 +145,17 @@
     "hundredPlusTagline": "Large sélection",
     "hundredPlusBody": "100plus : du casual au high energy, même entrée VPower777.",
     "dgamesTagline": "Catalogue GamesAPI",
-    "dgamesBody": "DGames : solde VPower777, jeux ouverts via openGame, crédits en temps réel."
+    "dgamesBody": "dgamesonline : solde VPower777, jeux via openGame, crédits en temps réel."
   },
   "dgamesPlay": {
-    "title": "DGames",
-    "body": "Choisis un titre. Ton solde DGames VPower777 est utilisé pour chaque spin.",
+    "title": "dgamesonline",
+    "body": "Choisis un titre. Ton solde dgamesonline VPower777 est utilisé pour chaque spin.",
     "loginTitle": "Connecte-toi d'abord",
-    "loginBody": "Un compte VPower777 ouvre le lobby DGames.",
+    "loginBody": "Un compte VPower777 ouvre le lobby dgamesonline.",
     "loginCta": "Se connecter",
     "entering": "Ouverture…",
-    "enterError": "Impossible d'ouvrir DGames. Vérifie la config hall / API.",
-    "empty": "Aucun jeu pour le moment — le hall DGames n'est peut-être pas encore configuré.",
+    "enterError": "Impossible d'ouvrir dgamesonline. Vérifie la config hall / API.",
+    "empty": "Aucun jeu pour le moment — le hall dgamesonline n'est peut-être pas encore configuré.",
     "openExternal": "Nouvel onglet",
     "backProviders": "Retour aux salles"
   },
