@@ -114,9 +114,11 @@ export class AppConfigService {
 
   get dgames() {
     const enabled = this.config.get('DGAMES_ENABLED', { infer: true });
+    // Accept https://host/API, https://host/API/, or …/API/openGame/
     const apiBaseUrl = (this.config.get('DGAMES_API_BASE_URL', { infer: true }) || '')
       .trim()
-      .replace(/\/$/, '');
+      .replace(/\/+$/, '')
+      .replace(/\/openGame$/i, '');
     return {
       enabled,
       apiBaseUrl,

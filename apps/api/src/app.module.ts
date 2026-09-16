@@ -12,6 +12,7 @@ import { AdminModule } from './modules/admin/admin.module';
 import { GamesModule } from './modules/games/games.module';
 import { GameIntegrationModule } from './modules/game-integration/game-integration.module';
 import { Provider100PlusModule } from './modules/provider-100plus/provider-100plus.module';
+import { ProviderDgamesModule } from './modules/provider-dgames/provider-dgames.module';
 import { SupportModule } from './modules/support/support.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { TranslationModule } from './modules/translation/translation.module';
@@ -35,6 +36,7 @@ import { AgentModule } from './modules/agent/agent.module';
     GamesModule,
     GameIntegrationModule,
     Provider100PlusModule,
+    ProviderDgamesModule,
     WalletModule,
     AgentModule,
     TranslationModule,

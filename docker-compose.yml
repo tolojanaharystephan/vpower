@@ -53,9 +53,9 @@ services:
       API_PORT: 3000
       DATABASE_URL: postgresql://${POSTGRES_USER:-vpower777}:${POSTGRES_PASSWORD:-vpower777}@postgres:5432/${POSTGRES_DB:-vpower777}
       REDIS_URL: redis://redis:6379
-      APP_URL: ${APP_URL:-https://staging.vpower777.fun}
-      ADMIN_URL: ${ADMIN_URL:-https://staging.vpower777.fun}
-      API_URL: ${API_URL:-https://staging.vpower777.fun}
+      APP_URL: ${APP_URL:-https://staging.vpower777.online}
+      ADMIN_URL: ${ADMIN_URL:-https://staging.vpower777.online}
+      API_URL: ${API_URL:-https://staging.vpower777.online}
     volumes:
       - backend_uploads:/app/uploads
     depends_on:
@@ -73,7 +73,7 @@ services:
       context: .
       dockerfile: frontend/Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://staging.vpower777.fun}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://staging.vpower777.online}
     container_name: vpower777-frontend
     restart: unless-stopped
     environment:

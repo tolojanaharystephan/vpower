@@ -70,7 +70,9 @@ export class DgamesApiClient {
   }> {
     this.assertConfigured();
     const c = this.config.dgames;
-    const data = await this.postJson<GamesApiEnvelope>(`${c.apiBaseUrl}/openGame/`, {
+    // Partner docs list openGame on http://…/API/openGame/ while getGamesList is https://…/API/
+    const openGameBase = c.apiBaseUrl.replace(/^https:\/\//i, 'http://');
+    const data = await this.postJson<GamesApiEnvelope>(`${openGameBase}/openGame/`, {
       cmd: 'openGame',
       hall: c.hallId,
       key: c.hallKey,
