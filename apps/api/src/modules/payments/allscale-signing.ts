@@ -43,8 +43,8 @@ export function verifyAllscaleWebhookSignature(input: {
   signatureHeader: string;
 }): boolean {
   const match = /^v1=(.+)$/.exec(input.signatureHeader.trim());
-  if (!match) return false;
-  const provided = match[1];
+  const provided = match?.[1];
+  if (!provided) return false;
   const bodySha256 = createHash('sha256').update(input.rawBody).digest('hex');
   const canonical = [
     'allscale:webhook:v1',
