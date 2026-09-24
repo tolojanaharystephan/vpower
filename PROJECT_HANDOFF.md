@@ -9,56 +9,37 @@ Document **sans secrets**. Les clés / mots de passe sont dans `SECRETS_LOCAL.md
 - Staging : https://staging.vpower777.online  
 - VPS : `45.32.102.170` — app `/var/www/vpower777` (mot de passe dans `SECRETS_LOCAL.md` uniquement)
 
-## Vérif reprise PC (2026-09-16)
-
-| Check | Résultat |
-|--------|----------|
-| Remote GitHub | OK → `tolojanaharystephan/vpower.git` |
-| Commit local / `origin/main` | `31c5b5b` — *Fix staging client build…* |
-| Staging site `/fr` | **200** — hall live |
-| API `/health` | **ok** — DB up, Redis up |
-| API `/health/ready` | **ok** |
-| Flags staging | `paymentsEnabled=false`, `liveGamesEnabled=false`, `gameProviderMode=client` |
-| Catalogue `/api/v1/catalog/games` | `[]` (normal : portail = salles, pas catalogue mock) |
-| `POST …/platforms/dgames/enter` | **404** — module DGames **pas** dans le build API staging / GitHub |
-| Admin `admin.staging…` | DNS / host **absent** (admin via autre voie ou non exposé) |
-| Secrets locaux | `.env` + `SECRETS_LOCAL.md` **présents** sur ce PC |
-| Transcript | `transcript.md` à la racine (export discussion autre PC) |
-
-**Écart important :** le working tree local contient du **WIP DGames** (module API, UI play, migration `0014`, carte portail) **non poussé** sur GitHub. Or le **texte** staging affiche déjà « … · DGames » → staging a probablement reçu un déploiement partiel hors sync Git. Ne pas considérer DGames comme livré tant que l’API enter / callback n’est pas en prod staging + commit sur `main`.
-
 ## Stack
 
 - Monorepo : Nest API + Next client/admin (`apps/api`, `apps/client-web`, `apps/admin-web`)
-- Salles partenaires actuelles : `vblink`, `100plus`, `dragonfury` (+ `dgames` en cours)
+- Salles partenaires actuelles : `vblink`, `100plus`, `dragonfury`, `dgames`
 - Modèle VBlink / Dragon Fury / 100plus : compte chez le partenaire + dépôt/retrait (passage)
 - Modèle DGames : wallet seamless (solde chez nous ; eux appellent `getBalance` / `writeBet`)
-
-## Ce qui est déjà livré (mémoire projet)
-
-- Auth JWT, RBAC, wallets **par salle**
-- Portail client (hall) + play VBlink / 100plus / Dragon Fury
-- Support + chat agent dépôt / preuves (migration `0013`)
-- Admin agents salle + master recettes
-- Staging Vultr derrière nginx + Docker
 
 ## DGames — état (sept. 2026)
 
 - Code : callback, catalog, play UI, migration `0014`
 - GamesAPI host (client) :
-  - Game List : `https://tbs2api.lvslot.net/API/`
-  - openGame : `http://tbs2api.lvslot.net/API/openGame/` (on utilise la même base HTTPS `/API`)
-- Env : `DGAMES_API_BASE_URL=https://tbs2api.lvslot.net/API`
-- Credentials hall → `SECRETS_LOCAL.md` / `.env` (jamais Git)
-- Callback staging à configurer dans le BO DGames :  
+  - Base : `https://tbs2api.dark-a.com/API/` (pin DNS `185.192.23.13` via `docker-compose` `extra_hosts`)
+  - Ancien host `tbs2api.lvslot.net` / hall `1041478222` : oublié
+- Compte BO reçu : `Ft16890` — encore *Account/User not found* sur certains BO
+- Env : `DGAMES_API_BASE_URL`, `DGAMES_HALL_ID`, `DGAMES_HALL_KEY` → `SECRETS_LOCAL.md` / `.env`
+- Doc BO : Hall Key + Callback dans **MY HALLS → Hall Settings**
+- Callback staging :  
   `https://staging.vpower777.online/api/v1/providers/dgames/callback`
-- Doc : [GAMES API EN](https://docs.google.com/document/d/1_e_Moi5Bn-Wy66DdT--XAdkrh-qI6ViBthLPBtb8zjQ/)
+- **Bloquant :** compte `Ft16890` pas encore activé / mauvaise URL BO. Hall ID + Hall Key pas encore récupérés.
 
 ## Paiement / banque
 
-- `PAYMENTS_ENABLED=false` — pas de PSP branché
-- Client / banque demandent un **paiement cash** → en attente du **nom exact du système + doc API** (visite bureau / PDFs `guide-visite-allscale-paiement.pdf`, `AllScale API.pdf` à la racine)
-- AllScale = piste doc paiement reçue ; pas encore d’intégration code
+- Compte AllScale VPower : **fang30808@gmail.com** — store **vpower777** (`6aaab364cdf923914bf9e866`, Live)
+- `PAYMENTS_ENABLED` + **AllScale Checkout** (Phase 1) : crypto USDT/USDC + carte/local (Pay with Card **ON**)
+- Env : `ALLSCALE_API_KEY`, `ALLSCALE_API_SECRET`, `ALLSCALE_BASE_URL=https://openapi.allscale.io`
+- Webhook store (configuré) :  
+  `https://staging.vpower777.online/api/v1/payments/allscale/webhook`
+- Migration `0015_payment_orders`
+- Dashboard OK : webhook collé + Pay with Card enabled (settlement USDC, min $5, validity ≥30 min)
+- Suivant : `PAYMENTS_ENABLED=true` + migrate `0015` + deploy staging (`scripts/deploy-staging-payments.ps1`)
+- Phase 2 (plus tard) : Cash App / PayPal / Zelle / Venmo / Chime (autre PSP ou agent)
 
 ## Agents admin / chat dépôt
 
@@ -85,11 +66,9 @@ Document **sans secrets**. Les clés / mots de passe sont dans `SECRETS_LOCAL.md
 
 ## Prochaines actions utiles
 
-1. Commit + push du WIP DGames (sans secrets) **ou** aligner staging sur GitHub si le label DGames est prématuré  
-2. Obtenir `https://SERVER/API/` + confirmer hall chez DGames  
-3. Compléter mot de passe VPS dans `SECRETS_LOCAL.md` si manquant  
-4. Cadrer AllScale / cash banque une fois docs validées  
-5. (Optionnel) Renommer la branche locale `origin/main` → `main` pour éviter l’ambiguïté Git
+1. Obtenir Hall ID + Hall Key une fois `Ft16890` activé chez DGames  
+2. Deploy payments staging : `PAYMENTS_ENABLED` + migrate `0015` (`scripts/deploy-staging-payments.ps1`) + test dépôt  
+3. (Optionnel) Renommer la branche locale `origin/main` → `main` pour éviter l’ambiguïté Git
 
 ## Discussions Cursor
 

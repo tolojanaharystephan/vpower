@@ -17,6 +17,7 @@ import { SupportModule } from './modules/support/support.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { TranslationModule } from './modules/translation/translation.module';
 import { WalletModule } from './modules/wallet/wallet.module';
+import { PaymentsModule } from './modules/payments/payments.module';
 import { AgentModule } from './modules/agent/agent.module';
 
 /**
@@ -38,6 +39,7 @@ import { AgentModule } from './modules/agent/agent.module';
     Provider100PlusModule,
     ProviderDgamesModule,
     WalletModule,
+    PaymentsModule,
     AgentModule,
     TranslationModule,
     NotificationsModule,

@@ -310,6 +310,36 @@ export const dgamesBetTrades = pgTable(
   (table) => [uniqueIndex('dgames_bet_trades_trade_uidx').on(table.tradeId)],
 );
 
+/** AllScale Checkout deposits (pending → paid via signed webhook). */
+export const paymentOrders = pgTable(
+  'payment_orders',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    orderId: text('order_id').notNull(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    roomSlug: text('room_slug').notNull(),
+    amountCents: integer('amount_cents').notNull(),
+    /** pending | paid | failed | expired */
+    status: text('status').notNull().default('pending'),
+    provider: text('provider').notNull().default('allscale'),
+    checkoutIntentId: text('checkout_intent_id'),
+    checkoutUrl: text('checkout_url'),
+    transactionId: text('transaction_id'),
+    webhookId: text('webhook_id'),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+    paidAt: timestamp('paid_at', { withTimezone: true }),
+  },
+  (table) => [
+    uniqueIndex('payment_orders_order_uidx').on(table.orderId),
+    uniqueIndex('payment_orders_intent_uidx').on(table.checkoutIntentId),
+    uniqueIndex('payment_orders_webhook_uidx').on(table.webhookId),
+    index('payment_orders_user_idx').on(table.userId),
+  ],
+);
+
 /** Which partner rooms a ROOM_AGENT may operate. */
 export const agentRoomScopes = pgTable(
   'agent_room_scopes',
@@ -481,6 +511,7 @@ export type AgentRoomScope = typeof agentRoomScopes.$inferSelect;
 export type RoomConversation = typeof roomConversations.$inferSelect;
 export type RoomChatMessage = typeof roomChatMessages.$inferSelect;
 export type DgamesBetTrade = typeof dgamesBetTrades.$inferSelect;
+export type PaymentOrder = typeof paymentOrders.$inferSelect;
 
 export const schema = {
   systemMeta,
@@ -502,6 +533,7 @@ export const schema = {
   userWallets,
   walletTransactions,
   dgamesBetTrades,
+  paymentOrders,
   agentRoomScopes,
   roomConversations,
   roomChatMessages,

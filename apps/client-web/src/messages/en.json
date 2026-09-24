@@ -24,6 +24,8 @@
   "wallet": {
     "devCredit": "+$100",
     "devCreditHint": "Test credit — funds the room you pick. Live cashier coming soon",
+    "deposit": "Deposit",
+    "depositError": "Deposit unavailable right now. Try again.",
     "balanceLabel": "Balance",
     "walletsLabel": "Wallets",
     "roomsTitle": "Wallets by room",

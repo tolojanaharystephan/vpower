@@ -1,14 +1,17 @@
 'use client';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 import { Wallet } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { useSession } from '@/components/auth/session-provider';
 import { Button } from '@/components/ui/button';
 import { useRoomWallets } from '@/components/wallet/use-room-wallets';
-import { devCreditWallet } from '@/lib/api';
+import { createAllscaleCheckout, devCreditWallet, getHealthFeatures } from '@/lib/api';
 import { roomPlayHref } from '@/lib/portal';
+
+const DEPOSIT_PRESETS_CENTS = [1_000, 2_500, 5_000, 10_000] as const;
 
 export function RoomWalletsPanel() {
   const t = useTranslations('account');
@@ -16,11 +19,32 @@ export function RoomWalletsPanel() {
   const { accessToken } = useSession();
   const queryClient = useQueryClient();
   const { wallets, isLoading } = useRoomWallets();
+  const [depositRoom, setDepositRoom] = useState<string | null>(null);
+  const [depositError, setDepositError] = useState<string | null>(null);
+
+  const features = useQuery({
+    queryKey: ['health-features'],
+    queryFn: getHealthFeatures,
+    staleTime: 60_000,
+  });
+  const paymentsEnabled = Boolean(features.data?.paymentsEnabled);
 
   const credit = useMutation({
     mutationFn: (roomSlug: string) => devCreditWallet(accessToken!, roomSlug, 10_000),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['wallets'] });
+    },
+  });
+
+  const checkout = useMutation({
+    mutationFn: ({ roomSlug, amountCents }: { roomSlug: string; amountCents: number }) =>
+      createAllscaleCheckout(accessToken!, roomSlug, amountCents),
+    onSuccess: (data) => {
+      setDepositError(null);
+      window.location.assign(data.checkoutUrl);
+    },
+    onError: (err: Error) => {
+      setDepositError(err.message || tw('depositError'));
     },
   });
 
@@ -34,6 +58,11 @@ export function RoomWalletsPanel() {
           {t('walletsTitle')}
         </h2>
         <p className="mt-1 text-sm text-[var(--vp-muted)]">{t('walletsBody')}</p>
+        {depositError ? (
+          <p className="mt-2 text-sm text-red-400" role="alert">
+            {depositError}
+          </p>
+        ) : null}
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {(isLoading && wallets.length === 0 ? [] : wallets).map((wallet) => (
@@ -55,17 +84,52 @@ export function RoomWalletsPanel() {
                   {tw('openRoom')}
                 </Button>
               </Link>
-              <Button
-                type="button"
-                size="sm"
-                className="flex-1"
-                disabled={!accessToken || credit.isPending}
-                title={tw('devCreditHint')}
-                onClick={() => credit.mutate(wallet.roomSlug)}
-              >
-                {tw('devCredit')}
-              </Button>
+              {paymentsEnabled ? (
+                <Button
+                  type="button"
+                  size="sm"
+                  className="flex-1"
+                  disabled={!accessToken || checkout.isPending}
+                  onClick={() => {
+                    setDepositError(null);
+                    setDepositRoom((cur) =>
+                      cur === wallet.roomSlug ? null : wallet.roomSlug,
+                    );
+                  }}
+                >
+                  {tw('deposit')}
+                </Button>
+              ) : (
+                <Button
+                  type="button"
+                  size="sm"
+                  className="flex-1"
+                  disabled={!accessToken || credit.isPending}
+                  title={tw('devCreditHint')}
+                  onClick={() => credit.mutate(wallet.roomSlug)}
+                >
+                  {tw('devCredit')}
+                </Button>
+              )}
             </div>
+            {paymentsEnabled && depositRoom === wallet.roomSlug ? (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {DEPOSIT_PRESETS_CENTS.map((cents) => (
+                  <Button
+                    key={cents}
+                    type="button"
+                    size="sm"
+                    variant="secondary"
+                    disabled={!accessToken || checkout.isPending}
+                    onClick={() =>
+                      checkout.mutate({ roomSlug: wallet.roomSlug, amountCents: cents })
+                    }
+                  >
+                    ${(cents / 100).toFixed(0)}
+                  </Button>
+                ))}
+              </div>
+            ) : null}
           </article>
         ))}
       </div>

@@ -22,6 +22,8 @@
   "wallet": {
     "devCredit": "+100$",
     "devCreditHint": "Crédit de test — alimente la salle choisie. La caisse réelle arrive.",
+    "deposit": "Déposer",
+    "depositError": "Dépôt impossible pour le moment. Réessaie.",
     "balanceLabel": "Solde",
     "walletsLabel": "Portefeuilles",
     "roomsTitle": "Portefeuilles par salle",

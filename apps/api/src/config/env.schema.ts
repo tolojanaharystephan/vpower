@@ -81,6 +81,15 @@ export const envSchema = z.object({
   TRANSLATION_ENABLED: booleanFromEnv.default(false),
 
   PAYMENTS_ENABLED: booleanFromEnv.default(false),
+  /** AllScale Checkout (USDT/USDC + optional card/local via dashboard toggle). */
+  ALLSCALE_API_KEY: z.string().trim().optional().default(''),
+  ALLSCALE_API_SECRET: z.string().trim().optional().default(''),
+  ALLSCALE_BASE_URL: z
+    .string()
+    .url()
+    .optional()
+    .or(z.literal(''))
+    .default('https://openapi.allscale.io'),
   LIVE_GAMES_ENABLED: booleanFromEnv.default(false),
 
   SENTRY_DSN: z.string().optional().default(''),

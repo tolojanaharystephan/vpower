@@ -14,7 +14,8 @@ import { AppConfigService } from './config/app-config.service';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    rawBody: false,
+    // Required for AllScale webhook HMAC (raw body bytes before JSON parse).
+    rawBody: true,
   });
   const config = app.get(AppConfigService);
 

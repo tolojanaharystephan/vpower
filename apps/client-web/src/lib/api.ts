@@ -291,6 +291,58 @@ export async function getWallets(accessToken: string): Promise<WalletList> {
   return res.json() as Promise<WalletList>;
 }
 
+export async function createAllscaleCheckout(
+  accessToken: string,
+  roomSlug: string,
+  amountCents: number,
+): Promise<{
+  orderId: string;
+  checkoutUrl: string;
+  checkoutIntentId: string;
+  amountCents: number;
+  roomSlug: string;
+  currency: string;
+}> {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/payments/checkout`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ roomSlug, amountCents }),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{
+    orderId: string;
+    checkoutUrl: string;
+    checkoutIntentId: string;
+    amountCents: number;
+    roomSlug: string;
+    currency: string;
+  }>;
+}
+
+export async function getHealthFeatures(): Promise<{
+  paymentsEnabled: boolean;
+  liveGamesEnabled: boolean;
+  translationEnabled: boolean;
+}> {
+  const res = await fetch(`${getApiBaseUrl()}/health`);
+  if (!res.ok) await parseError(res);
+  const body = (await res.json()) as {
+    features?: {
+      paymentsEnabled?: boolean;
+      liveGamesEnabled?: boolean;
+      translationEnabled?: boolean;
+    };
+  };
+  return {
+    paymentsEnabled: Boolean(body.features?.paymentsEnabled),
+    liveGamesEnabled: Boolean(body.features?.liveGamesEnabled),
+    translationEnabled: Boolean(body.features?.translationEnabled),
+  };
+}
+
 /** Dev-only top-up until Stripe/LOT2 payments. Credits one room wallet. */
 export async function devCreditWallet(
   accessToken: string,

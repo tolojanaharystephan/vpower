@@ -12,8 +12,8 @@ translation/
 notifications/
 content/
 audit/
-wallet/              # LOT 2 — PAYMENTS_ENABLED=false
-payments/            # LOT 2
+wallet/              # Room wallets + agent/dev credit
+payments/            # AllScale Checkout (PAYMENTS_ENABLED)
 transactions/        # LOT 2
 live-games/          # LOT 3 — LIVE_GAMES_ENABLED=false
 health/              # Phase 0 — implemented

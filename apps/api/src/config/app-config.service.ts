@@ -35,6 +35,21 @@ export class AppConfigService {
     };
   }
 
+  get allscale() {
+    const baseUrl = (
+      this.config.get('ALLSCALE_BASE_URL', { infer: true }) || 'https://openapi.allscale.io'
+    )
+      .trim()
+      .replace(/\/$/, '');
+    return {
+      apiKey: (this.config.get('ALLSCALE_API_KEY', { infer: true }) || '').trim(),
+      apiSecret: (this.config.get('ALLSCALE_API_SECRET', { infer: true }) || '').trim(),
+      baseUrl: baseUrl || 'https://openapi.allscale.io',
+      /** Fiat USD enum in AllScale Currency appendix. */
+      currencyUsd: 1 as const,
+    };
+  }
+
   get gameProviderMode(): AppEnv['GAME_PROVIDER_MODE'] {
     return this.config.get('GAME_PROVIDER_MODE', { infer: true });
   }

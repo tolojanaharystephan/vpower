@@ -49,6 +49,7 @@ services:
     # Partner GamesAPI DNS returns 0.0.0.0 for many datacenter resolvers; pin the live A record.
     extra_hosts:
       - "tbs2api.lvslot.net:185.192.23.13"
+      - "tbs2api.dark-a.com:185.192.23.13"
     env_file:
       - .env
     environment:
