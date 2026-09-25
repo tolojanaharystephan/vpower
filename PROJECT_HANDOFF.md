@@ -19,15 +19,14 @@ Document **sans secrets**. Les clés / mots de passe sont dans `SECRETS_LOCAL.md
 ## DGames — état (sept. 2026)
 
 - Code : callback, catalog, play UI, migration `0014`
-- GamesAPI host (client) :
-  - Base : `https://tbs2api.dark-a.com/API/` (pin DNS `185.192.23.13` via `docker-compose` `extra_hosts`)
-  - Ancien host `tbs2api.lvslot.net` / hall `1041478222` : oublié
-- Compte BO reçu : `Ft16890` — encore *Account/User not found* sur certains BO
-- Env : `DGAMES_API_BASE_URL`, `DGAMES_HALL_ID`, `DGAMES_HALL_KEY` → `SECRETS_LOCAL.md` / `.env`
-- Doc BO : Hall Key + Callback dans **MY HALLS → Hall Settings**
-- Callback staging :  
-  `https://staging.vpower777.online/api/v1/providers/dgames/callback`
-- **Bloquant :** compte `Ft16890` pas encore activé / mauvaise URL BO. Hall ID + Hall Key pas encore récupérés.
+- GamesAPI host : `https://tbs2api.dark-a.com/API/` (pin DNS `185.192.23.13`)
+- Compte BO : **Ft16890** — login OK sur `tbs2api.dark-a.com`
+- Hall créé : **VPower777** — ID `3211871`, seamless, USD, Active
+- Hall Key + Callback dans Hall Settings (callback staging collé)
+- Callback : `https://staging.vpower777.online/api/v1/providers/dgames/callback`
+- Staging : `DGAMES_ENABLED=true`, GetBalance OK, openGame OK (Novomatic / Amatic / …)
+- Catalogue : pack sans provider (`…/ig/…`, ~20 titres type Griphons Gold) → `fail_OPENSESSION` — filtré côté API
+- Demo testé : `persontest@gmail.com` → login provider `vpe88774bb77a4`
 
 ## Paiement / banque
 
@@ -38,7 +37,7 @@ Document **sans secrets**. Les clés / mots de passe sont dans `SECRETS_LOCAL.md
   `https://staging.vpower777.online/api/v1/payments/allscale/webhook`
 - Migration `0015_payment_orders`
 - Dashboard OK : webhook collé + Pay with Card enabled (settlement USDC, min $5, validity ≥30 min)
-- Suivant : `PAYMENTS_ENABLED=true` + migrate `0015` + deploy staging (`scripts/deploy-staging-payments.ps1`)
+- Staging live (`1c1187e`) : `PAYMENTS_ENABLED=true`, migration `0015` au boot, webhook répond `401` sans signature (attendu)
 - Phase 2 (plus tard) : Cash App / PayPal / Zelle / Venmo / Chime (autre PSP ou agent)
 
 ## Agents admin / chat dépôt
@@ -66,8 +65,8 @@ Document **sans secrets**. Les clés / mots de passe sont dans `SECRETS_LOCAL.md
 
 ## Prochaines actions utiles
 
-1. Obtenir Hall ID + Hall Key une fois `Ft16890` activé chez DGames  
-2. Deploy payments staging : `PAYMENTS_ENABLED` + migrate `0015` (`scripts/deploy-staging-payments.ps1`) + test dépôt  
+1. Test dépôt AllScale staging (compte demo ou fonds de test)  
+2. Prod AllScale / DGames seulement après validation staging  
 3. (Optionnel) Renommer la branche locale `origin/main` → `main` pour éviter l’ambiguïté Git
 
 ## Discussions Cursor

@@ -145,8 +145,12 @@ export class DgamesApiClient {
 function flattenGamesList(content: unknown): DgamesListGame[] {
   if (!content || typeof content !== 'object') return [];
   const out: DgamesListGame[] = [];
-  for (const [provider, games] of Object.entries(content as Record<string, unknown>)) {
+  for (const [providerRaw, games] of Object.entries(content as Record<string, unknown>)) {
     if (!Array.isArray(games)) continue;
+    // GamesAPI returns a small unlabeled pack (img path …/ig/…) first; openGame
+    // fails with fail_OPENSESSION for those titles — omit until the hall enables them.
+    const provider = providerRaw.trim();
+    if (!provider) continue;
     for (const raw of games) {
       if (!raw || typeof raw !== 'object') continue;
       const g = raw as Record<string, unknown>;
