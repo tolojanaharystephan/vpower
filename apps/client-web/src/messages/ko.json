@@ -125,7 +125,7 @@
   "portal": {
     "eyebrow": "환영합니다",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "providersLine": "VBlink · Dragon Fury · 100plus · dgamesonline",
     "subtitle": "하나의 홀에서 라이브 로비 세 곳. 슬롯, 피싱, 아케이드 — 룸을 고르고 플레이하세요.",
     "ctaAdventure": "게임 입장",
     "ctaJoin": "계정 만들기",
@@ -153,7 +153,9 @@
     "hundredPlusTagline": "넓은 선택",
     "hundredPlusBody": "100plus: 캐주얼부터 하이 에너지까지, 같은 VPower777 문.",
     "dragonfuryTagline": "파워와 페이스",
-    "dragonfuryBody": "Dragon Fury 로비: 계정은 여기서, 게임은 파트너 사이트에서."
+    "dragonfuryBody": "Dragon Fury 로비: 계정은 여기서, 게임은 파트너 사이트에서.",
+    "dgamesTagline": "GamesAPI 카탈로그",
+    "dgamesBody": "dgamesonline: VPower777 잔액, openGame, 실시간 지갑."
   },
   "play": {
     "eyebrow": "세션",
@@ -358,5 +360,17 @@
     "showPassword": "비밀번호 표시",
     "entering": "Dragon Fury 준비 중…",
     "missingBody": "홀로 돌아가 다시 시도하세요."
+  },
+  "dgamesPlay": {
+    "title": "dgamesonline",
+    "body": "Pick a title. Your VPower777 dgamesonline balance is used on every spin.",
+    "loginTitle": "Sign in first",
+    "loginBody": "A VPower777 account unlocks the dgamesonline lobby.",
+    "loginCta": "Sign in",
+    "entering": "Opening…",
+    "enterError": "Unable to open dgamesonline. Check hall / API configuration.",
+    "empty": "No games yet — the dgamesonline hall may not be configured.",
+    "openExternal": "New tab",
+    "backProviders": "Back to rooms"
   }
 }

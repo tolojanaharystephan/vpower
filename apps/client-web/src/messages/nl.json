@@ -125,7 +125,7 @@
   "portal": {
     "eyebrow": "Welkom bij",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "providersLine": "VBlink · Dragon Fury · 100plus · dgamesonline",
     "subtitle": "Drie live lobbies vanuit één hall. Slots, vissen, arcade — kies een zaal en speel.",
     "ctaAdventure": "Het spel in",
     "ctaJoin": "Account maken",
@@ -153,7 +153,9 @@
     "hundredPlusTagline": "Breed aanbod",
     "hundredPlusBody": "100plus: van casual tot high energy, dezelfde VPower777-deur.",
     "dragonfuryTagline": "Kracht en tempo",
-    "dragonfuryBody": "Dragon Fury-lobby: account hier aangemaakt, spelen op de partnersite."
+    "dragonfuryBody": "Dragon Fury-lobby: account hier aangemaakt, spelen op de partnersite.",
+    "dgamesTagline": "GamesAPI-catalogus",
+    "dgamesBody": "dgamesonline: VPower777-saldo, titels via openGame, realtime wallet-callbacks."
   },
   "play": {
     "eyebrow": "Sessie",
@@ -358,5 +360,17 @@
     "showPassword": "Wachtwoord tonen",
     "entering": "Dragon Fury voorbereiden…",
     "missingBody": "Ga terug naar de hall en probeer opnieuw."
+  },
+  "dgamesPlay": {
+    "title": "dgamesonline",
+    "body": "Kies een titel. Je VPower777 dgamesonline-saldo wordt bij elke spin gebruikt.",
+    "loginTitle": "Eerst inloggen",
+    "loginBody": "Een VPower777-account opent de dgamesonline-lobby.",
+    "loginCta": "Inloggen",
+    "entering": "Openen…",
+    "enterError": "dgamesonline kon niet worden geopend. Check hall / API-config.",
+    "empty": "Nog geen games — de dgamesonline-hall is mogelijk niet geconfigureerd.",
+    "openExternal": "Nieuw tabblad",
+    "backProviders": "Terug naar rooms"
   }
 }

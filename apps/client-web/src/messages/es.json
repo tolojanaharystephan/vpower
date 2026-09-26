@@ -125,7 +125,7 @@
   "portal": {
     "eyebrow": "Bienvenido a",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "providersLine": "VBlink · Dragon Fury · 100plus · dgamesonline",
     "subtitle": "Tres lobbies en vivo desde un solo hall. Tragamonedas, pesca, arcade — elige sala y juega.",
     "ctaAdventure": "Entrar al juego",
     "ctaJoin": "Crear una cuenta",
@@ -153,7 +153,9 @@
     "hundredPlusTagline": "Selección amplia",
     "hundredPlusBody": "100plus: de casual a alta energía, misma puerta VPower777.",
     "dragonfuryTagline": "Potencia y ritmo",
-    "dragonfuryBody": "Lobby Dragon Fury: cuenta creada aquí, juego en el sitio socio."
+    "dragonfuryBody": "Lobby Dragon Fury: cuenta creada aquí, juego en el sitio socio.",
+    "dgamesTagline": "Catálogo GamesAPI",
+    "dgamesBody": "dgamesonline: saldo VPower777, títulos vía openGame, callbacks de wallet en tiempo real."
   },
   "play": {
     "eyebrow": "Sesión",
@@ -358,5 +360,17 @@
     "showPassword": "Mostrar contraseña",
     "entering": "Preparando Dragon Fury…",
     "missingBody": "Vuelve al hall e inténtalo de nuevo."
+  },
+  "dgamesPlay": {
+    "title": "dgamesonline",
+    "body": "Elige un título. Tu saldo dgamesonline VPower777 se usa en cada spin.",
+    "loginTitle": "Inicia sesión primero",
+    "loginBody": "Una cuenta VPower777 desbloquea el lobby dgamesonline.",
+    "loginCta": "Iniciar sesión",
+    "entering": "Abriendo…",
+    "enterError": "No se pudo abrir dgamesonline. Revisa la config hall / API.",
+    "empty": "Sin juegos aún — el hall dgamesonline puede no estar configurado.",
+    "openExternal": "Nueva pestaña",
+    "backProviders": "Volver a salas"
   }
 }

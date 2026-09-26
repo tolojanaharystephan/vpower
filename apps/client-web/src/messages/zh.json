@@ -125,7 +125,7 @@
   "portal": {
     "eyebrow": "欢迎来到",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "providersLine": "VBlink · Dragon Fury · 100plus · dgamesonline",
     "subtitle": "一座大厅，三个在线大厅。老虎机、捕鱼、街机 — 选场馆，开玩。",
     "ctaAdventure": "进入游戏",
     "ctaJoin": "创建账户",
@@ -153,7 +153,9 @@
     "hundredPlusTagline": "选择更宽",
     "hundredPlusBody": "100plus：从轻松到高能，同一扇 VPower777 门。",
     "dragonfuryTagline": "力度与节奏",
-    "dragonfuryBody": "Dragon Fury 大厅：账号在此创建，游戏在合作站点。"
+    "dragonfuryBody": "Dragon Fury 大厅：账号在此创建，游戏在合作站点。",
+    "dgamesTagline": "GamesAPI 目录",
+    "dgamesBody": "dgamesonline：VPower777 余额、openGame、实时钱包回调。"
   },
   "play": {
     "eyebrow": "会话",
@@ -358,5 +360,17 @@
     "showPassword": "显示密码",
     "entering": "正在准备 Dragon Fury…",
     "missingBody": "返回大厅后重试。"
+  },
+  "dgamesPlay": {
+    "title": "dgamesonline",
+    "body": "选择一款游戏。每次旋转使用你的 VPower777 dgamesonline 余额。",
+    "loginTitle": "请先登录",
+    "loginBody": "VPower777 账户可解锁 dgamesonline 大厅。",
+    "loginCta": "登录",
+    "entering": "打开中…",
+    "enterError": "无法打开 dgamesonline。请检查 hall / API 配置。",
+    "empty": "暂无游戏 — dgamesonline 大厅可能尚未配置。",
+    "openExternal": "新标签页",
+    "backProviders": "返回房间"
   }
 }

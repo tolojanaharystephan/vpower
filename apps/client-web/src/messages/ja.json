@@ -125,7 +125,7 @@
   "portal": {
     "eyebrow": "ようこそ",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "providersLine": "VBlink · Dragon Fury · 100plus · dgamesonline",
     "subtitle": "1つのホールからライブロビー3つ。スロット、フィッシング、アーケード — ルームを選んでプレイ。",
     "ctaAdventure": "ゲームへ入る",
     "ctaJoin": "アカウントを作る",
@@ -153,7 +153,9 @@
     "hundredPlusTagline": "広いフロア",
     "hundredPlusBody": "100plus: カジュアルからハイエナジーまで、同じVPower777の扉。",
     "dragonfuryTagline": "パワーとテンポ",
-    "dragonfuryBody": "Dragon Furyロビー: アカウントはここで作成、ゲームは提携サイト。"
+    "dragonfuryBody": "Dragon Furyロビー: アカウントはここで作成、ゲームは提携サイト。",
+    "dgamesTagline": "GamesAPIカタログ",
+    "dgamesBody": "dgamesonline：VPower777残高、openGame、リアルタイムウォレット。"
   },
   "play": {
     "eyebrow": "セッション",
@@ -358,5 +360,17 @@
     "showPassword": "パスワードを表示",
     "entering": "Dragon Furyを準備中…",
     "missingBody": "ホールに戻って再試行してください。"
+  },
+  "dgamesPlay": {
+    "title": "dgamesonline",
+    "body": "Pick a title. Your VPower777 dgamesonline balance is used on every spin.",
+    "loginTitle": "Sign in first",
+    "loginBody": "A VPower777 account unlocks the dgamesonline lobby.",
+    "loginCta": "Sign in",
+    "entering": "Opening…",
+    "enterError": "Unable to open dgamesonline. Check hall / API configuration.",
+    "empty": "No games yet — the dgamesonline hall may not be configured.",
+    "openExternal": "New tab",
+    "backProviders": "Back to rooms"
   }
 }

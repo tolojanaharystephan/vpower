@@ -125,7 +125,7 @@
   "portal": {
     "eyebrow": "Тавтай морил",
     "title": "VPOWER777",
-    "providersLine": "VBlink · Dragon Fury · 100plus",
+    "providersLine": "VBlink · Dragon Fury · 100plus · dgamesonline",
     "subtitle": "Нэг танхимаас гурван шууд лобби. Слот, загас, аркад — танхим сонгоод тогло.",
     "ctaAdventure": "Тоглоомд орох",
     "ctaJoin": "Бүртгэл үүсгэх",
@@ -153,7 +153,9 @@
     "hundredPlusTagline": "Өргөн сонголт",
     "hundredPlusBody": "100plus: энгийнээс өндөр эрчим хүртэл, ижил VPower777 хаалга.",
     "dragonfuryTagline": "Хүч ба хэмнэл",
-    "dragonfuryBody": "Dragon Fury лобби: бүртгэлийг энд үүсгэж, тоглоомыг түншийн сайт дээр."
+    "dragonfuryBody": "Dragon Fury лобби: бүртгэлийг энд үүсгэж, тоглоомыг түншийн сайт дээр.",
+    "dgamesTagline": "GamesAPI каталог",
+    "dgamesBody": "dgamesonline: VPower777 үлдэгдэл, openGame, бодит цагийн түрийвч."
   },
   "play": {
     "eyebrow": "Сесс",
@@ -358,5 +360,17 @@
     "showPassword": "Нууц үг харуулах",
     "entering": "Dragon Fury бэлтгэж байна…",
     "missingBody": "Танхим руу буцаад дахин оролдоорой."
+  },
+  "dgamesPlay": {
+    "title": "dgamesonline",
+    "body": "Pick a title. Your VPower777 dgamesonline balance is used on every spin.",
+    "loginTitle": "Sign in first",
+    "loginBody": "A VPower777 account unlocks the dgamesonline lobby.",
+    "loginCta": "Sign in",
+    "entering": "Opening…",
+    "enterError": "Unable to open dgamesonline. Check hall / API configuration.",
+    "empty": "No games yet — the dgamesonline hall may not be configured.",
+    "openExternal": "New tab",
+    "backProviders": "Back to rooms"
   }
 }
