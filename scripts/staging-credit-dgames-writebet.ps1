@@ -30,21 +30,15 @@ $session = New-SSHSession -ComputerName $hostName -Credential $cred -AcceptKey -
 if (-not $session) { throw 'SSH session failed' }
 $sid = $session.SessionId
 
-$remote = @"
-set -euo pipefail
-docker exec -i vpower777-postgres psql -U vpower777 -d vpower777 -v ON_ERROR_STOP=1 <<'SQL'
-UPDATE user_wallets
-SET balance_cents = balance_cents + $creditCents, updated_at = NOW()
-WHERE user_id = '$userId' AND room_slug = 'dgames';
-INSERT INTO user_wallets (id, user_id, room_slug, balance_cents, updated_at)
-SELECT gen_random_uuid(), '$userId', 'dgames', $creditCents, NOW()
-WHERE NOT EXISTS (
-  SELECT 1 FROM user_wallets WHERE user_id = '$userId' AND room_slug = 'dgames'
-);
+# LF-only remote bash (CRLF from Windows heredocs breaks `set -o pipefail`).
+$sql = @"
+UPDATE user_wallets SET balance_cents = balance_cents + $creditCents, updated_at = NOW() WHERE user_id = '$userId' AND room_slug = 'dgames';
+INSERT INTO user_wallets (id, user_id, room_slug, balance_cents, updated_at) SELECT gen_random_uuid(), '$userId', 'dgames', $creditCents, NOW() WHERE NOT EXISTS (SELECT 1 FROM user_wallets WHERE user_id = '$userId' AND room_slug = 'dgames');
 SELECT room_slug, balance_cents FROM user_wallets WHERE user_id = '$userId' AND room_slug = 'dgames';
-SQL
-"@
+"@ -replace "`r`n", "`n" -replace "`r", "`n"
 
+$b64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($sql))
+$remote = "echo $b64 | base64 -d | docker exec -i vpower777-postgres psql -U vpower777 -d vpower777 -v ON_ERROR_STOP=1"
 $r = Invoke-SSHCommand -SessionId $sid -Command $remote -TimeOut 60
 Write-Host $r.Output
 if ($r.ExitStatus -ne 0) {
