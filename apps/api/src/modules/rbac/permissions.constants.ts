@@ -39,7 +39,7 @@ export const ROLE_PERMISSION_MAP: Record<Role, PermissionCode[]> = {
     PERMISSIONS.WALLET_READ,
     PERMISSIONS.WALLET_CREDIT,
     PERMISSIONS.AUDIT_READ,
-    PERMISSIONS.AGENTS_MANAGE,
+    // Staff account management (agents / room assignment) is SUPER_ADMIN only.
     PERMISSIONS.REVENUE_READ,
   ],
   ROOM_AGENT: [

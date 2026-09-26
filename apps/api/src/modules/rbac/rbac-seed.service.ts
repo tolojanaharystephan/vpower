@@ -50,6 +50,7 @@ export class RbacSeedService implements OnModuleInit {
     ][]) {
       const role = roleByName.get(roleName);
       if (!role) continue;
+      const wanted = new Set<string>(permCodes);
       for (const code of permCodes) {
         const perm = permByCode.get(code);
         if (!perm) continue;
@@ -67,6 +68,20 @@ export class RbacSeedService implements OnModuleInit {
           await this.db
             .insert(rolePermissions)
             .values({ roleId: role.id, permissionId: perm.id });
+        }
+      }
+      // Drop stale grants so ROLE_PERMISSION_MAP stays source of truth (e.g. ADMIN lost agents:manage).
+      const current = await this.db
+        .select({
+          id: rolePermissions.id,
+          code: permissions.code,
+        })
+        .from(rolePermissions)
+        .innerJoin(permissions, eq(permissions.id, rolePermissions.permissionId))
+        .where(eq(rolePermissions.roleId, role.id));
+      for (const row of current) {
+        if (!wanted.has(row.code)) {
+          await this.db.delete(rolePermissions).where(eq(rolePermissions.id, row.id));
         }
       }
     }

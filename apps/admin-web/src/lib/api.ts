@@ -734,6 +734,25 @@ export async function createRoomAgent(
   return res.json();
 }
 
+export async function updateRoomAgent(
+  accessToken: string,
+  userId: string,
+  input: {
+    roomSlugs?: string[];
+    password?: string;
+    firstName?: string;
+    lastName?: string;
+  },
+) {
+  const res = await fetch(`${getApiBaseUrl()}/api/v1/admin/agents/${encodeURIComponent(userId)}`, {
+    method: 'PATCH',
+    headers: { ...authHeaders(accessToken), 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  });
+  if (!res.ok) await parseError(res);
+  return res.json() as Promise<{ userId: string; rooms: string[] }>;
+}
+
 export async function fetchRoomTransactions(accessToken: string, roomSlug: string) {
   const res = await fetch(`${getApiBaseUrl()}/api/v1/agent/rooms/${roomSlug}/transactions`, {
     headers: authHeaders(accessToken),

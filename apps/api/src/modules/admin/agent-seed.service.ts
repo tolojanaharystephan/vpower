@@ -6,7 +6,8 @@ import { AgentOpsService } from '../agent/agent-ops.service';
 
 /**
  * Dev/bootstrap: one ROOM_AGENT per salle when SEED_ADMIN_PASSWORD is set.
- * Emails: agent.{room}@vpower777.test — password = SEED_ADMIN_PASSWORD.
+ * Emails are stable placeholders the SUPER_ADMIN can later change (email via new account + reassign).
+ * Pattern: agent.<room>@vpower777.local — password = SEED_ADMIN_PASSWORD.
  */
 @Injectable()
 export class AgentSeedService implements OnModuleInit {
@@ -38,8 +39,12 @@ export class AgentSeedService implements OnModuleInit {
   }
 
   private async ensureAgent(room: RoomSlug, password: string) {
-    const email = `agent.${room}@vpower777.test`;
-    const existing = await this.users.findByEmail(email);
+    const email = `agent.${room}@vpower777.local`;
+    const legacy = `agent.${room}@vpower777.test`;
+    let existing = await this.users.findByEmail(email);
+    if (!existing) {
+      existing = await this.users.findByEmail(legacy);
+    }
     let userId = existing?.id;
     if (!existing) {
       const created = await this.users.createUser({

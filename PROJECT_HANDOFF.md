@@ -27,6 +27,8 @@ Document **sans secrets**. Les clés / mots de passe sont dans `SECRETS_LOCAL.md
 - Staging : `DGAMES_ENABLED=true`, GetBalance OK, openGame OK (Novomatic / Amatic / …)
 - Catalogue : pack sans provider (`…/ig/…`, ~20 titres type Griphons Gold) → `fail_OPENSESSION` — filtré côté API
 - Demo testé : `persontest@gmail.com` → login provider `vpe88774bb77a4`
+- Soft launch caisse : carte + crypto affichés ; Cash App/PayPal/Zelle/Venmo/Chime → agent de salle
+- writeBet staging prouvé (crédit test + mise $1) via `scripts/staging-credit-dgames-writebet.ps1`
 
 ## Paiement / banque
 
@@ -43,6 +45,9 @@ Document **sans secrets**. Les clés / mots de passe sont dans `SECRETS_LOCAL.md
 ## Agents admin / chat dépôt
 
 - Rôles agents salle, master recettes, chat dépôt avec preuves — migration `0013`, déployé staging précédemment.
+- Modèle staff : **1 SUPER_ADMIN** (boss VPower, voit tout) + **1 ROOM_AGENT par salle** (vblink / 100plus / dragonfury / dgames).
+- Seul le **SUPER_ADMIN** crée / modifie les agents (salles + reset mot de passe) — page Admin → Agents.
+- Seed local (si `SEED_ADMIN_PASSWORD`) : `agent.<salle>@vpower777.local` — le client peut remplacer via l’UI (nouveau compte + réassignation).
 
 ## Secrets — règle d’or
 

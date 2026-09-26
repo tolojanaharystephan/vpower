@@ -25,7 +25,12 @@ const MASTER_NAV = [
   { href: '/room-players', labelKey: 'roomPlayers' as const, icon: Users },
   { href: '/room-chat', labelKey: 'roomChat' as const, icon: MessageSquare },
   { href: '/room-cash', labelKey: 'roomCash' as const, icon: Wallet },
-  { href: '/agents', labelKey: 'agents' as const, icon: UserCog },
+  {
+    href: '/agents',
+    labelKey: 'agents' as const,
+    icon: UserCog,
+    superAdminOnly: true as const,
+  },
   { href: '/games', labelKey: 'games' as const, icon: Gamepad2 },
   { href: '/content', labelKey: 'content' as const, icon: Newspaper },
   { href: '/support', labelKey: 'support' as const, icon: Headphones },
@@ -40,16 +45,17 @@ const AGENT_NAV = [
 /** @deprecated use getStaffNav — kept for mobile shell compatibility */
 export const ADMIN_NAV = MASTER_NAV;
 
-export function getStaffNav(isRoomAgent: boolean) {
-  return isRoomAgent ? AGENT_NAV : MASTER_NAV;
+export function getStaffNav(isRoomAgent: boolean, isSuperAdmin = false) {
+  if (isRoomAgent) return AGENT_NAV;
+  return MASTER_NAV.filter((item) => !('superAdminOnly' in item && item.superAdminOnly) || isSuperAdmin);
 }
 
 export function AdminSidebar() {
   const t = useTranslations('nav');
   const common = useTranslations('common');
   const pathname = usePathname();
-  const { isMasterAdmin, isRoomAgent } = useAdminAuth();
-  const nav = getStaffNav(isRoomAgent);
+  const { isMasterAdmin, isRoomAgent, isSuperAdmin } = useAdminAuth();
+  const nav = getStaffNav(isRoomAgent, isSuperAdmin);
 
   return (
     <aside className="admin-sidebar">

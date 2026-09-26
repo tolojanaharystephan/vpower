@@ -60,6 +60,27 @@ export class CreateAgentDto {
   roomSlugs!: string[];
 }
 
+/** SUPER_ADMIN: reassign rooms and/or reset password for an existing room agent. */
+export class UpdateAgentDto {
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  roomSlugs?: string[];
+
+  @IsOptional()
+  @IsString()
+  @MinLength(8)
+  password?: string;
+
+  @IsOptional()
+  @IsString()
+  firstName?: string;
+
+  @IsOptional()
+  @IsString()
+  lastName?: string;
+}
+
 export class RevenueQueryDto {
   @IsOptional()
   @IsString()

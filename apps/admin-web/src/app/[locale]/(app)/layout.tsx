@@ -16,8 +16,8 @@ export default function AppShellLayout({ children }: { children: ReactNode }) {
   const common = useTranslations('common');
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const { isRoomAgent } = useAdminAuth();
-  const nav = getStaffNav(isRoomAgent);
+  const { isRoomAgent, isSuperAdmin } = useAdminAuth();
+  const nav = getStaffNav(isRoomAgent, isSuperAdmin);
 
   return (
     <RequireAdmin>

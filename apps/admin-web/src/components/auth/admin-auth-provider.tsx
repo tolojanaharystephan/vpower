@@ -35,6 +35,7 @@ type AdminAuthState = {
   logout: () => Promise<void>;
   isStaff: boolean;
   isMasterAdmin: boolean;
+  isSuperAdmin: boolean;
   isRoomAgent: boolean;
 };
 
@@ -120,6 +121,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       logout,
       isStaff: hasStaffPortalAccess(permissions),
       isMasterAdmin: hasAdminAccess(permissions),
+      isSuperAdmin: roles.includes('SUPER_ADMIN'),
       isRoomAgent: isRoomAgentOnly(permissions),
     }),
     [ready, user, roles, permissions, accessToken, login, logout],
