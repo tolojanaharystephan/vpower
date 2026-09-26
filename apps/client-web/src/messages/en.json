@@ -26,6 +26,12 @@
     "devCreditHint": "Test credit — funds the room you pick. Live cashier coming soon",
     "deposit": "Deposit",
     "depositError": "Deposit unavailable right now. Try again.",
+    "methodsAvailable": "Available now",
+    "methodCard": "Bank card",
+    "methodCrypto": "Crypto (USDT / USDC)",
+    "methodsHint": "You pick the method on the secure payment page.",
+    "methodsLater": "Cash App, PayPal, Zelle, Venmo, Chime: coming soon online, or via the room agent with a transfer proof.",
+    "depositViaAgent": "Deposit via room agent",
     "balanceLabel": "Balance",
     "walletsLabel": "Wallets",
     "roomsTitle": "Wallets by room",
@@ -248,7 +254,7 @@
     "supportLink": "Contact support",
     "walletsEyebrow": "Wallets",
     "walletsTitle": "One balance per room",
-    "walletsBody": "Fund the room you play. Wins in that room come back here."
+    "walletsBody": "Fund the room you play (card or crypto). Other methods: room agent. Wins in that room come back here."
   },
   "support": {
     "eyebrow": "Support",

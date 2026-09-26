@@ -24,6 +24,12 @@
     "devCreditHint": "Crédit de test — alimente la salle choisie. La caisse réelle arrive.",
     "deposit": "Déposer",
     "depositError": "Dépôt impossible pour le moment. Réessaie.",
+    "methodsAvailable": "Disponible maintenant",
+    "methodCard": "Carte bancaire",
+    "methodCrypto": "Crypto (USDT / USDC)",
+    "methodsHint": "Tu choisis le moyen sur la page de paiement sécurisée.",
+    "methodsLater": "Cash App, PayPal, Zelle, Venmo, Chime : bientôt en ligne, ou via l’agent de salle avec une preuve de virement.",
+    "depositViaAgent": "Déposer via l’agent de salle",
     "balanceLabel": "Solde",
     "walletsLabel": "Portefeuilles",
     "roomsTitle": "Portefeuilles par salle",
@@ -267,7 +273,7 @@
     "supportLink": "Contacter le support",
     "walletsEyebrow": "Portefeuilles",
     "walletsTitle": "Un solde par salle",
-    "walletsBody": "Alimente la salle où tu joues. Les gains de cette salle reviennent ici."
+    "walletsBody": "Alimente la salle où tu joues (carte ou crypto). Autres moyens : agent de salle. Les gains de cette salle reviennent ici."
   },
   "support": {
     "eyebrow": "Support",

@@ -3,7 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { Wallet } from 'lucide-react';
+import { CreditCard, MessageSquare, Wallet } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { useSession } from '@/components/auth/session-provider';
 import { Button } from '@/components/ui/button';
@@ -113,21 +113,54 @@ export function RoomWalletsPanel() {
               )}
             </div>
             {paymentsEnabled && depositRoom === wallet.roomSlug ? (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {DEPOSIT_PRESETS_CENTS.map((cents) => (
-                  <Button
-                    key={cents}
-                    type="button"
-                    size="sm"
-                    variant="secondary"
-                    disabled={!accessToken || checkout.isPending}
-                    onClick={() =>
-                      checkout.mutate({ roomSlug: wallet.roomSlug, amountCents: cents })
-                    }
+              <div className="mt-3 space-y-3 border-t border-[rgba(255,255,255,0.08)] pt-3">
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--vp-accent)]">
+                    {tw('methodsAvailable')}
+                  </p>
+                  <ul className="mt-1.5 space-y-1 text-sm text-[var(--vp-fg)]">
+                    <li className="flex items-center gap-2">
+                      <CreditCard className="h-3.5 w-3.5 text-[var(--vp-accent)]" />
+                      {tw('methodCard')}
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span
+                        aria-hidden
+                        className="grid h-3.5 w-3.5 place-items-center rounded-sm border border-[rgba(46,163,242,0.45)] text-[9px] font-semibold text-[var(--vp-accent)]"
+                      >
+                        $
+                      </span>
+                      {tw('methodCrypto')}
+                    </li>
+                  </ul>
+                  <p className="mt-2 text-xs text-[var(--vp-muted)]">{tw('methodsHint')}</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {DEPOSIT_PRESETS_CENTS.map((cents) => (
+                    <Button
+                      key={cents}
+                      type="button"
+                      size="sm"
+                      variant="secondary"
+                      disabled={!accessToken || checkout.isPending}
+                      onClick={() =>
+                        checkout.mutate({ roomSlug: wallet.roomSlug, amountCents: cents })
+                      }
+                    >
+                      ${(cents / 100).toFixed(0)}
+                    </Button>
+                  ))}
+                </div>
+                <div className="rounded-md border border-[rgba(255,255,255,0.08)] bg-black/20 px-3 py-2.5">
+                  <p className="text-xs text-[var(--vp-muted)]">{tw('methodsLater')}</p>
+                  <Link
+                    href="/support"
+                    className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-[var(--vp-accent-bright)] hover:underline"
                   >
-                    ${(cents / 100).toFixed(0)}
-                  </Button>
-                ))}
+                    <MessageSquare className="h-3.5 w-3.5" />
+                    {tw('depositViaAgent')}
+                  </Link>
+                </div>
               </div>
             ) : null}
           </article>
