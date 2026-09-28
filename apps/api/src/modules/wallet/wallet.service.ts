@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import { ROOM_SLUGS, isRoomSlug, type RoomSlug } from '@vpower777/types';
 import { eq, sql, and } from 'drizzle-orm';
-import { AppConfigService } from '../../config/app-config.service';
 import type { Database } from '../../database/database';
 import { DRIZZLE } from '../../database/database.constants';
 import { userWallets, walletTransactions, type UserWallet } from '../../database/schema';
@@ -23,10 +22,7 @@ export type RoomWalletDto = {
 
 @Injectable()
 export class WalletService {
-  constructor(
-    @Inject(DRIZZLE) private readonly db: Database,
-    private readonly config: AppConfigService,
-  ) {}
+  constructor(@Inject(DRIZZLE) private readonly db: Database) {}
 
   parseRoomSlug(value: string): RoomSlug {
     if (!isRoomSlug(value)) {
@@ -113,16 +109,9 @@ export class WalletService {
     return again;
   }
 
-  /** Dev / pre-Stripe top-up so money can live on VPower before partner transfer. */
-  async devCredit(userId: string, roomSlug: string, amountCents: number) {
-    if (this.config.isProduction) {
-      throw new ServiceUnavailableException('Dev wallet credit disabled in production');
-    }
-    if (!Number.isInteger(amountCents) || amountCents <= 0) {
-      throw new BadRequestException('amountCents must be a positive integer');
-    }
-    await this.credit(userId, roomSlug, amountCents, 'dev_credit', `dev-${Date.now()}`);
-    return this.listForUser(userId);
+  /** Test top-up. Retired: balances come from AllScale or a room agent. */
+  async devCredit(_userId: string, _roomSlug: string, _amountCents: number): Promise<never> {
+    throw new ServiceUnavailableException('Test wallet credit is disabled');
   }
 
   async credit(
