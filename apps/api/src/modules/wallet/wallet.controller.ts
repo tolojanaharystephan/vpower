@@ -23,6 +23,7 @@ export class WalletController {
     const slug = this.wallet.parseRoomSlug(roomSlug);
     const listed = await this.wallet.listForUser(user.id);
     const cashier = listed.wallets[0];
+    if (!cashier) return { currency: listed.currency, roomSlug: slug, balanceCents: 0, balance: '0.00' };
     return { currency: listed.currency, ...cashier, roomSlug: slug };
   }
 
@@ -36,9 +37,9 @@ export class WalletController {
     const cashier = listed.wallets[0];
     return {
       ...listed,
-      roomSlug: cashier.roomSlug,
-      balanceCents: cashier.balanceCents,
-      balance: cashier.balance,
+      roomSlug: cashier?.roomSlug ?? 'cashier',
+      balanceCents: cashier?.balanceCents ?? 0,
+      balance: cashier?.balance ?? '0.00',
       creditedCents: amountCents,
     };
   }
