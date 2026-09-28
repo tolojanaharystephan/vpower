@@ -61,8 +61,8 @@ export class PaymentsService {
   }) {
     this.assertPaymentsEnabled();
     const roomSlug = this.wallets.parseRoomSlug(input.roomSlug);
-    if (!Number.isInteger(input.amountCents) || input.amountCents < 100) {
-      throw new BadRequestException('amountCents must be at least 100 ($1.00)');
+    if (!Number.isInteger(input.amountCents) || input.amountCents < 500) {
+      throw new BadRequestException('amountCents must be at least 500 ($5.00)');
     }
 
     const [user] = await this.db

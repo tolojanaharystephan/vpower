@@ -5,14 +5,14 @@ export type { Locale } from '@vpower777/types';
 /** Centralized non-secret app configuration. Secrets stay in env (Phase 1+). */
 
 export const SUPPORTED_LOCALES: readonly Locale[] = [
-  'fr',
   'en',
+  'zh',
+  'ja',
+  'ko',
+  'mn',
   'es',
   'nl',
-  'zh',
-  'ko',
-  'ja',
-  'mn',
+  'fr',
 ] as const;
 
 export const DEFAULT_LOCALE: Locale = 'fr';

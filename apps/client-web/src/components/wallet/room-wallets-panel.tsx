@@ -11,7 +11,15 @@ import { useRoomWallets } from '@/components/wallet/use-room-wallets';
 import { createAllscaleCheckout, devCreditWallet, getHealthFeatures } from '@/lib/api';
 import { roomPlayHref } from '@/lib/portal';
 
-const DEPOSIT_PRESETS_CENTS = [1_000, 2_500, 5_000, 10_000] as const;
+const MIN_DEPOSIT_CENTS = 500;
+
+function parseDepositCents(raw: string): number | null {
+  const normalized = raw.trim().replace(',', '.');
+  if (!/^\d+(\.\d{1,2})?$/.test(normalized)) return null;
+  const cents = Math.round(Number(normalized) * 100);
+  if (!Number.isInteger(cents) || cents < MIN_DEPOSIT_CENTS) return null;
+  return cents;
+}
 
 export function RoomWalletsPanel() {
   const t = useTranslations('account');
@@ -20,6 +28,7 @@ export function RoomWalletsPanel() {
   const queryClient = useQueryClient();
   const { wallets, isLoading } = useRoomWallets();
   const [depositRoom, setDepositRoom] = useState<string | null>(null);
+  const [depositAmounts, setDepositAmounts] = useState<Record<string, string>>({});
   const [depositError, setDepositError] = useState<string | null>(null);
 
   const features = useQuery({
@@ -135,22 +144,40 @@ export function RoomWalletsPanel() {
                   </ul>
                   <p className="mt-2 text-xs text-[var(--vp-muted)]">{tw('methodsHint')}</p>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {DEPOSIT_PRESETS_CENTS.map((cents) => (
-                    <Button
-                      key={cents}
-                      type="button"
-                      size="sm"
-                      variant="secondary"
-                      disabled={!accessToken || checkout.isPending}
-                      onClick={() =>
-                        checkout.mutate({ roomSlug: wallet.roomSlug, amountCents: cents })
-                      }
-                    >
-                      ${(cents / 100).toFixed(0)}
-                    </Button>
-                  ))}
-                </div>
+                <form
+                  className="flex flex-wrap items-center gap-2"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    const cents = parseDepositCents(depositAmounts[wallet.roomSlug] ?? '');
+                    if (cents == null) {
+                      setDepositError(tw('amountInvalid'));
+                      return;
+                    }
+                    setDepositError(null);
+                    checkout.mutate({ roomSlug: wallet.roomSlug, amountCents: cents });
+                  }}
+                >
+                  <label className="sr-only" htmlFor={`deposit-${wallet.roomSlug}`}>
+                    {tw('amountLabel')}
+                  </label>
+                  <input
+                    id={`deposit-${wallet.roomSlug}`}
+                    inputMode="decimal"
+                    autoComplete="off"
+                    placeholder={tw('amountPlaceholder')}
+                    value={depositAmounts[wallet.roomSlug] ?? ''}
+                    onChange={(event) =>
+                      setDepositAmounts((current) => ({
+                        ...current,
+                        [wallet.roomSlug]: event.target.value,
+                      }))
+                    }
+                    className="h-9 min-w-[8rem] flex-1 rounded-md border border-[rgba(255,255,255,0.12)] bg-black/30 px-3 text-sm text-[var(--vp-fg)] outline-none placeholder:text-[var(--vp-muted)] focus:border-[var(--vp-accent)]"
+                  />
+                  <Button type="submit" size="sm" disabled={!accessToken || checkout.isPending}>
+                    {tw('amountSubmit')}
+                  </Button>
+                </form>
                 <div className="rounded-md border border-[rgba(255,255,255,0.08)] bg-black/20 px-3 py-2.5">
                   <p className="text-xs text-[var(--vp-muted)]">{tw('methodsLater')}</p>
                   <Link
