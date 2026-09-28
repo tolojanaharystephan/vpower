@@ -22,8 +22,8 @@ export class WalletController {
   async meRoom(@CurrentUser() user: AuthUser, @Param('roomSlug') roomSlug: string) {
     const slug = this.wallet.parseRoomSlug(roomSlug);
     const listed = await this.wallet.listForUser(user.id);
-    const room = listed.wallets.find((w) => w.roomSlug === slug)!;
-    return { currency: listed.currency, ...room };
+    const cashier = listed.wallets[0];
+    return { currency: listed.currency, ...cashier, roomSlug: slug };
   }
 
   @Post('dev-credit')
@@ -33,12 +33,12 @@ export class WalletController {
   async devCredit(@CurrentUser() user: AuthUser, @Body() body: DevCreditDto) {
     const amountCents = body.amountCents ?? 10_000;
     const listed = await this.wallet.devCredit(user.id, body.roomSlug, amountCents);
-    const room = listed.wallets.find((w) => w.roomSlug === body.roomSlug)!;
+    const cashier = listed.wallets[0];
     return {
       ...listed,
-      roomSlug: room.roomSlug,
-      balanceCents: room.balanceCents,
-      balance: room.balance,
+      roomSlug: cashier.roomSlug,
+      balanceCents: cashier.balanceCents,
+      balance: cashier.balance,
       creditedCents: amountCents,
     };
   }

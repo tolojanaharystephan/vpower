@@ -62,7 +62,11 @@ export function WalletChip() {
             ).map((wallet) => (
               <li key={wallet.roomSlug}>
                 <Link
-                  href={wallet.roomSlug === '…' ? '/account' : roomPlayHref(wallet.roomSlug)}
+                  href={
+                    wallet.roomSlug === '…' || wallet.roomSlug === 'cashier'
+                      ? '/account#wallets'
+                      : roomPlayHref(wallet.roomSlug)
+                  }
                   role="menuitem"
                   onClick={() => setOpen(false)}
                   className="flex items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-sm transition hover:bg-white/5"

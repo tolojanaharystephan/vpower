@@ -39,7 +39,8 @@
     "balanceLabel": "余额",
     "walletsLabel": "钱包",
     "roomsTitle": "分场馆钱包",
-    "roomsSubtitle": "每个场馆有独立余额。",
+    "cashierName": "收银台",
+    "roomsSubtitle": "所有场馆共用一个收银台。",
     "fundRoom": "充值",
     "openRoom": "开始",
     "manageWallets": "管理钱包",
@@ -245,8 +246,8 @@
     "sessionBody": "退出此设备。账户与收藏仍会同步。",
     "supportLink": "联系客服",
     "walletsEyebrow": "钱包",
-    "walletsTitle": "一场馆一余额",
-    "walletsBody": "给要玩的场馆充值。该场馆的赢利回到这里。"
+    "walletsTitle": "一个收银台",
+    "walletsBody": "充值一次。这个收银台可用于你打开的任何场馆。赢利回到这里。"
   },
   "support": {
     "eyebrow": "客服",

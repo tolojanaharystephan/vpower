@@ -39,7 +39,8 @@
     "balanceLabel": "Saldo",
     "walletsLabel": "Portefeuilles",
     "roomsTitle": "Portefeuilles per zaal",
-    "roomsSubtitle": "Elke zaal heeft een eigen saldo.",
+    "cashierName": "Kas",
+    "roomsSubtitle": "Eén kas voor alle zalen.",
     "fundRoom": "Voeden",
     "openRoom": "Spelen",
     "manageWallets": "Portefeuilles beheren",
@@ -245,8 +246,8 @@
     "sessionBody": "Log uit op dit apparaat. Account en favorieten blijven gesynchroniseerd.",
     "supportLink": "Contact support",
     "walletsEyebrow": "Portefeuilles",
-    "walletsTitle": "Eén saldo per zaal",
-    "walletsBody": "Voed de zaal waar je speelt. Winst van die zaal komt hier terug."
+    "walletsTitle": "Eén kas",
+    "walletsBody": "Je stort één keer. Deze kas voedt de zaal die je opent. Winst komt hier terug."
   },
   "support": {
     "eyebrow": "Support",

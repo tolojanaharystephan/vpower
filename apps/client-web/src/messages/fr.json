@@ -37,11 +37,12 @@
     "balanceLabel": "Solde",
     "walletsLabel": "Portefeuilles",
     "roomsTitle": "Portefeuilles par salle",
-    "roomsSubtitle": "Chaque salle a son propre compte.",
+    "cashierName": "Caisse",
+    "roomsSubtitle": "Une seule caisse pour toutes les salles.",
     "fundRoom": "Alimenter",
     "openRoom": "Jouer",
     "manageWallets": "Gérer les portefeuilles",
-    "thisRoom": "Cette salle"
+    "thisRoom": "Caisse"
   },
   "hero": {
     "eyebrow": "VBlink · Dragon Fury · 100plus",
@@ -276,8 +277,8 @@
     "sessionBody": "Déconnecte cet appareil. Ton compte et tes favoris restent synchronisés.",
     "supportLink": "Contacter le support",
     "walletsEyebrow": "Portefeuilles",
-    "walletsTitle": "Un solde par salle",
-    "walletsBody": "Alimente la salle où tu joues (carte ou crypto). Autres moyens : agent de salle. Les gains de cette salle reviennent ici."
+    "walletsTitle": "Une seule caisse",
+    "walletsBody": "Tu déposes une fois. Cette caisse alimente la salle que tu choisis. Les gains reviennent ici."
   },
   "support": {
     "eyebrow": "Support",

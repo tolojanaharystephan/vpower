@@ -60,7 +60,8 @@ export class PaymentsService {
     locale?: string;
   }) {
     this.assertPaymentsEnabled();
-    const roomSlug = this.wallets.parseRoomSlug(input.roomSlug);
+    const roomSlug =
+      input.roomSlug === 'cashier' ? 'cashier' : this.wallets.parseRoomSlug(input.roomSlug);
     if (!Number.isInteger(input.amountCents) || input.amountCents < 500) {
       throw new BadRequestException('amountCents must be at least 500 ($5.00)');
     }

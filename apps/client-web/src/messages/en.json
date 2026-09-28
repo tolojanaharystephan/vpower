@@ -39,11 +39,12 @@
     "balanceLabel": "Balance",
     "walletsLabel": "Wallets",
     "roomsTitle": "Wallets by room",
-    "roomsSubtitle": "Each room has its own balance.",
+    "cashierName": "Cashier",
+    "roomsSubtitle": "One cashier for every room.",
     "fundRoom": "Fund",
     "openRoom": "Play",
     "manageWallets": "Manage wallets",
-    "thisRoom": "This room"
+    "thisRoom": "Cashier"
   },
   "hero": {
     "eyebrow": "VBlink · Dragon Fury · 100plus",
@@ -257,8 +258,8 @@
     "sessionBody": "Sign out of this device. Your account and favorites stay in sync.",
     "supportLink": "Contact support",
     "walletsEyebrow": "Wallets",
-    "walletsTitle": "One balance per room",
-    "walletsBody": "Fund the room you play (card or crypto). Other methods: room agent. Wins in that room come back here."
+    "walletsTitle": "One cashier",
+    "walletsBody": "Deposit once. This cashier funds whichever room you open. Wins come back here."
   },
   "support": {
     "eyebrow": "Support",

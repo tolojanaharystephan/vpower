@@ -13,8 +13,9 @@ export function useRoomWallets() {
   });
 
   const wallets = query.data?.wallets ?? [];
+  const cashier = wallets[0];
   const bySlug = (slug: string): RoomWallet | undefined =>
-    wallets.find((wallet) => wallet.roomSlug === slug);
+    wallets.find((wallet) => wallet.roomSlug === slug) ?? cashier;
 
   return { ...query, wallets, bySlug };
 }

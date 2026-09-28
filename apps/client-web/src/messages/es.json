@@ -39,7 +39,8 @@
     "balanceLabel": "Saldo",
     "walletsLabel": "Carteras",
     "roomsTitle": "Carteras por sala",
-    "roomsSubtitle": "Cada sala tiene su propio saldo.",
+    "cashierName": "Caja",
+    "roomsSubtitle": "Una sola caja para todas las salas.",
     "fundRoom": "Alimentar",
     "openRoom": "Jugar",
     "manageWallets": "Gestionar carteras",
@@ -245,8 +246,8 @@
     "sessionBody": "Cierra sesión en este dispositivo. Tu cuenta y favoritos siguen sincronizados.",
     "supportLink": "Contactar soporte",
     "walletsEyebrow": "Carteras",
-    "walletsTitle": "Un saldo por sala",
-    "walletsBody": "Alimenta la sala donde juegas. Las ganancias de esa sala vuelven aquí."
+    "walletsTitle": "Una sola caja",
+    "walletsBody": "Depositas una vez. Esta caja alimenta la sala que eliges. Las ganancias vuelven aquí."
   },
   "support": {
     "eyebrow": "Soporte",

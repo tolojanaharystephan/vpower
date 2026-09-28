@@ -80,7 +80,7 @@ export function RoomWalletsPanel() {
               <div>
                 <p className="flex items-center gap-2 text-sm font-medium text-[var(--vp-muted)]">
                   <Wallet className="h-4 w-4 text-[var(--vp-accent)]" />
-                  {wallet.name}
+                  {wallet.roomSlug === 'cashier' ? tw('cashierName') : wallet.name}
                 </p>
                 <p className="mt-2 font-[family-name:var(--font-display)] text-3xl text-[var(--vp-fg)]">
                   ${wallet.balance}
@@ -88,7 +88,10 @@ export function RoomWalletsPanel() {
               </div>
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Link href={roomPlayHref(wallet.roomSlug)} className="flex-1">
+              <Link
+                href={wallet.roomSlug === 'cashier' ? '/providers' : roomPlayHref(wallet.roomSlug)}
+                className="flex-1"
+              >
                 <Button variant="secondary" className="w-full" size="sm">
                   {tw('openRoom')}
                 </Button>

@@ -17,6 +17,7 @@ import {
   walletTransactions,
 } from '../../database/schema';
 import type { AuthUser } from '../auth/auth.types';
+import { CASHIER_SLUG } from '../wallet/wallet.service';
 import { PERMISSIONS } from '../rbac/permissions.constants';
 import { WalletService } from '../wallet/wallet.service';
 import { mkdir, writeFile } from 'node:fs/promises';
@@ -98,7 +99,7 @@ export class AgentOpsService {
         total: sql<number>`coalesce(sum(${userWallets.balanceCents}), 0)`,
       })
       .from(userWallets)
-      .where(eq(userWallets.roomSlug, slug));
+      .where(eq(userWallets.roomSlug, CASHIER_SLUG));
 
     return {
       roomSlug: slug,
@@ -142,7 +143,10 @@ export class AgentOpsService {
     const walletRows = await this.db
       .select({
         userId: userWallets.userId,
-        balanceCents: userWallets.balanceCents,
+        balanceCents: sql<number>`coalesce((
+          select c.balance_cents from user_wallets c
+          where c.user_id = ${userWallets.userId} and c.room_slug = ${CASHIER_SLUG}
+        ), 0)`,
         email: users.email,
         firstName: users.firstName,
         lastName: users.lastName,
@@ -158,8 +162,8 @@ export class AgentOpsService {
       firstName: r.firstName,
       lastName: r.lastName,
       displayName: [r.firstName, r.lastName].filter(Boolean).join(' ') || r.email,
-      balanceCents: r.balanceCents,
-      balance: this.wallets.formatDollars(r.balanceCents),
+      balanceCents: Number(r.balanceCents),
+      balance: this.wallets.formatDollars(Number(r.balanceCents)),
       roomSlug: slug,
     }));
   }
@@ -173,7 +177,8 @@ export class AgentOpsService {
       .limit(1);
     if (!player) throw new NotFoundException('Player not found');
 
-    const wallet = await this.wallets.getOrCreate(playerId, slug);
+    const balanceCents = await this.wallets.getBalanceCents(playerId, slug);
+    const wallet = { balanceCents };
     const transactions = await this.wallets.listTransactions(playerId, slug, 100);
     const conversation = await this.getOrCreateConversation(playerId, slug);
 

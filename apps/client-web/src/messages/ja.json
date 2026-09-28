@@ -39,7 +39,8 @@
     "balanceLabel": "残高",
     "walletsLabel": "ウォレット",
     "roomsTitle": "ルーム別ウォレット",
-    "roomsSubtitle": "ルームごとに残高が分かれます。",
+    "cashierName": "レジ",
+    "roomsSubtitle": "すべてのルームで一つのレジ。",
     "fundRoom": "入金",
     "openRoom": "プレイ",
     "manageWallets": "ウォレット管理",
@@ -245,8 +246,8 @@
     "sessionBody": "この端末からログアウトします。アカウントとお気に入りは同期されたままです。",
     "supportLink": "サポートに連絡",
     "walletsEyebrow": "ウォレット",
-    "walletsTitle": "ルームごとに残高",
-    "walletsBody": "プレイするルームに入金。そのルームの配当はここに戻ります。"
+    "walletsTitle": "一つのレジ",
+    "walletsBody": "一度入金すれば、開くルームのどれでも使えます。配当はここに戻ります。"
   },
   "support": {
     "eyebrow": "サポート",

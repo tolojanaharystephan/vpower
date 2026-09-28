@@ -39,7 +39,8 @@
     "balanceLabel": "잔액",
     "walletsLabel": "지갑",
     "roomsTitle": "룸별 지갑",
-    "roomsSubtitle": "룸마다 잔액이 따로 있습니다.",
+    "cashierName": "캐셔",
+    "roomsSubtitle": "모든 룸이 하나의 캐셔를 씁니다.",
     "fundRoom": "충전",
     "openRoom": "플레이",
     "manageWallets": "지갑 관리",
@@ -245,8 +246,8 @@
     "sessionBody": "이 기기에서 로그아웃합니다. 계정과 즐겨찾기는 계속 동기화됩니다.",
     "supportLink": "고객지원 문의",
     "walletsEyebrow": "지갑",
-    "walletsTitle": "룸마다 잔액 하나",
-    "walletsBody": "플레이할 룸에 충전하세요. 그 룸의 당첨금은 여기로 돌아옵니다."
+    "walletsTitle": "하나의 캐셔",
+    "walletsBody": "한 번 충전하면 여는 룸 어디에서나 씁니다. 당첨금은 여기로 돌아옵니다."
   },
   "support": {
     "eyebrow": "고객지원",
