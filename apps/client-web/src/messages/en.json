@@ -44,7 +44,8 @@
     "fundRoom": "Fund",
     "openRoom": "Play",
     "manageWallets": "Manage wallets",
-    "thisRoom": "VPower777 balance"
+    "thisRoom": "VPower777 balance",
+    "feeHint": "Card and crypto checkout is handled by Transak or Banxa. They may add their own fee (often around 10%). VPower777 does not set that rate. Deposit via the room agent if you want to avoid it."
   },
   "hero": {
     "eyebrow": "VBlink · Dragon Fury · 100plus",
@@ -180,11 +181,12 @@
     "hundredPlusFeat3": "Play now from this card",
     "dgamesFeat1": "Launch titles without leaving VPower777",
     "dgamesFeat2": "Balance updates as you play",
-    "dgamesFeat3": "One login for the whole hall"
+    "dgamesFeat3": "One login for the whole hall",
+    "online": "Online"
   },
   "dgamesPlay": {
     "title": "dgamesonline",
-    "body": "Pick a title. Your VPower777 dgamesonline balance is used on every spin.",
+    "body": "Pick a title. Your VPower777 cashier is used on every spin — same account as the rest of the hall.",
     "loginTitle": "Sign in first",
     "loginBody": "A VPower777 account unlocks the dgamesonline lobby.",
     "loginCta": "Sign in",
@@ -236,7 +238,9 @@
     "loginHint": "Use these details only if the lobby asks. Your VPower777 account already opened this room.",
     "lobbyHint": "Your VPower777 account opened this room. Keep these details only if asked.",
     "playNow": "Play now",
-    "credentialsToggle": "If the lobby asks you to sign in"
+    "credentialsToggle": "If the lobby asks you to sign in",
+    "unifiedBody": "You are playing with your VPower777 account. One cashier for every room — no extra signup.",
+    "playHint": "If the room still shows a sign-in form, your access is already copied. Paste and continue."
   },
   "plus100Play": {
     "loginTitle": "Sign in first",
@@ -259,7 +263,9 @@
     "loginHint": "Use these details only if the lobby asks. Your VPower777 account already opened this room.",
     "lobbyHint": "Your VPower777 account opened this room. Keep these details only if asked.",
     "playNow": "Play now",
-    "credentialsToggle": "If the lobby asks you to sign in"
+    "credentialsToggle": "If the lobby asks you to sign in",
+    "unifiedBody": "You are playing with your VPower777 account. One cashier for every room — no extra signup.",
+    "playHint": "If the room still shows a sign-in form, your access is already copied. Paste and continue."
   },
   "account": {
     "eyebrow": "Player area",
@@ -391,9 +397,9 @@
     "supportHint": "Still stuck?",
     "supportLink": "Talk to support",
     "q1": "How do I create an account?",
-    "a1": "Sign up, then confirm email once mail is live.",
+    "a1": "Create one VPower777 account. That same login opens every room — you do not register again on VBlink or Dragon Fury.",
     "q2": "Are deposits open?",
-    "a2": "Live cashier is coming soon. You can already explore the rooms.",
+    "a2": "Yes. Deposit once into the VPower777 cashier. Card and crypto may include a processor fee. Room-agent deposits avoid that checkout.",
     "q3": "Do I need an account to see the rooms?",
     "a3": "No. The portal is open. An account is for launching lobbies, tracking, and support.",
     "q4": "Where are the offers?",
@@ -420,6 +426,8 @@
     "entering": "Preparing Dragon Fury…",
     "missingBody": "Return to the hall and try again.",
     "playNow": "Play now",
-    "credentialsToggle": "If the lobby asks you to sign in"
+    "credentialsToggle": "If the lobby asks you to sign in",
+    "unifiedBody": "You are playing with your VPower777 account. One cashier for every room — no extra signup.",
+    "playHint": "If the room still shows a sign-in form, your access is already copied. Paste and continue."
   }
 }

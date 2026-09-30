@@ -58,8 +58,7 @@ export class ClientGameProvider implements GameProvider {
       title,
       sessionId: randomUUID(),
       launchUrl: VBLINK_PUBLIC_LOBBY_URL,
-      message:
-        'VBlink player account is ready. Open the lobby, sign in with your VBlink credentials, and play.',
+      message: 'Your VPower777 session is ready. Open the lobby to play.',
       vblinkAccount: account,
       vblinkPassword: password,
       requiresManualLogin: true,

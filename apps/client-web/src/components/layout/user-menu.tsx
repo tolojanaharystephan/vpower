@@ -60,7 +60,7 @@ export function UserMenu({ avatarOnly = false }: { avatarOnly?: boolean }) {
         aria-haspopup="menu"
         aria-label={t('account')}
         onClick={() => setOpen((v) => !v)}
-        className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[rgba(255,255,255,0.18)] bg-[rgba(46,163,242,0.22)] text-xs font-semibold tracking-wide text-white transition hover:border-[var(--vp-accent)] hover:bg-[rgba(46,163,242,0.35)]"
+        className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[rgba(255,255,255,0.18)] bg-[rgba(46,163,242,0.22)] text-xs font-semibold tracking-wide text-white transition hover:border-[var(--vp-accent)] hover:bg-[rgba(46,163,242,0.35)]"
       >
         {initials(user.firstName, user.lastName, user.email)}
       </button>

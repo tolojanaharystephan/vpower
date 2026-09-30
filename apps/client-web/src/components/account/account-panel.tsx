@@ -79,7 +79,7 @@ export function AccountPanel() {
   const favoritesCount = favoritesQuery.data?.length ?? 0;
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:py-14">
+    <div className="mx-auto max-w-5xl px-4 pb-10 pt-24 sm:py-14">
       {/* Profile hero */}
       <section className="profile-hero cinema-panel overflow-hidden">
         <div className="profile-hero-band px-6 py-8 sm:px-8">

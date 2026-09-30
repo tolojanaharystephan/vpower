@@ -100,8 +100,7 @@ export class ProviderDragonfuryService {
       title: 'Dragon Fury',
       sessionId: randomUUID(),
       launchUrl: lobbyUrl,
-      message:
-        'Dragon Fury player account is ready. Open the lobby, sign in with your credentials, and play.',
+      message: 'Your VPower777 session is ready. Open Dragon Fury to play.',
       dragonfuryAccount: account,
       dragonfuryPassword: password,
       requiresManualLogin: true,

@@ -40,7 +40,7 @@ export type PortalProvider = {
   badge?: PortalBadgeKey;
   imageUrl: string;
   /** CSS object-position values to crop distinct previews from the banner. */
-  previewFocus: [string, string, string, string];
+  previewFocus: [string, string, string, string, string, string];
   accent: string;
   /** SMS / text lines shown on the reference contact section */
   phones: string[];
@@ -87,7 +87,7 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
     highlightKeys: ['vblinkFeat1', 'vblinkFeat2', 'vblinkFeat3'],
     badge: 'badgePopular',
     imageUrl: '/portal/vblink.jpg',
-    previewFocus: ['18% 28%', '82% 22%', '48% 72%', '62% 48%'],
+    previewFocus: ['18% 28%', '82% 22%', '48% 72%', '62% 48%', '30% 55%', '70% 68%'],
     accent: '#2ea3f2',
     phones: ['7077766022', '7277882977', '8136022077', '8138933656'],
     facebook: 'https://www.facebook.com/VP1888/',
@@ -102,7 +102,7 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
     highlightKeys: ['dragonfuryFeat1', 'dragonfuryFeat2', 'dragonfuryFeat3'],
     badge: 'badgeNew',
     imageUrl: '/portal/dragonfury.jpg',
-    previewFocus: ['22% 18%', '78% 30%', '40% 78%', '55% 45%'],
+    previewFocus: ['22% 18%', '78% 30%', '40% 78%', '55% 45%', '12% 62%', '88% 58%'],
     accent: '#c45c26',
     phones: ['7077766333', '2678888688', '5305808899', '8135396476'],
     live: true,
@@ -116,7 +116,7 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
     highlightKeys: ['hundredPlusFeat1', 'hundredPlusFeat2', 'hundredPlusFeat3'],
     badge: 'badgePopular',
     imageUrl: '/portal/100plus.jpg',
-    previewFocus: ['15% 40%', '85% 25%', '50% 80%', '35% 55%'],
+    previewFocus: ['15% 40%', '85% 25%', '50% 80%', '35% 55%', '68% 18%', '20% 75%'],
     accent: '#29c4a9',
     phones: ['7077766333', '2678888688', '5305808899', '8135396476'],
     facebook: 'https://www.facebook.com/100PLUSNEW/',
@@ -131,7 +131,7 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
     genreKey: 'genreCatalog',
     highlightKeys: ['dgamesFeat1', 'dgamesFeat2', 'dgamesFeat3'],
     imageUrl: '/portal/dgames.jpg',
-    previewFocus: ['25% 20%', '75% 35%', '45% 75%', '60% 50%'],
+    previewFocus: ['25% 20%', '75% 35%', '45% 75%', '60% 50%', '10% 45%', '90% 70%'],
     accent: '#7c5cff',
     phones: [],
     live: true,

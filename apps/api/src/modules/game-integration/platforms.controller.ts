@@ -31,7 +31,7 @@ export class PlatformsController {
   @Post('dragonfury/enter')
   @ApiOperation({
     summary:
-      'Enter Dragon Fury casino: provision player, return Game Mainpage URL + credentials',
+      'Enter Dragon Fury: provision player, return Game Mainpage URL',
   })
   enterDragonfury(@CurrentUser() user: AuthUser) {
     return this.integration.enterDragonfury(user.id);

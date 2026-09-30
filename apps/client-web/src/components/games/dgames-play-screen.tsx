@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { ExternalLink, Loader2, X } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
@@ -14,6 +14,7 @@ import {
   type LaunchSession,
 } from '@/lib/api';
 import { RoomWalletLine } from '@/components/wallet/room-wallets-panel';
+import { isMobilePortrait, RotateToPlay } from '@/components/games/rotate-to-play';
 
 function isCloseMessage(data: unknown): boolean {
   if (typeof data === 'string') {
@@ -38,6 +39,8 @@ export function DgamesPlayScreen() {
   const [loading, setLoading] = useState(false);
   const [launchingId, setLaunchingId] = useState<string | null>(null);
   const [session, setSession] = useState<LaunchSession | null>(null);
+  const [needRotate, setNeedRotate] = useState(false);
+  const pendingUrl = useRef<string | null>(null);
 
   useEffect(() => {
     if (!ready || !isAuthenticated || !accessToken) return;
@@ -57,6 +60,13 @@ export function DgamesPlayScreen() {
     return () => window.removeEventListener('message', onMessage);
   }, []);
 
+  const openPendingLobby = () => {
+    const url = pendingUrl.current;
+    pendingUrl.current = null;
+    setNeedRotate(false);
+    if (url) window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   const launch = async (gameId: string) => {
     if (!accessToken) return;
     setLaunchingId(gameId);
@@ -65,7 +75,14 @@ export function DgamesPlayScreen() {
       const launched = await launchDgamesGame(accessToken, gameId, locale);
       setSession(launched);
       if (launched.withoutFrame && launched.launchUrl) {
-        window.open(launched.launchUrl, '_blank', 'noopener,noreferrer');
+        if (isMobilePortrait()) {
+          pendingUrl.current = launched.launchUrl;
+          setNeedRotate(true);
+        } else {
+          window.open(launched.launchUrl, '_blank', 'noopener,noreferrer');
+        }
+      } else if (launched.launchUrl && isMobilePortrait()) {
+        setNeedRotate(true);
       }
     } catch (e) {
       setError(e instanceof Error ? e.message : t('enterError'));
@@ -89,7 +106,7 @@ export function DgamesPlayScreen() {
           {t('loginTitle')}
         </h1>
         <p className="mt-3 text-[var(--vp-muted)]">{t('loginBody')}</p>
-        <Button className="mt-6" onClick={() => openAuth('login')}>
+        <Button className="mt-6 min-h-12 w-full sm:w-auto" onClick={() => openAuth('login')}>
           {t('loginCta')}
         </Button>
       </div>
@@ -108,8 +125,12 @@ export function DgamesPlayScreen() {
           </h1>
           <p className="mt-2 max-w-xl text-sm text-[var(--vp-muted)]">{t('body')}</p>
         </div>
-        <RoomWalletLine roomSlug="dgames" />
+        <RoomWalletLine />
       </div>
+
+      {needRotate ? (
+        <RotateToPlay onContinue={openPendingLobby} onDismiss={() => setNeedRotate(false)} />
+      ) : null}
 
       {error ? (
         <p className="mb-4 rounded-lg border border-red-400/30 bg-red-500/10 px-3 py-2 text-sm text-red-200">

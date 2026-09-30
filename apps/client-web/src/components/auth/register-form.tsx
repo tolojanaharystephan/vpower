@@ -88,7 +88,7 @@ export function RegisterForm({ embedded, onSwitch, onSuccess }: RegisterFormProp
         )}
       </div>
       {errors.root && <p className="text-sm text-red-400">{errors.root.message}</p>}
-      <Button type="submit" className="w-full" disabled={mutation.isPending}>
+      <Button type="submit" className="min-h-12 w-full" disabled={mutation.isPending}>
         {t('submitRegister')}
       </Button>
       <p className="text-sm text-[var(--vp-muted)]">

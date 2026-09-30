@@ -89,9 +89,7 @@ export class Provider100PlusService {
       title: '100plus',
       sessionId: randomUUID(),
       launchUrl: launched.clientUrl,
-      message: '100Plus lobby is ready.',
-      plus100Account: account,
-      plus100Password: password,
+      message: 'Your VPower777 session is ready. Open 100plus to play.',
       requiresManualLogin: false,
     };
   }

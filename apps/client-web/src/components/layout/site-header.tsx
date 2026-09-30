@@ -10,6 +10,7 @@ import { BrandMark } from '@/components/brand/brand-mark';
 import { BrandWordmark } from '@/components/brand/brand-wordmark';
 import { LocaleMenu } from '@/components/layout/locale-menu';
 import { UserMenu } from '@/components/layout/user-menu';
+import { WalletChip } from '@/components/wallet/wallet-chip';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -87,15 +88,20 @@ export function SiteHeader() {
           )}
         </div>
 
-        <div className="flex shrink-0 items-center gap-2 md:hidden">
-          {ready && isAuthenticated ? <UserMenu avatarOnly /> : null}
+        <div className="flex shrink-0 items-center gap-1.5 md:hidden">
+          {ready && isAuthenticated ? (
+            <>
+              <WalletChip />
+              <UserMenu avatarOnly />
+            </>
+          ) : null}
           <button
             type="button"
-            className="text-[var(--vp-fg)]"
+            className="grid h-11 w-11 place-items-center rounded-md text-[var(--vp-fg)]"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >
-            {open ? <X /> : <Menu />}
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
@@ -113,7 +119,7 @@ export function SiteHeader() {
               href={link.href}
               onClick={() => setOpen(false)}
               className={cn(
-                'rounded-lg px-3 py-2 text-[var(--vp-fg)] transition hover:bg-white/5',
+                'min-h-11 rounded-lg px-3 py-3 text-base text-[var(--vp-fg)] transition hover:bg-white/5',
                 pathname === link.href && 'bg-[rgba(46,163,242,0.12)] text-[var(--vp-accent)]',
               )}
             >
@@ -125,10 +131,10 @@ export function SiteHeader() {
           </p>
           <LocaleMenu variant="panel" className="mt-2" onChosen={() => setOpen(false)} />
           {isAuthenticated ? null : (
-            <div className="flex gap-2 pt-2">
+            <div className="flex flex-col gap-2 pt-2 sm:flex-row">
               <Button
                 variant="secondary"
-                className="flex-1"
+                className="min-h-12 flex-1"
                 onClick={() => {
                   setOpen(false);
                   openAuth('login');
@@ -137,7 +143,7 @@ export function SiteHeader() {
                 {t('login')}
               </Button>
               <Button
-                className="flex-1"
+                className="min-h-12 flex-1"
                 onClick={() => {
                   setOpen(false);
                   openAuth('register');

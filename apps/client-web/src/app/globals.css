@@ -902,6 +902,7 @@ button:disabled,
 
 .auth-tab {
   border-radius: 0.5rem;
+  min-height: 2.75rem;
   padding: 0.55rem 0.75rem;
   font-size: 0.8rem;
   font-weight: 600;
@@ -1043,7 +1044,7 @@ button:disabled,
 .portal-card-media {
   position: relative;
   display: block;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #0a0c10;
 }
@@ -1073,9 +1074,9 @@ button:disabled,
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 0.7rem;
+  width: 3.15rem;
+  height: 3.15rem;
+  border-radius: 0.75rem;
   border: 1px solid rgba(255, 255, 255, 0.28);
   background: color-mix(in srgb, var(--portal-card-accent, #2ea3f2) 82%, #0b0b0b);
   color: #fff;
@@ -1120,6 +1121,12 @@ button:disabled,
   border: 1px solid rgba(46, 163, 242, 0.45);
   background: rgba(12, 18, 28, 0.7);
   color: var(--vp-accent-bright);
+}
+
+.portal-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
 }
 
 .portal-preview-tile {

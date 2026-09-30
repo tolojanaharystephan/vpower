@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Copy, Check, ExternalLink, Loader2, Eye, EyeOff } from 'lucide-react';
+import { ExternalLink, Loader2 } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import { useAuthUi } from '@/components/auth/auth-ui-context';
@@ -19,8 +19,6 @@ type LaunchState = {
   requiresManualLogin: boolean;
 };
 
-type CopiedField = 'account' | 'password' | null;
-
 function playNs(slug: string) {
   if (slug === '100plus') return 'plus100Play';
   if (slug === 'dragonfury') return 'dragonfuryPlay';
@@ -28,8 +26,8 @@ function playNs(slug: string) {
 }
 
 /**
- * Player flow: click game → POST launch → ensure partner account →
- * show credentials + "Ouvrir le jeu" → window.open(launchUrl, '_blank').
+ * Player flow: VPower777 session → landscape gate on phone → open the room.
+ * Partner IDs stay off-screen; they are copied only if a lobby still asks to sign in.
  */
 export function PlayLaunchScreen({
   slug,
@@ -47,8 +45,6 @@ export function PlayLaunchScreen({
   const [state, setState] = useState<LaunchState | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [copied, setCopied] = useState<CopiedField>(null);
-  const [showPassword, setShowPassword] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [needRotate, setNeedRotate] = useState(false);
   const started = useRef(false);
@@ -91,7 +87,7 @@ export function PlayLaunchScreen({
             session.dragonfuryPassword ||
             '',
           launchUrl: session.launchUrl,
-          requiresManualLogin: session.requiresManualLogin ?? true,
+          requiresManualLogin: session.requiresManualLogin ?? false,
         });
       } catch (err) {
         setError(err instanceof Error ? err.message : t('enterError'));
@@ -102,18 +98,15 @@ export function PlayLaunchScreen({
     })();
   }, [accessToken, attempt, gameId, isAuthenticated, locale, ready, slug, t, title]);
 
-  const copyField = async (field: 'account' | 'password', value: string) => {
-    try {
-      await navigator.clipboard.writeText(value);
-      setCopied(field);
-      window.setTimeout(() => setCopied(null), 1600);
-    } catch {
-      /* ignore */
-    }
-  };
-
-  const launchLobby = () => {
+  const openLobbyWindow = async () => {
     if (!state?.launchUrl) return;
+    if (state.requiresManualLogin && state.account && state.password) {
+      try {
+        await navigator.clipboard.writeText(`${state.account}\n${state.password}`);
+      } catch {
+        /* ignore blocked clipboard */
+      }
+    }
     setNeedRotate(false);
     window.open(state.launchUrl, '_blank', 'noopener,noreferrer');
   };
@@ -124,7 +117,7 @@ export function PlayLaunchScreen({
       setNeedRotate(true);
       return;
     }
-    launchLobby();
+    void openLobbyWindow();
   };
 
   if (!ready || loading) {
@@ -145,7 +138,7 @@ export function PlayLaunchScreen({
           {t('loginTitle')}
         </h1>
         <p className="mt-3 text-sm text-[var(--vp-muted)]">{t('loginBody')}</p>
-        <Button className="mt-8" size="lg" onClick={() => openAuth('login')}>
+        <Button className="mt-8 min-h-12 w-full sm:w-auto" size="lg" onClick={() => openAuth('login')}>
           {t('loginCta')}
         </Button>
       </div>
@@ -159,7 +152,7 @@ export function PlayLaunchScreen({
           {error}
         </p>
         <Button
-          className="mt-6"
+          className="mt-6 min-h-12 w-full sm:w-auto"
           onClick={() => {
             started.current = false;
             setError(null);
@@ -169,14 +162,16 @@ export function PlayLaunchScreen({
         >
           {t('retry')}
         </Button>
-        <Link href="/providers" className="mt-4">
-          <Button variant="secondary">{t('backProviders')}</Button>
+        <Link href="/providers" className="mt-4 w-full sm:w-auto">
+          <Button variant="secondary" className="min-h-12 w-full">
+            {t('backProviders')}
+          </Button>
         </Link>
       </div>
     );
   }
 
-  if (state?.launchUrl && (state.requiresManualLogin ? state.account : true)) {
+  if (state?.launchUrl) {
     return (
       <div className="mx-auto flex min-h-[70vh] max-w-lg flex-col justify-center px-4 py-20">
         <h1 className="font-[family-name:var(--font-display)] text-2xl text-[var(--vp-fg)] sm:text-3xl">
@@ -185,93 +180,23 @@ export function PlayLaunchScreen({
         {state.title ? (
           <p className="mt-2 text-sm text-[var(--vp-muted)]">{state.title}</p>
         ) : null}
-        <RoomWalletLine
-          roomSlug={
-            slug === '100plus'
-              ? '100plus'
-              : slug === 'dragonfury'
-                ? 'dragonfury'
-                : 'vblink'
-          }
-        />
-
-        {state.account ? (
-          <details className="cinema-panel mt-6 p-5">
-            <summary className="cursor-pointer text-sm font-medium text-[var(--vp-fg)]">
-              {t('credentialsToggle')}
-            </summary>
-            <div className="mt-4 space-y-4">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
-                  {t('account')}
-                </p>
-              <div className="mt-1 flex items-center gap-2">
-                <code className="flex-1 truncate rounded-md bg-black/35 px-3 py-2 text-sm text-[var(--vp-fg)]">
-                  {state.account}
-                </code>
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="secondary"
-                  onClick={() => void copyField('account', state.account)}
-                >
-                  {copied === 'account' ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                  {t('copy')}
-                </Button>
-              </div>
-            </div>
-            {state.password ? (
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
-                  {t('password')}
-                </p>
-                <div className="mt-1 flex items-center gap-2">
-                  <code className="flex-1 truncate rounded-md bg-black/35 px-3 py-2 text-sm text-[var(--vp-fg)]">
-                    {showPassword ? state.password : '•'.repeat(Math.min(12, state.password.length))}
-                  </code>
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant="secondary"
-                    aria-label={showPassword ? t('hidePassword') : t('showPassword')}
-                    onClick={() => setShowPassword((v) => !v)}
-                  >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </Button>
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant="secondary"
-                    onClick={() => void copyField('password', state.password)}
-                  >
-                    {copied === 'password' ? (
-                      <Check className="h-4 w-4" />
-                    ) : (
-                      <Copy className="h-4 w-4" />
-                    )}
-                    {t('copy')}
-                  </Button>
-                </div>
-              </div>
-            ) : null}
-            <p className="text-xs text-[var(--vp-muted)]">
-              {state.requiresManualLogin ? t('loginHint') : t('lobbyHint')}
-            </p>
-            </div>
-          </details>
+        <RoomWalletLine />
+        <p className="mt-4 text-sm leading-relaxed text-[var(--vp-muted)]">{t('unifiedBody')}</p>
+        {state.requiresManualLogin ? (
+          <p className="mt-2 text-xs leading-relaxed text-[var(--vp-muted)]">{t('playHint')}</p>
         ) : null}
 
         {needRotate ? (
-          <RotateToPlay onContinue={launchLobby} onDismiss={() => setNeedRotate(false)} />
+          <RotateToPlay onContinue={() => void openLobbyWindow()} onDismiss={() => setNeedRotate(false)} />
         ) : null}
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Button className="flex-1" size="lg" onClick={openGame}>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Button className="min-h-12 flex-1" size="lg" onClick={openGame}>
             <ExternalLink className="h-4 w-4" />
             {t('playNow')}
           </Button>
           <Link href="/" className="flex-1">
-            <Button variant="secondary" className="w-full" size="lg">
+            <Button variant="secondary" className="min-h-12 w-full" size="lg">
               {t('backGames')}
             </Button>
           </Link>
@@ -286,8 +211,8 @@ export function PlayLaunchScreen({
         {t('missingTitle')}
       </h1>
       <p className="mt-3 text-sm text-[var(--vp-muted)]">{t('missingBody')}</p>
-      <Link href="/" className="mt-8">
-        <Button>{t('backGames')}</Button>
+      <Link href="/" className="mt-8 w-full sm:w-auto">
+        <Button className="min-h-12 w-full">{t('backGames')}</Button>
       </Link>
     </div>
   );

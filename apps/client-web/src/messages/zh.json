@@ -44,7 +44,8 @@
     "fundRoom": "充值",
     "openRoom": "开始",
     "manageWallets": "管理钱包",
-    "thisRoom": "VPower777 余额"
+    "thisRoom": "VPower777 余额",
+    "feeHint": "银行卡和加密货币由 Transak 或 Banxa 处理，可能另收手续费（常见约 10%）。VPower777 无法下调该费率。如需避免，可通过场馆代理充值。"
   },
   "hero": {
     "eyebrow": "VBlink · Dragon Fury · 100plus",
@@ -180,7 +181,8 @@
     "hundredPlusFeat3": "在这张卡片上直接开始",
     "dgamesFeat1": "无需离开 VPower777 即可开玩",
     "dgamesFeat2": "游玩时余额实时更新",
-    "dgamesFeat3": "整个大厅只需一次登录"
+    "dgamesFeat3": "整个大厅只需一次登录",
+    "online": "在线"
   },
   "play": {
     "eyebrow": "会话",
@@ -224,7 +226,9 @@
     "loginHint": "仅在大厅要求时使用。你的 VPower777 账号已经打开了这个房间。",
     "lobbyHint": "VPower777 账号已打开此房间。仅在被要求时使用这些信息。",
     "playNow": "立即开始",
-    "credentialsToggle": "若大厅要求登录"
+    "credentialsToggle": "若大厅要求登录",
+    "unifiedBody": "使用你的 VPower777 账号进入。全场共用一个收银台，无需再次注册。",
+    "playHint": "如果房间仍要求登录，访问信息已复制到剪贴板，粘贴即可继续。"
   },
   "plus100Play": {
     "loginTitle": "请先登录",
@@ -247,7 +251,9 @@
     "loginHint": "仅在大厅要求时使用。你的 VPower777 账号已经打开了这个房间。",
     "lobbyHint": "VPower777 账号已打开此房间。仅在被要求时使用这些信息。",
     "playNow": "立即开始",
-    "credentialsToggle": "若大厅要求登录"
+    "credentialsToggle": "若大厅要求登录",
+    "unifiedBody": "使用你的 VPower777 账号进入。全场共用一个收银台，无需再次注册。",
+    "playHint": "如果房间仍要求登录，访问信息已复制到剪贴板，粘贴即可继续。"
   },
   "account": {
     "eyebrow": "玩家中心",
@@ -365,9 +371,9 @@
     "supportHint": "还没解决？",
     "supportLink": "联系客服",
     "q1": "如何创建账户？",
-    "a1": "注册，邮件通道开通后再确认邮箱。",
+    "a1": "注册一个 VPower777 账号即可。同一登录打开所有房间，无需在 VBlink 或 Dragon Fury 再次注册。",
     "q2": "充值开放了吗？",
-    "a2": "正式收银台即将上线。场馆现在就可以逛。",
+    "a2": "可以。充值进入 VPower777 收银台。银行卡和加密货币可能含支付通道手续费。通过场馆代理充值可避开该页面。",
     "q3": "看场馆需要账户吗？",
     "a3": "不需要。门户开放。账户用于启动大厅、跟进与客服。",
     "q4": "优惠在哪里？",
@@ -394,11 +400,13 @@
     "entering": "正在准备 Dragon Fury…",
     "missingBody": "返回大厅后重试。",
     "playNow": "立即开始",
-    "credentialsToggle": "若大厅要求登录"
+    "credentialsToggle": "若大厅要求登录",
+    "unifiedBody": "使用你的 VPower777 账号进入。全场共用一个收银台，无需再次注册。",
+    "playHint": "如果房间仍要求登录，访问信息已复制到剪贴板，粘贴即可继续。"
   },
   "dgamesPlay": {
     "title": "dgamesonline",
-    "body": "选择一款游戏。每次旋转使用你的 VPower777 dgamesonline 余额。",
+    "body": "选择一款游戏。每次旋转使用 VPower777 收银台余额，与大厅其他房间相同。",
     "loginTitle": "请先登录",
     "loginBody": "VPower777 账户可解锁 dgamesonline 大厅。",
     "loginCta": "登录",

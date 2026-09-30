@@ -8,7 +8,7 @@ import { useSession } from '@/components/auth/session-provider';
 import { useRoomWallets } from '@/components/wallet/use-room-wallets';
 import { roomPlayHref } from '@/lib/portal';
 
-/** Compact trigger: lists every room wallet. */
+/** Compact trigger: shows the unified cashier balance. */
 export function WalletChip() {
   const tw = useTranslations('wallet');
   const { isAuthenticated, ready } = useSession();
@@ -42,10 +42,10 @@ export function WalletChip() {
         aria-haspopup="menu"
         aria-label={tw('walletsLabel')}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex max-w-[10rem] items-center gap-1.5 truncate rounded-md border border-[rgba(255,255,255,0.12)] bg-black/25 px-2.5 py-1.5 text-xs font-semibold text-[var(--vp-fg)] transition hover:border-[var(--vp-accent)]"
+        className="inline-flex max-w-[10rem] items-center gap-1.5 truncate rounded-md border border-[rgba(255,255,255,0.12)] bg-black/25 px-2.5 py-2 text-xs font-semibold text-[var(--vp-fg)] transition hover:border-[var(--vp-accent)] min-h-11 md:min-h-0 md:py-1.5"
       >
         <Wallet className="h-3.5 w-3.5 shrink-0 text-[var(--vp-accent)]" />
-        {tw('walletsLabel')}
+        {wallets[0] ? `$${wallets[0].balance}` : tw('walletsLabel')}
       </button>
       {open ? (
         <div

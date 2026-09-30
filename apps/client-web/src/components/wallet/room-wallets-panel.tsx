@@ -65,9 +65,9 @@ export function RoomWalletsPanel() {
           </p>
         ) : null}
       </div>
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid max-w-xl gap-3">
         {(isLoading && wallets.length === 0 ? [] : wallets).map((wallet) => (
-          <article key={wallet.roomSlug} className="cinema-panel flex flex-col p-5">
+          <article key={wallet.roomSlug} className="cinema-panel flex flex-col p-4 sm:p-5">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="flex items-center gap-2 text-sm font-medium text-[var(--vp-muted)]">
@@ -79,19 +79,19 @@ export function RoomWalletsPanel() {
                 </p>
               </div>
             </div>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-col gap-2 sm:flex-row">
               <Link
                 href={wallet.roomSlug === 'cashier' ? '/providers' : roomPlayHref(wallet.roomSlug)}
                 className="flex-1"
               >
-                <Button variant="secondary" className="w-full" size="sm">
+                <Button variant="secondary" className="min-h-12 w-full" size="sm">
                   {tw('openRoom')}
                 </Button>
               </Link>
               <Button
                 type="button"
                 size="sm"
-                className="flex-1"
+                className="min-h-12 flex-1"
                 disabled={!accessToken || !paymentsEnabled || checkout.isPending}
                 onClick={() => {
                   setDepositError(null);
@@ -125,9 +125,10 @@ export function RoomWalletsPanel() {
                     </li>
                   </ul>
                   <p className="mt-2 text-xs text-[var(--vp-muted)]">{tw('methodsHint')}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-[var(--vp-muted)]">{tw('feeHint')}</p>
                 </div>
                 <form
-                  className="flex flex-wrap items-center gap-2"
+                  className="flex flex-col gap-2 sm:flex-row sm:items-center"
                   onSubmit={(event) => {
                     event.preventDefault();
                     const cents = parseDepositCents(depositAmounts[wallet.roomSlug] ?? '');
@@ -154,14 +155,19 @@ export function RoomWalletsPanel() {
                         [wallet.roomSlug]: event.target.value,
                       }))
                     }
-                    className="h-9 min-w-[8rem] flex-1 rounded-md border border-[rgba(255,255,255,0.12)] bg-black/30 px-3 text-sm text-[var(--vp-fg)] outline-none placeholder:text-[var(--vp-muted)] focus:border-[var(--vp-accent)]"
+                    className="h-12 min-w-0 flex-1 rounded-md border border-[rgba(255,255,255,0.12)] bg-black/30 px-3 text-base text-[var(--vp-fg)] outline-none placeholder:text-[var(--vp-muted)] focus:border-[var(--vp-accent)] sm:h-11 sm:text-sm"
                   />
-                  <Button type="submit" size="sm" disabled={!accessToken || checkout.isPending}>
+                  <Button
+                    type="submit"
+                    size="sm"
+                    className="min-h-12 sm:min-h-11"
+                    disabled={!accessToken || checkout.isPending}
+                  >
                     {tw('amountSubmit')}
                   </Button>
                 </form>
                 <div className="rounded-md border border-[rgba(255,255,255,0.08)] bg-black/20 px-3 py-2.5">
-                  <p className="text-xs text-[var(--vp-muted)]">{tw('methodsLater')}</p>
+                  <p className="text-xs leading-relaxed text-[var(--vp-muted)]">{tw('methodsLater')}</p>
                   <Link
                     href="/support"
                     className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-[var(--vp-accent-bright)] hover:underline"
@@ -179,10 +185,10 @@ export function RoomWalletsPanel() {
   );
 }
 
-export function RoomWalletLine({ roomSlug }: { roomSlug: string }) {
+export function RoomWalletLine({ roomSlug: _roomSlug }: { roomSlug?: string }) {
   const tw = useTranslations('wallet');
   const { bySlug, isLoading } = useRoomWallets();
-  const wallet = bySlug(roomSlug);
+  const wallet = bySlug('cashier');
   if (!wallet && !isLoading) return null;
 
   return (

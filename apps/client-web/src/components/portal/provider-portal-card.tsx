@@ -40,7 +40,7 @@ export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
           {provider.live ? (
             <span className="portal-chip portal-chip-live">
               <Radio className="h-3 w-3" />
-              {t('live')}
+              {t('live')} · {t('online')}
             </span>
           ) : null}
           {provider.badge ? (
@@ -69,7 +69,7 @@ export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
         <p className="mt-1 text-sm font-medium text-[var(--vp-accent)]">{t(provider.taglineKey)}</p>
         {wallet ? (
           <p className="mt-1.5 text-sm font-semibold text-[var(--vp-accent-bright)]">
-            {tw('balanceLabel')}: ${wallet.balance}
+            {tw('thisRoom')}: ${wallet.balance}
           </p>
         ) : null}
         <p className="mt-2 text-sm leading-relaxed text-[var(--vp-muted)]">{t(provider.bodyKey)}</p>
@@ -86,7 +86,7 @@ export function ProviderPortalCard({ provider }: { provider: PortalProvider }) {
         <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
           {t('previewLabel')}
         </p>
-        <div className="mt-2 grid grid-cols-4 gap-1.5">
+        <div className="portal-preview-grid mt-2">
           {provider.previewFocus.map((focus, index) => (
             <Link
               key={`${provider.slug}-preview-${index}`}

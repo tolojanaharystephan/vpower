@@ -44,7 +44,8 @@
     "fundRoom": "Цэнэглэх",
     "openRoom": "Тоглох",
     "manageWallets": "Хэтэвч удирдах",
-    "thisRoom": "VPower777 balance"
+    "thisRoom": "VPower777 balance",
+    "feeHint": "Card and crypto checkout is handled by Transak or Banxa. They may add their own fee (often around 10%). VPower777 does not set that rate. Deposit via the room agent if you want to avoid it."
   },
   "hero": {
     "eyebrow": "VBlink · Dragon Fury · 100plus",
@@ -180,7 +181,8 @@
     "hundredPlusFeat3": "Play now from this card",
     "dgamesFeat1": "Launch titles without leaving VPower777",
     "dgamesFeat2": "Balance updates as you play",
-    "dgamesFeat3": "One login for the whole hall"
+    "dgamesFeat3": "One login for the whole hall",
+    "online": "Online"
   },
   "play": {
     "eyebrow": "Сесс",
@@ -224,7 +226,9 @@
     "loginHint": "Use these details only if the lobby asks. Your VPower777 account already opened this room.",
     "lobbyHint": "Your VPower777 account opened this room. Keep these details only if asked.",
     "playNow": "Play now",
-    "credentialsToggle": "If the lobby asks you to sign in"
+    "credentialsToggle": "If the lobby asks you to sign in",
+    "unifiedBody": "You are playing with your VPower777 account. One cashier for every room — no extra signup.",
+    "playHint": "If the room still shows a sign-in form, your access is already copied. Paste and continue."
   },
   "plus100Play": {
     "loginTitle": "Эхлээд нэвтэр",
@@ -247,7 +251,9 @@
     "loginHint": "Use these details only if the lobby asks. Your VPower777 account already opened this room.",
     "lobbyHint": "Your VPower777 account opened this room. Keep these details only if asked.",
     "playNow": "Play now",
-    "credentialsToggle": "If the lobby asks you to sign in"
+    "credentialsToggle": "If the lobby asks you to sign in",
+    "unifiedBody": "You are playing with your VPower777 account. One cashier for every room — no extra signup.",
+    "playHint": "If the room still shows a sign-in form, your access is already copied. Paste and continue."
   },
   "account": {
     "eyebrow": "Тоглогчийн бүс",
@@ -365,9 +371,9 @@
     "supportHint": "Одоо ч шийдэгдээгүй юу?",
     "supportLink": "Дэмжлэгтэй ярих",
     "q1": "Бүртгэлийг хэрхэн үүсгэх вэ?",
-    "a1": "Бүртгүүлээд, имэйл илгээлт нээгдмэгц баталгаажуул.",
+    "a1": "Create one VPower777 account. That same login opens every room — you do not register again on VBlink or Dragon Fury.",
     "q2": "Орлого нээлттэй юу?",
-    "a2": "Жинхэнэ касс удахгүй. Танхимуудыг одоо үзэж болно.",
+    "a2": "Yes. Deposit once into the VPower777 cashier. Card and crypto may include a processor fee. Room-agent deposits avoid that checkout.",
     "q3": "Танхим харахад бүртгэл хэрэгтэй юу?",
     "a3": "Үгүй. Портал нээлттэй. Бүртгэл нь лобби нээх, мөрдөх, дэмжлэгт зориулагдсан.",
     "q4": "Санал хаана байна?",
@@ -394,11 +400,13 @@
     "entering": "Dragon Fury бэлтгэж байна…",
     "missingBody": "Танхим руу буцаад дахин оролдоорой.",
     "playNow": "Play now",
-    "credentialsToggle": "If the lobby asks you to sign in"
+    "credentialsToggle": "If the lobby asks you to sign in",
+    "unifiedBody": "You are playing with your VPower777 account. One cashier for every room — no extra signup.",
+    "playHint": "If the room still shows a sign-in form, your access is already copied. Paste and continue."
   },
   "dgamesPlay": {
     "title": "dgamesonline",
-    "body": "Pick a title. Your VPower777 dgamesonline balance is used on every spin.",
+    "body": "Pick a title. Your VPower777 cashier is used on every spin — same account as the rest of the hall.",
     "loginTitle": "Sign in first",
     "loginBody": "A VPower777 account unlocks the dgamesonline lobby.",
     "loginCta": "Sign in",

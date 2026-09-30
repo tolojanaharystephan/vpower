@@ -44,7 +44,8 @@
     "fundRoom": "Alimenter",
     "openRoom": "Jouer",
     "manageWallets": "Gérer les portefeuilles",
-    "thisRoom": "Solde VPower777"
+    "thisRoom": "Solde VPower777",
+    "feeHint": "Le paiement carte / crypto passe par Transak ou Banxa. Ils peuvent ajouter leurs frais (souvent autour de 10 %). VPower777 ne fixe pas ce tarif. Dépose via l’agent de salle pour l’éviter."
   },
   "hero": {
     "eyebrow": "VBlink · Dragon Fury · 100plus",
@@ -180,11 +181,12 @@
     "hundredPlusFeat3": "Joue depuis cette carte",
     "dgamesFeat1": "Lance un titre sans quitter VPower777",
     "dgamesFeat2": "Le solde se met à jour en jouant",
-    "dgamesFeat3": "Un login pour tout le hall"
+    "dgamesFeat3": "Un login pour tout le hall",
+    "online": "En ligne"
   },
   "dgamesPlay": {
     "title": "dgamesonline",
-    "body": "Choisis un titre. Ton solde dgamesonline VPower777 est utilisé pour chaque spin.",
+    "body": "Choisis un titre. La caisse VPower777 est utilisée à chaque partie — le même compte que le reste du hall.",
     "loginTitle": "Connecte-toi d'abord",
     "loginBody": "Un compte VPower777 ouvre le lobby dgamesonline.",
     "loginCta": "Se connecter",
@@ -236,7 +238,9 @@
     "loginHint": "Utilise ces identifiants seulement si le lobby le demande. Ton compte VPower777 a déjà ouvert la salle.",
     "lobbyHint": "Ton compte VPower777 a ouvert cette salle. Garde ces identifiants seulement en cas de besoin.",
     "playNow": "Jouer maintenant",
-    "credentialsToggle": "Si le lobby demande une connexion"
+    "credentialsToggle": "Si le lobby demande une connexion",
+    "unifiedBody": "Tu joues avec ton compte VPower777. Une seule caisse pour toutes les salles — pas d’inscription en plus.",
+    "playHint": "Si la salle affiche encore un login, tes accès sont déjà copiés. Colle et continue."
   },
   "plus100Play": {
     "loginTitle": "Connecte-toi d'abord",
@@ -259,7 +263,9 @@
     "loginHint": "Utilise ces identifiants seulement si le lobby le demande. Ton compte VPower777 a déjà ouvert la salle.",
     "lobbyHint": "Ton compte VPower777 a ouvert cette salle. Garde ces identifiants seulement en cas de besoin.",
     "playNow": "Jouer maintenant",
-    "credentialsToggle": "Si le lobby demande une connexion"
+    "credentialsToggle": "Si le lobby demande une connexion",
+    "unifiedBody": "Tu joues avec ton compte VPower777. Une seule caisse pour toutes les salles — pas d’inscription en plus.",
+    "playHint": "Si la salle affiche encore un login, tes accès sont déjà copiés. Colle et continue."
   },
   "dragonfuryPlay": {
     "loginTitle": "Connecte-toi d'abord",
@@ -282,7 +288,9 @@
     "loginHint": "Utilise ces identifiants seulement si le lobby le demande. Ton compte VPower777 a déjà ouvert la salle.",
     "lobbyHint": "Ton compte VPower777 a ouvert cette salle. Garde ces identifiants seulement en cas de besoin.",
     "playNow": "Jouer maintenant",
-    "credentialsToggle": "Si le lobby demande une connexion"
+    "credentialsToggle": "Si le lobby demande une connexion",
+    "unifiedBody": "Tu joues avec ton compte VPower777. Une seule caisse pour toutes les salles — pas d’inscription en plus.",
+    "playHint": "Si la salle affiche encore un login, tes accès sont déjà copiés. Colle et continue."
   },
   "account": {
     "eyebrow": "Espace joueur",
@@ -414,9 +422,9 @@
     "supportHint": "Pas encore réglé ?",
     "supportLink": "Parler au support",
     "q1": "Comment créer un compte ?",
-    "a1": "Inscription, puis confirmation email dès que l'envoi de mails est actif.",
+    "a1": "Crée un compte VPower777. Ce même accès ouvre toutes les salles — tu ne t’inscris pas une seconde fois sur VBlink ou Dragon Fury.",
     "q2": "Les dépôts sont-ils ouverts ?",
-    "a2": "La caisse réelle arrive bientôt. En attendant, tu peux déjà explorer les salles.",
+    "a2": "Oui. Un dépôt alimente la caisse VPower777. Carte et crypto peuvent inclure des frais processeur. Le dépôt via l’agent de salle évite cette page.",
     "q3": "Faut-il un compte pour voir les salles ?",
     "a3": "Non. Le portail est ouvert. Le compte sert au lancement des lobbies, au suivi et au support.",
     "q4": "Où sont les offres ?",

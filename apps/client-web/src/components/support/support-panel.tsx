@@ -26,8 +26,8 @@ export function SupportPanel() {
   }
 
   return (
-    <div className="care-shell mx-auto max-w-6xl px-4 pb-16 pt-24 sm:px-6 sm:pt-28 lg:px-8">
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+    <div className="care-shell mx-auto max-w-6xl px-4 pb-10 pt-24 sm:px-6 sm:pb-16 sm:pt-28 lg:px-8">
+      <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
         <div className="max-w-xl animate-fade-up">
           <p className="care-kicker">{t('eyebrow')}</p>
           <h1 className="mt-3 font-[family-name:var(--font-display)] text-3xl tracking-wide text-[var(--vp-fg)] sm:text-4xl">
@@ -35,31 +35,31 @@ export function SupportPanel() {
           </h1>
           <p className="mt-2 text-[var(--vp-muted)] leading-relaxed">{t('subtitle')}</p>
         </div>
-        <div className="flex rounded-2xl border border-[var(--vp-border)] bg-white/[0.02] p-1">
+        <div className="flex w-full rounded-2xl border border-[var(--vp-border)] bg-white/[0.02] p-1 sm:w-auto">
           <button
             type="button"
-            className={`rounded-xl px-3.5 py-2 text-xs transition ${
+            className={`min-h-11 flex-1 rounded-xl px-3.5 py-2.5 text-sm transition sm:flex-none sm:text-xs ${
               mode === 'assistant'
                 ? 'bg-[rgba(46,163,242,0.2)] text-[var(--vp-accent)]'
                 : 'text-[var(--vp-muted)] hover:text-[var(--vp-fg)]'
             }`}
             onClick={() => setMode('assistant')}
           >
-            <span className="inline-flex items-center gap-1.5">
+            <span className="inline-flex items-center justify-center gap-1.5">
               <Bot className="h-3.5 w-3.5" />
               {t('tabAssistant')}
             </span>
           </button>
           <button
             type="button"
-            className={`rounded-xl px-3.5 py-2 text-xs transition ${
+            className={`min-h-11 flex-1 rounded-xl px-3.5 py-2.5 text-sm transition sm:flex-none sm:text-xs ${
               mode === 'agent'
                 ? 'bg-[rgba(46,163,242,0.2)] text-[var(--vp-accent)]'
                 : 'text-[var(--vp-muted)] hover:text-[var(--vp-fg)]'
             }`}
             onClick={() => setMode('agent')}
           >
-            <span className="inline-flex items-center gap-1.5">
+            <span className="inline-flex items-center justify-center gap-1.5">
               <MessageSquare className="h-3.5 w-3.5" />
               {t('tabAgent')}
             </span>
@@ -67,7 +67,7 @@ export function SupportPanel() {
         </div>
       </div>
 
-      <div className="support-care-shell h-[min(70vh,40rem)]">
+      <div className="support-care-shell h-[min(62vh,36rem)] sm:h-[min(70vh,40rem)]">
         {mode === 'assistant' ? (
           <SupportBotPanel
             accessToken={accessToken}
