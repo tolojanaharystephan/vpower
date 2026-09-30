@@ -1,0 +1,10 @@
+const res = await fetch("https://staging.vpower777.online/fr");
+const t = await res.text();
+const labels = ["English", "中文", "日本語", "한국어", "Монгол", "Español", "Nederlands", "Français"];
+const positions = labels.map((label) => [label, t.indexOf(label)]);
+console.log("status", res.status);
+console.log(positions.map(([label, i]) => `${label}@${i}`).join(" "));
+const ordered = positions.every((entry, index, all) => index === 0 || entry[1] > all[index - 1][1]);
+console.log("localeOrderOk", ordered && positions.every((entry) => entry[1] >= 0));
+console.log("typedAmount", t.includes("Saisir le montant"));
+console.log("oldPreset10", /\$10\b/.test(t));

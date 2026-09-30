@@ -14,14 +14,14 @@ Trois choses distinctes se parlent dans cet ordre.
 2. **AllScale Checkout**  
    Page de paiement. VPower777 lui envoie le montant saisi (minimum 5 $), la salle choisie et le joueur. Quand le paiement est accepté, AllScale appelle le webhook staging :  
    `https://staging.vpower777.online/api/v1/payments/allscale/webhook`  
-   VPower777 vérifie la signature, retrouve la commande, et **crédite le portefeuille de cette salle pour ce joueur**. Sans ce webhook, l’argent peut être chez AllScale et le solde de jeu rester à 0.
+   VPower777 vérifie la signature, retrouve la commande, et **crédite la caisse unique de ce joueur**. Sans ce webhook, l’argent peut être chez AllScale et le solde de jeu rester à 0.
 
 3. **Le jeu**  
    Le joueur a un compte VPower777 et **une seule caisse**. Un dépôt, un crédit d’agent ou un gain augmente ce même solde. dgamesonline lit et débite cette caisse (`getBalance` / `writeBet`), quelle que soit la salle affichée avant. Ce solde est un crédit de jeu chez nous, en dollars, pas le solde USDC du store AllScale.
    - **VBlink, Dragon Fury, 100plus** : le même compte ouvre leur lobby. Le nombre de jeux reste celui du partenaire. Leur site partenaire a encore sa propre caisse tant qu’un transfert automatique n’est pas branché.
    - **dgamesonline** : les mises partent de la caisse VPower777.
 
-En une phrase : le joueur paie sur AllScale, l’argent reste sur le store vpower777, et VPower777 ajoute le même montant au portefeuille de la salle pour que le jeu puisse s’en servir.
+En une phrase : le joueur paie sur AllScale, l’argent réel reste sur le store vpower777, et VPower777 ajoute le même montant à la caisse du joueur pour que dgamesonline puisse s’en servir.
 
 ```text
 Joueur saisit 20 $ sur dgamesonline
