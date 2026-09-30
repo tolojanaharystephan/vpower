@@ -10,6 +10,22 @@ export type PortalSocial = {
   href: string;
 };
 
+export type PortalGenreKey = 'genreCasino' | 'genreFishing' | 'genreArcade' | 'genreCatalog';
+export type PortalBadgeKey = 'badgePopular' | 'badgeNew';
+export type PortalHighlightKey =
+  | 'vblinkFeat1'
+  | 'vblinkFeat2'
+  | 'vblinkFeat3'
+  | 'dragonfuryFeat1'
+  | 'dragonfuryFeat2'
+  | 'dragonfuryFeat3'
+  | 'hundredPlusFeat1'
+  | 'hundredPlusFeat2'
+  | 'hundredPlusFeat3'
+  | 'dgamesFeat1'
+  | 'dgamesFeat2'
+  | 'dgamesFeat3';
+
 export type PortalProvider = {
   slug: 'vblink' | '100plus' | 'dragonfury' | 'dgames';
   name: string;
@@ -19,7 +35,12 @@ export type PortalProvider = {
     | 'dragonfuryTagline'
     | 'dgamesTagline';
   bodyKey: 'vblinkBody' | 'hundredPlusBody' | 'dragonfuryBody' | 'dgamesBody';
+  genreKey: PortalGenreKey;
+  highlightKeys: [PortalHighlightKey, PortalHighlightKey, PortalHighlightKey];
+  badge?: PortalBadgeKey;
   imageUrl: string;
+  /** CSS object-position values to crop distinct previews from the banner. */
+  previewFocus: [string, string, string, string];
   accent: string;
   /** SMS / text lines shown on the reference contact section */
   phones: string[];
@@ -62,7 +83,11 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
     name: 'VBlink',
     taglineKey: 'vblinkTagline',
     bodyKey: 'vblinkBody',
+    genreKey: 'genreCasino',
+    highlightKeys: ['vblinkFeat1', 'vblinkFeat2', 'vblinkFeat3'],
+    badge: 'badgePopular',
     imageUrl: '/portal/vblink.jpg',
+    previewFocus: ['18% 28%', '82% 22%', '48% 72%', '62% 48%'],
     accent: '#2ea3f2',
     phones: ['7077766022', '7277882977', '8136022077', '8138933656'],
     facebook: 'https://www.facebook.com/VP1888/',
@@ -73,7 +98,11 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
     name: 'Dragon Fury',
     taglineKey: 'dragonfuryTagline',
     bodyKey: 'dragonfuryBody',
+    genreKey: 'genreFishing',
+    highlightKeys: ['dragonfuryFeat1', 'dragonfuryFeat2', 'dragonfuryFeat3'],
+    badge: 'badgeNew',
     imageUrl: '/portal/dragonfury.jpg',
+    previewFocus: ['22% 18%', '78% 30%', '40% 78%', '55% 45%'],
     accent: '#c45c26',
     phones: ['7077766333', '2678888688', '5305808899', '8135396476'],
     live: true,
@@ -83,7 +112,11 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
     name: '100plus',
     taglineKey: 'hundredPlusTagline',
     bodyKey: 'hundredPlusBody',
+    genreKey: 'genreArcade',
+    highlightKeys: ['hundredPlusFeat1', 'hundredPlusFeat2', 'hundredPlusFeat3'],
+    badge: 'badgePopular',
     imageUrl: '/portal/100plus.jpg',
+    previewFocus: ['15% 40%', '85% 25%', '50% 80%', '35% 55%'],
     accent: '#29c4a9',
     phones: ['7077766333', '2678888688', '5305808899', '8135396476'],
     facebook: 'https://www.facebook.com/100PLUSNEW/',
@@ -95,7 +128,10 @@ export const PORTAL_PROVIDERS: PortalProvider[] = [
     name: 'dgamesonline',
     taglineKey: 'dgamesTagline',
     bodyKey: 'dgamesBody',
+    genreKey: 'genreCatalog',
+    highlightKeys: ['dgamesFeat1', 'dgamesFeat2', 'dgamesFeat3'],
     imageUrl: '/portal/dgames.jpg',
+    previewFocus: ['25% 20%', '75% 35%', '45% 75%', '60% 50%'],
     accent: '#7c5cff',
     phones: [],
     live: true,

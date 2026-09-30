@@ -24,7 +24,7 @@ export function AuthModal() {
         <button
           type="button"
           onClick={closeAuth}
-          className="absolute right-3 top-3 rounded-md p-2 text-[var(--vp-muted)] transition hover:bg-white/5 hover:text-[var(--vp-fg)]"
+          className="absolute right-3 top-3 grid min-h-11 min-w-11 place-items-center rounded-md p-2 text-[var(--vp-muted)] transition hover:bg-white/5 hover:text-[var(--vp-fg)]"
           aria-label="Close"
         >
           <X className="h-5 w-5" />

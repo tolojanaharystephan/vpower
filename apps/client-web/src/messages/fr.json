@@ -1,5 +1,7 @@
 {
-  "common": { "loading": "Chargement…" },
+  "common": {
+    "loading": "Chargement…"
+  },
   "brand": {
     "name": "VPower777",
     "tagline": "Le jeu, sans détour"
@@ -35,14 +37,14 @@
     "methodsLater": "Cash App, PayPal, Zelle, Venmo, Chime : bientôt en ligne, ou via l’agent de salle avec une preuve de virement.",
     "depositViaAgent": "Déposer via l’agent de salle",
     "balanceLabel": "Solde",
-    "walletsLabel": "Portefeuilles",
-    "roomsTitle": "Portefeuilles par salle",
+    "walletsLabel": "Caisse",
+    "roomsTitle": "Caisse VPower777",
     "cashierName": "Caisse",
-    "roomsSubtitle": "Une seule caisse pour toutes les salles.",
+    "roomsSubtitle": "Un seul solde pour toutes les salles. Pas de transfert manuel entre jeux.",
     "fundRoom": "Alimenter",
     "openRoom": "Jouer",
     "manageWallets": "Gérer les portefeuilles",
-    "thisRoom": "Caisse"
+    "thisRoom": "Solde VPower777"
   },
   "hero": {
     "eyebrow": "VBlink · Dragon Fury · 100plus",
@@ -134,7 +136,7 @@
     "ctaJoin": "Créer un compte",
     "servicesEyebrow": "Salles",
     "servicesTitle": "Tes lobbies, en un coup d'œil",
-    "servicesBody": "Chaque carte ouvre une salle partenaire. Facebook et YouTube portent l'actualité. Le jeu se lance ici.",
+    "servicesBody": "Choisis une salle. Même compte VPower777, même caisse. Appuie sur Jouer maintenant.",
     "live": "Live",
     "playProvider": "Lancer les jeux",
     "textUs": "Nous écrire",
@@ -148,17 +150,37 @@
     "enterGames": "Lancer les jeux",
     "enterCasino": "Ouvrir VBlink",
     "vblinkTagline": "Le lobby casino",
-    "vblinkBody": "Compte et caisse sur VPower777. Catalogue de jeux sur VBlink.",
+    "vblinkBody": "Slots et tables live. Un seul compte VPower777 — pas d’inscription en plus.",
     "dragonfuryTagline": "Puissance et rythme",
-    "dragonfuryBody": "Lobby Dragon Fury : compte créé ici, jeu sur le site partenaire.",
+    "dragonfuryBody": "Pêche et rythme arcade. Même login, même caisse.",
     "goldendragonTagline": "Puissance, visuels, rythme",
     "goldendragonBody": "Le lobby Goldendragon : image dense, sessions longues.",
     "magiccityTagline": "Arcade et mystère",
     "magiccityBody": "Magiccity : thèmes forts, cadence arcade.",
     "hundredPlusTagline": "Large sélection",
-    "hundredPlusBody": "100plus : du casual au high energy, même entrée VPower777.",
+    "hundredPlusBody": "Large sélection, du casual au high energy. Même porte VPower777.",
     "dgamesTagline": "Catalogue GamesAPI",
-    "dgamesBody": "dgamesonline : solde VPower777, jeux via openGame, crédits en temps réel."
+    "dgamesBody": "Joue au catalogue avec ton solde VPower777.",
+    "playNow": "Jouer maintenant",
+    "genreCasino": "Slots · Casino live",
+    "genreFishing": "Pêche · Arcade",
+    "genreArcade": "Slots · High energy",
+    "genreCatalog": "Catalogue · Jeu direct",
+    "badgePopular": "Populaire",
+    "badgeNew": "Nouveau",
+    "previewLabel": "Dans le lobby",
+    "vblinkFeat1": "Slots, live et toute la bibliothèque VBlink",
+    "vblinkFeat2": "La caisse VPower777 t’accompagne",
+    "vblinkFeat3": "Jouer maintenant — sans second compte",
+    "dragonfuryFeat1": "Tables de pêche et titres arcade",
+    "dragonfuryFeat2": "Ouvert avec ton compte VPower777",
+    "dragonfuryFeat3": "Le solde reste sur la caisse VPower777",
+    "hundredPlusFeat1": "Grande sélection, casual à high energy",
+    "hundredPlusFeat2": "Le même compte que les autres salles",
+    "hundredPlusFeat3": "Joue depuis cette carte",
+    "dgamesFeat1": "Lance un titre sans quitter VPower777",
+    "dgamesFeat2": "Le solde se met à jour en jouant",
+    "dgamesFeat3": "Un login pour tout le hall"
   },
   "dgamesPlay": {
     "title": "dgamesonline",
@@ -177,7 +199,11 @@
     "body": "Ouverture du lobby VBlink depuis VPower777.",
     "hint": "Salle live — VBlink",
     "backProviders": "Autres salles",
-    "backHome": "Accueil"
+    "backHome": "Accueil",
+    "rotateTitle": "Tourne ton téléphone pour jouer",
+    "rotateBody": "Ce lobby est en mode paysage. Mets le téléphone à l’horizontale, puis continue.",
+    "rotateReady": "Continuer",
+    "rotateAnyway": "Jouer en portrait quand même"
   },
   "vblinkPlay": {
     "title": "VBlink",
@@ -195,7 +221,7 @@
     "copy": "Copier",
     "showPassword": "Afficher le mot de passe",
     "hidePassword": "Masquer le mot de passe",
-    "redirectTitle": "Redirection vers le partenaire",
+    "redirectTitle": "Ton lobby est prêt",
     "openGame": "Ouvrir le jeu",
     "openLobby": "Ouvrir VBlink",
     "openVblink": "Ouvrir VBlink",
@@ -207,8 +233,10 @@
     "helpLogin": "Accès VBlink",
     "helpBody": "Copie tes identifiants, ouvre VBlink, connecte-toi.",
     "manualBody": "Compte VBlink prêt. Copie, ouvre, connecte-toi.",
-    "loginHint": "Sur la page qui s'ouvre : cet identifiant et ce mot de passe.",
-    "lobbyHint": "Sur la page qui s'ouvre : cet identifiant et ce mot de passe."
+    "loginHint": "Utilise ces identifiants seulement si le lobby le demande. Ton compte VPower777 a déjà ouvert la salle.",
+    "lobbyHint": "Ton compte VPower777 a ouvert cette salle. Garde ces identifiants seulement en cas de besoin.",
+    "playNow": "Jouer maintenant",
+    "credentialsToggle": "Si le lobby demande une connexion"
   },
   "plus100Play": {
     "loginTitle": "Connecte-toi d'abord",
@@ -222,14 +250,16 @@
     "copy": "Copier",
     "showPassword": "Afficher le mot de passe",
     "hidePassword": "Masquer le mot de passe",
-    "redirectTitle": "Ouverture du lobby 100plus",
+    "redirectTitle": "Ton lobby est prêt",
     "openGame": "Ouvrir 100plus",
     "backProviders": "Retour aux salles",
     "backGames": "Retour au catalogue",
     "missingTitle": "Session indisponible",
     "missingBody": "Repars du hall et relance.",
-    "loginHint": "Sur la page qui s'ouvre : cet identifiant et ce mot de passe.",
-    "lobbyHint": "Ouvre le lobby. Garde ces identifiants si une connexion est demandée."
+    "loginHint": "Utilise ces identifiants seulement si le lobby le demande. Ton compte VPower777 a déjà ouvert la salle.",
+    "lobbyHint": "Ton compte VPower777 a ouvert cette salle. Garde ces identifiants seulement en cas de besoin.",
+    "playNow": "Jouer maintenant",
+    "credentialsToggle": "Si le lobby demande une connexion"
   },
   "dragonfuryPlay": {
     "loginTitle": "Connecte-toi d'abord",
@@ -243,14 +273,16 @@
     "copy": "Copier",
     "showPassword": "Afficher le mot de passe",
     "hidePassword": "Masquer le mot de passe",
-    "redirectTitle": "Ouverture du lobby Dragon Fury",
+    "redirectTitle": "Ton lobby est prêt",
     "openGame": "Ouvrir Dragon Fury",
     "backProviders": "Retour aux salles",
     "backGames": "Retour au catalogue",
     "missingTitle": "Session indisponible",
     "missingBody": "Repars du hall et relance.",
-    "loginHint": "Sur la page qui s'ouvre : cet identifiant et ce mot de passe.",
-    "lobbyHint": "Ouvre le lobby. Garde ces identifiants si une connexion est demandée."
+    "loginHint": "Utilise ces identifiants seulement si le lobby le demande. Ton compte VPower777 a déjà ouvert la salle.",
+    "lobbyHint": "Ton compte VPower777 a ouvert cette salle. Garde ces identifiants seulement en cas de besoin.",
+    "playNow": "Jouer maintenant",
+    "credentialsToggle": "Si le lobby demande une connexion"
   },
   "account": {
     "eyebrow": "Espace joueur",
@@ -276,9 +308,9 @@
     "sessionTitle": "Session",
     "sessionBody": "Déconnecte cet appareil. Ton compte et tes favoris restent synchronisés.",
     "supportLink": "Contacter le support",
-    "walletsEyebrow": "Portefeuilles",
-    "walletsTitle": "Une seule caisse",
-    "walletsBody": "Tu déposes une fois. Cette caisse alimente la salle que tu choisis. Les gains reviennent ici."
+    "walletsEyebrow": "Caisse",
+    "walletsTitle": "Un seul portefeuille",
+    "walletsBody": "Dépose une fois. Chaque salle utilise ce solde. Les gains reviennent ici."
   },
   "support": {
     "eyebrow": "Support",

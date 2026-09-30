@@ -9,6 +9,7 @@ import { useAuthUi } from '@/components/auth/auth-ui-context';
 import { useSession } from '@/components/auth/session-provider';
 import { enterDragonfury, enterPlus100, enterVblink, launchGame } from '@/lib/api';
 import { RoomWalletLine } from '@/components/wallet/room-wallets-panel';
+import { isMobilePortrait, RotateToPlay } from '@/components/games/rotate-to-play';
 
 type LaunchState = {
   title: string;
@@ -49,6 +50,7 @@ export function PlayLaunchScreen({
   const [copied, setCopied] = useState<CopiedField>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const [needRotate, setNeedRotate] = useState(false);
   const started = useRef(false);
 
   useEffect(() => {
@@ -110,9 +112,19 @@ export function PlayLaunchScreen({
     }
   };
 
+  const launchLobby = () => {
+    if (!state?.launchUrl) return;
+    setNeedRotate(false);
+    window.open(state.launchUrl, '_blank', 'noopener,noreferrer');
+  };
+
   const openGame = () => {
     if (!state?.launchUrl) return;
-    window.open(state.launchUrl, '_blank', 'noopener,noreferrer');
+    if (isMobilePortrait()) {
+      setNeedRotate(true);
+      return;
+    }
+    launchLobby();
   };
 
   if (!ready || loading) {
@@ -184,11 +196,15 @@ export function PlayLaunchScreen({
         />
 
         {state.account ? (
-          <div className="cinema-panel mt-6 space-y-4 p-5">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
-                {t('account')}
-              </p>
+          <details className="cinema-panel mt-6 p-5">
+            <summary className="cursor-pointer text-sm font-medium text-[var(--vp-fg)]">
+              {t('credentialsToggle')}
+            </summary>
+            <div className="mt-4 space-y-4">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--vp-muted)]">
+                  {t('account')}
+                </p>
               <div className="mt-1 flex items-center gap-2">
                 <code className="flex-1 truncate rounded-md bg-black/35 px-3 py-2 text-sm text-[var(--vp-fg)]">
                   {state.account}
@@ -241,13 +257,18 @@ export function PlayLaunchScreen({
             <p className="text-xs text-[var(--vp-muted)]">
               {state.requiresManualLogin ? t('loginHint') : t('lobbyHint')}
             </p>
-          </div>
+            </div>
+          </details>
+        ) : null}
+
+        {needRotate ? (
+          <RotateToPlay onContinue={launchLobby} onDismiss={() => setNeedRotate(false)} />
         ) : null}
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Button className="flex-1" size="lg" onClick={openGame}>
             <ExternalLink className="h-4 w-4" />
-            {t('openGame')}
+            {t('playNow')}
           </Button>
           <Link href="/" className="flex-1">
             <Button variant="secondary" className="w-full" size="lg">
